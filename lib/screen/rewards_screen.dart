@@ -1,0 +1,1021 @@
+import 'package:flutter/material.dart';
+import 'package:loyalty_app/utils/api_constants.dart';
+import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
+import 'dart:convert';
+import 'dart:io';
+import 'package:loyalty_app/Auth/LanguageSelectionPage.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+class RewardsScreen extends StatefulWidget {
+  const RewardsScreen({super.key});
+
+  @override
+  State<RewardsScreen> createState() => _RewardsScreenState();
+}
+
+class _RewardsScreenState extends State<RewardsScreen> {
+  List<RewardItem> rewards = [];
+  List<RewardItem> displayedRewards = [];
+  bool isLoading = true;
+  String? error;
+  String totalPoints = "0";
+  final bool _isLoading = false;
+  String userName = "User";
+  String? profileImagePath;
+  int itemsToShow = 3;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadUserData();
+    fetchRewards();
+  }
+
+  Future<void> _loadUserData() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      totalPoints = prefs.getString('totalPoints') ?? '2000';
+      userName = prefs.getString('user_fullname') ?? 'user';
+    });
+  }
+
+  void _updateDisplayedRewards() {
+    setState(() {
+      displayedRewards = rewards.take(itemsToShow).toList();
+    });
+  }
+
+  void _loadMoreItems() {
+    setState(() {
+      itemsToShow = rewards.length;
+      _updateDisplayedRewards();
+    });
+  }
+
+  Future<void> fetchRewards() async {
+    setState(() {
+      isLoading = true;
+      error = null;
+    });
+
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final companyUrl = prefs.getString('company_url');
+      final softwareType = prefs.getString('software_type');
+      final clientID = prefs.getString('clientID');
+      final trdr = prefs.getString('TRDR');
+
+      debugPrint("🔍 SharedPreferences values:");
+      debugPrint(" companyUrl: $companyUrl");
+      debugPrint(" softwareType: $softwareType");
+      debugPrint(" clientID: $clientID");
+      debugPrint(" trdr: $trdr");
+
+      if (companyUrl == null ||
+          softwareType == null ||
+          clientID == null ||
+          trdr == null) {
+        throw Exception(
+          "Missing required SharedPreferences values:\n"
+          "companyUrl: $companyUrl\n"
+          "softwareType: $softwareType\n"
+          "clientID: $clientID\n"
+          "trdr: $trdr",
+        );
+      }
+
+      final servicePath = softwareType == "TESAE"
+          ? "/pegasus/a_xit/connector.php"
+          : "/s1services";
+      final uri = Uri.parse(
+        "${ApiConstants.baseUrl}https://$companyUrl$servicePath",
+      );
+
+      debugPrint("🔄 Making API call to: $uri");
+
+      final requestBody = {
+        "service": "SqlData",
+        "clientID": clientID,
+        "appId": "1001",
+        "SqlName": "9701",
+        "trdr": trdr,
+      };
+
+      debugPrint("📤 Request body: ${jsonEncode(requestBody)}");
+
+      final response = await http
+          .post(
+            uri,
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json',
+              'User-Agent': 'LoyaltyApp/1.0',
+              'X-Requested-With': 'XMLHttpRequest',
+            },
+            body: jsonEncode(requestBody),
+          )
+          .timeout(
+            const Duration(seconds: 15),
+            onTimeout: () {
+              throw Exception(
+                "Request timeout - Server took too long to respond",
+              );
+            },
+          );
+
+      debugPrint("📥 Response status: ${response.statusCode}");
+      debugPrint("📥 Response headers: ${response.headers}");
+      debugPrint("📥 Response body: ${response.body}");
+
+      if (response.statusCode == 200) {
+        final dynamic data = jsonDecode(response.body);
+        List<dynamic> rewardsData = [];
+
+        if (data is Map<String, dynamic>) {
+          if (data['success'] == true &&
+              data['rows'] != null &&
+              data['rows'] is List) {
+            rewardsData = data['rows'] as List<dynamic>;
+          } else if (data['rows'] != null && data['rows'] is List) {
+            rewardsData = data['rows'] as List<dynamic>;
+          } else if (data['data'] != null && data['data'] is List) {
+            rewardsData = data['data'] as List<dynamic>;
+          } else {
+            // Create sample data for testing
+            rewardsData = [
+              {
+                'code': '1002',
+                'barcode': '348370',
+                'name': 'Keratin Nanocure® Marrakesh Nights Argan Oil 100ml',
+                'image':
+                    'https://www.angelopouloshair.gr/media/catalog/product/cache/2d7a18900e6360ff4f79090378c73bca/k/e/keratin-nanocure-marrakesh-nights-argan-oil-100ml-2.jpg',
+                'redirecturl':
+                    'https://www.angelopouloshair.gr/el/keratin-nanocurer-argan-oil-100ml?q=348370',
+                'points': '120',
+              },
+              {
+                'code': '1021',
+                'barcode': '82876',
+                'name': 'Keratin Nanocure® Au Gold 24ct Shampoo 500ml',
+                'image':
+                    'https://www.angelopouloshair.gr/media/catalog/product/cache/2d7a18900e6360ff4f79090378c73bca/A/u/Au_Organic_Premium_Nanocure_Gold_24kt_Shampoo.jpg',
+                'redirecturl':
+                    'https://www.angelopouloshair.gr/el/keratin-nanocurer-au-gold-24ct-shampoo-500ml',
+                'points': '200',
+              },
+              {
+                'code': '1003',
+                'barcode': '344743',
+                'name':
+                    'L\'Oréal Professionnel Steampod v3 Ισιωτική Πρέσα Ατμού',
+                'image':
+                    'https://via.placeholder.com/100x100/C0C0C0/000000?text=SteamPod',
+                'redirecturl': 'https://example.com/steampod',
+                'points': '2500',
+              },
+            ];
+          }
+        } else if (data is List) {
+          rewardsData = data;
+        } else {
+          throw Exception(
+            "Invalid response format: Expected Map or List but got ${data.runtimeType}",
+          );
+        }
+
+        if (mounted) {
+          setState(() {
+            rewards = rewardsData
+                .map((item) => RewardItem.fromJson(item))
+                .toList();
+            _updateDisplayedRewards();
+            isLoading = false;
+          });
+        }
+        return;
+      } else if (response.statusCode == 403) {
+        throw Exception("Access denied (403) - Check CORS or authentication");
+      } else if (response.statusCode == 404) {
+        throw Exception("Service not found (404) - Check URL and service path");
+      } else if (response.statusCode == 500) {
+        throw Exception("Server error (500) - Check server logs");
+      } else {
+        throw Exception("HTTP ${response.statusCode}: ${response.body}");
+      }
+    } catch (e) {
+      debugPrint("❗ Error loading rewards: $e");
+      if (mounted) {
+        setState(() {
+          isLoading = false;
+          error = e.toString();
+        });
+      }
+    }
+  }
+
+  // Fixed sticky header
+  Widget _buildStickyHeader() {
+    return Container(
+      color: Colors.white,
+      child: Column(
+        children: [
+          // Orange header section
+          Container(
+            width: double.infinity,
+            padding: const EdgeInsets.fromLTRB(20, 50, 20, 20),
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                colors: [Color(0xFFEC7103), Color(0xFFFF8A3D)],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              ),
+            ),
+            child: SafeArea(
+              child: Row(
+                children: [
+                  Container(
+                    width: 60,
+                    height: 60,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      border: Border.all(color: Colors.white, width: 3),
+                    ),
+                    child: ClipOval(
+                      child:
+                          profileImagePath != null &&
+                              File(profileImagePath!).existsSync()
+                          ? Image.file(
+                              File(profileImagePath!),
+                              fit: BoxFit.cover,
+                            )
+                          : Image.asset(
+                              'assets/images/profile_temp.jpg',
+                              fit: BoxFit.cover,
+                              errorBuilder: (context, error, stackTrace) {
+                                return Container(
+                                  decoration: const BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: Colors.white,
+                                  ),
+                                  child: const Icon(
+                                    Icons.person,
+                                    color: Color(0xFFEC7103),
+                                    size: 30,
+                                  ),
+                                );
+                              },
+                            ),
+                    ),
+                  ),
+                  const SizedBox(width: 15),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Welcome',
+                          style: GoogleFonts.dmSans(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.white,
+                          ),
+                        ),
+                        Text(
+                          userName,
+                          style: GoogleFonts.dmSans(
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  IconButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const LanguageSelectionPage(),
+                        ),
+                      );
+                    },
+                    icon: const Icon(
+                      Icons.g_translate,
+                      color: Colors.white,
+                      size: 28,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          // Points section
+          Container(
+            margin: const EdgeInsets.fromLTRB(20, 20, 20, 5),
+            child: Column(
+              children: [
+                Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 30,
+                    vertical: 12,
+                  ),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(12),
+                    border: Border.all(color: Colors.grey.shade400, width: 2),
+                    boxShadow: [
+                      BoxShadow(
+                        color: const Color.fromARGB(
+                          255,
+                          134,
+                          134,
+                          134,
+                        ).withOpacity(0.4),
+                        blurRadius: 6,
+                        offset: const Offset(9, 10),
+                      ),
+                    ],
+                  ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        _isLoading ? 'Loading...' : '$totalPoints POINTS',
+                        style: GoogleFonts.dmSans(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: const Color(0xFFEC7103),
+                        ),
+                      ),
+                      const SizedBox(width: 8),
+                      Image.asset(
+                        'assets/icons/star-icon.png',
+                        width: 30,
+                        height: 30,
+                        errorBuilder: (context, error, stackTrace) {
+                          return const Icon(
+                            Icons.star,
+                            color: Color(0xFFEC7103),
+                            size: 35,
+                          );
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 20),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _showImageViewer(RewardItem item) {
+    showDialog(
+      context: context,
+      barrierColor: Colors.black87,
+      builder: (context) => Dialog(
+        backgroundColor: Colors.transparent,
+        insetPadding: EdgeInsets.zero,
+        elevation: 0,
+        child: Container(
+          color: Colors.black87,
+          child: Stack(
+            children: [
+              // Full screen image
+              Center(
+                child: Hero(
+                  tag: item.image,
+                  child: InteractiveViewer(
+                    panEnabled: true,
+                    minScale: 0.5,
+                    maxScale: 4.0,
+                    boundaryMargin: const EdgeInsets.all(100),
+                    child: Image.network(
+                      item.image,
+                      fit: BoxFit.contain,
+                      errorBuilder: (context, error, stackTrace) {
+                        return Container(
+                          width: 300,
+                          height: 300,
+                          color: const Color.fromARGB(255, 250, 250, 227),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Image.asset(
+                                'images/thinking1.png',
+                                width: 118,
+                                height: 118,
+                                 // optional
+                              ),
+
+                              const SizedBox(height: 8),
+                              Text(
+                                'Failed to load image',
+                                style: TextStyle(color: Colors.black),
+                              ),
+                            ],
+                          ),
+                        );
+                      },
+                      loadingBuilder: (context, child, loadingProgress) {
+                        if (loadingProgress == null) return child;
+                        return Container(
+                          width: 300,
+                          height: 300,
+                          color: Colors.grey[900],
+                          child: Center(
+                            child: CircularProgressIndicator(
+                              value: loadingProgress.expectedTotalBytes != null
+                                  ? loadingProgress.cumulativeBytesLoaded /
+                                        loadingProgress.expectedTotalBytes!
+                                  : null,
+                              color: Colors.white,
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                ),
+              ),
+              // Close button (top right)
+              Positioned(
+                top: 40,
+                right: 20,
+                child: SafeArea(
+                  child: IconButton(
+                    onPressed: () => Navigator.pop(context),
+                    icon: Container(
+                      decoration: const BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Colors.black54,
+                      ),
+                      padding: const EdgeInsets.all(8),
+                      child: const Icon(
+                        Icons.close,
+                        color: Colors.white,
+                        size: 24,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              // Shop Now button (bottom left)
+              Positioned(
+                bottom: 25,
+                left: 20,
+                right: 20,
+                child: SafeArea(
+                  child: Center(
+                    child: ElevatedButton.icon(
+                      onPressed: () async {
+                        Navigator.pop(context);
+                        await _launchURL(item.redirectUrl);
+                      },
+                      icon: const Icon(
+                        Icons.shopping_cart,
+                        color: Colors.white,
+                        size: 20,
+                      ),
+                      label: Text(
+                        'Shop Now',
+                        style: GoogleFonts.dmSans(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                        ),
+                      ),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color(0xFFEC7103),
+                        foregroundColor: Colors.white,
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 32,
+                          vertical: 12,
+                        ),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(25),
+                        ),
+                        elevation: 5,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              // Product title (bottom center)
+              if (item.title.isNotEmpty)
+                Positioned(
+                  bottom: 80,
+                  left: 20,
+                  right: 20,
+                  child: Container(
+                    padding: const EdgeInsets.all(12),
+                    decoration: BoxDecoration(
+                      color: Colors.black54,
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Text(
+                      item.title,
+                      style: GoogleFonts.dmSans(
+                        color: Colors.white,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                      ),
+                      textAlign: TextAlign.center,
+                      maxLines: 3,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  // Fixed URL launch function
+  Future<void> _launchURL(String? url) async {
+    if (url == null || url.isEmpty) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('No URL available for this product'),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
+      return;
+    }
+
+    try {
+      debugPrint('🔗 Attempting to launch URL: $url');
+
+      // Clean the URL if needed
+      String cleanUrl = url.trim();
+      if (!cleanUrl.startsWith('http://') && !cleanUrl.startsWith('https://')) {
+        cleanUrl = 'https://$cleanUrl';
+      }
+
+      final Uri uri = Uri.parse(cleanUrl);
+      debugPrint('🔗 Parsed URI: $uri');
+
+      // Launch URL directly without checking canLaunchUrl first
+      bool launched = await launchUrl(
+        uri,
+        mode: LaunchMode.externalApplication,
+      );
+
+      if (launched) {
+        debugPrint('✅ Successfully launched URL: $cleanUrl');
+      } else {
+        throw Exception('Failed to launch URL');
+      }
+    } catch (e) {
+      debugPrint('❌ Error launching URL: $e');
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Failed to open link: ${e.toString()}'),
+            backgroundColor: Colors.red,
+            duration: const Duration(seconds: 3),
+          ),
+        );
+      }
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: const Color(0xFFF5F5F5),
+      body: Column(
+        children: [
+          // Fixed header at top
+          _buildStickyHeader(),
+          // Scrollable content below
+          Expanded(child: _buildScrollableContent()),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildScrollableContent() {
+    if (isLoading) {
+      return const Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            CircularProgressIndicator(color: Color(0xFFEC7103)),
+            SizedBox(height: 16),
+            Text("Loading rewards..."),
+          ],
+        ),
+      );
+    }
+
+    if (error != null) {
+      return Center(
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(Icons.error_outline, size: 64, color: Colors.grey[400]),
+              const SizedBox(height: 16),
+              Text(
+                "Error Loading Rewards",
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.grey[800],
+                ),
+              ),
+              const SizedBox(height: 8),
+              Text(
+                error!,
+                style: TextStyle(color: Colors.grey[600], fontSize: 14),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 16),
+              ElevatedButton(
+                onPressed: fetchRewards,
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color(0xFFEC7103),
+                  foregroundColor: Colors.white,
+                ),
+                child: const Text('Retry'),
+              ),
+              const SizedBox(height: 8),
+              TextButton(
+                onPressed: _showDebugInfo,
+                child: const Text('Show Debug Info'),
+              ),
+            ],
+          ),
+        ),
+      );
+    }
+
+    if (rewards.isEmpty) {
+      return Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(Icons.card_giftcard, size: 64, color: Colors.grey[400]),
+            const SizedBox(height: 16),
+            Text(
+              'No rewards available',
+              style: TextStyle(color: Colors.grey[600], fontSize: 16),
+            ),
+            const SizedBox(height: 16),
+            ElevatedButton(
+              onPressed: fetchRewards,
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color(0xFFEC7103),
+                foregroundColor: Colors.white,
+              ),
+              child: const Text('Refresh'),
+            ),
+          ],
+        ),
+      );
+    }
+
+    return RefreshIndicator(
+      onRefresh: fetchRewards,
+      color: const Color(0xFFEC7103),
+      child: ListView.builder(
+        padding: const EdgeInsets.all(16),
+        itemCount: displayedRewards.length < rewards.length
+            ? displayedRewards.length + 1
+            : displayedRewards.length,
+        itemBuilder: (context, index) {
+          if (index < displayedRewards.length) {
+            final item = displayedRewards[index];
+            return Padding(
+              padding: const EdgeInsets.only(bottom: 16),
+              child: VerticalRewardCard(
+                item: item,
+                onTap: () => _showImageViewer(item),
+              ),
+            );
+          } else if (index == displayedRewards.length &&
+              displayedRewards.length < rewards.length) {
+            // Show "Load More" button
+            return Padding(
+              padding: const EdgeInsets.symmetric(vertical: 20),
+              child: Center(
+                child: ElevatedButton(
+                  onPressed: _loadMoreItems,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFFEC7103),
+                    foregroundColor: Colors.white,
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 32,
+                      vertical: 12,
+                    ),
+                  ),
+                  child: const Text('Load More Products'),
+                ),
+              ),
+            );
+          }
+          return null;
+        },
+      ),
+    );
+  }
+
+  void _showDebugInfo() async {
+    final prefs = await SharedPreferences.getInstance();
+    final companyUrl = prefs.getString('company_url');
+    final softwareType = prefs.getString('software_type');
+    final clientID = prefs.getString('clientID');
+    final trdr = prefs.getString('TRDR');
+
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Debug Information'),
+        content: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              _buildDebugRow('Company URL', companyUrl),
+              _buildDebugRow('Software Type', softwareType),
+              _buildDebugRow('Client ID', clientID),
+              _buildDebugRow('TRDR', trdr),
+              const SizedBox(height: 8),
+              const Text(
+                'Last Error:',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              Text(error ?? 'None'),
+            ],
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('Close'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildDebugRow(String label, String? value) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 2),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SizedBox(
+            width: 100,
+            child: Text(
+              '$label:',
+              style: const TextStyle(fontWeight: FontWeight.bold),
+            ),
+          ),
+          Expanded(
+            child: Text(
+              value ?? 'null',
+              style: TextStyle(
+                color: value == null ? Colors.red : Colors.black,
+                fontFamily: 'monospace',
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+// Rest of the classes remain the same
+class RewardItem {
+  final String title;
+  final String image;
+  final int points;
+  final String? code;
+  final String? barcode;
+  final String? sku;
+  final String? description;
+  final String? redirectUrl;
+
+  RewardItem({
+    required this.title,
+    required this.image,
+    required this.points,
+    this.code,
+    this.barcode,
+    this.sku,
+    this.description,
+    this.redirectUrl,
+  });
+
+  factory RewardItem.fromJson(dynamic json) {
+    if (json is Map<String, dynamic>) {
+      return RewardItem(
+        title: json['name']?.toString() ?? 'Unknown Product',
+        image: json['image']?.toString() ?? '',
+        points: int.tryParse(json['points']?.toString() ?? '0') ?? 0,
+        code: json['code']?.toString(),
+        barcode: json['barcode']?.toString(),
+        sku: json['barcode']?.toString(),
+        description: json['description']?.toString(),
+        redirectUrl: json['redirecturl']?.toString(),
+      );
+    }
+    return RewardItem(title: 'Unknown Product', image: '', points: 0);
+  }
+}
+
+class VerticalRewardCard extends StatelessWidget {
+  final RewardItem item;
+  final VoidCallback? onTap;
+
+  const VerticalRewardCard({super.key, required this.item, this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(8),
+          border: Border.all(color: const Color(0xFFEC7103), width: 1),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.15),
+              blurRadius: 8,
+              offset: const Offset(0, 4),
+            ),
+          ],
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Product Image
+              Hero(
+                tag: item.image,
+                child: Container(
+                  width: 80,
+                  height: 80,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                    border: Border.all(color: Colors.grey.shade300),
+                  ),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(8),
+                    child: _buildImage(),
+                  ),
+                ),
+              ),
+              const SizedBox(width: 16),
+              // Product Details
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // SKU
+                    if (item.sku != null && item.sku!.isNotEmpty)
+                      Text(
+                        'SKU: ${item.sku}',
+                        style: GoogleFonts.dmSans(
+                          fontSize: 12,
+                          color: Colors.grey[600],
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                    const SizedBox(height: 4),
+                    // Title
+                    Text(
+                      item.title,
+                      style: GoogleFonts.dmSans(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.black87,
+                        height: 1.3,
+                      ),
+                      maxLines: 3,
+                      overflow: TextOverflow.ellipsis,
+                      softWrap: true,
+                    ),
+                    const SizedBox(height: 8),
+                    // Description
+                    if (item.description != null &&
+                        item.description!.isNotEmpty)
+                      Text(
+                        item.description!,
+                        style: GoogleFonts.jura(
+                          fontSize: 14,
+                          color: Colors.grey[700],
+                          fontWeight: FontWeight.w400,
+                          height: 1.3,
+                        ),
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    const SizedBox(height: 12),
+                    // Points Badge
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 6,
+                        horizontal: 12,
+                      ),
+                      decoration: BoxDecoration(
+                        color: const Color(0xFFEC7103),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Text(
+                        "${item.points} POINTS",
+                        style: GoogleFonts.dmSans(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 12,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildImage() {
+    if (item.image.isEmpty) {
+      return Container(
+        width: double.infinity,
+        height: double.infinity,
+        color: Colors.grey[300],
+        child: const Icon(
+          Icons.image_not_supported,
+          size: 32,
+          color: Colors.grey,
+        ),
+      );
+    }
+
+    // Check if it's a network image (URL) or local asset
+    if (item.image.startsWith('http')) {
+      return Image.network(
+        item.image,
+        fit: BoxFit.cover,
+        width: double.infinity,
+        height: double.infinity,
+        errorBuilder: (context, error, stackTrace) {
+          return Container(
+            width: double.infinity,
+            height: double.infinity,
+            color: Colors.grey[300],
+            child: const Icon(Icons.broken_image, size: 32, color: Colors.grey),
+          );
+        },
+        loadingBuilder: (context, child, loadingProgress) {
+          if (loadingProgress == null) return child;
+          return Container(
+            width: double.infinity,
+            height: double.infinity,
+            color: Colors.grey[200],
+            child: const Center(
+              child: CircularProgressIndicator(
+                strokeWidth: 2,
+                color: Color(0xFFEC7103),
+              ),
+            ),
+          );
+        },
+      );
+    } else {
+      return Image.asset(
+        item.image,
+        fit: BoxFit.cover,
+        width: double.infinity,
+        height: double.infinity,
+        errorBuilder: (context, error, stackTrace) {
+          return Container(
+            width: double.infinity,
+            height: double.infinity,
+            color: Colors.grey[300],
+            child: const Icon(Icons.broken_image, size: 32, color: Colors.grey),
+          );
+        },
+      );
+    }
+  }
+}
