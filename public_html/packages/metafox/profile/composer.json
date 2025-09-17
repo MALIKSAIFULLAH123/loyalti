@@ -1,0 +1,46 @@
+{
+    "name": "metafox/profile",
+    "version": "5.0.20",
+    "description": "Profile",
+    "keyword": "",
+    "authors": [
+        {
+            "name": "phpFox",
+            "homepage": "https://metafoxapp.com"
+        }
+    ],
+    "extra": {
+        "metafox": {
+            "core": true,
+            "priority": 100,
+            "alias": "profile",
+            "asset": "profile",
+            "namespace": "MetaFox\\Profile",
+            "path": "packages/metafox/profile",
+            "title": "Profile",
+            "providers": [
+                "MetaFox\\Profile\\Providers\\PackageServiceProvider"
+            ],
+            "aliases": null,
+            "frontend": {
+                "@metafox/profile": "*"
+            },
+            "internalAdminUrl": "/profile/field/browse",
+            "type": "app",
+            "mobile": [],
+            "store_id": 0,
+            "store_url": null,
+            "internalUrl": ""
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "MetaFox\\Profile\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "MetaFox\\Profile\\Tests\\": "tests/"
+        }
+    }
+}

@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Zeochat — Local Setup Instructions</title>
+  <style>
+    body{font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;line-height:1.6;color:#0f172a;background:#f8fafc;padding:28px}
+    .card{max-width:900px;margin:18px auto;padding:22px;border-radius:12px;background:#ffffff;box-shadow:0 6px 24px rgba(2,6,23,0.06)}
+    h1{font-size:22px;margin-bottom:6px}
+    p.lead{color:#334155;margin-top:0}
+    ol{padding-left:18px}
+    pre{background:#0b1220;color:#e6eef8;padding:12px;border-radius:8px;overflow:auto}
+    code{font-family:SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace}
+    .note{background:#f1f5f9;padding:10px;border-left:4px solid #60a5fa;border-radius:6px;margin-top:12px}
+    .foot{font-size:13px;color:#64748b;margin-top:14px}
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Zeochat — Local Setup Instructions</h1>
+    <p class="lead">Follow these steps to clone the repo, switch to <code>development</code>, configure the DB, and run the installer.</p>
+
+    <ol>
+      <li>
+        <strong>Clone the repository</strong>
+        <pre><code>git clone https://gitlab.com/zeochat/Zeochat.git</code></pre>
+      </li>
+
+      <li>
+        <strong>Switch to the <code>development</code> branch</strong>
+        <pre><code>cd Zeochat
+git checkout development</code></pre>
+      </li>
+
+      <li>
+        <strong>Create a MySQL database</strong>
+        <p class="note">Create a database (example name: <code>zeochat_db</code>). Make sure you have a MySQL server running and a user with privileges to create/use the DB.</p>
+        <pre><code>-- example using mysql CLI
+CREATE DATABASE zeochat_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+GRANT ALL PRIVILEGES ON zeochat_db.* TO 'zeouser'@'localhost' IDENTIFIED BY 'your_password';
+FLUSH PRIVILEGES;</code></pre>
+      </li>
+
+      <li>
+        <strong>Update environment file</strong>
+        <p class="note">Copy <code>.env.example</code> to <code>.env</code> if it doesn't exist, then add your DB details.</p>
+        <pre><code>cp .env.example .env
+# then edit .env and set:
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=zeochat_db
+DB_USERNAME=zeouser
+DB_PASSWORD=your_password</code></pre>
+      </li>
+
+      <li>
+        <strong>Run installer / setup</strong>
+        <p>Install dependencies and run the Metafox installer (the command you provided):</p>
+        <pre><code>composer install
+# generate app key & migrate
+php artisan key:generate
+php artisan migrate --force
+php artisan metafox:install --force</code></pre>
+      </li>
+    </ol>
+
+    <p class="foot">Troubleshooting highlights:
+      <ul>
+        <li>If you see PHP extension errors (e.g., <code>ext-intl</code> missing), install/enable the extension in your PHP.ini.</li>
+        <li>On Windows, if Git warns about line endings (LF/CRLF), consider setting <code>git config --global core.autocrlf input</code>.</li>
+        <li>Ensure correct PHP version, Composer installed, and MySQL credentials match <code>.env</code>.</li>
+      </ul>
+    </p>
+
+  </div>
+</body>
+</html>

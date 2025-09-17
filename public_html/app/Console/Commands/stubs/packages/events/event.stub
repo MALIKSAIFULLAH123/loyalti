@@ -1,0 +1,15 @@
+<?php
+
+namespace $PACKAGE_NAMESPACE$/Events;
+
+/**
+ * Class $NAME$
+ *
+ * @ignore
+ */
+class $NAME$
+{
+    public function handle(){
+
+    }
+}

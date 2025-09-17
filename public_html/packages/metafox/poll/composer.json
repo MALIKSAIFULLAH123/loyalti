@@ -1,0 +1,52 @@
+{
+    "name": "metafox/poll",
+    "version": "5.0.25",
+    "description": "",
+    "authors": [
+        {
+            "name": "phpFox",
+            "email": "developer@phpfox.com",
+            "homepage": "https://www.phpfox.com"
+        }
+    ],
+    "extra": {
+        "metafox": {
+            "core": false,
+            "alias": "poll",
+            "asset": "poll",
+            "path": "packages/metafox/poll",
+            "title": "Poll",
+            "namespace": "MetaFox\\Poll",
+            "internalAdminUrl": "/poll/setting",
+            "providers": [
+                "MetaFox\\Poll\\Providers\\PackageServiceProvider"
+            ],
+            "frontend": {
+                "@metafox/poll": "*"
+            },
+            "frontendPaths": [
+                "packages/metafox/poll"
+            ],
+            "require": {
+                "metafox/core": "5.1.18 - 5.1.19"
+            },
+            "aliases": {
+            }
+        },
+        "laravel": {
+            "providers": [],
+            "aliases": {
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "MetaFox\\Poll\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "MetaFox\\Poll\\Tests\\": "tests/"
+        }
+    }
+}

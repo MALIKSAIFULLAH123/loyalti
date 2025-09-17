@@ -1,0 +1,23 @@
+<?php
+
+namespace $PACKAGE_NAMESPACE$\Repositories\Eloquent;
+
+use MetaFox\Platform\Repositories\AbstractRepository;
+use $PACKAGE_NAMESPACE$\Repositories\$NAME$RepositoryInterface;
+use $PACKAGE_NAMESPACE$\Models\$NAME$;
+
+/**
+ * stub: $STUB$
+ */
+
+/**
+ * Class $NAME$Repository
+ *
+ */
+class $NAME$Repository extends AbstractRepository implements $NAME$RepositoryInterface
+{
+    public function model()
+    {
+        return $NAME$::class;
+    }
+}

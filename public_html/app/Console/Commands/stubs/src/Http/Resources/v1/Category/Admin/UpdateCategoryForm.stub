@@ -1,0 +1,40 @@
+<?php
+
+namespace $PACKAGE_NAMESPACE$\Http\Resources\v1\Category\Admin;
+
+use $PACKAGE_NAMESPACE$\Models\Category as Model;
+use MetaFox\Platform\MetaFoxForm;
+
+/**
+ * --------------------------------------------------------------------------
+ * Code Generator
+ * --------------------------------------------------------------------------
+ * stub: $STUB$
+ */
+
+/**
+ * Class UpdateCategoryForm.
+ * @property Model $resource
+ * @ignore
+ * @codeCoverageIgnore
+ */
+class UpdateCategoryForm extends StoreCategoryForm
+{
+    protected function prepare(): void
+    {
+        $model = $this->resource;
+
+        $this->config([
+            'title'  => 'Edit Category',
+            'method' => MetaFoxForm::METHOD_PUT,
+            'action' => url_utility()->makeApiUrl('admincp/$PACKAGE_ALIAS$/category/' . $this->resource->id),
+            'value'  => [
+                'name'      => $model->name,
+                'is_active' => $model->is_active,
+                'ordering'  => $model->ordering,
+                'parent_id' => $model->parent_id,
+                'name_url'  => $model->name_url,
+            ],
+        ]);
+    }
+}

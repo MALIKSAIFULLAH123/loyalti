@@ -1,0 +1,47 @@
+{
+    "name": "metafox/comment",
+    "version": "5.0.25",
+    "description": "",
+    "authors": [
+        {
+            "name": "phpFox",
+            "email": "developer@phpfox.com",
+            "homepage": "https://www.phpfox.com"
+        }
+    ],
+    "extra": {
+        "metafox": {
+            "core": false,
+            "path": "packages/metafox/comment",
+            "title": "Comment",
+            "alias": "comment",
+            "asset": "comment",
+            "namespace": "MetaFox\\Comment",
+            "internalAdminUrl": "/comment/setting",
+            "providers": [
+                "MetaFox\\Comment\\Providers\\PackageServiceProvider"
+            ],
+            "frontend": {
+                "@metafox/comment": "*"
+            },
+            "frontendPaths": [
+                "packages/metafox/comment"
+            ],
+            "require": {
+                "metafox/core": "5.1.19"
+            },
+            "aliases": {
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "MetaFox\\Comment\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "MetaFox\\Comment\\Tests\\": "tests/"
+        }
+    }
+}

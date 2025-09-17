@@ -859,8 +859,12 @@
 //   }
 // }
 
-// new home page // Updated home page with dynamic name and custom star icon
+// new home page // Updated home page with dynamic name and custom star iconimport 'dart:convert';
 import 'dart:convert';
+
+import 'package:flutter/services.dart' show rootBundle;
+import 'package:googleapis_auth/auth_io.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:io';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -868,8 +872,10 @@ import 'package:http/http.dart' as http;
 import 'package:loyalty_app/Auth/LanguageSelectionPage.dart';
 import 'package:loyalty_app/Services/language_service.dart';
 import 'package:loyalty_app/utils/api_constants.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/foundation.dart';
+import 'package:url_launcher/url_launcher.dart';
 // import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 // Model classes for API responses
@@ -880,9 +886,17 @@ class BannerModel {
   BannerModel({required this.imageUrl, required this.title});
 
   factory BannerModel.fromJson(Map<String, dynamic> json) {
+    String rawUrl = json['imageUrl'] ?? json['COLUMN2'] ?? '';
+
+    // Add https:// if missing from the URL
+    String formattedUrl = rawUrl;
+    if (formattedUrl.isNotEmpty && !formattedUrl.startsWith('http')) {
+      formattedUrl = 'https://$formattedUrl';
+    }
+
     return BannerModel(
-      imageUrl: json['imageUrl'] ?? '',
-      title: json['title'] ?? '',
+      imageUrl: formattedUrl,
+      title: json['title'] ?? json['COLUMN3'] ?? '',
     );
   }
 }
@@ -890,13 +904,19 @@ class BannerModel {
 class HomeScreenMessage {
   final String message;
   final String? subtitle;
+  final String? clickUrl; // New field for redirection URL
 
-  HomeScreenMessage({required this.message, this.subtitle});
+  HomeScreenMessage({
+    required this.message,
+    this.subtitle,
+    this.clickUrl, // Add this
+  });
 
   factory HomeScreenMessage.fromJson(Map<String, dynamic> json) {
     return HomeScreenMessage(
       message: json['message'] ?? '',
       subtitle: json['subtitle'],
+      clickUrl: json['redirecturl'] ?? json['COLUMN3'] ?? '', // Add URL parsing
     );
   }
 }
@@ -939,16 +959,20 @@ class _HomeScreenState extends State<HomeScreen>
 
   @override
   bool get wantKeepAlive => true;
-
   @override
   void initState() {
     super.initState();
     _initializeAnimations();
     _loadUserName();
     _loadAllHomeData();
-    _loadProfileImage();
     _startBannerAutoSlide();
+    _handleFcmToken(); // Add this line
     print('init chal gaya');
+    // HomeScreen ke initState() mein add karo:
+    // Test notification send karne ke liye
+    // Future.delayed(Duration(seconds: 5), () {
+    //   NotificationService.sendTestNotification();
+    // });
   }
 
   @override
@@ -957,7 +981,6 @@ class _HomeScreenState extends State<HomeScreen>
     // Check if this screen became active
     if (widget.currentIndex == 0 && oldWidget.currentIndex != 0) {
       _loadAllHomeData();
-      _loadProfileImage(); // 🔥 FIX: Reload profile image when screen becomes active
     }
   }
 
@@ -991,32 +1014,158 @@ class _HomeScreenState extends State<HomeScreen>
     _pulseController.repeat(reverse: true);
   }
 
-  // 🔥 FIX: Auto-slide banners every 3 seconds
-  void _startBannerAutoSlide() {
-    Future.delayed(const Duration(seconds: 3), () {
-      if (mounted && banners.isNotEmpty) {
-        if (_currentBannerIndex < banners.length - 1) {
-          _currentBannerIndex++;
-        } else {
-          _currentBannerIndex = 0;
-        }
+  // Add this to your imports
 
-        _bannerPageController.animateToPage(
-          _currentBannerIndex,
-          duration: const Duration(milliseconds: 300),
-          curve: Curves.easeInOut,
+  // Add this method to your _HomeScreenState class
+
+  Future<void> _handleFcmToken() async {
+    try {
+      String? fcmToken;
+
+      if (kIsWeb) {
+        // Web-specific FCM initialization
+        fcmToken = await FirebaseMessaging.instance.getToken(
+          vapidKey: "⚡ apni web push key dalni hogi yahan ⚡",
+        );
+      } else {
+        // Mobile platform
+        fcmToken = await FirebaseMessaging.instance.getToken();
+      }
+
+      if (fcmToken != null) {
+        debugPrint("✅ FCM Token liya gaya: $fcmToken");
+
+        // Save in SharedPreferences
+        final prefs = await SharedPreferences.getInstance();
+        await prefs.setString('fcm_token', fcmToken);
+
+        // Backend pe bhejo
+        await _sendFcmTokenToBackend(fcmToken);
+      }
+
+      // Listen for token refresh (kabhi kabhi Firebase token change kar deta hai)
+      FirebaseMessaging.instance.onTokenRefresh.listen((newToken) async {
+        debugPrint("♻️ FCM Token refresh hua: $newToken");
+
+        final prefs = await SharedPreferences.getInstance();
+        await prefs.setString('fcm_token', newToken);
+
+        await _sendFcmTokenToBackend(newToken);
+      });
+    } catch (e) {
+      debugPrint("❌ Error getting FCM token: $e");
+    }
+  }
+
+  // Web-specific FCM initialization
+  Future<void> _initializeFcmForWeb() async {
+    try {
+      // Request notification permission
+      NotificationSettings settings = await FirebaseMessaging.instance
+          .requestPermission();
+
+      if (settings.authorizationStatus == AuthorizationStatus.authorized) {
+        String? fcmToken = await FirebaseMessaging.instance.getToken(
+          vapidKey: "YOUR_VAPID_KEY", // Web app configuration se milega
         );
 
-        _startBannerAutoSlide(); // Continue auto-slide
+        if (fcmToken != null) {
+          debugPrint("Web FCM Token: $fcmToken");
+          final prefs = await SharedPreferences.getInstance();
+          await prefs.setString('fcm_token', fcmToken);
+          await _sendFcmTokenToBackend(fcmToken);
+        }
       }
-    });
+    } catch (e) {
+      debugPrint("Web FCM Error: $e");
+    }
   }
+
+  Future<void> _sendFcmTokenToBackend(String fcmToken) async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final companyUrl = prefs.getString('company_url');
+      final softwareType = prefs.getString('software_type');
+      final clientID = prefs.getString('clientID');
+      final trdr = prefs.getString('TRDR');
+      final userName = prefs.getString('user_fullname') ?? '';
+      final phone = prefs.getString('user_phone') ?? '';
+
+      if (companyUrl == null ||
+          softwareType == null ||
+          clientID == null ||
+          trdr == null) {
+        throw Exception("Missing required SharedPreferences values");
+      }
+
+      final servicePath = softwareType == "TESAE"
+          ? "/pegasus/a_xit/connector.php"
+          : "/s1services";
+
+      final uri = Uri.parse("https://$companyUrl$servicePath");
+
+      debugPrint("🔄 Sending FCM token to backend: $uri");
+
+      final requestBody = {
+        "service": "setData",
+        "clientID": clientID,
+        "appId": "1001",
+        "OBJECT": "CUSTOMER[FORM=WEB]",
+        "KEY": trdr,
+        "data": {
+          "CUSTOMER": [
+            {"NAME": userName, "PHONE01": phone, "GLNCODE": fcmToken},
+          ],
+        },
+      };
+
+      final response = await http
+          .post(
+            uri,
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json',
+              'User-Agent': 'LoyaltyApp/1.0',
+            },
+            body: jsonEncode(requestBody),
+          )
+          .timeout(const Duration(seconds: 10));
+
+      debugPrint("📥 FCM token response: ${response.statusCode}");
+      debugPrint("📥 FCM token response body: ${response.body}");
+
+      if (response.statusCode == 200) {
+        debugPrint("✅ FCM token sent successfully");
+      } else {
+        debugPrint("❌ Failed to send FCM token: ${response.statusCode}");
+      }
+    } catch (e) {
+      debugPrint("❗ Error sending FCM token to backend: $e");
+    }
+  }
+
+  // 🔥 FIX: Auto-slide banners every 3 seconds
+void _startBannerAutoSlide() {
+  Future.delayed(const Duration(seconds: 3), () {
+    if (mounted && banners.isNotEmpty) {
+      final nextIndex = (_currentBannerIndex + 1) % banners.length;
+      
+      _bannerPageController.animateToPage(
+        nextIndex,
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.easeInOut,
+      );
+
+      _startBannerAutoSlide();
+    }
+  });
+}
 
   // Load user name from SharedPreferences
   Future<void> _loadUserName() async {
     try {
       final prefs = await SharedPreferences.getInstance();
-      final name = prefs.getString('user_fullname') ?? 'user';
+      final name = prefs.getString('NAME') ?? 'user';
       if (mounted) {
         setState(() {
           userName = name;
@@ -1029,7 +1178,7 @@ class _HomeScreenState extends State<HomeScreen>
 
   // Load all home screen data
   Future<void> _loadAllHomeData() async {
-    await Future.wait([loadTotalPoints(), loadBanners(), loadHomeMessage()]);
+    await Future.wait([loadTotalPoints(), loadHomeMessage(), loadBanners()]);
   }
 
   // Load total points (existing method)
@@ -1102,19 +1251,25 @@ class _HomeScreenState extends State<HomeScreen>
             data['rows'].isNotEmpty) {
           final points = data['rows'][0]['totalpoints']?.toString() ?? "0";
 
-          /// ✅ Save to SharedPreferences
+          // Base64 image save karo
+          final base64Image = data['rows'][0]['CCCXITLIMAGE']?.toString() ?? '';
+
           await prefs.setString('totalPoints', points);
+
+          // Base64 image ko SharedPreferences me save karo
+          if (base64Image.isNotEmpty) {
+            await prefs.setString('user_profile_base64', base64Image);
+          }
 
           if (mounted) {
             setState(() {
               totalPoints = points;
+              profileImagePath = base64Image;
               _isLoading = false;
               _hasError = false;
             });
           }
           return;
-        } else {
-          throw Exception("Invalid response or no data");
         }
       } else {
         throw Exception("HTTP ${response.statusCode}: ${response.body}");
@@ -1151,10 +1306,10 @@ class _HomeScreenState extends State<HomeScreen>
           ? "/pegasus/a_xit/connector.php"
           : "/s1services";
 
+      // Fixed URI parsing - removed duplicate "https://"
       final uri = Uri.parse(
         "${ApiConstants.baseUrl}https://$companyUrl$servicePath",
       );
-
       debugPrint("🔄 Loading banners from: $uri");
 
       final requestBody = {
@@ -1186,6 +1341,13 @@ class _HomeScreenState extends State<HomeScreen>
             data['success'] == true &&
             data['rows'] != null) {
           final List<dynamic> bannerData = data['rows'];
+
+          // Process and debug each banner
+          debugPrint("📊 Found ${bannerData.length} banners");
+          for (var banner in bannerData) {
+            debugPrint("Banner data: $banner");
+          }
+
           final List<BannerModel> loadedBanners = bannerData
               .map((banner) => BannerModel.fromJson(banner))
               .toList();
@@ -1195,10 +1357,26 @@ class _HomeScreenState extends State<HomeScreen>
               banners = loadedBanners;
             });
           }
+
+          // Debug the formatted URLs
+          for (var banner in loadedBanners) {
+            debugPrint("Formatted banner URL: ${banner.imageUrl}");
+          }
+        } else {
+          debugPrint("❌ Invalid response format or no banners found");
         }
+      } else {
+        debugPrint("❌ HTTP Error: ${response.statusCode}");
       }
     } catch (e) {
       debugPrint("❗ Error loading banners: $e");
+      // Show error in UI if needed
+      if (mounted) {
+        setState(() {
+          _hasError = true;
+          _errorMessage = "Failed to load banners: $e";
+        });
+      }
     }
   }
 
@@ -1272,27 +1450,34 @@ class _HomeScreenState extends State<HomeScreen>
     }
   }
 
-  Future<void> _loadProfileImage() async {
-    final prefs = await SharedPreferences.getInstance();
-    final path = prefs.getString('user_profile_image');
-    if (mounted) {
-      setState(() {
-        profileImagePath = path;
-      });
-    }
-  }
+  // Future<void> _loadProfileImage() async {
+  //   final prefs = await SharedPreferences.getInstance();
 
+  //   // Pehle base64 image check karo
+  //   final base64Image = prefs.getString('user_profile_base64');
+  //   final filePath = prefs.getString('user_profile_image');
+
+  //   debugPrint(
+  //     "📸 Loading profile - Base64: ${base64Image?.isNotEmpty}, File: $filePath",
+  //   );
+
+  //   if (mounted) {
+  //     setState(() {
+  //       profileImagePath = filePath;
+  //       // Base64 image ko bhi state me store kar sakte hain agar chahiye
+  //     });
+  //   }
+  // }
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    // final localizations = AppLocalizations.of(context)!;
+    final localizations = AppLocalizations.of(context)!;
 
     return Scaffold(
       backgroundColor: const Color(0xFFF5F5F5),
       body: RefreshIndicator(
         onRefresh: () async {
           await _loadAllHomeData();
-          await _loadProfileImage(); // 🔥 FIX: Also reload profile image on refresh
         },
         color: const Color(0xFFEC7103),
         backgroundColor: Colors.white,
@@ -1301,11 +1486,13 @@ class _HomeScreenState extends State<HomeScreen>
           physics: const AlwaysScrollableScrollPhysics(),
           child: Column(
             children: [
-              _buildHeaderSection(),
-              _buildBalanceSection(),
-              _buildBannerSlider(), // 🔥 NEW: Banner slider
-              _buildContentSection(),
-              _buildDiscoverButton(),
+              _buildHeaderSection(context, localizations),
+              _buildBalanceSection(localizations),
+              _buildContentSection(
+                localizations,
+              ), // This now shows dynamic message
+              _buildBannerSlider(),
+              // _buildDiscoverButton(), // REMOVE THIS LINE
               const SizedBox(height: 100),
             ],
           ),
@@ -1324,8 +1511,8 @@ class _HomeScreenState extends State<HomeScreen>
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "Special Offers",
-              style: TextStyle(
+              localizations.specialOffers,
+              style: GoogleFonts.jura(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
                 color: Colors.grey.shade800,
@@ -1358,31 +1545,53 @@ class _HomeScreenState extends State<HomeScreen>
                       borderRadius: BorderRadius.circular(16),
                       child: Stack(
                         children: [
+                          // Format the image URL before using it
                           CachedNetworkImage(
-                            imageUrl: banner.imageUrl,
-                            height: 180,
+                            imageUrl: banner.imageUrl.startsWith('http')
+                                ? banner.imageUrl
+                                : 'https://${banner.imageUrl}',
+                            height: 280,
                             width: double.infinity,
-                            fit: BoxFit.cover,
+                            fit: BoxFit.contain,
                             placeholder: (context, url) => Container(
                               color: Colors.grey.shade200,
                               child: const Center(
                                 child: CircularProgressIndicator(
                                   valueColor: AlwaysStoppedAnimation<Color>(
-                                     Color(0xFFEC7103),
+                                    Color(0xFFEC7103),
                                   ),
                                 ),
                               ),
                             ),
-                            errorWidget: (context, url, error) => Container(
-                              color: Colors.grey.shade200,
-                              child: const Center(
-                                child: Icon(
-                                  Icons.image_not_supported,
-                                  color: Colors.grey,
-                                  size: 40,
+                            errorWidget: (context, url, error) {
+                              // Print error for debugging
+                              print("Image load error: $error");
+                              print("Failed URL: $url");
+
+                              return Container(
+                                color: Colors.grey.shade200,
+                                child: const Center(
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Icon(
+                                        Icons.image_not_supported,
+                                        color: Colors.grey,
+                                        size: 40,
+                                      ),
+                                      SizedBox(height: 8),
+                                      Text(
+                                        'Image not available',
+                                        style: TextStyle(
+                                          color: Colors.grey,
+                                          fontSize: 12,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                              ),
-                            ),
+                              );
+                            },
                           ),
                           if (banner.title.isNotEmpty)
                             Positioned(
@@ -1403,11 +1612,13 @@ class _HomeScreenState extends State<HomeScreen>
                                 ),
                                 child: Text(
                                   banner.title,
-                                  style: const TextStyle(
+                                  style: GoogleFonts.jura(
                                     color: Colors.white,
                                     fontSize: 16,
                                     fontWeight: FontWeight.bold,
                                   ),
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
                                 ),
                               ),
                             ),
@@ -1424,10 +1635,13 @@ class _HomeScreenState extends State<HomeScreen>
     );
   }
 
-  Widget _buildHeaderSection() {
+  Widget _buildHeaderSection(
+    BuildContext context,
+    AppLocalizations localizations,
+  ) {
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.fromLTRB(20, 50, 20, 30),
+      padding: const EdgeInsets.fromLTRB(20, 13, 20, 10),
       decoration: const BoxDecoration(
         gradient: LinearGradient(
           colors: [Color(0xFFEC7103), Color(0xFFFF8A3D)],
@@ -1436,78 +1650,144 @@ class _HomeScreenState extends State<HomeScreen>
         ),
       ),
       child: SafeArea(
-        child: Row(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              width: 60,
-              height: 60,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                border: Border.all(color: Colors.white, width: 3),
-              ),
-              child: ClipOval(
-                child:
-                    (profileImagePath != null &&
-                        profileImagePath!.isNotEmpty &&
-                        File(profileImagePath!).existsSync())
-                    ? Image.file(
-                        File(profileImagePath!),
-                        fit: BoxFit.cover,
-                        errorBuilder: _defaultImageErrorBuilder,
-                      )
-                    : Image.asset(
-                        'assets/images/profile_temp.jpg',
-                        fit: BoxFit.cover,
-                        errorBuilder: _defaultImageErrorBuilder,
-                      ),
+            // ✅ Top Logo
+            Center(
+              child: Image.asset(
+                'assets/images/home-logo.png', // apna logo yahan rakho
+                width: 230,
+                fit: BoxFit.contain,
               ),
             ),
 
-            const SizedBox(width: 15),
-            // Welcome text with dynamic name
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Welcome',
-                    style: GoogleFonts.dmSans(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.white,
-                    ),
+            const SizedBox(height: 5),
+
+            // ✅ Existing Row (Profile + Welcome + Language)
+            Row(
+              children: [
+                // Profile Image
+                Container(
+                  width: 60,
+                  height: 60,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: Border.all(color: Colors.white, width: 3),
                   ),
-                  Text(
-                    userName, // Dynamic user name from SharedPreferences
-                    style: GoogleFonts.dmSans(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
+                  child: ClipOval(
+                    child:
+                        (profileImagePath != null &&
+                            profileImagePath!.isNotEmpty)
+                        ? Image.memory(
+                            base64Decode(profileImagePath!),
+                            fit: BoxFit.cover,
+                            gaplessPlayback:
+                                true, // ✅ Ye add karo smooth loading ke liye
+                            errorBuilder: _defaultImageErrorBuilder,
+                          )
+                        : Image.asset(
+                            'assets/images/profile_temp.jpg',
+                            fit: BoxFit.cover,
+                            gaplessPlayback: true, // ✅ Ye bhi add karo
+                            errorBuilder: _defaultImageErrorBuilder,
+                          ),
                   ),
-                ],
-              ),
-            ),
-            // Language button
-            IconButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const LanguageSelectionPage(),
+                ),
+
+                const SizedBox(width: 15),
+
+                // Welcome text
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        localizations.welcome,
+                        style: GoogleFonts.jura(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.white,
+                        ),
+                      ),
+                      Text(
+                        userName, // SharedPreferences se dynamic
+                        style: GoogleFonts.jura(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ],
                   ),
-                );
-              },
-              icon: const Icon(
-                Icons.g_translate,
-                color: Colors.white,
-                size: 28,
-              ),
+                ),
+
+                // Language button
+                IconButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const LanguageSelectionPage(),
+                      ),
+                    );
+                  },
+                  icon: const Icon(
+                    Icons.g_translate,
+                    color: Colors.white,
+                    size: 28,
+                  ),
+                ),
+              ],
             ),
           ],
         ),
       ),
     );
+  }
+
+  Widget _buildProfileImage() {
+    return FutureBuilder<String?>(
+      future: _getBase64Image(),
+      builder: (context, snapshot) {
+        // Pehle base64 image try karo
+        if (snapshot.hasData && snapshot.data!.isNotEmpty) {
+          try {
+            final bytes = base64Decode(snapshot.data!);
+            return Image.memory(
+              bytes,
+              fit: BoxFit.cover,
+              errorBuilder: _defaultImageErrorBuilder,
+            );
+          } catch (e) {
+            debugPrint("Base64 decode error: $e");
+          }
+        }
+
+        // Phir file path try karo
+        if (profileImagePath != null &&
+            profileImagePath!.isNotEmpty &&
+            File(profileImagePath!).existsSync()) {
+          return Image.file(
+            File(profileImagePath!),
+            fit: BoxFit.cover,
+            errorBuilder: _defaultImageErrorBuilder,
+          );
+        }
+
+        // Default image
+        return Image.asset(
+          'assets/images/profile_temp.jpg',
+          fit: BoxFit.cover,
+          errorBuilder: _defaultImageErrorBuilder,
+        );
+      },
+    );
+  }
+
+  Future<String?> _getBase64Image() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getString('user_profile_base64');
   }
 
   Widget _defaultImageErrorBuilder(
@@ -1524,14 +1804,14 @@ class _HomeScreenState extends State<HomeScreen>
     );
   }
 
-  Widget _buildBalanceSection() {
+  Widget _buildBalanceSection(AppLocalizations localizations) {
     return Container(
       margin: const EdgeInsets.fromLTRB(20, 30, 20, 0),
       child: Column(
         children: [
           Text(
-            'My balance',
-            style: GoogleFonts.dmSans(
+            localizations.myBalance,
+            style: GoogleFonts.jura(
               fontSize: 20,
               fontWeight: FontWeight.w600,
               color: Colors.black87,
@@ -1561,8 +1841,10 @@ class _HomeScreenState extends State<HomeScreen>
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-                  _isLoading ? 'Loading...' : '$totalPoints POINTS',
-                  style: GoogleFonts.dmSans(
+                  _isLoading
+                      ? localizations.loading
+                      : '$totalPoints ${localizations.points}',
+                  style: GoogleFonts.jura(
                     fontSize: 20, // Bigger text like in image
                     fontWeight: FontWeight.bold,
                     color: const Color(0xFFEC7103),
@@ -1593,12 +1875,12 @@ class _HomeScreenState extends State<HomeScreen>
   // 🔥 NEW: Banner slider widget
   Widget _buildBannerSlider() {
     if (banners.isEmpty) {
-      return const SizedBox.shrink(); // Hide if no banners
+      return const SizedBox.shrink();
     }
 
     return Container(
       margin: const EdgeInsets.fromLTRB(20, 40, 20, 20),
-      height: 180,
+      height: 280,
       child: Column(
         children: [
           // Banner PageView
@@ -1606,13 +1888,16 @@ class _HomeScreenState extends State<HomeScreen>
             child: PageView.builder(
               controller: _bannerPageController,
               onPageChanged: (index) {
-                setState(() {
-                  _currentBannerIndex = index;
-                });
+                if (_currentBannerIndex != index) {
+                  setState(() {
+                    _currentBannerIndex = index;
+                  });
+                }
               },
               itemCount: banners.length,
               itemBuilder: (context, index) {
                 final banner = banners[index];
+
                 return Container(
                   margin: const EdgeInsets.symmetric(horizontal: 5),
                   decoration: BoxDecoration(
@@ -1627,84 +1912,86 @@ class _HomeScreenState extends State<HomeScreen>
                   ),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(15),
-                    child: Stack(
-                      fit: StackFit.expand,
-                      children: [
-                        // Banner image
-                        banner.imageUrl.isNotEmpty
-                            ? Image.network(
-                                banner.imageUrl,
-                                fit: BoxFit.cover,
-                                errorBuilder: (context, error, stackTrace) {
-                                  return Container(
-                                    color: const Color(
-                                      0xFFEC7103,
-                                    ).withOpacity(0.1),
-                                    child: const Center(
-                                      child: Icon(
-                                        Icons.image,
-                                        size: 50,
-                                        color: Color(0xFFEC7103),
-                                      ),
-                                    ),
-                                  );
-                                },
-                                loadingBuilder:
-                                    (context, child, loadingProgress) {
-                                      if (loadingProgress == null) return child;
-                                      return Container(
-                                        color: const Color(
-                                          0xFFEC7103,
-                                        ).withOpacity(0.1),
-                                        child: const Center(
-                                          child: CircularProgressIndicator(
-                                            color: Color(0xFFEC7103),
-                                          ),
+                    child: GestureDetector(
+                      onTap: () => _onBannerTap(banner),
+                      child: Stack(
+                        fit: StackFit.expand,
+                        children: [
+                          // Banner Image
+                          banner.imageUrl.isNotEmpty
+                              ? Image.network(
+                                  banner.imageUrl,
+                                  fit: BoxFit.contain,
+                                  errorBuilder: (context, error, stackTrace) {
+                                    return Container(
+                                      color: Colors.grey.shade200,
+                                      child: const Center(
+                                        child: Icon(
+                                          Icons.broken_image,
+                                          size: 40,
+                                          color: Colors.grey,
                                         ),
-                                      );
-                                    },
-                              )
-                            : Container(
-                                color: const Color(0xFFEC7103).withOpacity(0.1),
-                                child: const Center(
-                                  child: Icon(
-                                    Icons.image,
-                                    size: 50,
-                                    color: Color(0xFFEC7103),
+                                      ),
+                                    );
+                                  },
+                                  loadingBuilder:
+                                      (context, child, loadingProgress) {
+                                        if (loadingProgress == null) {
+                                          return child;
+                                        }
+                                        return Container(
+                                          color: Colors.grey.shade200,
+                                          child: const Center(
+                                            child: CircularProgressIndicator(
+                                              color: Color(0xFFEC7103),
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                )
+                              : Container(
+                                  color: Colors.grey.shade200,
+                                  child: const Center(
+                                    child: Icon(
+                                      Icons.image_not_supported,
+                                      size: 40,
+                                      color: Colors.grey,
+                                    ),
                                   ),
                                 ),
-                              ),
-                        // Banner title overlay
-                        if (banner.title.isNotEmpty)
-                          Positioned(
-                            bottom: 0,
-                            left: 0,
-                            right: 0,
-                            child: Container(
-                              padding: const EdgeInsets.all(15),
-                              decoration: BoxDecoration(
-                                gradient: LinearGradient(
-                                  begin: Alignment.bottomCenter,
-                                  end: Alignment.topCenter,
-                                  colors: [
-                                    Colors.black.withOpacity(0.7),
-                                    Colors.transparent,
-                                  ],
+
+                          // Banner title - ONLY show if it's NOT a URL
+                          if (banner.title.isNotEmpty && !_isUrl(banner.title))
+                            Positioned(
+                              bottom: 0,
+                              left: 0,
+                              right: 0,
+                              child: Container(
+                                padding: const EdgeInsets.all(15),
+                                decoration: BoxDecoration(
+                                  gradient: LinearGradient(
+                                    begin: Alignment.bottomCenter,
+                                    end: Alignment.topCenter,
+                                    colors: [
+                                      Colors.black.withOpacity(0.6),
+                                      Colors.transparent,
+                                    ],
+                                  ),
                                 ),
-                              ),
-                              child: Text(
-                                banner.title,
-                                style: GoogleFonts.dmSans(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.white,
+                                child: Text(
+                                  banner.title,
+                                  style: GoogleFonts.jura(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.white,
+                                  ),
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
                                 ),
-                                maxLines: 2,
-                                overflow: TextOverflow.ellipsis,
                               ),
                             ),
-                          ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 );
@@ -1717,7 +2004,8 @@ class _HomeScreenState extends State<HomeScreen>
             mainAxisAlignment: MainAxisAlignment.center,
             children: List.generate(
               banners.length,
-              (index) => Container(
+              (index) => AnimatedContainer(
+                duration: const Duration(milliseconds: 300),
                 margin: const EdgeInsets.symmetric(horizontal: 4),
                 width: _currentBannerIndex == index ? 20 : 8,
                 height: 8,
@@ -1730,142 +2018,220 @@ class _HomeScreenState extends State<HomeScreen>
               ),
             ),
           ),
+          SizedBox(height: 25),
         ],
       ),
     );
   }
 
-  Widget _buildContentSection() {
+  void _onBannerTap(BannerModel banner) async {
+    String url = '';
+
+    // Check if title contains URL (but don't display it)
+    if (_isUrl(banner.title)) {
+      url = banner.title;
+    }
+
+    if (url.isNotEmpty) {
+      await _launchUrl(url);
+    } else {
+      debugPrint("❗ No valid URL found for banner");
+    }
+  }
+
+  bool _isUrl(String text) {
+    return text.startsWith('http://') ||
+        text.startsWith('https://') ||
+        text.contains('www.') ||
+        text.contains('.com') ||
+        text.contains('.gr');
+  }
+
+  String _extractUrlFromString(String input) {
+    // Simple URL extraction - modify based on your data format
+    if (input.contains('xit.gr')) {
+      return 'https://xit.gr';
+    }
+
+    // Add more URL extraction logic if needed
+    RegExp urlRegex = RegExp(r'https?://[^\s]+');
+    Match? match = urlRegex.firstMatch(input);
+    return match?.group(0) ?? input;
+  }
+
+  Future<void> _launchUrl(String url) async {
+    try {
+      // Ensure URL has protocol
+      if (!url.startsWith('http://') && !url.startsWith('https://')) {
+        url = 'https://$url';
+      }
+
+      final Uri uri = Uri.parse(url);
+
+      if (await canLaunchUrl(uri)) {
+        await launchUrl(
+          uri,
+          mode: LaunchMode.externalApplication, // Opens in browser
+        );
+        debugPrint("✅ Launched URL: $url");
+      } else {
+        debugPrint("❗ Could not launch URL: $url");
+      }
+    } catch (e) {
+      debugPrint("❗ Error launching URL: $e");
+    }
+  }
+
+  Widget _buildContentSection(AppLocalizations localizations) {
     return Container(
       margin: const EdgeInsets.fromLTRB(20, 30, 20, 30),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          // Glow More text with Jura font
-          Text(
-            'Glow More, Earn More',
-            style: GoogleFonts.jura(
-              fontSize: 25,
-              fontWeight: FontWeight.w300,
-              color: Colors.black87,
-            ),
-            textAlign: TextAlign.center,
-          ),
-          const SizedBox(height: 10),
-          // Daily Beauty Rewards with DM Sans font
-          Text(
-            'Daily Beauty Rewards',
-            style: GoogleFonts.dmSans(
-              fontSize: 20,
-              fontWeight: FontWeight.w400,
-              color: Colors.black87,
-            ),
-            textAlign: TextAlign.center,
-          ),
-          const SizedBox(height: 40),
-          // Main image
-          AspectRatio(
-            aspectRatio: 12 / 8.7,
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(150),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.1),
-                    blurRadius: 15,
-                    offset: const Offset(0, 8),
-                  ),
-                ],
-              ),
-              clipBehavior: Clip.hardEdge,
-              child: Image.asset(
-                'assets/images/HOMEPAGE.png',
-                fit: BoxFit.cover,
-                errorBuilder: (context, error, stackTrace) {
-                  return Container(
-                    color: Colors.grey.shade200,
-                    child: const Center(
-                      child: Icon(
-                        Icons.broken_image,
-                        size: 50,
-                        color: Colors.grey,
-                      ),
+          // Dynamic message from API call 9704
+          if (homeMessage != null)
+            GestureDetector(
+              onTap: () async {
+                // Redirect to URL if available
+                if (homeMessage!.clickUrl != null &&
+                    homeMessage!.clickUrl!.isNotEmpty) {
+                  await _launchUrl(homeMessage!.clickUrl!);
+                }
+              },
+              child: Container(
+                padding: const EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(12),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.1),
+                      blurRadius: 8,
+                      offset: const Offset(0, 4),
                     ),
-                  );
-                },
+                  ],
+                ),
+                child: Column(
+                  children: [
+                    Text(
+                      homeMessage!.message,
+                      style: GoogleFonts.jura(
+                        fontSize: 22,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.black87,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    if (homeMessage!.subtitle != null &&
+                        homeMessage!.subtitle!.isNotEmpty)
+                      Padding(
+                        padding: const EdgeInsets.only(top: 8),
+                        child: Text(
+                          homeMessage!.subtitle!,
+                          style: GoogleFonts.jura(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w400,
+                            color: Colors.grey.shade600,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    // Show tap indicator if there's a URL
+                    if (homeMessage!.clickUrl != null &&
+                        homeMessage!.clickUrl!.isNotEmpty)
+                      Padding(
+                        padding: const EdgeInsets.only(top: 8),
+                        child: Icon(
+                          Icons.touch_app,
+                          color: Color(0xFFEC7103),
+                          size: 20,
+                        ),
+                      ),
+                  ],
+                ),
               ),
+            )
+          else
+            // Fallback if no message loaded
+            Text(
+              localizations.welcomeToLoyaltyRewards,
+              style: GoogleFonts.jura(
+                fontSize: 20,
+                fontWeight: FontWeight.w500,
+                color: Colors.black87,
+              ),
+              textAlign: TextAlign.center,
             ),
-          ),
         ],
       ),
     );
   }
 
-  Widget _buildDiscoverButton() {
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        double screenWidth = MediaQuery.of(context).size.width;
-        double fontSize = screenWidth * 0.06;
-        double imageSize = screenWidth * 0.1;
+  // Widget _buildDiscoverButton() {
+  //   return LayoutBuilder(
+  //     builder: (context, constraints) {
+  //       double screenWidth = MediaQuery.of(context).size.width;
+  //       double fontSize = screenWidth * 0.06;
+  //       double imageSize = screenWidth * 0.1;
 
-        return Container(
-          margin: const EdgeInsets.symmetric(horizontal: 0),
-          width: double.infinity,
-          height: 40,
-          child: Container(
-            decoration: BoxDecoration(
-              gradient: const LinearGradient(
-                colors: [Color(0xFFEC7103), Color(0xFFF3DECB)],
-                begin: Alignment.centerLeft,
-                end: Alignment.centerRight,
-              ),
-              borderRadius: BorderRadius.circular(0),
-              boxShadow: [
-                BoxShadow(
-                  color: const Color(0xFFEC7103).withOpacity(0.3),
-                  blurRadius: 15,
-                  offset: const Offset(0, 5),
-                ),
-              ],
-            ),
-            child: Material(
-              color: Colors.transparent,
-              child: InkWell(
-                onTap: () {
-                  // Handle discover button tap
-                },
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 35),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Flexible(
-                        child: Text(
-                          'Discover More',
-                          style: GoogleFonts.dmSans(
-                            fontSize: fontSize.clamp(24, 38),
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black87,
-                          ),
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                      Image.asset(
-                        'assets/icons/arrow-icon.png',
-                        width: imageSize.clamp(30, 44),
-                        height: imageSize.clamp(30, 44),
-                        fit: BoxFit.contain,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          ),
-        );
-      },
-    );
-  }
+  //       return Container(
+  //         margin: const EdgeInsets.symmetric(horizontal: 0),
+  //         width: double.infinity,
+  //         height: 40,
+  //         child: Container(
+  //           decoration: BoxDecoration(
+  //             gradient: const LinearGradient(
+  //               colors: [Color(0xFFEC7103), Color(0xFFF3DECB)],
+  //             begin: Alignment.centerLeft,
+  //             end: Alignment.centerRight,
+  //             ),
+  //             borderRadius: BorderRadius.circular(0),
+  //             boxShadow: [
+  //               BoxShadow(
+  //                 color: const Color(0xFFEC7103).withOpacity(0.3),
+  //                 blurRadius: 15,
+  //                 offset: const Offset(0, 5),
+  //               ),
+  //             ],
+  //           ),
+  //           child: Material(
+  //             color: Colors.transparent,
+  //             child: InkWell(
+  //               onTap: () {
+  //                 // Handle discover button tap
+  //               },
+  //               child: Padding(
+  //                 padding: const EdgeInsets.symmetric(horizontal: 35),
+  //                 child: Row(
+  //                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  //                   children: [
+  //                     Flexible(
+  //                       child: Text(
+  //                         'Discover More',
+  //                         style: GoogleFonts.jura(
+  //                           fontSize: fontSize.clamp(24, 38),
+  //                           fontWeight: FontWeight.bold,
+  //                           color: Colors.black87,
+  //                         ),
+  //                         overflow: TextOverflow.ellipsis,
+  //                       ),
+  //                     ),
+  //                     Image.asset(
+  //                       'assets/icons/arrow-icon.png',
+  //                       width: imageSize.clamp(30, 44),
+  //                       height: imageSize.clamp(30, 44),
+  //                       fit: BoxFit.contain,
+  //                     ),
+  //                   ],
+  //                 ),
+  //               ),
+  //             ),
+  //           ),
+  //         ),
+  //       );
+  //     },
+  //   );
+  // }
 
   @override
   void dispose() {
@@ -1875,4 +2241,411 @@ class _HomeScreenState extends State<HomeScreen>
     _bannerPageController.dispose(); // 🔥 FIX: Dispose banner controller
     super.dispose();
   }
+}
+
+//fcm token notificatons
+class FCMNotificationHelper {
+  static const _tokenPrefsKey = "fcm_access_token";
+  static const _tokenExpiryKey = "fcm_token_expiry";
+  static const _apiTokenKey = "fcm_api_token"; // New key for API token
+
+  // Your Firebase Project ID
+  static const String projectId = "lloyalty-application";
+
+  /// Load Service Account JSON from assets
+  static Future<Map<String, dynamic>> _loadServiceAccountJson() async {
+    try {
+      String jsonString = await rootBundle.loadString(
+        'assets/service_account.json',
+      );
+      return json.decode(jsonString);
+    } catch (e) {
+      debugPrint("❗ Error loading service account JSON: $e");
+      rethrow;
+    }
+  }
+
+  /// Check if current token is expired
+  static Future<bool> _isTokenExpired() async {
+    final prefs = await SharedPreferences.getInstance();
+    final expiryTime = prefs.getInt(_tokenExpiryKey);
+
+    if (expiryTime == null) return true;
+
+    final now = DateTime.now().millisecondsSinceEpoch;
+    return now >= expiryTime;
+  }
+
+  /// Save API token to SharedPreferences
+  static Future<void> saveApiTokenToPrefs(String apiToken) async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setString(_apiTokenKey, apiToken);
+      debugPrint("✅ API token saved to SharedPreferences");
+    } catch (e) {
+      debugPrint("❗ Error saving API token: $e");
+    }
+  }
+
+  /// Get API token from SharedPreferences
+  static Future<String?> getApiTokenFromPrefs() async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final apiToken = prefs.getString(_apiTokenKey);
+
+      if (apiToken != null && apiToken.isNotEmpty) {
+        debugPrint("✅ API token retrieved from SharedPreferences");
+        return apiToken;
+      } else {
+        debugPrint("❗ No API token found in SharedPreferences");
+        return null;
+      }
+    } catch (e) {
+      debugPrint("❗ Error getting API token from prefs: $e");
+      return null;
+    }
+  }
+
+  /// Remove API token from SharedPreferences
+  // static Future<void> clearApiTokenFromPrefs() async {
+  //   try {
+  //     final prefs = await SharedPreferences.getInstance();
+  //     await prefs.remove(_apiTokenKey);
+  //     debugPrint("✅ API token cleared from SharedPreferences");
+  //   } catch (e) {
+  //     debugPrint("❗ Error clearing API token: $e");
+  //   }
+  // }
+
+  // /// Updated test method with token refresh
+  // static Future<void> sendTestNotification() async {
+  //   try {
+  //     // Force refresh token
+  //     await FirebaseMessaging.instance.deleteToken();
+  //     String? newToken = await FirebaseMessaging.instance.getToken();
+
+  //     if (newToken == null) {
+  //       debugPrint("❌ Failed to get new token");
+  //       return;
+  //     }
+
+  //     debugPrint("🔄 New Token: ${newToken.substring(0, 20)}...");
+
+  //     // Save new token
+  //     final prefs = await SharedPreferences.getInstance();
+  //     await prefs.setString('fcm_token', newToken);
+
+  //     // Test notification
+  //     final success = await FCMNotificationHelper.sendNotificationToToken(
+  //       fcmToken: newToken,
+  //       title: "Fresh Token Test",
+  //       body: "Testing with newly generated token",
+  //     );
+
+  //     debugPrint(success ? "✅ Success!" : "❌ Still failed");
+  //   } catch (e) {
+  //     debugPrint("❌ Test failed: $e");
+  //   }
+  // }
+
+  /// Get valid access token (Priority: Prefs -> Generate new)
+  static Future<String?> getAccessToken() async {
+    try {
+      // First try to get API token from SharedPreferences
+      String? apiToken = await getApiTokenFromPrefs();
+
+      if (apiToken != null && apiToken.isNotEmpty) {
+        debugPrint("✅ Using API token from SharedPreferences");
+        return apiToken;
+      }
+
+      // If no API token, try cached access token
+      final prefs = await SharedPreferences.getInstance();
+      String? accessToken = prefs.getString(_tokenPrefsKey);
+
+      // If no token exists or token is expired, generate new one
+      if (accessToken == null || await _isTokenExpired()) {
+        debugPrint("🔄 Token expired or missing, generating new token...");
+        accessToken = await _generateAccessToken();
+      } else {
+        debugPrint("✅ Using cached access token");
+        print('accessTokennnn.$accessToken');
+      }
+
+      return accessToken;
+    } catch (e) {
+      debugPrint("❗ Error getting access token: $e");
+      return null;
+    }
+  }
+
+  /// Generate new Access Token
+  static Future<String?> _generateAccessToken() async {
+    try {
+      final jsonKey = await _loadServiceAccountJson();
+      final accountCredentials = ServiceAccountCredentials.fromJson(jsonKey);
+      const scopes = ['https://www.googleapis.com/auth/firebase.messaging'];
+
+      final client = await clientViaServiceAccount(accountCredentials, scopes);
+      final accessToken = client.credentials.accessToken.data;
+
+      // Token usually expires in 1 hour, save expiry time (55 minutes to be safe)
+      final expiryTime = DateTime.now()
+          .add(Duration(minutes: 55))
+          .millisecondsSinceEpoch;
+
+      // Save to SharedPreferences
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setString(_tokenPrefsKey, accessToken);
+      await prefs.setInt(_tokenExpiryKey, expiryTime);
+
+      client.close();
+
+      debugPrint("✅ New access token generated successfully");
+      print('✔✔✔✔ access  $accessToken');
+      return accessToken;
+    } catch (e) {
+      debugPrint("❗ Error generating access token: $e");
+      return null;
+    }
+  }
+
+  //   /// Send notification to specific FCM token
+  //   static Future<bool> sendNotificationToToken({
+  //     required String fcmToken,
+  //     required String title,
+  //     required String body,
+  //     Map<String, dynamic>? data,
+  //   }) async {
+  //     try {
+  //       final accessToken = await getAccessToken();
+  //       if (accessToken == null) {
+  //         debugPrint("❗ Failed to get access token");
+  //         return false;
+  //       }
+
+  //       final url =
+  //           'https://fcm.googleapis.com/v1/projects/lloyalty-application/messages:send';
+
+  //       final payload = {
+  //         "message": {
+  //           "token": fcmToken,
+  //           "notification": {"title": title, "body": body},
+  //           if (data != null) "data": data,
+  //           "android": {
+  //             "priority": "HIGH",
+  //             "notification": {
+  //               "sound": "default",
+  //               "channel_id": "high_importance_channel",
+  //             },
+  //           },
+  //           "apns": {
+  //             "payload": {
+  //               "aps": {"sound": "default", "badge": 1},
+  //             },
+  //           },
+  //         },
+  //       };
+
+  //       debugPrint("🚀 Sending notification to: $fcmToken");
+  //       debugPrint("📝 Payload: ${jsonEncode(payload)}");
+
+  //       final response = await http
+  //           .post(
+  //             Uri.parse(url),
+  //             headers: {
+  //               'Content-Type': 'application/json',
+  //               'Authorization': 'Bearer $accessToken',
+  //             },
+  //             body: jsonEncode(payload),
+  //           )
+  //           .timeout(Duration(seconds: 10));
+
+  //       debugPrint("📥 Response Status: ${response.statusCode}");
+  //       debugPrint("📥 Response Body: ${response.body}");
+
+  //       if (response.statusCode == 200) {
+  //         debugPrint("✅ Notification sent successfully!");
+  //         return true;
+  //       } else {
+  //         debugPrint("❌ Failed to send notification: ${response.statusCode}");
+  //         debugPrint("❌ Error: ${response.body}");
+  //         return false;
+  //       }
+  //     } catch (e) {
+  //       debugPrint("❗ Exception while sending notification: $e");
+  //       return false;
+  //     }
+  //   }
+
+  //   /// Send notification to multiple tokens
+  //   static Future<int> sendNotificationToMultipleTokens({
+  //     required List<String> fcmTokens,
+  //     required String title,
+  //     required String body,
+  //     Map<String, dynamic>? data,
+  //   }) async {
+  //     int successCount = 0;
+
+  //     for (String token in fcmTokens) {
+  //       final success = await sendNotificationToToken(
+  //         fcmToken: token,
+  //         title: title,
+  //         body: body,
+  //         data: data,
+  //       );
+  //       if (success) successCount++;
+
+  //       // Add small delay between requests to avoid rate limiting
+  //       await Future.delayed(Duration(milliseconds: 100));
+  //     }
+
+  //     debugPrint(
+  //       "📊 Sent notifications to $successCount/${fcmTokens.length} devices",
+  //     );
+  //     return successCount;
+  //   }
+
+  //   /// Send notification to topic
+  //   static Future<bool> sendNotificationToTopic({
+  //     required String topic,
+  //     required String title,
+  //     required String body,
+  //     Map<String, dynamic>? data,
+  //   }) async {
+  //     try {
+  //       final accessToken = await getAccessToken();
+  //       print('accessToken $accessToken');
+  //       if (accessToken == null) {
+  //         debugPrint("❗ Failed to get access token");
+  //         return false;
+  //       }
+
+  //       final url =
+  //           'https://fcm.googleapis.com/v1/projects/lloyalty-application/messages:send';
+
+  //       final payload = {
+  //         "message": {
+  //           "topic": topic,
+  //           "notification": {"title": title, "body": body},
+  //           if (data != null) "data": data,
+  //           "android": {
+  //             "priority": "HIGH",
+  //             "notification": {
+  //               "sound": "default",
+  //               "channel_id": "high_importance_channel",
+  //             },
+  //           },
+  //         },
+  //       };
+
+  //       final response = await http.post(
+  //         Uri.parse(url),
+  //         headers: {
+  //           'Content-Type': 'application/json',
+  //           'Authorization': 'Bearer $accessToken',
+  //         },
+  //         body: jsonEncode(payload),
+  //       );
+
+  //       if (response.statusCode == 200) {
+  //         debugPrint("✅ Topic notification sent successfully!");
+  //         return true;
+  //       } else {
+  //         debugPrint(
+  //           "❌ Failed to send topic notification: ${response.statusCode}",
+  //         );
+  //         return false;
+  //       }
+  //     } catch (e) {
+  //       debugPrint("❗ Exception while sending topic notification: $e");
+  //       return false;
+  //     }
+  //   }
+  // }
+
+  // // Usage Example Class
+  // class NotificationService {
+  //   /// Test notification - Manual API call
+  //   static Future<void> sendTestNotification() async {
+  //     // Get stored FCM token from SharedPreferences
+  //     final prefs = await SharedPreferences.getInstance();
+  //     final fcmToken =
+  //         'c72ECWFdTmCiisxp4h17-q:APA91bEMBEY4i3e5xlYudd-HiXbbfe6y-5kmcmYfPb0jpjdzxZhqErDrzJsrbqFGIfey5qix1UZ2VTZv1f-OJYR449KtergzTbJWz8VbF6AAUOgbSsqH814';
+  //     // final fcmToken =
+  //     //     'f-V0lnOcSyi0EkgkoGgTVa:APA91bGd3hTwxhFIhpp6ip3PhpzeisnkLGLyAPZofmRmMbmAYMhePjCOBtsJ-5l1yfJhv-yKrcJD5x78_LN5Y7t6vjHvgVJO6zMCM2OPYDtqzDDCG0-Q5DU';
+
+  //     if (fcmToken.isEmpty) {
+  //       debugPrint("❗ No FCM token found in SharedPreferences");
+  //       return;
+  //     }
+
+  //     // Send notification
+  //     final success = await FCMNotificationHelper.sendNotificationToToken(
+  //       fcmToken: fcmToken,
+  //       title: "Test Notification",
+  //       body: "Yeh manual API se bheja gaya notification hai!",
+  //       data: {
+  //         "screen": "home",
+  //         "action": "test",
+  //         "timestamp": DateTime.now().toIso8601String(),
+  //       },
+  //     );
+
+  //     if (success) {
+  //       debugPrint("🎉 Test notification sent successfully!");
+  //     } else {
+  //       debugPrint("❌ Failed to send test notification");
+  //     }
+  //   }
+
+  //   /// Send promotional notification
+  //   static Future<void> sendPromotionalNotification({
+  //     required String userFcmToken,
+  //     required String offerTitle,
+  //     required String offerDescription,
+  //   }) async {
+  //     await FCMNotificationHelper.sendNotificationToToken(
+  //       fcmToken: userFcmToken,
+  //       title: offerTitle,
+  //       body: offerDescription,
+  //       data: {
+  //         "type": "promotion",
+  //         "screen": "offers",
+  //         "timestamp": DateTime.now().toIso8601String(),
+  //       },
+  //     );
+  //   }
+
+  //   /// Send bulk notifications to all users
+  //   static Future<void> sendBulkNotification({
+  //     required List<String> allUserTokens,
+  //     required String title,
+  //     required String message,
+  //   }) async {
+  //     final successCount =
+  //         await FCMNotificationHelper.sendNotificationToMultipleTokens(
+  //           fcmTokens: allUserTokens,
+  //           title: title,
+  //           body: message,
+  //           data: {"type": "bulk", "timestamp": DateTime.now().toIso8601String()},
+  //         );
+
+  //     debugPrint("📊 Bulk notification sent to $successCount users");
+  //   }
+
+  /// Save your custom API token
+  static Future<void> saveCustomApiToken(String apiToken) async {
+    await FCMNotificationHelper.saveApiTokenToPrefs(apiToken);
+  }
+
+  /// Get saved API token
+  static Future<String?> getSavedApiToken() async {
+    return await FCMNotificationHelper.getApiTokenFromPrefs();
+  }
+
+  /// Clear saved API token
+  // static Future<void> clearSavedApiToken() async {
+  //   await FCMNotificationHelper.clearApiTokenFromPrefs();
+  // }
 }

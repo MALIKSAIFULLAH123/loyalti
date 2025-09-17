@@ -1,0 +1,48 @@
+{
+    "name": "framework/translation",
+    "version": "5.0.3",
+    "description": "Translation",
+    "keyword": "framework/translation",
+    "authors": [
+        {
+            "name": "phpFox",
+            "email": "developer@phpfox.com",
+            "homepage": "https://www.phpfox.com"
+        }
+    ],
+    "extra": {
+        "metafox": {
+            "core": true,
+            "priority": 31,
+            "alias": "translation",
+            "asset": "translation",
+            "namespace": "MetaFox\\Translation",
+            "path": "packages/framework/translation",
+            "title": "Translation",
+            "providers": [
+                "MetaFox\\Translation\\Providers\\PackageServiceProvider"
+            ],
+            "aliases": {
+            },
+            "require": {
+            },
+            "frontend": {
+                "@framework/translation": "*"
+            },
+            "frontendPaths": [
+            ],
+            "internalUrl": "/translation",
+            "internalAdminUrl": "/translation/setting"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "MetaFox\\Translation\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "MetaFox\\Translation\\Tests\\": "tests/"
+        }
+    }
+}

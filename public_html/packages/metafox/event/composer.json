@@ -1,0 +1,47 @@
+{
+    "name": "metafox/event",
+    "version": "5.0.25",
+    "description": "",
+    "authors": [
+        {
+            "name": "phpFox",
+            "email": "developer@phpfox.com",
+            "homepage": "https://www.phpfox.com"
+        }
+    ],
+    "extra": {
+        "metafox": {
+            "core": false,
+            "path": "packages/metafox/event",
+            "title": "Event",
+            "alias": "event",
+            "asset": "event",
+            "namespace": "MetaFox\\Event",
+            "internalAdminUrl": "/event/setting",
+            "providers": [
+                "MetaFox\\Event\\Providers\\PackageServiceProvider"
+            ],
+            "frontend": {
+                "@metafox/event": "*"
+            },
+            "frontendPaths": [
+                "packages/metafox/event"
+            ],
+            "require": {
+                "metafox/core": "5.1.18 - 5.1.19"
+            },
+            "aliases": {
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "MetaFox\\Event\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "MetaFox\\Event\\Tests\\": "tests/"
+        }
+    }
+}

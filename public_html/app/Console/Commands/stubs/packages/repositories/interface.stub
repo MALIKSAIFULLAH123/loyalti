@@ -1,0 +1,15 @@
+<?php
+
+namespace $PACKAGE_NAMESPACE$\Repositories;
+
+use Prettus\Repository\Eloquent\BaseRepository;
+
+/**
+ * Interface $NAME$
+ *
+ * @mixin BaseRepository
+ * stub: $STUB$
+ */
+interface $NAME$RepositoryInterface
+{
+}

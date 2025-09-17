@@ -1,0 +1,47 @@
+{
+    "name": "metafox/broadcast",
+    "version": "5.0.10",
+    "description": "Broadcast",
+    "keyword": "",
+    "authors": [
+        {
+            "name": "phpFox",
+            "homepage": "https://metafoxapp.com"
+        }
+    ],
+    "extra": {
+        "metafox": {
+            "core": true,
+            "priority": 100,
+            "alias": "broadcast",
+            "asset": "broadcast",
+            "namespace": "MetaFox\\Broadcast",
+            "path": "packages/framework/broadcast",
+            "title": "Broadcast",
+            "providers": [
+                "MetaFox\\Broadcast\\Providers\\PackageServiceProvider"
+            ],
+            "aliases": null,
+            "frontend": {
+                "@metafox/echo": "*"
+            },
+            "internalAdminUrl": "",
+            "type": "app",
+            "mobile": [],
+            "store_id": 0,
+            "store_url": null,
+            "category": "platform",
+            "internalUrl": ""
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "MetaFox\\Broadcast\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "MetaFox\\Broadcast\\Tests\\": "tests/"
+        }
+    }
+}

@@ -1,0 +1,50 @@
+{
+    "name": "metafox/photo",
+    "version": "5.0.28",
+    "description": "",
+    "authors": [
+        {
+            "name": "phpFox",
+            "email": "developer@phpfox.com",
+            "homepage": "https://www.phpfox.com"
+        }
+    ],
+    "extra": {
+        "metafox": {
+            "core": true,
+            "alias": "photo",
+            "asset": "photo",
+            "path": "packages/metafox/photo",
+            "title": "Photos",
+            "namespace": "MetaFox\\Photo",
+            "internalAdminUrl": "/photo/setting",
+            "providers": [
+                "MetaFox\\Photo\\Providers\\PackageServiceProvider"
+            ],
+            "frontend": {
+                "@metafox/photo": "*"
+            },
+            "frontendPaths": [
+                "packages/metafox/photo"
+            ],
+            "require": {
+                "metafox/core": "5.1.18 - 5.1.19"
+            },
+            "aliases": {
+            }
+        }
+    },
+    "require": {
+        "maestroerror/php-heic-to-jpg": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "MetaFox\\Photo\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "MetaFox\\Photo\\Tests\\": "tests/"
+        }
+    }
+}

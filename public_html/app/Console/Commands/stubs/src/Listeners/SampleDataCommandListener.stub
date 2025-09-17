@@ -1,0 +1,54 @@
+<?php
+
+namespace $PACKAGE_NAMESPACE$\Listeners;
+
+use $PACKAGE_NAMESPACE$\Database\Factories\BlogFactory as Factory;
+use MetaFox\Platform\Contracts\User;
+use MetaFox\Platform\MetaFoxPrivacy;
+use MetaFox\User\Support\Commands\UserGeneratorTrait;
+
+/**
+ * --------------------------------------------------------------------------
+ * Code Generator
+ * --------------------------------------------------------------------------
+ * stub: $STUB$
+ */
+
+/**
+ * Class SampleDataCommandListener.
+ * @ignore
+ * @codeCoverageIgnore
+ */
+class SampleDataCommandListener
+{
+    use UserGeneratorTrait;
+
+    /**
+     * @param  User $admin
+     * @param  User $user
+     * @return void
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     */
+    public function handle(?User $admin, User $user): void
+    {
+        Factory::times(4)
+            ->setUser($admin)
+            ->setOwner($admin)
+            ->create([
+                'is_featured' => 1,
+                'privacy'     => MetaFoxPrivacy::EVERYONE,
+            ]);
+
+        Factory::times(5)
+            ->setUser($admin)
+            ->setOwner($admin)
+            ->create([
+                'is_draft' => 1,
+            ]);
+
+        Factory::times(5)
+            ->setUser($user)
+            ->setOwner($user)
+            ->create();
+    }
+}

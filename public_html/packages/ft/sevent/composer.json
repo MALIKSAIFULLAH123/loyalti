@@ -1,0 +1,53 @@
+{
+    "name": "ft/sevent",
+    "version": "5.1.19",
+    "description": "ft/sevent",
+    "keyword": "ft/sevent",
+    "authors": [
+        {
+            "name": "Foxexpert",
+            "homepage": "https://foxexpert.com"
+        }
+    ],
+    "require": {
+        "endroid/qr-code" : "*",
+        "barryvdh/laravel-dompdf": "*"
+    },
+    "extra": {
+        "metafox": {
+            "core": false,
+            "priority": 99,
+            "alias": "sevent",
+            "asset": "sevent",
+            "namespace": "Foxexpert\\Sevent",
+            "path": "packages/ft/sevent",
+            "title": "Advanced Events",
+            "type": "app",
+            "providers": [
+                "Foxexpert\\Sevent\\Providers\\PackageServiceProvider"
+            ],
+            "aliases": {
+            },
+            "require": {
+            },
+            "frontend": {
+                "@ft/sevent": "*"
+            },
+            "frontendPaths": [
+                "packages/ft/sevent"
+            ],
+            "internalUrl": "/sevent",
+            "internalAdminUrl": "/sevent/setting"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Foxexpert\\Sevent\\": "src/"
+        }
+    },
+    "autoload-dev":{
+        "psr-4": {
+            "Foxexpert\\Sevent\\Tests\\": "tests/"
+        }
+    }
+}

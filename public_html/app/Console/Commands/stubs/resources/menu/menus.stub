@@ -1,0 +1,13 @@
+<?php
+
+ /* this is auto generated file */
+ return [
+     [
+         'name'=> '$PACKAGE_ALIAS$.sidebarMenu',
+         'resolution'=> 'web',
+     ],
+     [
+         'name' => '$PACKAGE_ALIAS$.admin',
+         'resolution'=> 'admin',
+     ],
+ ];

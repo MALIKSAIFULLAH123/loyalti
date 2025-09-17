@@ -1,0 +1,30 @@
+<?php
+
+namespace $PACKAGE_NAMESPACE$\Tests\Unit\Http\Controllers\Api;
+
+use Tests\TestCase;
+use $PACKAGE_NAMESPACE$\Http\Controllers\Api\$NAME$$ADMIN$Controller as GatewayController;
+
+/**
+ |--------------------------------------------------------------------------
+ | Api Gateway
+ |--------------------------------------------------------------------------
+ |
+ | stub: $STUB$
+ | Test forward call using gateway.
+ */
+
+/**
+ * Class $NAME$$ADMIN$ControllerTest
+ * @codeCoverageIgnore
+ * @ignore
+ */
+class $NAME$$ADMIN$ControllerTest extends TestCase
+{
+    public function testExample()
+    {
+        $this->markTestIncomplete('coming soon!');
+    }
+}
+
+// end

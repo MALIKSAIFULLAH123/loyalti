@@ -1,0 +1,9 @@
+<?php
+// @formatter:off
+
+// updated_at: $UPDATE_AT$
+// stub: $STUB$
+
+namespace PHPSTORM_META {
+    override(\__p(0), map($ARGUMENTS_MAP$));
+}

@@ -1,0 +1,17 @@
+<?php
+
+namespace MetaFox\Repositories
+
+use Prettus\Repository\Eloquent\BaseRepository;
+
+/**
+ * Interface $NAME$RepositoryInterface
+ * @package $PACKAGE_NAMESPACE$\Repositories
+ * @mixin BaseRepository
+ */
+interface $NAME$RepositoryInterface
+{
+
+}
+
+// end

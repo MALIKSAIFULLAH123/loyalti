@@ -1,0 +1,26 @@
+<?php
+
+namespace $PACKAGE_NAMESPACE$\Tests\Unit\Http\Controllers\Api\v1\$NAME$$ADMIN_SLASH$;
+
+use MetaFox\Platform\UserRole;
+use $PACKAGE_NAMESPACE$\Models\$NAME$ as Model;
+use Symfony\Component\HttpFoundation\Response;
+use Tests\TestCase;
+
+/**
+ * stub: $STUB$
+ */
+
+/**
+ * Class Action$ACTION$Test
+ * @ignore
+ * @codeCoverageIgnore
+ */
+class Action$ACTION$Test extends TestCase
+{
+
+    public function testActionIndex()
+    {
+        $this->markTestIncomplete('coming soon!');
+    }
+}

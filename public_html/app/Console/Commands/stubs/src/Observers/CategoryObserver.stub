@@ -1,0 +1,17 @@
+<?php
+
+namespace $PACKAGE_NAMESPACE$\Observers;
+
+/**
+ * --------------------------------------------------------------------------
+ * Code Generator
+ * --------------------------------------------------------------------------
+ * stub: $STUB$
+ */
+
+/**
+ * Class CategoryObserver.
+ */
+class CategoryObserver
+{
+}

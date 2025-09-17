@@ -1,0 +1,48 @@
+{
+    "name": "metafox/group",
+    "description": "",
+    "version": "5.0.30",
+    "authors": [
+        {
+            "name": "phpFox",
+            "email": "developer@phpfox.com",
+            "homepage": "https://www.phpfox.com"
+        }
+    ],
+    "extra": {
+        "metafox": {
+            "core": false,
+            "alias": "group",
+            "asset": "group",
+            "path": "packages/metafox/group",
+            "title": "Groups",
+            "namespace": "MetaFox\\Group",
+            "internalUrl": "/group",
+            "internalAdminUrl": "/group/setting",
+            "providers": [
+                "MetaFox\\Group\\Providers\\PackageServiceProvider"
+            ],
+            "frontend": {
+                "@metafox/group": "*"
+            },
+            "frontendPaths": [
+                "packages/metafox/group"
+            ],
+            "require": {
+                "metafox/core": "5.1.18 - 5.1.19"
+            },
+            "aliases": {
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "MetaFox\\Group\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "MetaFox\\Group\\Tests\\": "tests/"
+        }
+    }
+}

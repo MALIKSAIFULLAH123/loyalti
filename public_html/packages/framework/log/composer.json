@@ -1,0 +1,44 @@
+{
+    "name": "metafox/log",
+    "version": "5.0.11",
+    "description": "Log",
+    "keyword": "",
+    "authors": [
+        {
+            "name": "phpFox",
+            "homepage": "https://www.phpfox.com"
+        }
+    ],
+    "extra": {
+        "metafox": {
+            "core": true,
+            "priority": 8,
+            "alias": "log",
+            "asset": "log",
+            "namespace": "MetaFox\\Log",
+            "path": "packages/framework/log",
+            "title": "Log",
+            "providers": [
+                "MetaFox\\Log\\Providers\\PackageServiceProvider"
+            ],
+            "aliases": null,
+            "frontend": [],
+            "internalUrl": "/log",
+            "internalAdminUrl": "/log/channel/browse",
+            "type": "app",
+            "mobile": [],
+            "store_id": 0,
+            "store_url": null
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "MetaFox\\Log\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "MetaFox\\Log\\Tests\\": "tests/"
+        }
+    }
+}

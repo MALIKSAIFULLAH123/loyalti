@@ -1,0 +1,41 @@
+{
+    "name": "metafox/hashtag",
+    "description": "",
+    "version": "5.0.19",
+    "authors": [
+        {
+            "name": "phpFox",
+            "email": "developer@phpfox.com",
+            "homepage": "https://www.phpfox.com"
+        }
+    ],
+    "extra": {
+        "metafox": {
+            "core": true,
+            "alias": "hashtag",
+            "asset": "hashtag",
+            "namespace": "MetaFox\\Hashtag",
+            "path": "packages/metafox/hashtag",
+            "title": "Hashtags",
+            "internalAdminUrl": "",
+            "providers": [
+                "MetaFox\\Hashtag\\Providers\\PackageServiceProvider"
+            ],
+            "require": {
+                "metafox/core": "5.1.16 - 5.1.19"
+            },
+            "aliases": {
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "MetaFox\\Hashtag\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "MetaFox\\Hashtag\\Tests\\": "tests/"
+        }
+    }
+}

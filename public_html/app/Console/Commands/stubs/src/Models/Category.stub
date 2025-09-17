@@ -1,0 +1,77 @@
+<?php
+
+namespace $PACKAGE_NAMESPACE$\Models;
+
+use MetaFox\Platform\Contracts\Entity;
+use MetaFox\Platform\Traits\Eloquent\Model\HasEntity;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use $PACKAGE_NAMESPACE$\Database\Factories\CategoryFactory;
+
+/**
+ * --------------------------------------------------------------------------
+ * Code Generator
+ * --------------------------------------------------------------------------
+ * stub: $STUB$
+ */
+
+/**
+ * Class Category
+ * @package $PACKAGE_NAMESPACE$\Models
+ *
+ * @mixin Builder
+ * @property int    $id
+ * @property string $name
+ * @property string $name_url
+ * @property bool   $is_active
+ * @property int    $ordering
+ * @property int    $parent_id
+ * @property int    $total_item
+ * @property array  $subCategories
+ * @property string $created_at
+ * @property string $updated_at
+ * @method static CategoryFactory factory()
+ */
+class Category extends Model implements Entity
+{
+    use HasEntity;
+    use HasFactory;
+
+    public const ENTITY_TYPE = '$ENTITY_TYPE$';
+
+    protected $table = '$TABLE$';
+
+    public const IS_ACTIVE = 1;
+
+    protected $fillable = [
+        'name',
+        'is_active',
+        'ordering',
+        'parent_id',
+        'name_url',
+    ];
+
+    protected static function newFactory(): CategoryFactory
+    {
+        return CategoryFactory::new();
+    }
+
+    public function subCategories(): HasMany
+    {
+        return $this->hasMany(self::class, 'parent_id', 'id');
+    }
+
+    public function $ENTITY_TYPE$s(): BelongsToMany
+    {
+        return $this->belongsToMany(
+            $NAME$::class,
+            '$ENTITY_TYPE$_category_data',
+            'category_id',
+            'item_id'
+        )
+            ->using($NAME$CategoryData::class);
+    }
+}

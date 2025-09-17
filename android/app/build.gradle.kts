@@ -1,5 +1,8 @@
 plugins {
     id("com.android.application")
+    // START: FlutterFire Configuration
+    id("com.google.gms.google-services")
+    // END: FlutterFire Configuration
     id("kotlin-android")
     id("dev.flutter.flutter-gradle-plugin")
 }
@@ -39,5 +42,17 @@ flutter {
 }
 
 dependencies {
-coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.5")
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.5")
+
+    // Firebase BOM (manages versions automatically)
+    implementation(platform("com.google.firebase:firebase-bom:32.7.0"))
+
+    // Required for OTP / Phone Auth
+    implementation("com.google.firebase:firebase-auth-ktx")
+
+    // Optional: Analytics (good for debugging events)
+    implementation("com.google.firebase:firebase-analytics-ktx")
+
+    // For multidex support if needed
+    implementation("androidx.multidex:multidex:2.0.1")
 }

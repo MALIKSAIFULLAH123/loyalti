@@ -1,0 +1,38 @@
+{
+    "name": "$PACKAGE_NAME$",
+    "version": "1.0.0",
+    "description": "$PACKAGE_NAME$",
+    "keyword": "$PACKAGE_NAME$",
+    "authors": [
+        {
+            "name": "$AUTHOR_NAME$",
+            "homepage": "$AUTHOR_URL$"
+        }
+    ],
+    "extra": {
+        "metafox": {
+            "core": false,
+            "priority": 99,
+            "title": "$TITLE$",
+            "alias": "$PACKAGE_ALIAS$",
+            "asset": "$PACKAGE_ALIAS$",
+            "namespace": "$ESCAPED_PACKAGE_NAMESPACE$",
+            "path": "packages/$PACKAGE_NAME$",
+            "type": "language",
+            "providers": [
+                "$ESCAPED_PACKAGE_NAMESPACE$\\Providers\\PackageServiceProvider"
+            ],
+            "internalAdminUrl": "/localize/language/browse",
+            "language": {
+                "name": "$TITLE$",
+                "language_code": "$LANGUAGE_CODE$",
+                "charset": "utf8"
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "$ESCAPED_PACKAGE_NAMESPACE$\\": "src/"
+        }
+    }
+}

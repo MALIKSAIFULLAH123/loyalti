@@ -1,0 +1,120 @@
+<?php
+
+namespace $PACKAGE_NAMESPACE$\Http\Controllers\Api\$VERSION$;
+
+use Illuminate\Http\JsonResponse;
+use MetaFox\Platform\Http\Controllers\Api\ApiController;
+use $PACKAGE_NAMESPACE$\Http\Resources\$VERSION$\$NAME$$ADMIN_SLASH$\$NAME$ItemCollection as ItemCollection;
+use $PACKAGE_NAMESPACE$\Http\Resources\$VERSION$\$NAME$$ADMIN_SLASH$\$NAME$Detail as Detail;
+use $PACKAGE_NAMESPACE$\Repositories\$NAME$RepositoryInterface;
+use $PACKAGE_NAMESPACE$\Http\Requests\$VERSION$\$NAME$$ADMIN_SLASH$\IndexRequest;
+use $PACKAGE_NAMESPACE$\Http\Requests\$VERSION$\$NAME$$ADMIN_SLASH$\StoreRequest;
+use $PACKAGE_NAMESPACE$\Http\Requests\$VERSION$\$NAME$$ADMIN_SLASH$\UpdateRequest;
+use Prettus\Validator\Exceptions\ValidatorException;
+
+/**
+ | --------------------------------------------------------------------------
+ |  Api Controller
+ | --------------------------------------------------------------------------
+ |
+ | stub: $STUB$
+ | Assign this class in $controllers of
+ | @link \$PACKAGE_NAMESPACE$\Http\Controllers\Api\$NAME$$ADMIN$Controller::$controllers;
+ */
+
+/**
+ * Class $NAME$$ADMIN$Controller
+ * @codeCoverageIgnore
+ * @ignore
+ */
+class $NAME$$ADMIN$Controller extends ApiController
+{
+    /**
+     * @var $NAME$RepositoryInterface
+     */
+    private $NAME$RepositoryInterface $repository;
+
+    /**
+     * $NAME$$ADMIN$Controller Constructor
+     *
+     * @param  $NAME$RepositoryInterface $repository
+     */
+    public function __construct($NAME$RepositoryInterface $repository)
+    {
+        $this->repository = $repository;
+    }
+
+    /**
+     * Browse item
+     *
+     * @param  IndexRequest $request
+     * @return mixed
+     */
+    public function index(IndexRequest $request): ItemCollection
+    {
+        $params = $request->validated();
+        $data = $this->repository->paginate($params['limit'] ?? 100);
+
+        return new ItemCollection($data);
+    }
+
+    /**
+     * Store item
+     *
+     * @param StoreRequest $request
+     *
+     * @return Detail
+     * @throws ValidatorException
+     */
+    public function store(StoreRequest $request): Detail
+    {
+        $params = $request->validated();
+        $data = $this->repository->create($params);
+
+        return new Detail($data);
+    }
+
+    /**
+     * View item
+     *
+     * @param int $id
+     *
+     * @return Detail
+     */
+    public function show($id): Detail
+    {
+        $data = $this->repository->find($id);
+
+        return new Detail($data);
+    }
+
+    /**
+     * Update item
+     *
+     * @param  UpdateRequest      $request
+     * @param  int                $id
+     * @return Detail
+     * @throws ValidatorException
+     */
+    public function update(UpdateRequest $request, int $id): Detail
+    {
+        $params = $request->validated();
+        $data = $this->repository->update($params, $id);
+
+        return new Detail($data);
+    }
+
+    /**
+     * Delete item
+     *
+     * @param int $id
+     *
+     * @return JsonResponse
+     */
+    public function destroy(int $id): JsonResponse
+    {
+        return $this->success([
+            'id' => $id,
+        ]);
+    }
+}

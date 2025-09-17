@@ -8,6 +8,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
+import 'dart:typed_data';
 
 class Profile extends StatefulWidget {
   const Profile({super.key});
@@ -30,37 +31,107 @@ class _ProfileState extends State<Profile> {
   String trdr = "";
   String clientID = "";
   bool isLoading = true;
-  String? profileImagePath; // Store image path
-
-  int _selectedIndex = 4; // 👈 Account tab active
+  String? profileImagePath;
+  int _selectedIndex = 4;
   final ImagePicker _picker = ImagePicker();
+  String? profileImageBase64;
+  Uint8List? profileImageBytes;
+  String fcmToken = "Loading...";
 
   @override
   void initState() {
     super.initState();
     _loadUserData();
-    _loadProfileImage(); // Load saved profile image
+    _loadProfileImageFromBase64();
   }
 
-  // Load saved profile image from SharedPreferences
-  Future<void> _loadProfileImage() async {
-    final prefs = await SharedPreferences.getInstance();
-    setState(() {
-      profileImagePath = prefs.getString('profile_image_path');
-    });
+  Future<void> _loadProfileImageFromBase64() async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final base64Image = prefs.getString('profile_image_base64');
+
+      if (base64Image != null && base64Image.isNotEmpty) {
+        if (base64Image.length < 100) {
+          debugPrint("⚠️ Base64 string seems too short, might be corrupted");
+          await prefs.remove('profile_image_base64');
+          return;
+        }
+
+        Uint8List imageBytes = base64Decode(base64Image);
+
+        if (mounted) {
+          setState(() {
+            profileImageBase64 = base64Image;
+            profileImageBytes = imageBytes;
+          });
+        }
+
+        debugPrint(
+          "📥 Profile image loaded successfully from base64 (${(imageBytes.length / 1024).round()}KB)",
+        );
+      } else {
+        debugPrint("ℹ️ No profile image found in storage");
+      }
+    } catch (e) {
+      debugPrint("❌ Error loading base64 image: $e");
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.remove('profile_image_base64');
+
+      if (mounted) {
+        setState(() {
+          profileImageBase64 = null;
+          profileImageBytes = null;
+        });
+      }
+    }
   }
 
-  // Save profile image path to SharedPreferences
-  Future<void> _saveProfileImage(String imagePath) async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setString('profile_image_path', imagePath);
-    setState(() {
-      profileImagePath = imagePath;
-    });
+  Future<void> _saveProfileImageAsBase64(String imagePath) async {
+    try {
+      final file = File(imagePath);
+
+      if (!await file.exists()) {
+        throw Exception(AppLocalizations.of(context)!.imageFileNotFound);
+      }
+
+      final bytes = await file.readAsBytes();
+
+      if (bytes.length > 2 * 1024 * 1024) {
+        throw Exception(AppLocalizations.of(context)!.imageSizeTooLarge);
+      }
+
+      String base64Image = base64Encode(bytes);
+
+      if (base64Image.isEmpty) {
+        throw Exception(AppLocalizations.of(context)!.imageEncodingFailed);
+      }
+
+      final prefs = await SharedPreferences.getInstance();
+      bool saved = await prefs.setString('profile_image_base64', base64Image);
+
+      if (!saved) {
+        throw Exception(AppLocalizations.of(context)!.failedSaveImage);
+      }
+
+      if (mounted) {
+        setState(() {
+          profileImageBase64 = base64Image;
+          profileImageBytes = bytes;
+        });
+      }
+
+      debugPrint(
+        "✅ Profile image saved successfully as base64 (${(bytes.length / 1024).round()}KB)",
+      );
+    } catch (e) {
+      debugPrint("❌ Error saving profile image: $e");
+      rethrow;
+    }
   }
 
-  // Show image picker options
   void _showImagePickerOptions() {
+    final localizations = AppLocalizations.of(context)!;
+
     showModalBottomSheet(
       context: context,
       shape: RoundedRectangleBorder(
@@ -82,11 +153,8 @@ class _ProfileState extends State<Profile> {
               ),
               SizedBox(height: 20),
               Text(
-                'Select Profile Picture',
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),
+                localizations.selectProfilePicture,
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               SizedBox(height: 20),
               Row(
@@ -94,18 +162,19 @@ class _ProfileState extends State<Profile> {
                 children: [
                   _buildImagePickerOption(
                     icon: Icons.camera_alt,
-                    label: 'Camera',
+                    label: localizations.camera,
                     onTap: () => _pickImage(ImageSource.camera),
                   ),
                   _buildImagePickerOption(
                     icon: Icons.photo_library,
-                    label: 'Gallery',
+                    label: localizations.gallery,
                     onTap: () => _pickImage(ImageSource.gallery),
                   ),
-                  if (profileImagePath != null)
+                  if (profileImageBase64 != null &&
+                      profileImageBase64!.isNotEmpty)
                     _buildImagePickerOption(
                       icon: Icons.delete,
-                      label: 'Remove',
+                      label: localizations.remove,
                       onTap: _removeProfileImage,
                       color: Colors.red,
                     ),
@@ -135,11 +204,7 @@ class _ProfileState extends State<Profile> {
               color: (color ?? Colors.black).withOpacity(0.1),
               shape: BoxShape.circle,
             ),
-            child: Icon(
-              icon,
-              size: 30,
-              color: color ?? Colors.black,
-            ),
+            child: Icon(icon, size: 30, color: color ?? Colors.black),
           ),
           SizedBox(height: 8),
           Text(
@@ -155,216 +220,255 @@ class _ProfileState extends State<Profile> {
     );
   }
 
-  // Pick image from camera or gallery
   Future<void> _pickImage(ImageSource source) async {
+    final localizations = AppLocalizations.of(context)!;
+
     try {
       final XFile? image = await _picker.pickImage(
         source: source,
-        maxWidth: 800,
-        maxHeight: 800,
-        imageQuality: 80,
+        maxWidth: 1024,
+        maxHeight: 1024,
+        imageQuality: 85,
       );
-      
-      Navigator.pop(context); // Close bottom sheet
-      
+
       if (image != null) {
-        await _saveProfileImage(image.path);
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Row(
-              children: [
-                Icon(Icons.check_circle, color: Colors.white, size: 20),
-                SizedBox(width: 8),
-                Text('Profile picture updated!'),
-              ],
+        showDialog(
+          context: context,
+          barrierDismissible: false,
+          builder: (context) => Center(
+            child: Container(
+              padding: EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  CircularProgressIndicator(color: Color(0xFFEC7103)),
+                  SizedBox(height: 16),
+                  Text(localizations.processingImage),
+                ],
+              ),
             ),
-            backgroundColor: Colors.green,
-            behavior: SnackBarBehavior.floating,
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-            margin: EdgeInsets.all(16),
           ),
         );
+
+        await _saveProfileImageAsBase64(image.path);
+
+        if (Navigator.canPop(context)) Navigator.pop(context);
+        if (Navigator.canPop(context)) Navigator.pop(context);
+
+        if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Row(
+                children: [
+                  Icon(Icons.check_circle, color: Colors.white, size: 20),
+                  SizedBox(width: 8),
+                  Text(localizations.profilePictureUpdated),
+                ],
+              ),
+              backgroundColor: Colors.green,
+              behavior: SnackBarBehavior.floating,
+            ),
+          );
+        }
       }
     } catch (e) {
-      Navigator.pop(context); // Close bottom sheet
-      _showError('Failed to pick image: ${e.toString()}');
+      while (Navigator.canPop(context)) {
+        Navigator.pop(context);
+      }
+
+      _showError('${localizations.failedUpdateProfile}: ${e.toString()}');
     }
   }
 
-  // Remove profile image
   Future<void> _removeProfileImage() async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.remove('profile_image_path');
-    setState(() {
-      profileImagePath = null;
-    });
-    Navigator.pop(context); // Close bottom sheet
-    
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Row(
-          children: [
-            Icon(Icons.check_circle, color: Colors.white, size: 20),
-            SizedBox(width: 8),
-            Text('Profile picture removed!'),
-          ],
+    final localizations = AppLocalizations.of(context)!;
+
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.remove('profile_image_base64');
+
+      setState(() {
+        profileImageBase64 = null;
+        profileImageBytes = null;
+      });
+
+      Navigator.pop(context);
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Row(
+            children: [
+              Icon(Icons.check_circle, color: Colors.white, size: 20),
+              SizedBox(width: 8),
+              Text(localizations.profilePictureRemoved),
+            ],
+          ),
+          backgroundColor: Colors.orange,
+          behavior: SnackBarBehavior.floating,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+          margin: EdgeInsets.all(16),
         ),
-        backgroundColor: Colors.orange,
-        behavior: SnackBarBehavior.floating,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-        margin: EdgeInsets.all(16),
-      ),
-    );
+      );
+
+      debugPrint("🗑️ Profile image removed successfully");
+    } catch (e) {
+      Navigator.pop(context);
+      _showError('${localizations.failedUpdateProfile}: ${e.toString()}');
+    }
   }
 
-  // Load user data from API
   Future<void> _loadUserData() async {
-  setState(() {
-    isLoading = true;
-  });
+    final localizations = AppLocalizations.of(context)!;
 
-  try {
-    final prefs = await SharedPreferences.getInstance();
-    trdr = prefs.getString('TRDR') ?? '';
-    clientID = prefs.getString('clientID') ?? '';
-    final companyUrl = prefs.getString('company_url');
-    final softwareType = prefs.getString('software_type');
+    setState(() {
+      isLoading = true;
+    });
 
-    if (trdr.isEmpty || clientID.isEmpty || companyUrl == null || softwareType == null) {
-      _showError('Missing user credentials. Please login again.');
-      return;
-    }
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      trdr = prefs.getString('TRDR') ?? '';
+      clientID = prefs.getString('clientID') ?? '';
+      final companyUrl = prefs.getString('company_url');
+      final softwareType = prefs.getString('software_type');
 
-    final servicePath = _getServicePath(softwareType);
-    final uri = _buildApiUri(companyUrl, servicePath);
+      if (trdr.isEmpty ||
+          clientID.isEmpty ||
+          companyUrl == null ||
+          softwareType == null) {
+        _showError(localizations.missingUserCredentials);
+        return;
+      }
 
-    final response = await http.post(
-      uri,
-      headers: {'Content-Type': 'application/json'},
-      body: jsonEncode({
-        "service": "SqlData",
-        "clientID": clientID,
-        "appId": "1001",
-        "SqlName": "9700",
-        "trdr": int.parse(trdr),
-      }),
-    );
+      final servicePath = _getServicePath(softwareType);
+      final uri = _buildApiUri(companyUrl, servicePath);
 
-    if (response.statusCode == 200) {
-      final data = jsonDecode(response.body);
+      final response = await http.post(
+        uri,
+        headers: {'Content-Type': 'application/json'},
+        body: jsonEncode({
+          "service": "SqlData",
+          "clientID": clientID,
+          "appId": "1001",
+          "SqlName": "9700",
+          "trdr": int.parse(trdr),
+        }),
+      );
 
-      if (data['success'] == true &&
-          data['rows'] != null &&
-          data['rows'].isNotEmpty) {
-        final userInfo = data['rows'][0];
+      if (response.statusCode == 200) {
+        final data = jsonDecode(response.body);
 
-        // Handle fields safely
-        String name = userInfo['NAME']?.toString().isNotEmpty == true
-            ? userInfo['NAME'].toString()
-            : userInfo['NAME']?.toString() ?? 'Full Name';
+        if (data['success'] == true &&
+            data['rows'] != null &&
+            data['rows'].isNotEmpty) {
+          final userInfo = data['rows'][0];
 
-        String userEmail = userInfo['EMAIL']?.toString().isNotEmpty == true
-            ? userInfo['EMAIL'].toString()
-            : 'email@domain.gr';
+          String name = userInfo['NAME']?.toString().isNotEmpty == true
+              ? userInfo['NAME'].toString()
+              : localizations.fullName;
 
-        String userPhone = userInfo['PHONE01']?.toString().isNotEmpty == true
-            ? userInfo['PHONE01'].toString()
-            : '+30 6912345678';
+          String userEmail = userInfo['EMAIL']?.toString().isNotEmpty == true
+              ? userInfo['EMAIL'].toString()
+              : 'email@domain.gr';
 
-        String rawDate = userInfo['INSDATE']?.toString() ?? '';
-        String formattedDate = 'DD/MM/YYYY';
-        if (rawDate.isNotEmpty && rawDate.contains(' ')) {
-          String datePart = rawDate.split(' ')[0];
-          try {
-            DateTime parsedDate = DateTime.parse(datePart);
-            formattedDate =
-                "${parsedDate.day.toString().padLeft(2, '0')}/${parsedDate.month.toString().padLeft(2, '0')}/${parsedDate.year}";
-          } catch (_) {
-            formattedDate = datePart;
+          String userPhone = userInfo['PHONE01']?.toString().isNotEmpty == true
+              ? userInfo['PHONE01'].toString()
+              : '+30 6912345678';
+
+          String rawDate = userInfo['INSDATE']?.toString() ?? '';
+          String formattedDate = 'DD/MM/YYYY';
+          if (rawDate.isNotEmpty && rawDate.contains(' ')) {
+            String datePart = rawDate.split(' ')[0];
+            try {
+              DateTime parsedDate = DateTime.parse(datePart);
+              formattedDate =
+                  "${parsedDate.day.toString().padLeft(2, '0')}/${parsedDate.month.toString().padLeft(2, '0')}/${parsedDate.year}";
+            } catch (_) {
+              formattedDate = datePart;
+            }
+          }
+
+          String total = userInfo['totalpoints']?.toString() ?? '0';
+          String redeemed = userInfo['redeemedpoints']?.toString() ?? '0';
+
+          String userAddress =
+              userInfo['ADDRESS']?.toString().isNotEmpty == true
+              ? userInfo['ADDRESS'].toString()
+              : localizations.address;
+
+          String userCity = userInfo['CITY']?.toString().isNotEmpty == true
+              ? userInfo['CITY'].toString()
+              : localizations.city;
+
+          String userZip = userInfo['ZIP']?.toString().isNotEmpty == true
+              ? userInfo['ZIP'].toString()
+              : localizations.zip;
+
+          String profileImageUrl = userInfo['IMAGE']?.toString() ?? '';
+
+          await prefs.setString('user_fullname', name);
+          await prefs.setString('user_email', userEmail);
+          await prefs.setString('user_phone', userPhone);
+          await prefs.setString('user_created_at', formattedDate);
+          await prefs.setString('user_total_points', total);
+          await prefs.setString('user_redeemed_points', redeemed);
+          await prefs.setString('user_address', userAddress);
+          await prefs.setString('user_city', userCity);
+          await prefs.setString('user_zip', userZip);
+          await prefs.setString('user_profile_image', profileImageUrl);
+
+          if (mounted) {
+            setState(() {
+              fullName = name;
+              email = userEmail;
+              phone = userPhone;
+              createdAt = formattedDate;
+              totalPoints = total;
+              redeemedPoints = redeemed;
+              address = userAddress;
+              city = userCity;
+              zip = userZip;
+              isLoading = false;
+            });
+          }
+        } else {
+          _showError(localizations.failedLoadUserData);
+          if (mounted) {
+            setState(() => isLoading = false);
           }
         }
-
-        String total = userInfo['totalpoints']?.toString() ?? '0';
-        String redeemed = userInfo['redeemedpoints']?.toString() ?? '0';
-
-        String userAddress = userInfo['ADDRESS']?.toString().isNotEmpty == true
-            ? userInfo['ADDRESS'].toString()
-            : 'ADDRESS';
-
-        String userCity = userInfo['CITY']?.toString().isNotEmpty == true
-            ? userInfo['CITY'].toString()
-            : 'CITY';
-
-        String userZip = userInfo['ZIP']?.toString().isNotEmpty == true
-            ? userInfo['ZIP'].toString()
-            : 'ZIP';
-
-        String profileImageUrl = userInfo['IMAGE']?.toString() ?? '';
-
-        // ✅ Save to SharedPreferences
-        await prefs.setString('user_fullname', name);
-        await prefs.setString('user_email', userEmail);
-        await prefs.setString('user_phone', userPhone);
-        await prefs.setString('user_created_at', formattedDate);
-        await prefs.setString('user_total_points', total);
-        await prefs.setString('user_redeemed_points', redeemed);
-        await prefs.setString('user_address', userAddress);
-        await prefs.setString('user_city', userCity);
-        await prefs.setString('user_zip', userZip);
-        await prefs.setString('user_profile_image', profileImageUrl);
-
-        // ✅ Update UI
-        if (mounted) {
-          setState(() {
-            fullName = name;
-            email = userEmail;
-            phone = userPhone;
-            createdAt = formattedDate;
-            totalPoints = total;
-            redeemedPoints = redeemed;
-            address = userAddress;
-            city = userCity;
-            zip = userZip;
-            isLoading = false;
-          });
-        }
       } else {
-        _showError('Failed to load user data');
+        _showError('${localizations.serverError}: ${response.statusCode}');
         if (mounted) {
           setState(() => isLoading = false);
         }
       }
-    } else {
-      _showError('Server error: ${response.statusCode}');
+    } catch (e) {
+      _showError('${localizations.connectionError}: ${e.toString()}');
       if (mounted) {
         setState(() => isLoading = false);
       }
     }
-  } catch (e) {
-    _showError('Network error: ${e.toString()}');
-    if (mounted) {
-      setState(() => isLoading = false);
-    }
   }
-}
 
-
-  /// Returns appropriate service path based on software type
   String _getServicePath(String softwareType) {
-    return softwareType == "TESAE" 
+    return softwareType == "TESAE"
         ? "/pegasus/a_xit/connector.php"
         : "/s1services";
   }
 
-  /// Builds API URI with CORS proxy
   Uri _buildApiUri(String companyUrl, String servicePath) {
-    return Uri.parse(
-      "${ApiConstants.baseUrl}https://$companyUrl$servicePath",
-    );
+    return Uri.parse("${ApiConstants.baseUrl}https://$companyUrl$servicePath");
   }
 
-  // Update user data via API
   Future<void> _updateUserData() async {
+    final localizations = AppLocalizations.of(context)!;
+
     try {
       setState(() {
         isLoading = true;
@@ -373,14 +477,41 @@ class _ProfileState extends State<Profile> {
       final prefs = await SharedPreferences.getInstance();
       final companyUrl = prefs.getString('company_url');
       final softwareType = prefs.getString('software_type');
+      final fcmToken = prefs.getString('fcm_token');
 
       if (companyUrl == null || softwareType == null) {
-        _showError('Missing configuration. Please restart the app.');
+        _showError(localizations.missingConfiguration);
         return;
       }
 
       final servicePath = _getServicePath(softwareType);
       final uri = _buildApiUri(companyUrl, servicePath);
+
+      Map<String, dynamic> userData = {
+        "CODE": phone,
+        "NAME": fullName,
+        "EMAIL": email,
+        "PHONE01": phone,
+        "ADDRESS": address,
+        "CITY": city,
+        "ZIP": zip,
+        "CCCXITUSERNAME": "username",
+        "CCCXITPASSWORD": password,
+        "REMARKS": "Updated via app",
+      };
+
+      if (fcmToken != null && fcmToken.isNotEmpty) {
+        userData["GLNCODE"] = fcmToken;
+      }
+
+      if (profileImageBase64 != null &&
+          profileImageBase64!.isNotEmpty &&
+          _validateBase64Image(profileImageBase64!)) {
+        userData["CCCXITLIMAGE"] = profileImageBase64!;
+        debugPrint("📤 Sending validated image with API call");
+      } else if (profileImageBase64 != null && profileImageBase64!.isNotEmpty) {
+        debugPrint("⚠️ Image exists but failed validation, not sending");
+      }
 
       final response = await http.post(
         uri,
@@ -392,23 +523,13 @@ class _ProfileState extends State<Profile> {
           "OBJECT": "CUSTOMER[FORM=WEB]",
           "KEY": trdr,
           "data": {
-            "CUSTOMER": [
-              {
-                "CODE": phone,
-                "NAME": fullName,
-                "EMAIL": email,
-                "PHONE01": phone,
-                "ADDRESS": address,
-                "CITY": city,
-                "ZIP": zip,
-                "CCCXITUSERNAME": "username",
-                "CCCXITPASSWORD": password,
-                "REMARKS": "Updated via app",
-              },
-            ],
+            "CUSTOMER": [userData],
           },
         }),
       );
+
+      debugPrint("🌐 API Response Status: ${response.statusCode}");
+      debugPrint("📝 API Response Body: ${response.body}");
 
       if (response.statusCode == 200) {
         final data = jsonDecode(response.body);
@@ -420,27 +541,52 @@ class _ProfileState extends State<Profile> {
                 children: [
                   Icon(Icons.check_circle, color: Colors.white, size: 20),
                   SizedBox(width: 8),
-                  Text('Profile updated successfully!'),
+                  Text(localizations.profileUpdatedSuccessfully),
                 ],
               ),
               backgroundColor: Colors.green,
               behavior: SnackBarBehavior.floating,
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-              margin: EdgeInsets.all(16),
             ),
           );
         } else {
-          _showError('Failed to update profile');
+          _showError(
+            '${localizations.failedUpdateProfile}: ${data['message'] ?? localizations.unknownError}',
+          );
         }
       } else {
-        _showError('Server error: ${response.statusCode}');
+        _showError('${localizations.serverError}: ${response.statusCode}');
       }
     } catch (e) {
-      _showError('Network error: ${e.toString()}');
+      debugPrint("❌ Error in _updateUserData: $e");
+      _showError('${localizations.connectionError}: ${e.toString()}');
     } finally {
-      setState(() {
-        isLoading = false;
-      });
+      if (mounted) {
+        setState(() {
+          isLoading = false;
+        });
+      }
+    }
+  }
+
+  bool _validateBase64Image(String base64String) {
+    try {
+      if (base64String.isEmpty || base64String.length < 100) {
+        return false;
+      }
+
+      base64Decode(base64String);
+
+      String header = base64String.substring(0, 20).toLowerCase();
+      bool isValidImageType =
+          header.contains('data:image/') ||
+          base64String.startsWith('/9j/') ||
+          base64String.startsWith('iVBOR') ||
+          base64String.startsWith('R0lGO');
+
+      return true;
+    } catch (e) {
+      debugPrint("❌ Invalid base64 image: $e");
+      return false;
     }
   }
 
@@ -473,24 +619,23 @@ class _ProfileState extends State<Profile> {
         break;
       case 1:
         _showComingSoon(
-          AppLocalizations.of(context)!.translate('rewards'),
+          AppLocalizations.of(context)!.rewards,
           Icons.card_giftcard,
         );
         break;
       case 2:
         _showComingSoon(
-          AppLocalizations.of(context)!.translate('qr_scanner'),
+          AppLocalizations.of(context)!.qrScanner,
           Icons.qr_code_scanner,
         );
         break;
       case 3:
         _showComingSoon(
-          AppLocalizations.of(context)!.translate('notifications'),
+          AppLocalizations.of(context)!.notifications,
           Icons.notifications,
         );
         break;
       case 4:
-        // Already on Profile, do nothing
         break;
     }
   }
@@ -505,7 +650,7 @@ class _ProfileState extends State<Profile> {
             Icon(icon, color: Colors.white, size: 20),
             const SizedBox(width: 12),
             Text(
-              '${localizations.translate('feature_coming_soon')} $feature!',
+              '${localizations.featureComingSoon} $feature!',
               style: const TextStyle(fontWeight: FontWeight.w500),
             ),
           ],
@@ -526,7 +671,9 @@ class _ProfileState extends State<Profile> {
   ) {
     final localizations = AppLocalizations.of(context)!;
     TextEditingController controller = TextEditingController(
-      text: initialValue == "Loading..." ? "" : initialValue,
+      text: initialValue == AppLocalizations.of(context)!.loading
+          ? ""
+          : initialValue,
     );
 
     showDialog(
@@ -534,13 +681,13 @@ class _ProfileState extends State<Profile> {
       builder: (context) => AlertDialog(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
         title: Text(
-          "${localizations.translate('edit')} $title",
+          "${localizations.edit} $title",
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
         content: TextField(
           controller: controller,
           decoration: InputDecoration(
-            hintText: "${localizations.translate('enter')} $title",
+            hintText: "${localizations.enter} $title",
             border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
             filled: true,
             fillColor: Colors.grey.shade50,
@@ -550,14 +697,16 @@ class _ProfileState extends State<Profile> {
           TextButton(
             onPressed: () => Navigator.pop(context),
             child: Text(
-              localizations.translate('cancel'),
+              localizations.cancel,
               style: TextStyle(color: Colors.grey.shade600),
             ),
           ),
           ElevatedButton(
             style: ElevatedButton.styleFrom(
-              backgroundColor:  Color(0xFFEC7103),
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+              backgroundColor: Color(0xFFEC7103),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8),
+              ),
             ),
             onPressed: () {
               if (controller.text.trim().isNotEmpty) {
@@ -566,7 +715,7 @@ class _ProfileState extends State<Profile> {
               }
             },
             child: Text(
-              localizations.translate('save'),
+              localizations.save,
               style: TextStyle(color: Colors.white),
             ),
           ),
@@ -582,14 +731,14 @@ class _ProfileState extends State<Profile> {
     return Scaffold(
       backgroundColor: Colors.grey.shade50,
       appBar: AppBar(
-        backgroundColor:  Color(0xFFEC7103),
+        backgroundColor: Color(0xFFEC7103),
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.white),
           onPressed: () => Navigator.pop(context),
         ),
         title: Text(
-          localizations.translate('account'),
+          localizations.account,
           style: const TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.w600,
@@ -606,7 +755,7 @@ class _ProfileState extends State<Profile> {
               );
             },
             icon: const Icon(Icons.g_translate, color: Colors.white, size: 24),
-            tooltip: localizations.translate('change_language'),
+            tooltip: localizations.changeLanguage,
           ),
         ],
       ),
@@ -619,7 +768,6 @@ class _ProfileState extends State<Profile> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              // Profile Header
               Container(
                 width: double.infinity,
                 padding: EdgeInsets.all(20),
@@ -636,7 +784,6 @@ class _ProfileState extends State<Profile> {
                 ),
                 child: Column(
                   children: [
-                    // Profile Picture with Edit Option
                     GestureDetector(
                       onTap: _showImagePickerOptions,
                       child: Stack(
@@ -646,7 +793,10 @@ class _ProfileState extends State<Profile> {
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
                               gradient: LinearGradient(
-                                colors: [ Color.fromARGB(255, 212, 101, 3), Color.fromARGB(155, 255, 151, 61)],
+                                colors: [
+                                  Color.fromARGB(255, 212, 101, 3),
+                                  Color.fromARGB(155, 255, 151, 61),
+                                ],
                                 begin: Alignment.topLeft,
                                 end: Alignment.bottomRight,
                               ),
@@ -654,10 +804,10 @@ class _ProfileState extends State<Profile> {
                             child: CircleAvatar(
                               radius: 50,
                               backgroundColor: Colors.white,
-                              backgroundImage: profileImagePath != null 
-                                  ? FileImage(File(profileImagePath!))
+                              backgroundImage: profileImageBytes != null
+                                  ? MemoryImage(profileImageBytes!)
                                   : null,
-                              child: profileImagePath == null
+                              child: profileImageBytes == null
                                   ? Icon(
                                       Icons.person,
                                       size: 60,
@@ -674,7 +824,10 @@ class _ProfileState extends State<Profile> {
                               decoration: BoxDecoration(
                                 color: Color(0xFFEC7103),
                                 shape: BoxShape.circle,
-                                border: Border.all(color: Colors.white, width: 2),
+                                border: Border.all(
+                                  color: Colors.white,
+                                  width: 2,
+                                ),
                               ),
                               child: Icon(
                                 Icons.camera_alt,
@@ -721,13 +874,15 @@ class _ProfileState extends State<Profile> {
 
               const SizedBox(height: 20),
 
-              // Points Card
               Container(
                 width: double.infinity,
                 padding: EdgeInsets.all(20),
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
-                    colors: [  Color.fromARGB(255, 236, 88, 3),  Color.fromARGB(255, 255, 167, 89)],
+                    colors: [
+                      Color.fromARGB(255, 236, 88, 3),
+                      Color.fromARGB(255, 255, 167, 89),
+                    ],
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
                   ),
@@ -747,7 +902,7 @@ class _ProfileState extends State<Profile> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            localizations.translate('points_earned'),
+                            localizations.pointsEarned,
                             style: TextStyle(
                               color: Colors.white70,
                               fontSize: 12,
@@ -765,17 +920,13 @@ class _ProfileState extends State<Profile> {
                         ],
                       ),
                     ),
-                    Container(
-                      height: 40,
-                      width: 1,
-                      color: Colors.white30,
-                    ),
+                    Container(height: 40, width: 1, color: Colors.white30),
                     Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           Text(
-                            localizations.translate('points_redeemed'),
+                            localizations.pointsRedeemed,
                             style: TextStyle(
                               color: Colors.white70,
                               fontSize: 12,
@@ -799,125 +950,111 @@ class _ProfileState extends State<Profile> {
 
               const SizedBox(height: 20),
 
-              // Personal Details
-              _buildInfoCard(
-                localizations.translate('personal_details'),
-                [
-                  _buildDetailRow(
-                    localizations.translate('full_name'),
-                    fullName,
-                    Icons.person_outline,
-                    
-                    editable: true,
-                    onTap: () {
-                      showEditDialog(
-                        localizations.translate('full_name'),
-                        fullName,
-                        (value) => setState(() => fullName = value),
-                      );
-                    },
-                  ),
-                  _buildDetailRow(
-                    localizations.translate('email'),
-                    email,
-                    Icons.email_outlined,
-                  ),
-                  _buildDetailRow(
-                    localizations.translate('phone'),
-                    phone,
-                    Icons.phone_outlined,
-                    editable: true,
-                    onTap: () {
-                      showEditDialog(
-                        localizations.translate('phone'),
-                        phone,
-                        (value) => setState(() => phone = value),
-                      );
-                    },
-                  ),
-                  _buildDetailRow(
-                    localizations.translate('address'),
-                    address,
-                    Icons.location_on_outlined,
-                    editable: true,
-                    onTap: () {
-                      showEditDialog(
-                        localizations.translate('address'),
-                        address,
-                        (value) => setState(() => address = value),
-                      );
-                    },
-                  ),
-                  _buildDetailRow(
-                    localizations.translate('city'),
-                    city,
-                    Icons.location_city_outlined,
-                    editable: true,
-                    onTap: () {
-                      showEditDialog(
-                        localizations.translate('city'),
-                        city,
-                        (value) => setState(() => city = value),
-                      );
-                    },
-                  ),
-                  _buildDetailRow(
-                    localizations.translate('zip'),
-                    zip,
-                    Icons.markunread_mailbox_outlined,
-                    editable: true,
-                    onTap: () {
-                      showEditDialog(
-                        localizations.translate('zip'),
-                        zip,
-                        (value) => setState(() => zip = value),
-                      );
-                    },
-                  ),
-                  _buildDetailRow(
-                    localizations.translate('password'),
-                    password,
-                    Icons.lock_outline,
-                    editable: true,
-                    onTap: () {
-                      showEditDialog(
-                        localizations.translate('password'),
-                        '',
-                        (value) => setState(() => password = value),
-                      );
-                    },
-                  ),
-                ],
-              ),
+              _buildInfoCard(localizations.personalDetails, [
+                _buildDetailRow(
+                  localizations.fullName,
+                  fullName,
+                  Icons.person_outline,
+                  editable: true,
+                  onTap: () {
+                    showEditDialog(
+                      localizations.fullName,
+                      fullName,
+                      (value) => setState(() => fullName = value),
+                    );
+                  },
+                ),
+                _buildDetailRow(
+                  localizations.email,
+                  email,
+                  Icons.email_outlined,
+                ),
+                _buildDetailRow(
+                  localizations.phone,
+                  phone,
+                  Icons.phone_outlined,
+                  editable: true,
+                  onTap: () {
+                    showEditDialog(
+                      localizations.phone,
+                      phone,
+                      (value) => setState(() => phone = value),
+                    );
+                  },
+                ),
+                _buildDetailRow(
+                  localizations.address,
+                  address,
+                  Icons.location_on_outlined,
+                  editable: true,
+                  onTap: () {
+                    showEditDialog(
+                      localizations.address,
+                      address,
+                      (value) => setState(() => address = value),
+                    );
+                  },
+                ),
+                _buildDetailRow(
+                  localizations.city,
+                  city,
+                  Icons.location_city_outlined,
+                  editable: true,
+                  onTap: () {
+                    showEditDialog(
+                      localizations.city,
+                      city,
+                      (value) => setState(() => city = value),
+                    );
+                  },
+                ),
+                _buildDetailRow(
+                  localizations.zip,
+                  zip,
+                  Icons.markunread_mailbox_outlined,
+                  editable: true,
+                  onTap: () {
+                    showEditDialog(
+                      localizations.zip,
+                      zip,
+                      (value) => setState(() => zip = value),
+                    );
+                  },
+                ),
+                _buildDetailRow(
+                  localizations.password,
+                  password,
+                  Icons.lock_outline,
+                  editable: true,
+                  onTap: () {
+                    showEditDialog(
+                      localizations.password,
+                      '',
+                      (value) => setState(() => password = value),
+                    );
+                  },
+                ),
+              ]),
 
               const SizedBox(height: 16),
 
-              // Account Details
-              _buildInfoCard(
-                localizations.translate('account_details'),
-                [
-                  _buildDetailRow(
-                    localizations.translate('account_created'),
-                    createdAt,
-                    Icons.calendar_today_outlined,
-                  ),
-                  _buildDetailRow(
-                    "TRDR ID",
-                    trdr,
-                    Icons.badge_outlined,
-                  ),
-                ],
-              ),
+              _buildInfoCard(localizations.accountDetails, [
+                _buildDetailRow(
+                  localizations.accountCreated,
+                  createdAt,
+                  Icons.calendar_today_outlined,
+                ),
+                _buildDetailRow("TRDR ID", trdr, Icons.badge_outlined),
+              ]),
 
               const SizedBox(height: 30),
 
-              // Update Profile Button
               SizedBox(
                 width: double.infinity,
                 height: 50,
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor:  Color(0xFFEC7103),
+                    backgroundColor: Color(0xFFEC7103),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),
@@ -936,10 +1073,14 @@ class _ProfileState extends State<Profile> {
                       : Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Icon(Icons.save_outlined, color: Colors.white, size: 20),
+                            Icon(
+                              Icons.save_outlined,
+                              color: Colors.white,
+                              size: 20,
+                            ),
                             SizedBox(width: 8),
                             Text(
-                              localizations.translate('update_profile'),
+                              localizations.updateProfile,
                               style: const TextStyle(
                                 fontSize: 16,
                                 color: Colors.white,
@@ -953,7 +1094,6 @@ class _ProfileState extends State<Profile> {
 
               const SizedBox(height: 12),
 
-              // Logout Button
               SizedBox(
                 width: double.infinity,
                 height: 50,
@@ -965,29 +1105,42 @@ class _ProfileState extends State<Profile> {
                     ),
                   ),
                   onPressed: () async {
-                    // Show confirmation dialog
-                    bool shouldLogout = await showDialog(
-                      context: context,
-                      builder: (context) => AlertDialog(
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-                        title: Text('Confirm Logout'),
-                        content: Text('Are you sure you want to logout?'),
-                        actions: [
-                          TextButton(
-                            onPressed: () => Navigator.pop(context, false),
-                            child: Text('Cancel', style: TextStyle(color: Colors.grey)),
-                          ),
-                          ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.red,
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                    final localizations = AppLocalizations.of(context)!;
+
+                    bool shouldLogout =
+                        await showDialog(
+                          context: context,
+                          builder: (context) => AlertDialog(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15),
                             ),
-                            onPressed: () => Navigator.pop(context, true),
-                            child: Text('Logout', style: TextStyle(color: Colors.white)),
+                            title: Text(localizations.confirmLogout),
+                            content: Text(localizations.logoutConfirmation),
+                            actions: [
+                              TextButton(
+                                onPressed: () => Navigator.pop(context, false),
+                                child: Text(
+                                  localizations.cancel,
+                                  style: TextStyle(color: Colors.grey),
+                                ),
+                              ),
+                              ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: Colors.red,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                ),
+                                onPressed: () => Navigator.pop(context, true),
+                                child: Text(
+                                  localizations.logout,
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
-                    ) ?? false;
+                        ) ??
+                        false;
 
                     if (shouldLogout) {
                       final prefs = await SharedPreferences.getInstance();
@@ -997,14 +1150,20 @@ class _ProfileState extends State<Profile> {
                         SnackBar(
                           content: Row(
                             children: [
-                              Icon(Icons.check_circle, color: Colors.white, size: 20),
+                              Icon(
+                                Icons.check_circle,
+                                color: Colors.white,
+                                size: 20,
+                              ),
                               SizedBox(width: 8),
-                              Text('Logged out successfully'),
+                              Text(localizations.loggedOutSuccessfully),
                             ],
                           ),
                           backgroundColor: Colors.green,
                           behavior: SnackBarBehavior.floating,
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
                           margin: EdgeInsets.all(16),
                         ),
                       );
@@ -1024,7 +1183,7 @@ class _ProfileState extends State<Profile> {
                       Icon(Icons.logout_outlined, color: Colors.red, size: 20),
                       SizedBox(width: 8),
                       Text(
-                        localizations.translate('logout'),
+                        localizations.logout,
                         style: const TextStyle(
                           fontSize: 16,
                           color: Colors.red,
@@ -1094,11 +1253,7 @@ class _ProfileState extends State<Profile> {
               color: Colors.grey.shade100,
               borderRadius: BorderRadius.circular(8),
             ),
-            child: Icon(
-              icon,
-              size: 20,
-              color: Colors.grey.shade600,
-            ),
+            child: Icon(icon, size: 20, color: Colors.grey.shade600),
           ),
           const SizedBox(width: 12),
           Expanded(
@@ -1137,7 +1292,7 @@ class _ProfileState extends State<Profile> {
                 child: Icon(
                   Icons.edit_outlined,
                   size: 18,
-                  color:  Color(0xFFEC7103),
+                  color: Color(0xFFEC7103),
                 ),
               ),
             ),

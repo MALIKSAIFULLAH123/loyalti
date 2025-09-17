@@ -1,0 +1,43 @@
+{
+    "name": "metafox/healthcheck",
+    "version": "5.0.12",
+    "description": "Health Check",
+    "keyword": "metafox/healthcheck",
+    "authors": [
+        {
+            "name": "phpFox",
+            "homepage": "https://metafoxapp.com"
+        }
+    ],
+    "extra": {
+        "metafox": {
+            "core": true,
+            "priority": 4,
+            "alias": "health-check",
+            "asset": "health-check",
+            "namespace": "MetaFox\\HealthCheck",
+            "path": "packages/framework/healthcheck",
+            "title": "Health Check",
+            "providers": [
+                "MetaFox\\HealthCheck\\Providers\\PackageServiceProvider"
+            ],
+            "aliases": {
+            },
+            "frontend": {
+                "@metafox/healthcheck": "*"
+            },
+            "internalUrl": "/health-check",
+            "internalAdminUrl": "/health-check/wizard"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "MetaFox\\HealthCheck\\": "src/"
+        }
+    },
+    "autoload-dev":{
+        "psr-4": {
+            "MetaFox\\HealthCheck\\Tests\\": "tests/"
+        }
+    }
+}

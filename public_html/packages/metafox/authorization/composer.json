@@ -1,0 +1,42 @@
+{
+    "name": "metafox/authorization",
+    "version": "5.0.19",
+    "description": "Authorization",
+    "keyword": "metafox",
+    "authors": [
+        {
+            "name": "phpFox",
+            "homepage": "https://www.phpfox.com"
+        }
+    ],
+    "extra": {
+        "metafox": {
+            "core": true,
+            "priority": 20,
+            "alias": "authorization",
+            "asset": "a0",
+            "namespace": "MetaFox\\Authorization",
+            "path": "packages/metafox/authorization",
+            "title": "Authorization",
+            "providers": [
+                "MetaFox\\Authorization\\Providers\\PackageServiceProvider"
+            ],
+            "aliases": {
+            },
+            "frontend": {
+            },
+            "internalUrl": "",
+            "internalAdminUrl": "/authorization/role/browse"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "MetaFox\\Authorization\\": "src/"
+        }
+    },
+    "autoload-dev":{
+        "psr-4": {
+            "MetaFox\\Authorization\\Tests\\": "tests/"
+        }
+    }
+}

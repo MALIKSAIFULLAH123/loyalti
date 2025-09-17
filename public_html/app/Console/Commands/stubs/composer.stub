@@ -1,0 +1,49 @@
+{
+    "name": "$PACKAGE_NAME$",
+    "version": "5.0.0",
+    "description": "$PACKAGE_NAME$",
+    "keyword": "$PACKAGE_NAME$",
+    "authors": [
+        {
+            "name": "$AUTHOR_NAME$",
+            "homepage": "$AUTHOR_URL$"
+        }
+    ],
+    "extra": {
+        "metafox": {
+            "core": false,
+            "priority": 99,
+            "alias": "$PACKAGE_ALIAS$",
+            "asset": "$PACKAGE_ALIAS$",
+            "namespace": "$ESCAPED_PACKAGE_NAMESPACE$",
+            "path": "packages/$PACKAGE_NAME$",
+            "title": "$PACKAGE_NAME$",
+            "type": "$PACKAGE_TYPE$",
+            "providers": [
+                "$ESCAPED_PACKAGE_NAMESPACE$\\Providers\\PackageServiceProvider"
+            ],
+            "aliases": {
+            },
+            "require": {
+            },
+            "frontend": {
+                "@$PACKAGE_NAME$": "*"
+            },
+            "frontendPaths": [
+
+            ],
+            "internalUrl": "$INTERNAL_URL$",
+            "internalAdminUrl": "$INTERNAL_ADMIN_URL$"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "$ESCAPED_PACKAGE_NAMESPACE$\\": "src/"
+        }
+    },
+    "autoload-dev":{
+        "psr-4": {
+            "$ESCAPED_PACKAGE_NAMESPACE$\\Tests\\": "tests/"
+        }
+    }
+}

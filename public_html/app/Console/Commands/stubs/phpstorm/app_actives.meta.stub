@@ -1,0 +1,20 @@
+<?php
+// @formatter:off
+
+// updated_at: $UPDATE_AT$
+// stub: $STUB$
+
+namespace PHPSTORM_META {
+    override(\app_active(0), map($ARGUMENTS_MAP$));
+    override(\MetaFox\Platform\PackageManager::checkActive(0), map($ARGUMENTS_MAP$));
+    override(\MetaFox\Platform\PackageManager::getNamespace(0), map($ARGUMENTS_MAP$));
+    override(\MetaFox\Platform\PackageManager::getAlias(0), map($ARGUMENTS_MAP$));
+    override(\MetaFox\Platform\PackageManager::getPath(0), map($ARGUMENTS_MAP$));
+    override(\MetaFox\Platform\PackageManager::getMigrationPath(0), map($ARGUMENTS_MAP$));
+    override(\MetaFox\Platform\PackageManager::getConfig(0), map($ARGUMENTS_MAP$));
+    override(\MetaFox\Platform\PackageManager::getMigrations(0), map($ARGUMENTS_MAP$));
+    override(\MetaFox\Platform\PackageManager::getNameStudly(0), map($ARGUMENTS_MAP$));
+    override(\MetaFox\Platform\PackageManager::getMasterSeederClasses(0), map($ARGUMENTS_MAP$));
+    override(\MetaFox\Platform\PackageManager::getAssetPath(0), map($ARGUMENTS_MAP$));
+    override(\MetaFox\Platform\PackageManager::copyAssets(0), map($ARGUMENTS_MAP$));
+}

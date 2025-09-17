@@ -4,8 +4,12 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>NSCameraUsageDescription</key>
+	<string>This app needs camera access to take profile pictures</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>This app needs photo library access to select profile pictures</string>
 	<key>CFBundleDisplayName</key>
-	<string>Loyalty App</string>
+	<string>Angelopoulos Hair</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -13,7 +17,7 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>loyalty_app</string>
+	<string>Angelopoulos Hair</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>

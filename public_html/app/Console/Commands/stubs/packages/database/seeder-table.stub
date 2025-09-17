@@ -1,0 +1,29 @@
+<?php
+
+namespace $PACKAGE_NAMESPACE$\Database\Seeders;
+
+use Illuminate\Database\Seeder;
+use Illuminate\Database\Eloquent\Model;
+
+/**
+ * stub: $STUB$
+ */
+
+/**
+ * Class $NAME$TableSeeder
+ *
+ * @ignore
+ * @link $PACKAGE_NAMESPACE$\Database\Seeders\PackageSeeder::run()
+ * This class must be call via PackageSeeder::run()
+ */
+class $NAME$TableSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+    }
+}

@@ -1,0 +1,26 @@
+<?php
+/**
+ * @author  developer@phpfox.com
+ * @license phpfox.com
+ */
+
+namespace $PACKAGE_NAMESPACE$\Listeners;
+
+use MetaFox\Platform\Support\BasePackageSettingListener;
+
+/**
+ * --------------------------------------------------------------------------
+ * Code Generator
+ * --------------------------------------------------------------------------
+ * stub: $STUB$
+ */
+
+/**
+ * Class PackageSettingListener.
+ * @SuppressWarnings(PHPMD)
+ * @ignore
+ * @codeCoverageIgnore
+ */
+class PackageSettingListener extends BasePackageSettingListener
+{
+}

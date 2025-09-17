@@ -1,0 +1,17 @@
+<?php
+
+namespace $PACKAGE_NAMESPACE$\Observers;
+
+/**
+ * stub: $STUB$
+ */
+
+/**
+ * Class $NAME$Observer
+ *
+ */
+class $NAME$Observer
+{
+}
+
+// end stub

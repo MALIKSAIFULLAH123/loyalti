@@ -1,0 +1,46 @@
+<?php
+
+namespace $PACKAGE_NAMESPACE$\Http\Resources\$VERSION$\$NAME$$ADMIN_SLASH$;
+
+use MetaFox\Form\AbstractForm;
+use MetaFox\Yup\Yup;
+use MetaFox\Form\Builder as Builder;
+use $PACKAGE_NAMESPACE$\Models\$NAME$ as Model;
+
+/**
+ * --------------------------------------------------------------------------
+ * Form Configuration
+ * --------------------------------------------------------------------------
+ * stub: $STUB$
+ */
+
+/**
+ * Class $CLASS_NAME$
+ * @property ?Model $resource
+ * @ignore
+ * @codeCoverageIgnore
+ */
+class $CLASS_NAME$ extends AbstractForm
+{
+    protected function prepare(): void
+    {
+        $this->title(__p('core::phrase.edit'))
+            ->action('/')
+            ->asPost()
+            ->setValue([
+            ]);
+    }
+
+    protected function initialize(): void
+    {
+        $this->addBasic()
+            ->addFields(
+                Builder::text('key')
+                    ->required()
+                    ->label(__p('core::phrase.title'))
+                    ->yup(Yup::string()),
+        );
+
+        $this->addDefaultFooter();
+    }
+}

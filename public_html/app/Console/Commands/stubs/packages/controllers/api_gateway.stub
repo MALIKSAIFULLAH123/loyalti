@@ -1,0 +1,34 @@
+<?php
+
+namespace $PACKAGE_NAMESPACE$\Http\Controllers\Api;
+
+use MetaFox\Platform\Http\Controllers\Api\GatewayController;
+
+/**
+ * --------------------------------------------------------------------------
+ * Api Gateway
+ * --------------------------------------------------------------------------
+ * stub: $STUB$
+ *
+ * This class solve api versioning problem.
+ * DO NOT IMPLEMENT ACTION HERE.
+ */
+
+/**
+ * Class $NAME$$ADMIN$Controller
+ * @codeCoverageIgnore
+ * @ignore
+ */
+class $NAME$$ADMIN$Controller extends GatewayController
+{
+    /**
+     * @var string[]
+     */
+    protected $controllers = [
+        'v1'   => $VERSION$\$NAME$$ADMIN$Controller::class,
+    ];
+
+    // DO NOT IMPLEMENT ACTION HERE.
+}
+
+// end

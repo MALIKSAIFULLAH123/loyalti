@@ -1,0 +1,45 @@
+{
+    "name": "metafox/attachment",
+    "version": "5.0.9",
+    "description": "metafox/attachment",
+    "keyword": "metafox/attachment",
+    "authors": [
+        {
+            "name": "phpFox",
+            "homepage": "https://www.phpfox.com"
+        }
+    ],
+    "extra": {
+        "metafox": {
+            "core": true,
+            "priority": 20,
+            "alias": "attachment",
+            "asset": "attachment",
+            "namespace": "MetaFox\\Attachment",
+            "path": "packages/metafox/attachment",
+            "title": "Attachments",
+            "providers": [
+                "MetaFox\\Attachment\\Providers\\PackageServiceProvider"
+            ],
+            "aliases": {
+            },
+            "require": {
+            },
+            "frontend": {
+                "@metafox/attachment": "*"
+            },
+            "internalUrl": "/attachment",
+            "internalAdminUrl": "/attachment/setting"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "MetaFox\\Attachment\\": "src/"
+        }
+    },
+    "autoload-dev":{
+        "psr-4": {
+            "MetaFox\\Attachment\\Tests\\": "tests/"
+        }
+    }
+}

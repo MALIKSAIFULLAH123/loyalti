@@ -1,0 +1,10 @@
+<?php
+// @formatter:off
+
+// updated_at: $UPDATE_AT$
+// stub: $STUB$
+
+namespace PHPSTORM_META {
+    override(\apiUrl(0), map($ARGUMENTS_MAP$));
+    override(\route(0), map($ARGUMENTS_MAP$));
+}

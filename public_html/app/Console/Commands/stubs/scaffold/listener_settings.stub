@@ -1,0 +1,58 @@
+<?php
+
+namespace $PACKAGE_NAMESPACE$\Listeners;
+
+use MetaFox\Platform\Support\BasePackageSettingListener;
+/**
+ * stub: $STUB$
+ */
+
+class PackageSettingListener extends BasePackageSettingListener
+{
+
+    public function getActivityTypes(): array
+    {
+        return [];
+    }
+
+    public function getSiteSettings(): array
+    {
+        return [];
+    }
+
+    public function getEvents(): array
+    {
+        return [];
+    }
+
+    public function getUserPrivacy(): array
+    {
+        return [];
+    }
+
+    public function getUserPrivacyResource(): array
+    {
+        return [];
+    }
+
+    public function getDefaultPrivacy(): array
+    {
+        return [];
+    }
+
+    public function getHttpResourceVersions(): array
+    {
+        return [];
+    }
+
+    public function getUserValuePermissions(): array
+    {
+        return [];
+    }
+
+    public function getItemTypes(): array
+    {
+        return [];
+    }
+
+}

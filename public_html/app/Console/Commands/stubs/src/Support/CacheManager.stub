@@ -1,0 +1,22 @@
+<?php
+
+namespace $PACKAGE_NAMESPACE$\Support;
+
+/**
+ * --------------------------------------------------------------------------
+ * Code Generator
+ * --------------------------------------------------------------------------
+ * stub: $STUB$
+ */
+
+/**
+ * Class CacheManager
+ *
+ * @ignore
+ * @codeCoverageIgnore
+ */
+class CacheManager
+{
+    public const SPONSOR_ITEM_CACHE = 'sponsored_blog_%s';
+    public const SPONSOR_ITEM_CACHE_TIME = 3000;
+}

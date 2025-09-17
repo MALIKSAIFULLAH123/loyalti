@@ -1,0 +1,26 @@
+<?php
+
+namespace $PACKAGE_NAMESPACE$\Tests\Unit\Http\Controllers\Api\$VERSION$;
+
+use $PACKAGE_NAMESPACE$\Http\Controllers\Api\$VERSION$\$NAME$Controller as ApiController;
+use Tests\TestCase;
+
+/**
+ | --------------------------------------------------------------------------
+ |  Api Controller Test
+ | --------------------------------------------------------------------------
+ | stub: $STUB$
+ */
+
+/**
+ * Class $NAME$ControllerTest
+ * @ignore
+ * @see ApiController
+ */
+class $NAME$ControllerTest extends TestCase
+{
+    public function testExample()
+    {
+        $this->markTestIncomplete('coming soon!');
+    }
+}

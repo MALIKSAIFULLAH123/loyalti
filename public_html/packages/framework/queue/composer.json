@@ -1,0 +1,41 @@
+{
+    "name": "metafox/queue",
+    "version": "5.0.13",
+    "description": "Queue",
+    "keyword": "metafox/queue",
+    "authors": [
+        {
+            "name": "phpFox",
+            "homepage": "https://www.phpfox.com"
+        }
+    ],
+    "extra": {
+        "metafox": {
+            "core": true,
+            "priority": 12,
+            "alias": "queue",
+            "asset": "queue",
+            "namespace": "MetaFox\\Queue",
+            "path": "packages/framework/queue",
+            "title": "Queue",
+            "providers": [
+                "MetaFox\\Queue\\Providers\\PackageServiceProvider"
+            ],
+            "aliases": {
+            },
+            "frontend": {},
+            "internalUrl": "/queue",
+            "internalAdminUrl": "/queue/setting"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "MetaFox\\Queue\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "MetaFox\\Queue\\Tests\\": "tests/"
+        }
+    }
+}

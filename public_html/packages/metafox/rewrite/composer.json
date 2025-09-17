@@ -1,0 +1,44 @@
+{
+    "name": "metafox/rewrite",
+    "version": "5.0.9",
+    "description": "Rewrite Rules",
+    "keyword": "",
+    "authors": [
+        {
+            "name": "phpFox",
+            "homepage": "https://www.phpfox.com"
+        }
+    ],
+    "extra": {
+        "metafox": {
+            "core": true,
+            "priority": 100,
+            "alias": "rewrite",
+            "asset": "rewrite",
+            "namespace": "MetaFox\\Rewrite",
+            "path": "packages/metafox/rewrite",
+            "title": "Rewrite Rules",
+            "providers": [
+                "MetaFox\\Rewrite\\Providers\\PackageServiceProvider"
+            ],
+            "aliases": null,
+            "frontend": [],
+            "internalUrl": "",
+            "internalAdminUrl": "/rewrite/rule/browse",
+            "type": "app",
+            "mobile": [],
+            "store_id": 0,
+            "store_url": null
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "MetaFox\\Rewrite\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "MetaFox\\Rewrite\\Tests\\": "tests/"
+        }
+    }
+}

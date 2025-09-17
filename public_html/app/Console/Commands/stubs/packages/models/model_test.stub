@@ -1,0 +1,37 @@
+<?php
+
+namespace $PACKAGE_NAMESPACE$\Tests\Unit\Models;
+
+use MetaFox\Platform\Contracts\User;
+use MetaFox\Platform\UserRole;
+use Tests\TestCase;
+use $PACKAGE_NAMESPACE$\Models\$NAME$;
+
+/**
+ * stub: $STUB$
+ */
+
+/**
+ * Class $NAME$Test.
+ *
+ * @ignore
+ */
+class $NAME$Test extends TestCase
+{
+    /**
+     * @return void
+     */
+    public function testCreateInstance()
+    {
+        $user = $this->createUser()->assignRole(UserRole::NORMAL_USER);
+
+        $resource = $NAME$::factory()
+        //    ->setUser($user)
+        //    ->setOwner($user)
+            ->create();
+
+        $this->assertInstanceOf($NAME$::class, $resource);
+    }
+}
+
+// end

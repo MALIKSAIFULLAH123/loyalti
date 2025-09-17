@@ -1,0 +1,29 @@
+<?php
+/**
+ * @author  developer@phpfox.com
+ * @license phpfox.com
+ */
+
+namespace $PACKAGE_NAMESPACE$\Http\Resources\$VERSION$;
+
+/**
+ | stub: $STUB$
+ */
+
+/**
+ * Class PackageSetting
+ * @ignore
+ * @codeCoverageIgnore
+ */
+class PackageSetting
+{
+    public function getWebSettings(): array
+    {
+        return [];
+    }
+
+    public function getMobileSettings(): array
+    {
+         return [];
+    }
+}

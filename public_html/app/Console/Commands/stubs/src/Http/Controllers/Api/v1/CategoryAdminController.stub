@@ -1,0 +1,189 @@
+<?php
+
+namespace $PACKAGE_NAMESPACE$\Http\Controllers\Api\v1;
+
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Auth\AuthenticationException;
+use Illuminate\Http\JsonResponse;
+use $PACKAGE_NAMESPACE$\Http\Requests\v1\Category\Admin\DeleteRequest;
+use $PACKAGE_NAMESPACE$\Http\Requests\v1\Category\Admin\IndexRequest;
+use $PACKAGE_NAMESPACE$\Http\Requests\v1\Category\Admin\StoreRequest;
+use $PACKAGE_NAMESPACE$\Http\Requests\v1\Category\Admin\UpdateRequest;
+use $PACKAGE_NAMESPACE$\Http\Resources\v1\Category\Admin\CategoryItem as Detail;
+use $PACKAGE_NAMESPACE$\Http\Resources\v1\Category\Admin\CategoryItemCollection as ItemCollection;
+use $PACKAGE_NAMESPACE$\Http\Resources\v1\Category\Admin\StoreCategoryForm;
+use $PACKAGE_NAMESPACE$\Http\Resources\v1\Category\Admin\DestroyCategoryForm;
+use MetaFox\Blog\Http\Resources\v1\Category\Admin\UpdateCategoryForm;
+use MetaFox\Blog\Repositories\CategoryRepositoryInterface;
+use MetaFox\Platform\Http\Controllers\Api\ApiController;
+use Prettus\Validator\Exceptions\ValidatorException;
+
+/**
+ * --------------------------------------------------------------------------
+ * Code Generator
+ * --------------------------------------------------------------------------
+ * stub: $STUB$
+ */
+
+/**
+ * Class CategoryAdminController.
+ * @ignore
+ * @codeCoverageIgnore
+ * @group admincp/$PACKAGE_ALIAS$
+ * @authenticated
+ */
+class CategoryAdminController extends ApiController
+{
+    /**
+     * @var CategoryRepositoryInterface
+     */
+    public CategoryRepositoryInterface $repository;
+
+    /**
+     * @param CategoryRepositoryInterface $repository
+     */
+    public function __construct(CategoryRepositoryInterface $repository)
+    {
+        $this->repository = $repository;
+    }
+
+    /**
+     * Browse category.
+     *
+     * @param IndexRequest $request
+     *
+     * @return ItemCollection<Detail>
+     */
+    public function index(IndexRequest $request): ItemCollection
+    {
+        $params = $request->validated();
+
+        $limit = $params['limit'];
+        $query = $this->repository->getModel()->newModelQuery()
+            ->orderBy('ordering')
+            ->orderBy('id');
+
+        $data = $query->simplePaginate($limit);
+
+        return new ItemCollection($data);
+    }
+
+    /**
+     * Create category.
+     *
+     * @param StoreRequest $request
+     *
+     * @return Detail
+     * @throws ValidatorException
+     * @throws AuthorizationException|AuthenticationException
+     */
+    public function store(StoreRequest $request): Detail
+    {
+        $params = $request->validated();
+        $data = $this->repository->createCategory(user(), $params);
+
+        return new Detail($data);
+    }
+
+    /**
+     * View category.
+     *
+     * @param int $id
+     *
+     * @return Detail
+     * @throws AuthorizationException|AuthenticationException
+     */
+    public function show(int $id): Detail
+    {
+        $data = $this->repository->viewCategory(user(), $id);
+
+        return new Detail($data);
+    }
+
+    /**
+     * Update category.
+     *
+     * @param UpdateRequest $request
+     * @param int           $id
+     *
+     * @return Detail
+     * @throws AuthorizationException|AuthenticationException
+     */
+    public function update(UpdateRequest $request, int $id): Detail
+    {
+        $params = $request->validated();
+        $data = $this->repository->updateCategory(user(), $id, $params);
+
+        return new Detail($data);
+    }
+
+    /**
+     * Delete category.
+     *
+     * @param DeleteRequest $request
+     * @param int           $id
+     *
+     * @return JsonResponse
+     * @throws AuthorizationException|AuthenticationException
+     */
+    public function destroy(DeleteRequest $request, int $id): JsonResponse
+    {
+        $params = $request->validated();
+        $newCategoryId = $params['new_category_id'];
+        $this->repository->deleteCategory(user(), $id, $newCategoryId);
+
+        return $this->success([], [], __p('group::phrase.successfully_deleted_the_category'));
+    }
+
+    /**
+     * Update active status.
+     *
+     * @param  int          $id
+     * @return JsonResponse
+     */
+    public function active(int $id): JsonResponse
+    {
+        $item = $this->repository->find($id);
+
+        $item->update(['is_active' => $item->is_active ? 0 : 1]);
+
+        return $this->success([new Detail($item)], [], __p('core::phrase.already_saved_changes'));
+    }
+
+    /**
+     * View creation form.
+     *
+     * @return StoreCategoryForm
+     */
+    public function formStore(): StoreCategoryForm
+    {
+        return new StoreCategoryForm();
+    }
+
+    /**
+     * View editing form.
+     *
+     * @param  int              $id
+     * @return UpdateCategoryForm
+     */
+    public function formUpdate(int $id): UpdateCategoryForm
+    {
+        $item = $this->repository->find($id);
+
+        return new UpdateCategoryForm($item);
+    }
+
+    /**
+     * View deleting form.
+     *
+     * @param  int                $id
+     *
+     * @return DestroyCategoryForm
+     */
+    public function getDestroyForm(int $id): DestroyCategoryForm
+    {
+        $item = $this->repository->find($id);
+
+        return new DestroyCategoryForm($item);
+    }
+}

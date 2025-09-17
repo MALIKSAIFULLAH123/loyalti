@@ -1,0 +1,66 @@
+<?php
+
+namespace $PACKAGE_NAMESPACE$\Http\Resources\v1\$NAME$\Admin;
+
+/*
+ | --------------------------------------------------------------------------
+ | DataGrid Configuration
+ | --------------------------------------------------------------------------
+ | stub: $STUB$
+ */
+
+use MetaFox\Platform\Resource\Actions;
+use MetaFox\Platform\Resource\BatchActionMenu;
+use MetaFox\Platform\Resource\GridConfig as Grid;
+use MetaFox\Platform\Resource\ItemActionMenu;
+
+/**
+ * Class $ACTION$DataGrid.
+ * @codeCoverageIgnore
+ * @ignore
+ */
+class $ACTION$DataGrid extends Grid
+{
+    protected string $appName = '';
+    protected string $resourceName = '';
+
+    protected function initialize(): void
+    {
+        // $this->enableCheckboxSelection();
+        // $this->inlineSearch(['id']);
+        // $this->setSearchForm(new BuiltinAdminSearchForm);
+
+        $this->setDataSource('/admincp/$NAME_SNAKE$', ['q' => ':q']);
+
+        $this->addColumn('id')
+            ->header('ID')
+            ->width(80);
+
+        $this->addColumn('key')
+            ->header(__p('$NAME_SNAKE$::phrase.name'))
+            ->width(200);
+
+        /**
+         * Add default actions
+         */
+        $this->withActions(function (Actions $actions) {
+        });
+
+        /**
+         * with batch menu actions
+         */
+        $this->withBatchMenu(function (BatchActionMenu $menu) {
+            // $menu->asButton();
+            // $menu->withDelete();
+        });
+
+        /**
+         * with item action menus
+         */
+        $this->withItemMenu(function (ItemActionMenu $menu) {
+            // $menu->withEdit();
+            // $menu->withDelete();
+        });
+
+    }
+}

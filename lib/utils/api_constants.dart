@@ -131,9 +131,27 @@
 //       ),
 //     );
 //   }
+// // }
+// class ApiConstants {
+//   static const String baseUrl =
+//       // "https://cors-anywhere.herokuapp.com/"; // Replace with your API base URL
+//       ""; 
 // }
+
+import 'dart:io';
+
+import 'package:flutter/foundation.dart';
+
 class ApiConstants {
-  static const String baseUrl =
-      // "https://cors-anywhere.herokuapp.com/"; // Replace with your API base URL
-      ""; 
+  static String get baseUrl {
+    if (kIsWeb) {
+      return "https://cors-anywhere.herokuapp.com/";
+    } else if (Platform.isAndroid) {
+      return "";
+    } else if (Platform.isIOS) {
+      return "";
+    } else {
+      return "https://default-url.com/";
+    }
+  }
 }

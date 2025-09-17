@@ -1,0 +1,40 @@
+<?php
+/**
+ * @author developer@phpfox.com
+ * @license phpfox.com
+ */
+
+namespace $PACKAGE_NAMESPACE$\Providers;
+
+use Illuminate\Support\ServiceProvider;
+
+/**
+ * stub: $STUB$
+ */
+
+/**
+ * Class AppServiceProvider
+ *
+ */
+class AppServiceProvider extends ServiceProvider
+{
+    /**
+     * Register the service provider.
+     *
+     * @return void
+     */
+    public function register()
+    {
+        //
+    }
+
+    /**
+     * Boot the service provider.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        //
+    }
+}

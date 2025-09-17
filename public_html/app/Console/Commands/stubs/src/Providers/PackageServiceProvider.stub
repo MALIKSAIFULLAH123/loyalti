@@ -1,0 +1,23 @@
+<?php
+
+namespace $PACKAGE_NAMESPACE$\Providers;
+
+use Illuminate\Database\Eloquent\Relations\Relation;
+use Illuminate\Support\ServiceProvider;
+
+/**
+ * --------------------------------------------------------------------------
+ * Code Generator
+ * --------------------------------------------------------------------------
+ * stub: $STUB$
+ */
+
+/**
+ * Class PackageServiceProvider.
+ *
+ * @ignore
+ * @codeCoverageIgnore
+ */
+class PackageServiceProvider extends ServiceProvider
+{
+}

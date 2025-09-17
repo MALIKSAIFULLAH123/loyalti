@@ -19,6 +19,7 @@ class Allpages extends StatelessWidget {
       // {'name': 'sign up', 'screen': SignUpScreen()},
       {'name': 'sign up2', 'screen': SignUpScreen2()},
       {'name': 'scaner ', 'screen': const ScanReceiptScreen()},
+      // {'name': 'PhoneAuthScreen  ', 'screen': const PhoneAuthScreen()},
       // {'name': 'home  ', 'screen': const HomeScreen()},
       // {'name': 'scaner2 ', 'screen': QRViewExample()},
       {'name': ' profile ', 'screen': Profile()},

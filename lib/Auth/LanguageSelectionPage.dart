@@ -40,6 +40,37 @@ class _LanguageSelectionPageState extends State<LanguageSelectionPage> {
     selectedLanguageCode = localizationService.currentLocale.languageCode;
   }
 
+  // Compact Header with Logo Only
+  Widget _buildHeaderSection(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.fromLTRB(20, 13, 20, 10),
+      decoration: const BoxDecoration(
+        gradient: LinearGradient(
+          colors: [Color(0xFFEC7103), Color(0xFFFF8A3D)],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+      ),
+      child: SafeArea(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Logo Only
+            Center(
+              child: Image.asset(
+                'assets/images/home-logo.png',
+                width: 200, // Slightly smaller
+                fit: BoxFit.contain,
+              ),
+            ),
+            const SizedBox(height: 10),
+          ],
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final localizations = AppLocalizations.of(context)!;
@@ -47,230 +78,210 @@ class _LanguageSelectionPageState extends State<LanguageSelectionPage> {
     
     return Scaffold(
       backgroundColor: const Color(0xFFF8F9FA),
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios, color: Colors.black54),
-          onPressed: () => Navigator.pop(context),
-        ),
-        title: Text(
-          localizations.back,
-          style: const TextStyle(
-            color: Colors.black54,
-            fontSize: 16,
-            fontWeight: FontWeight.normal,
-          ),
-        ),
-      ),
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(height: 40),
-              
-              // Title
-              Center(
-                child: Column(
-                  children: [
-                    Text(
-                      localizations.appTitle,
-                      style: const TextStyle(
-                        fontSize: 28,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
-                        letterSpacing: 2.0,
+      body: Column(
+        children: [
+          // Compact Header
+          _buildHeaderSection(context),
+          
+          // Main Content
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(height: 20), // Reduced space
+                  
+                  // Back Button Row
+                  Row(
+                    children: [
+                      IconButton(
+                        icon: const Icon(Icons.arrow_back_ios, color: Colors.black54),
+                        onPressed: () => Navigator.pop(context),
                       ),
-                    ),
-                    Text(
-                      localizations.appSubtitle,
-                      style: const TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
-                        color: Color(0xFFFF6B35),
-                        letterSpacing: 4.0,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              
-              const SizedBox(height: 60),
-              
-              // Page Title
-              Text(
-                localizations.languageSelection,
-                style: const TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.black,
-                ),
-              ),
-              
-              const SizedBox(height: 8),
-              
-              // Subtitle
-              Text(
-                localizations.chooseLanguage,
-                style: const TextStyle(
-                  fontSize: 14,
-                  color: Colors.black54,
-                ),
-              ),
-              
-              const SizedBox(height: 40),
-              
-              // Language Options
-              Expanded(
-                child: ListView.builder(
-                  itemCount: languages.length,
-                  itemBuilder: (context, index) {
-                    final language = languages[index];
-                    final isSelected = selectedLanguageCode == language['code'];
-                    
-                    return Container(
-                      margin: const EdgeInsets.only(bottom: 16),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(12),
-                        border: Border.all(
-                          color: isSelected 
-                              ? const Color(0xFFFF6B35) 
-                              : Colors.grey.shade300,
-                          width: isSelected ? 2 : 1,
+                      Text(
+                        localizations.back,
+                        style: const TextStyle(
+                          color: Colors.black54,
+                          fontSize: 16,
+                          fontWeight: FontWeight.normal,
                         ),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withOpacity(0.05),
-                            blurRadius: 10,
-                            offset: const Offset(0, 2),
-                          ),
-                        ],
                       ),
-                      child: ListTile(
-                        onTap: () {
-                          setState(() {
-                            selectedLanguageCode = language['code'];
-                          });
-                        },
-                        leading: Container(
-                          width: 50,
-                          height: 50,
+                    ],
+                  ),
+                  
+                  const SizedBox(height: 20), // Reduced space
+                  
+                  // Page Title
+                  Text(
+                    localizations.languageSelection,
+                    style: const TextStyle(
+                      fontSize: 22, // Slightly smaller
+                      fontWeight: FontWeight.w600,
+                      color: Colors.black,
+                    ),
+                  ),
+                  
+                  const SizedBox(height: 6), // Reduced space
+                  
+                  // Subtitle
+                  
+                  
+                  const SizedBox(height: 24), // Reduced space
+                  
+                  // Language Options - More Compact
+                  Expanded(
+                    child: ListView.builder(
+                      physics: const NeverScrollableScrollPhysics(), // Disable scrolling
+                      itemCount: languages.length,
+                      itemBuilder: (context, index) {
+                        final language = languages[index];
+                        final isSelected = selectedLanguageCode == language['code'];
+                        
+                        return Container(
+                          margin: const EdgeInsets.only(bottom: 12), // Reduced margin
                           decoration: BoxDecoration(
-                            color: Colors.grey.shade100,
-                            borderRadius: BorderRadius.circular(25),
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(10), // Slightly smaller radius
+                            border: Border.all(
+                              color: isSelected 
+                                  ? const Color(0xFFFF6B35) 
+                                  : Colors.grey.shade300,
+                              width: isSelected ? 2 : 1,
+                            ),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.05),
+                                blurRadius: 8, // Reduced shadow
+                                offset: const Offset(0, 2),
+                              ),
+                            ],
                           ),
-                          child: Center(
-                            child: Text(
-                              language['flag'],
-                              style: const TextStyle(fontSize: 24),
+                          child: ListTile(
+                            contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8), // Reduced padding
+                            onTap: () {
+                              setState(() {
+                                selectedLanguageCode = language['code'];
+                              });
+                            },
+                            leading: Container(
+                              width: 40, // Smaller flag container
+                              height: 40,
+                              decoration: BoxDecoration(
+                                color: Colors.grey.shade100,
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              child: Center(
+                                child: Text(
+                                  language['flag'],
+                                  style: const TextStyle(fontSize: 20), // Smaller flag
+                                ),
+                              ),
+                            ),
+                            title: Text(
+                              language['nativeName'],
+                              style: TextStyle(
+                                fontSize: 15, // Slightly smaller text
+                                fontWeight: FontWeight.w600,
+                                color: isSelected 
+                                    ? const Color(0xFFFF6B35) 
+                                    : Colors.black,
+                              ),
+                            ),
+                            // subtitle: Text(
+                            //  " language['name']",
+                            //   style: TextStyle(
+                            //     fontSize: 13, // Smaller subtitle
+                            //     color: Colors.grey.shade600,
+                            //   ),
+                            // ),
+                            trailing: isSelected
+                                ? const Icon(
+                                    Icons.check_circle,
+                                    color: Color(0xFFFF6B35),
+                                    size: 22, // Smaller icon
+                                  )
+                                : Icon(
+                                    Icons.radio_button_unchecked,
+                                    color: Colors.grey.shade400,
+                                    size: 22,
+                                  ),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                  
+                  // Confirm Button
+                  Container(
+                    width: double.infinity,
+                    height: 50, // Slightly smaller button
+                    margin: const EdgeInsets.only(bottom: 20), // Reduced margin
+                    child: ElevatedButton(
+                      onPressed: () async {
+                        await localizationService.changeLanguage(selectedLanguageCode);
+                        
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(localizations.languageChanged),
+                            backgroundColor: const Color(0xFFFF6B35),
+                            behavior: SnackBarBehavior.floating,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
                             ),
                           ),
-                        ),
-                        title: Text(
-                          language['nativeName'],
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w600,
-                            color: isSelected 
-                                ? const Color(0xFFFF6B35) 
-                                : Colors.black,
-                          ),
-                        ),
-                        subtitle: Text(
-                          language['name'],
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: Colors.grey.shade600,
-                          ),
-                        ),
-                        trailing: isSelected
-                            ? const Icon(
-                                Icons.check_circle,
-                                color: Color(0xFFFF6B35),
-                                size: 24,
-                              )
-                            : Icon(
-                                Icons.radio_button_unchecked,
-                                color: Colors.grey.shade400,
-                                size: 24,
-                              ),
-                      ),
-                    );
-                  },
-                ),
-              ),
-              
-              // Confirm Button
-              Container(
-                width: double.infinity,
-                height: 56,
-                margin: const EdgeInsets.only(bottom: 30),
-                child: ElevatedButton(
-                  onPressed: () async {
-                    await localizationService.changeLanguage(selectedLanguageCode);
-                    
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text(localizations.languageChanged),
-                        backgroundColor: const Color(0xFFFF6B35),
-                        behavior: SnackBarBehavior.floating,
+                        );
+                        
+                        Navigator.pop(context);
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.black,
+                        foregroundColor: Colors.white,
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        elevation: 0,
+                      ),
+                      child: Text(
+                        localizations.confirm,
+                        style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
                         ),
                       ),
-                    );
-                    
-                    Navigator.pop(context);
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.black,
-                    foregroundColor: Colors.white,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    elevation: 0,
-                  ),
-                  child: Text(
-                    localizations.confirm,
-                    style: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
                     ),
                   ),
-                ),
-              ),
-              
-              // Developer Credit
-              Center(
-                child: Column(
-                  children: [
-                    Container(
-                      height: 4,
-                      width: 134,
-                      decoration: BoxDecoration(
-                        color: Colors.black,
-                        borderRadius: BorderRadius.circular(2),
-                      ),
+                  
+                  // Developer Credit - More Compact
+                  Center(
+                    child: Column(
+                      children: [
+                        Container(
+                          height: 3, // Thinner line
+                          width: 100, // Shorter line
+                          decoration: BoxDecoration(
+                            color: Colors.black,
+                            borderRadius: BorderRadius.circular(2),
+                          ),
+                        ),
+                        const SizedBox(height: 6),
+                        Text(
+                          localizations.developedBy,
+                          style: const TextStyle(
+                            fontSize: 11, // Smaller text
+                            color: Colors.black54,
+                          ),
+                        ),
+                      ],
                     ),
-                    const SizedBox(height: 8),
-                    Text(
-                      localizations.developedBy,
-                      style: const TextStyle(
-                        fontSize: 12,
-                        color: Colors.black54,
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                  
+                  const SizedBox(height: 15), // Reduced bottom space
+                ],
               ),
-              
-              const SizedBox(height: 20),
-            ],
+            ),
           ),
-        ),
+        ],
       ),
     );
   }

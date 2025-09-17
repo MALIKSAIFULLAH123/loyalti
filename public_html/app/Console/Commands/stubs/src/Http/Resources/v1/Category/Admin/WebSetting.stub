@@ -1,0 +1,26 @@
+<?php
+/**
+ * @author  developer@phpfox.com
+ * @license phpfox.com
+ */
+
+namespace $PACKAGE_NAMESPACE$\Http\Resources\v1\Category\Admin;
+
+use MetaFox\Platform\MetaFoxForm;
+use MetaFox\Platform\Resource\WebSetting;
+
+/**
+ *--------------------------------------------------------------------------
+ * WebSetting
+ *--------------------------------------------------------------------------
+ * stub: $STUB$
+ */
+
+/**
+ * Class WebSetting
+ * Inject this class into property $resources.
+ */
+class WebSetting extends Setting
+{
+
+}

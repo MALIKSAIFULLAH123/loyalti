@@ -1,0 +1,121 @@
+<?php
+
+namespace MetaFox\Music\Http\Resources\v1\Song\Admin;
+
+use MetaFox\Form\AbstractForm;
+use MetaFox\Form\Builder as Builder;
+use MetaFox\Form\Constants as MetaFoxForm;
+use MetaFox\Music\Models\Song as Model;
+use MetaFox\Music\Repositories\GenreRepositoryInterface;
+use MetaFox\Music\Support\Browse\Scopes\Song\ViewAdminScope;
+use MetaFox\Yup\Yup;
+
+/**
+ * --------------------------------------------------------------------------
+ * Form Configuration
+ * --------------------------------------------------------------------------
+ * stub: /packages/resources/edit_form.stub
+ */
+
+/**
+ * Class SearchSongForm
+ * @property ?Model $resource
+ * @ignore
+ * @codeCoverageIgnore
+ */
+class SearchSongForm extends AbstractForm
+{
+    protected function prepare(): void
+    {
+        $this->action('music/music-song/browse')
+            ->acceptPageParams(['q', 'user_name', 'owner_name', 'view', 'category_id', 'created_from', 'created_to'])
+            ->submitAction(MetaFoxForm::FORM_SUBMIT_ACTION_SEARCH)
+            ->setValue([
+                'view'         => ViewAdminScope::VIEW_DEFAULT,
+                'created_from' => null,
+                'created_to'   => null,
+            ]);
+    }
+
+    protected function initialize(): void
+    {
+        $basic = $this->addBasic()->asHorizontal()->sxContainer(['alignItems' => 'unset']);
+
+        $basic->addFields(
+            Builder::text('q')
+                ->label(__p('core::phrase.title'))
+                ->placeholder(__p('core::phrase.title'))
+                ->fullWidth()
+                ->sizeSmall()
+                ->sxFieldWrapper(['maxWidth' => 220])
+                ->marginDense(),
+            Builder::text('user_name')
+                ->label(__p('core::phrase.posted_by'))
+                ->placeholder(__p('core::phrase.posted_by'))
+                ->fullWidth()
+                ->sizeSmall()
+                ->sxFieldWrapper(['maxWidth' => 220])
+                ->marginDense(),
+            Builder::text('owner_name')
+                ->label(__p('core::phrase.posted_to'))
+                ->placeholder(__p('core::phrase.posted_to'))
+                ->fullWidth()
+                ->sizeSmall()
+                ->sxFieldWrapper(['maxWidth' => 220])
+                ->marginDense(),
+            Builder::choice('view')
+                ->fullWidth()
+                ->sizeSmall()
+                ->sxFieldWrapper(['maxWidth' => 220])
+                ->marginDense()
+                ->label(__p('core::phrase.view'))
+                ->options(ViewAdminScope::getViewOptions()),
+            Builder::category('category_id')
+                ->sxFieldWrapper(['maxWidth' => 220])
+                ->sizeSmall()
+                ->multiple(false)
+                ->marginDense()
+                ->setAttribute('options', $this->getCategoryOptions()),
+            Builder::date('created_from')
+                ->label(__p('core::phrase.created_from'))
+                ->startOfDay()
+                ->forAdminSearchForm()
+                ->yup(Yup::date()->nullable()
+                    ->setError('typeError', __p('validation.date', ['attribute' => __p('core::phrase.created_from')]))),
+            Builder::date('created_to')
+                ->label(__p('core::phrase.created_to'))
+                ->endOfDay()
+                ->forAdminSearchForm()
+                ->yup(
+                    Yup::date()
+                        ->nullable()
+                        ->min(['ref' => 'created_from'])
+                        ->setError('typeError', __p('validation.date', ['attribute' => __p('core::phrase.created_to')]))
+                        ->setError('min', __p('validation.the_end_time_should_be_greater_than_the_start_time', [
+                            'end_time'   => __p('core::phrase.created_to'),
+                            'start_time' => __p('core::phrase.created_from'),
+                        ]))
+                ),
+            Builder::submit()
+                ->forAdminSearchForm(),
+            Builder::clearSearchForm()
+                ->label(__p('core::phrase.reset'))
+                ->align('center')
+                ->forAdminSearchForm()
+                ->sizeMedium(),
+        );
+    }
+
+    protected function getCategoryOptions(): array
+    {
+        /**@var $categoryRepository GenreRepositoryInterface */
+        $categoryRepository = resolve(GenreRepositoryInterface::class);
+        $collections        = $categoryRepository->getCategories(false);
+
+        if ($collections->isEmpty()) {
+            return [];
+        }
+
+        return $collections->toArray();
+    }
+}

@@ -1,0 +1,121 @@
+<?php
+
+/* this is auto generated file */
+return [
+    [
+        'driver' => 'MetaFox\\Search\\Models\\Search',
+        'type'   => 'entity',
+        'name'   => 'search',
+    ],
+    [
+        'driver' => 'MetaFox\\Search\\Models\\Type',
+        'type'   => 'entity',
+        'name'   => 'search_type',
+    ],
+    [
+        'driver'     => 'MetaFox\\Search\\Http\\Resources\\v1\\Search\\GlobalSearchMobileForm',
+        'type'       => 'form',
+        'name'       => 'search.search',
+        'version'    => 'v1',
+        'resolution' => 'mobile',
+        'is_preload' => 1,
+    ],
+    [
+        'driver'     => 'MetaFox\\Search\\Http\\Resources\\v1\\Search\\SearchHashTagForm',
+        'type'       => 'form',
+        'name'       => 'search.search_hash_tag',
+        'version'    => 'v1',
+        'resolution' => 'web',
+        'is_preload' => 1,
+    ],
+    [
+        'driver'     => 'MetaFox\\Search\\Http\\Resources\\v1\\Type\\Admin\\EditSearchTypeForm',
+        'type'       => 'form',
+        'name'       => 'search.search_type.edit_search',
+        'version'    => 'v1',
+        'resolution' => 'admin',
+    ],
+    [
+        'driver'     => 'MetaFox\\Search\\Http\\Resources\\v1\\Admin\\SiteSettingForm',
+        'type'       => 'form-settings',
+        'name'       => 'search',
+        'version'    => 'v1',
+        'resolution' => 'admin',
+        'title'      => 'core::phrase.settings',
+        'url'        => '/search/setting',
+    ],
+    [
+        'driver'  => 'MetaFox\\Search\\Http\\Resources\\v1\\Search\\SearchItemCollection',
+        'type'    => 'json-collection',
+        'name'    => 'search.item',
+        'version' => 'v1',
+    ],
+    [
+        'driver'  => 'MetaFox\\Search\\Http\\Resources\\v1\\Type\\Admin\\TypeItemCollection',
+        'type'    => 'json-collection',
+        'name'    => 'search_type.item',
+        'version' => 'v1',
+    ],
+    [
+        'driver'  => 'MetaFox\\Search\\Http\\Resources\\v1\\Search\\SearchItem',
+        'type'    => 'json-resource',
+        'name'    => 'search.item',
+        'version' => 'v1',
+    ],
+    [
+        'driver'  => 'MetaFox\\Search\\Http\\Resources\\v1\\Type\\Admin\\TypeDetail',
+        'type'    => 'json-resource',
+        'name'    => 'search_type.detail',
+        'version' => 'v1',
+    ],
+    [
+        'driver'  => 'MetaFox\\Search\\Http\\Resources\\v1\\Type\\Admin\\TypeItem',
+        'type'    => 'json-resource',
+        'name'    => 'search_type.item',
+        'version' => 'v1',
+    ],
+    [
+        'driver'  => 'MetaFox\\Search\\Http\\Resources\\v1\\MobileSetting',
+        'type'    => 'package-mobile',
+        'name'    => 'search',
+        'version' => 'v1',
+    ],
+    [
+        'driver'  => 'MetaFox\\Search\\Http\\Resources\\v1\\PackageSetting',
+        'type'    => 'package-setting',
+        'name'    => 'search',
+        'version' => 'v1',
+    ],
+    [
+        'driver'  => 'MetaFox\\Search\\Http\\Resources\\v1\\WebSetting',
+        'type'    => 'package-web',
+        'name'    => 'search',
+        'version' => 'v1',
+    ],
+    [
+        'driver' => 'MetaFox\\Search\\Policies\\TypePolicy',
+        'type'   => 'policy-resource',
+        'name'   => 'MetaFox\\Search\\Models\\Type',
+    ],
+    [
+        'driver'     => 'MetaFox\\Search\\Http\\Resources\\v1\\Search\\MobileSetting',
+        'type'       => 'resource-mobile',
+        'name'       => 'search',
+        'version'    => 'v1',
+        'resolution' => 'mobile',
+    ],
+    [
+        'driver'     => 'MetaFox\\Search\\Http\\Resources\\v1\\Search\\WebSetting',
+        'type'       => 'resource-web',
+        'name'       => 'search',
+        'version'    => 'v1',
+        'resolution' => 'web',
+    ],
+    [
+        'driver'     => 'MetaFox\\Search\\Http\\Resources\\v1\\Type\\Admin\\WebSetting',
+        'type'       => 'resource-web',
+        'name'       => 'search_type',
+        'version'    => 'v1',
+        'resolution' => 'admin',
+    ],
+];

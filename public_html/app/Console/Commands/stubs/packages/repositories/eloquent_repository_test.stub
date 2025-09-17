@@ -1,0 +1,29 @@
+<?php
+
+namespace $PACKAGE_NAMESPACE$\Tests\Unit\Repositories\Eloquent;
+
+use $PACKAGE_NAMESPACE$\Repositories\$NAME$RepositoryInterface;
+use $PACKAGE_NAMESPACE$\Repositories\Eloquent\$NAME$Repository;
+use $PACKAGE_NAMESPACE$\Models\$NAME$;
+use Tests\TestCase;
+
+/**
+ * stub: $STUB$
+ */
+
+/**
+ * Class $NAME$RepositoryTest
+ *
+ * @ignore
+ */
+class $NAME$RepositoryTest extends TestCase
+{
+    public function testExample()
+    {
+        $repository = resolve($NAME$RepositoryInterface::class);
+        $this->assertInstanceOf($NAME$Repository::class, $repository);
+
+    }
+}
+
+// end

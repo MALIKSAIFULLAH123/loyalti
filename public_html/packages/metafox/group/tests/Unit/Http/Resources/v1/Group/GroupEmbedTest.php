@@ -1,0 +1,71 @@
+<?php
+
+namespace MetaFox\Group\Tests\Unit\Http\Resources\v1\Group;
+
+use MetaFox\Group\Http\Resources\v1\Group\GroupEmbed as Resource;
+use MetaFox\Group\Http\Resources\v1\Group\GroupEmbedCollection as ResourceCollection;
+use MetaFox\Group\Models\Group as Model;
+use MetaFox\Group\Support\PrivacyTypeHandler;
+use MetaFox\Platform\UserRole;
+use Tests\TestCase;
+
+/*
+|--------------------------------------------------------------------------
+| Resource Detail
+|--------------------------------------------------------------------------
+|
+| @link https://laravel.com/docs/8.x/eloquent-resources#concept-overview
+| @link /app/Console/Commands/stubs/module/resources/detail.stub
+| @link MetaFox\Group\Http\Resources\v1\Group\GroupEmbed
+*/
+
+class GroupEmbedTest extends TestCase
+{
+    public function testCreate(): array
+    {
+        $user  = $this->createUser()->assignRole(UserRole::NORMAL_USER);
+        $model = Model::factory()->setUser($user)->setPrivacyType(PrivacyTypeHandler::PUBLIC)->create();
+
+        $model->refresh();
+
+        $this->assertNotEmpty($model->entityId());
+
+        return [$model, $user];
+    }
+
+    /**
+     * @depends testCreate
+     *
+     * @param array<int, mixed> $data
+     */
+    public function testResource(array $data)
+    {
+        [$model, $user] = $data;
+        $this->be($user);
+
+        $resource = new Resource($model);
+
+        $resource->toJson();
+
+        // assert ...
+
+        $this->markTestIncomplete('coming soon!');
+    }
+
+    /**
+     * @depends testCreate
+     *
+     * @param array<int, mixed> $data
+     */
+    public function testCollection(array $data)
+    {
+        [$model, $user] = $data;
+        $this->be($user);
+
+        $collection = new ResourceCollection([$model]);
+
+        $collection->toJson();
+
+        $this->markTestIncomplete('coming soon!');
+    }
+}

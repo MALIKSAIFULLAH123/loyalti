@@ -1,0 +1,23 @@
+<?php
+/**
+ * @author  developer@phpfox.com
+ * @license phpfox.com
+ */
+
+namespace $PACKAGE_NAMESPACE$\Http\Resources\$VERSION$\$NAME$$ADMIN_SLASH$;
+
+use MetaFox\Platform\MetaFoxForm;
+use MetaFox\Platform\Resource\$ACTION$Setting as ResourceSetting;
+
+/**
+ * stub: $STUB$
+ * Add this class name to resources config gateway
+ */
+
+class $ACTION$Setting extends ResourceSetting
+{
+
+    protected function initialize():void
+    {
+    }
+}

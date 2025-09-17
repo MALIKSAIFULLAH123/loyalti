@@ -1,0 +1,82 @@
+<?php
+
+namespace $PACKAGE_NAMESPACE$\Tests\Unit\Http\Resources\$VERSION$\$NAME$$ADMIN_SLASH$;
+
+use MetaFox\Platform\Contracts\User;
+use MetaFox\Platform\UserRole;
+use $PACKAGE_NAMESPACE$\Http\Resources\$VERSION$\$NAME$$ADMIN_SLASH$\$NAME$$ACTION$ as Resource;
+use $PACKAGE_NAMESPACE$\Http\Resources\$VERSION$\$NAME$$ADMIN_SLASH$\$NAME$$ACTION$Collection as ResourceCollection;
+use $PACKAGE_NAMESPACE$\Models\$NAME$ as Model;
+use Tests\TestCase;
+
+/*
+|--------------------------------------------------------------------------
+| Resource Pattern
+|--------------------------------------------------------------------------
+| stub: $STUB$
+*/
+
+/**
+ * Class $NAME$$ACTION$Test
+ */
+class $NAME$$ACTION$Test extends TestCase
+{
+    /**
+     * @return array<mixed>
+     */
+    public function testCreate(): array
+    {
+        $user = $this->createUser()->assignRole(UserRole::NORMAL_USER);
+        $model = Model::factory()->setUser($user)->setOwner($user)->create();
+
+        $model->refresh();
+
+        $this->assertNotEmpty($model->entityId());
+
+        return [$model, $user];
+    }
+
+    /**
+     * @depends testCreate
+     *
+     * @param array<mixed> $params
+     */
+    public function testResource(array $params)
+    {
+        /**
+         * @var Model $model
+         * @var User  $user
+         */
+        [$model, $user] = $params;
+
+        $this->be($user);
+
+        $resource = new Resource($model);
+
+        $data = $resource->toJson();
+
+        $this->assertIsString($data);
+    }
+
+    /**
+     * @depends testCreate
+     *
+     * @param array<mixed> $params
+     */
+    public function testCollection(array $params)
+    {
+        /**
+         * @var Model $model
+         * @var User  $user
+         */
+        [$model, $user] = $params;
+
+        $this->be($user);
+
+        $collection = new ResourceCollection([$model]);
+
+        $data = $collection->toJson();
+
+        $this->assertIsString($data);
+    }
+}

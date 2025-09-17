@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:loyalty_app/Services/language_service.dart';
 
 class CustomBottomNav extends StatelessWidget {
   final int currentIndex;
@@ -12,6 +13,8 @@ class CustomBottomNav extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final localizations = AppLocalizations.of(context)!;
+    
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,
@@ -40,21 +43,21 @@ class CustomBottomNav extends StatelessWidget {
                   index: 0,
                   icon: Icons.home_outlined,
                   activeIcon: Icons.home,
-                  label: 'Home',
+                  label: localizations.home,
                 ),
                 _buildNavItem(
                   context,
                   index: 1,
                   icon: Icons.card_giftcard_outlined,
                   activeIcon: Icons.card_giftcard,
-                  label: 'Rewards',
+                  label: localizations.rewards,
                 ),
                 _buildNavItem(
                   context,
                   index: 2,
                   icon: Icons.qr_code_scanner_outlined,
                   activeIcon: Icons.qr_code_scanner,
-                  label: 'Scan',
+                  label: localizations.scan,
                   isCenter: true,
                 ),
                 _buildNavItem(
@@ -62,14 +65,14 @@ class CustomBottomNav extends StatelessWidget {
                   index: 3,
                   icon: Icons.notifications_none_outlined,
                   activeIcon: Icons.notifications,
-                  label: 'Alerts',
+                  label: localizations.alerts,
                 ),
                 _buildNavItem(
                   context,
                   index: 4,
                   icon: Icons.person_outline,
                   activeIcon: Icons.person,
-                  label: 'Account',
+                  label: localizations.account,
                 ),
               ],
             ),

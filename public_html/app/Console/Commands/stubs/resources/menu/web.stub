@@ -1,0 +1,39 @@
+<?php
+
+ /* this is auto generated file */
+ return [
+     [
+         'module_id' => '$PACKAGE_ALIAS$',
+         'menu' => 'core.primaryMenu',
+         'name' => '$PACKAGE_ALIAS$',
+         'parent_name' => '',
+         'label' => '$PACKAGE_ALIAS$',
+         'ordering' => 4,
+         'is_deleted' => 0,
+         'version' => 0,
+         'is_active' => 1,
+         'to' => '/$PACKAGE_ALIAS$',
+         'icon' => 'ico-newspaper-alt',
+         'testid' => '$PACKAGE_ALIAS$',
+         'extra' => [
+             'subInfo' => 'Browse $PACKAGE_ALIAS$',
+         ],
+     ],
+     [
+         'module_id' => '$PACKAGE_ALIAS$',
+         'menu' => 'core.dropdownMenu',
+         'name' => '$PACKAGE_ALIAS$',
+         'parent_name' => '',
+         'label' => '$PACKAGE_ALIAS$',
+         'ordering' => 4,
+         'is_deleted' => 0,
+         'version' => 0,
+         'is_active' => 1,
+         'to' => '/$PACKAGE_ALIAS$',
+         'icon' => 'ico-newspaper-alt',
+         'testid' => '$PACKAGE_ALIAS$',
+         'extra' => [
+             'subInfo' => 'Browse $PACKAGE_ALIAS$',
+         ],
+     ],
+ ];

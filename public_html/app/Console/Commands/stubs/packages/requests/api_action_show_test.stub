@@ -1,0 +1,45 @@
+<?php
+
+namespace $PACKAGE_NAMESPACE$\Tests\Unit\Http\Requests\$VERSION$\$NAME$$ADMIN_SLASH$;
+
+/**
+ * --------------------------------------------------------------------------
+ *  Http request for test
+ * --------------------------------------------------------------------------.
+ *
+ * Assign this class in $controllers of
+ * @link \$PACKAGE_NAMESPACE$\Http\Controllers\Api\$VERSION$\$NAME$$ADMIN$Controller:$ACTION_LOWER$;
+ * stub: $STUB$
+ */
+
+
+use MetaFox\Platform\UserRole;
+use $PACKAGE_NAMESPACE$\Models\$NAME$ as Model;
+use Symfony\Component\HttpFoundation\Response;
+use Tests\TestCase;
+
+/**
+ * Class $ACTION$RequestTest
+ */
+class $ACTION$extends TestFormRequest
+{
+    /**
+     * @var string
+     */
+    public const API_PREFIX = '/api/$VERSION$/country';
+
+    public function testActionShow()
+    {
+        $user = $this->createUser()->assignRole(UserRole::ADMIN_USER);
+        $this->be($user);
+
+        $country = Model::factory()->create();
+
+        $uri = sprintf('%s/%s', static::API_PREFIX, $country->entityId());
+
+        $this->json('GET', $uri)
+            ->assertStatus(Response::HTTP_OK);
+
+        $country->delete();
+    }
+}

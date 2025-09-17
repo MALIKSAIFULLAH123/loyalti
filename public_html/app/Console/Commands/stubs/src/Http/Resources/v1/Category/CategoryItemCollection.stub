@@ -1,0 +1,25 @@
+<?php
+
+namespace $PACKAGE_NAMESPACE$\Http\Resources\v1\Category;
+
+use  MetaFox\Platform\Http\Resources\Abstract\ResourceCollection;
+
+/**
+ * --------------------------------------------------------------------------
+ * Code Generator
+ * --------------------------------------------------------------------------
+ * stub: $STUB$
+ */
+
+/**
+ * Class CategoryItemCollection.
+ * @ignore
+ * @codeCoverageIgnore
+ */
+class CategoryItemCollection extends ResourceCollection
+{
+    /**
+     * @var string
+     */
+    public $collects = CategoryItem::class;
+}

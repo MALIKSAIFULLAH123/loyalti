@@ -1,0 +1,52 @@
+{
+    "name": "metafox/activity",
+    "version": "5.0.29",
+    "description": "",
+    "authors": [
+        {
+            "name": "phpFox",
+            "email": "developer@phpfox.com",
+            "homepage": "https://www.phpfox.com"
+        }
+    ],
+    "extra": {
+        "metafox": {
+            "path": "packages/metafox/activity",
+            "title": "Feed",
+            "priority": 20,
+            "core": false,
+            "alias": "activity",
+            "frontendAlias": "feed",
+            "mobileAlias": "feed",
+            "asset": "feed",
+            "internalAdminUrl": "/activity/setting",
+            "providers": [
+                "MetaFox\\Activity\\Providers\\PackageServiceProvider"
+            ],
+            "frontend": {
+                "@metafox/feed": "*",
+                "@metafox/share": "*"
+            },
+            "namespace": "MetaFox\\Activity",
+            "frontendPaths": [
+                "packages/metafox/feed",
+                "packages/metafox/share"
+            ],
+            "require": {
+                "metafox/core": "5.1.18 - 5.1.19"
+            },
+            "aliases": {
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "MetaFox\\Activity\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "MetaFox\\Activity\\Tests\\": "tests/"
+        }
+    }
+}

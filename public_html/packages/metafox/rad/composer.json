@@ -1,0 +1,47 @@
+{
+    "name": "metafox/rad",
+    "version": "5.0.6",
+    "description": "metafox/rad",
+    "keyword": "metafox/rad",
+    "authors": [
+        {
+            "name": "phpFox",
+            "homepage": "https://www.phpfox.com"
+        }
+    ],
+    "extra": {
+        "metafox": {
+            "core": false,
+            "priority": 99,
+            "alias": "rad",
+            "asset": "rad",
+            "namespace": "MetaFox\\Rad",
+            "path": "packages/metafox/rad",
+            "title": "Radid Development",
+            "category": "platform",
+            "providers": [
+                "MetaFox\\Rad\\Providers\\PackageServiceProvider"
+            ],
+            "aliases": {
+            },
+            "frontend": {
+                "@metafox/rad": "*"
+            },
+            "require": {
+                "metafox/core": "5.1.14 - 5.1.19"
+            },
+            "internalUrl": "",
+            "internalAdminUrl": ""
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "MetaFox\\Rad\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "MetaFox\\Rad\\Tests\\": "tests/"
+        }
+    }
+}

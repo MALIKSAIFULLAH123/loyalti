@@ -1,0 +1,116 @@
+<?php
+
+namespace $PACKAGE_NAMESPACE$\Http\Controllers\Api\v1;
+
+use MetaFox\Platform\Http\Controllers\Api\ApiController;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Auth\AuthenticationException;
+use Illuminate\Http\JsonResponse;
+use $PACKAGE_NAMESPACE$\Http\Requests\v1\Category\DeleteRequest;
+use $PACKAGE_NAMESPACE$\Http\Requests\v1\Category\IndexRequest;
+use $PACKAGE_NAMESPACE$\Http\Requests\v1\Category\StoreRequest;
+use $PACKAGE_NAMESPACE$\Http\Requests\v1\Category\UpdateRequest;
+use $PACKAGE_NAMESPACE$\Http\Resources\v1\Category\CategoryDetail;
+use $PACKAGE_NAMESPACE$\Http\Resources\v1\Category\CategoryItemCollection;
+use $PACKAGE_NAMESPACE$\Repositories\CategoryRepositoryInterface;
+use Prettus\Validator\Exceptions\ValidatorException;
+
+/**
+ * --------------------------------------------------------------------------
+ * Code Generator
+ * --------------------------------------------------------------------------
+ * stub: $STUB$
+ */
+
+/**
+ * Class CategoryController.
+ */
+class CategoryController extends ApiController
+{
+    public CategoryRepositoryInterface $repository;
+
+    public function __construct(CategoryRepositoryInterface $repository)
+    {
+        $this->repository = $repository;
+    }
+
+    /**
+     * Browse category
+     *
+     * @param IndexRequest $request
+     *
+     * @return array
+     * @throws AuthorizationException|AuthenticationException
+     */
+    public function index(IndexRequest $request)
+    {
+        return $this->repository->getStructure(user(), $request->validated());
+    }
+
+    /**
+     * Store category
+     *
+     * @param StoreRequest $request
+     *
+     * @return JsonResponse
+     * @throws AuthorizationException
+     * @throws ValidatorException|AuthenticationException
+     */
+    public function store(StoreRequest $request): JsonResponse
+    {
+        $category = $this->repository->createCategory(user(), $request->validated());
+
+        return $this->success(new CategoryDetail($category));
+    }
+
+    /**
+     * View category
+     *
+     * @param int $id
+     *
+     * @return JsonResponse
+     * @throws AuthorizationException|AuthenticationException
+     */
+    public function show(int $id): JsonResponse
+    {
+        $category = $this->repository->viewCategory(user(), $id);
+
+        return $this->success(new CategoryDetail($category));
+    }
+
+    /**
+     * Update category
+     *
+     * @param UpdateRequest $request
+     * @param int           $id
+     *
+     * @return JsonResponse
+     * @throws AuthorizationException|AuthenticationException
+     */
+    public function update(UpdateRequest $request, int $id): JsonResponse
+    {
+        $category = $this->repository->updateCategory(user(), $id, $request->validated());
+
+        return $this->success(new CategoryDetail($category));
+    }
+
+    /**
+     * Remove category
+     *
+     * @param DeleteRequest $request
+     * @param int           $id
+     *
+     * @return JsonResponse
+     * @throws AuthorizationException|AuthenticationException
+     */
+    public function destroy(DeleteRequest $request, int $id): JsonResponse
+    {
+        $params = $request->validated();
+        $newCategoryId = $params['new_category_id'];
+        $this->repository->deleteCategory(user(), $id, $newCategoryId);
+
+        return $this->success([
+            'id' => $id,
+        ]);
+    }
+}

@@ -1,0 +1,33 @@
+<?php
+
+namespace $PACKAGE_NAMESPACE$\Models;
+
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\Pivot;
+
+/**
+ * stub: $STUB$
+ */
+
+/**
+ * Class $NAME$CategoryData
+ *
+ * @property int $id
+ * @property int $category_id
+ * @property int $item_id
+ *
+ * @mixin Builder
+ */
+class $NAME$CategoryData extends Pivot
+{
+    public $timestamps = false;
+
+    protected $table = '$ENTITY_TYPE$_category_data';
+
+    protected $fillable = [
+        'category_id',
+        'item_id',
+    ];
+}
+
+// end

@@ -1,0 +1,65 @@
+<?php
+
+namespace $PACKAGE_NAMESPACE$\Tests\Unit\Http\Resources\$VERSION$\$NAME$$ADMIN_SLASH$;
+
+use $PACKAGE_NAMESPACE$\Http\Resources\$VERSION$\$NAME$$ADMIN_SLASH$\$NAME$Embed as Resource;
+use $PACKAGE_NAMESPACE$\Http\Resources\$VERSION$\$NAME$$ADMIN_SLASH$\$NAME$EmbedCollection as ResourceCollection;
+use $PACKAGE_NAMESPACE$\Models\$NAME$ as Model;
+use Tests\TestCase;
+
+/*
+|--------------------------------------------------------------------------
+| Resource Detail
+|--------------------------------------------------------------------------
+|
+| @link https://laravel.com/docs/8.x/eloquent-resources#concept-overview
+| @link /app/Console/Commands/stubs/module/resources/detail.stub
+| @link $PACKAGE_NAMESPACE$\Http\Resources\$VERSION$\$NAME$\$NAME$Embed
+|
+| stub: $STUB$
+*/
+
+class $NAME$$ACTION$Test extends TestCase
+{
+    /**
+     * @return Model $model
+     */
+    public function testCreate()
+    {
+        $model = Model::factory()->create();
+
+        $model->refresh();
+
+        $this->assertNotEmpty($model->entityId());
+
+        return $model;
+    }
+
+    /**
+     * @depends testCreate
+     *
+     * @param Model $model
+     */
+    public function testResource(Model $model)
+    {
+        $resource = new Resource($model);
+
+        $data = $resource->toJson();
+
+        $this->assertIsString($data);
+    }
+
+    /**
+     * @depends testCreate
+     *
+     * @param Model $model
+     */
+    public function testCollection(Model $model)
+    {
+        $collection = new ResourceCollection([$model]);
+
+        $data = $collection->toJson();
+
+        $this->assertIsString($data);
+    }
+}

@@ -1,0 +1,46 @@
+{
+    "name": "metafox/layout",
+    "version": "5.0.20",
+    "description": "Theme",
+    "keyword": "",
+    "authors": [
+        {
+            "name": "phpFox",
+            "homepage": "https://www.phpfox.com"
+        }
+    ],
+    "extra": {
+        "metafox": {
+            "core": true,
+            "priority": 100,
+            "alias": "layout",
+            "asset": "layout",
+            "namespace": "MetaFox\\Layout",
+            "path": "packages/framework/layout",
+            "title": "Theme",
+            "providers": [
+                "MetaFox\\Layout\\Providers\\PackageServiceProvider"
+            ],
+            "aliases": null,
+            "frontend": {
+                "@framework/layout": "*"
+            },
+            "internalUrl": "",
+            "internalAdminUrl": "/layout/theme/browse",
+            "type": "app",
+            "mobile": [],
+            "store_id": 0,
+            "store_url": null
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "MetaFox\\Layout\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "MetaFox\\Layout\\Tests\\": "tests/"
+        }
+    }
+}

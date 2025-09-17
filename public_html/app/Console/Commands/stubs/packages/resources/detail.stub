@@ -1,0 +1,37 @@
+<?php
+
+namespace $PACKAGE_NAMESPACE$\Http\Resources\$VERSION$\$NAME$$ADMIN_SLASH$;
+
+use Illuminate\Http\Resources\Json\JsonResource;
+use $PACKAGE_NAMESPACE$\Models\$NAME$ as Model;
+
+/*
+|--------------------------------------------------------------------------
+| Resource Pattern
+|--------------------------------------------------------------------------
+| stub: $STUB$
+*/
+
+/**
+ * Class $NAME$Detail.
+ * @property Model $resource
+ * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+ * @mixin Model
+ */
+class $NAME$Detail extends JsonResource
+{
+    /**
+     * Transform the resource collection into an array.
+     *
+     * @param  \Illuminate\Http\Request       $request
+     * @return array<string, mixed>
+     */
+    public function toArray($request)
+    {
+        return [
+            'id'            => $this->id,
+            'module_name'   => '',
+            'resource_name' => $this->entityType(),
+        ];
+    }
+}

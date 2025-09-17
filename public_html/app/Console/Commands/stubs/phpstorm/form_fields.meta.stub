@@ -1,0 +1,23 @@
+<?php
+
+namespace MetaFox\Form;
+
+// stub: $STUB$
+
+use Illuminate\Support\Facades\Facade;
+
+/**
+ * Class Builder.
+ *
+$STATIC_METHODS$
+ * @method static array  getFields()
+ * @method static array  refresh()
+ * @method static string getCreator(string $name)
+ */
+class Builder extends Facade
+{
+    protected static function getFacadeAccessor()
+    {
+        return \MetaFox\Form\Support\HtmlFormBuilder::class;
+    }
+}

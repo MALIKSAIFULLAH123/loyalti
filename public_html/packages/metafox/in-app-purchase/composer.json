@@ -1,0 +1,52 @@
+{
+    "name": "metafox/in-app-purchase",
+    "version": "5.0.0",
+    "description": "",
+    "keyword": "metafox/in-app-purchase",
+    "authors": [
+        {
+            "name": "phpFox",
+            "homepage": "https://www.phpfox.com"
+        }
+    ],
+    "extra": {
+        "metafox": {
+            "core": false,
+            "priority": 99,
+            "alias": "in-app-purchase",
+            "asset": "in-app-purchase",
+            "namespace": "MetaFox\\InAppPurchase",
+            "path": "packages/metafox/in-app-purchase",
+            "title": "In-App Purchase",
+            "type": "app",
+            "providers": [
+                "MetaFox\\InAppPurchase\\Providers\\PackageServiceProvider"
+            ],
+            "aliases": {
+            },
+            "require": {
+                "metafox/core": "5.1.19"
+            },
+            "frontend": {
+            },
+            "frontendPaths": [
+
+            ],
+            "internalUrl": "/in-app-purchase",
+            "internalAdminUrl": "/in-app-purchase/setting"
+        }
+    },
+    "require": {
+        "hoels/app-store-server-library-php": "^1.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "MetaFox\\InAppPurchase\\": "src/"
+        }
+    },
+    "autoload-dev":{
+        "psr-4": {
+            "MetaFox\\InAppPurchase\\Tests\\": "tests/"
+        }
+    }
+}

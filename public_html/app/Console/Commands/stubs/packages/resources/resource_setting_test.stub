@@ -1,0 +1,33 @@
+<?php
+/**
+ * @author  developer@phpfox.com
+ * @license phpfox.com
+ */
+
+namespace $PACKAGE_NAMESPACE$\Tests\Unit\Http\Resources\$VERSION$\$NAME$$ADMIN_SLASH$;
+
+use  $PACKAGE_NAMESPACE$\Http\Resources\$VERSION$\$NAME$$ADMIN_SLASH$\$NAME$$ACTION$Setting as Setting;
+use MetaFox\Platform\MetaFoxForm;
+use $PACKAGE_NAMESPACE$\Models\$NAME$ as Model;
+use Tests\TestCase;
+
+
+/**
+ * --------------------------------------------------------------------------
+ *  $NAME$ $ACTION$ Resource Config Test
+ * --------------------------------------------------------------------------
+ *  stub: $STUB$
+ */
+
+/**
+ * Class $ACTION$SettingTest
+ */
+class $ACTION$SettingTest extends TestCase
+{
+    public function testResourceSettingToArray()
+    {
+        $this->markTestSkipped();
+        $data = (new Setting(null))->toArray(request());
+        $this->assertIsArray($data);
+    }
+}

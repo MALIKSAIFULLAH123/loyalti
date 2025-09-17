@@ -1,0 +1,38 @@
+<?php
+
+namespace $PACKAGE_NAMESPACE$\Models;
+
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
+
+/**
+ * stub: $STUB$
+ */
+
+/**
+ * Class $NAME$
+ *
+ * @property int    $id
+ * @property string $text
+ * @property string $text_parsed
+ *
+ * @mixin Builder
+ */
+class $NAME$Text extends Model
+{
+    public $timestamps = false;
+
+    public $incrementing = false;
+
+    /**
+     * @var string
+     */
+    protected $table = '$TABLE$_text';
+
+    protected $fillable = [
+        'text',
+        'text_parsed',
+    ];
+}
+
+// end

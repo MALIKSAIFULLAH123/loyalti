@@ -1,0 +1,25 @@
+<?php
+// @formatter:off
+
+// updated_at: $UPDATE_AT$
+// stub: $STUB$
+
+namespace Illuminate\Database\Query {
+
+     /**
+     * Class Builder.
+     * @package Illuminate\Database\Query
+     */
+    class Builder
+    {
+        /**
+         * Add scope.
+         *
+         * @param \Illuminate\Database\Eloquent\Scope $scope
+         * @return $this
+         */
+        public function addScope(\Illuminate\Database\Eloquent\Scope $scope) {
+            return $this;
+        }
+    }
+}

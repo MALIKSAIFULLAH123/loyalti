@@ -1,0 +1,28 @@
+<?php
+
+namespace $PACKAGE_NAMESPACE$\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+/**
+ * stub: $STUB$
+ */
+
+/**
+ * Class $NAME$PrivacyStream.
+ *
+ * @property int $id
+ */
+class $NAME$PrivacyStream extends Model
+{
+    protected $table = '$ENTITY_TYPE$_privacy_streams';
+
+    public $timestamps = false;
+
+    protected $fillable = [
+        'privacy_id',
+        'item_id',
+    ];
+}
+
+// end

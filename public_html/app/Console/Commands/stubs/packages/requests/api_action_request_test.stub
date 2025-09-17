@@ -1,0 +1,28 @@
+<?php
+
+namespace $PACKAGE_NAMESPACE$\Tests\Unit\Http\Requests\$VERSION$\$NAME$$ADMIN_SLASH$;
+
+use Tests\TestCase;
+use Illuminate\Foundation\Http\FormRequest;
+use $PACKAGE_NAMESPACE$\Http\Requests\$VERSION$\$NAME$$ADMIN_SLASH$\$ACTION$Request as Request;
+
+/**
+ * --------------------------------------------------------------------------
+ *  Http request for test
+ * --------------------------------------------------------------------------.
+ *
+ * Assign this class in $controllers of
+ * @link \$PACKAGE_NAMESPACE$\Http\Controllers\Api\$VERSION$\$NAME$$ADMIN$Controller::$ACTION_LOWER$()
+ * stub: $STUB$
+ */
+
+/**
+ * Class $ACTION$RequestTest
+ */
+class $ACTION$extends TestFormRequest
+{
+    public function testExample()
+    {
+        $this->markTestIncomplete('coming soon!');
+    }
+}

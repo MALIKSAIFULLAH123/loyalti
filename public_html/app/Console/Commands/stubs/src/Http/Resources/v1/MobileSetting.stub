@@ -1,0 +1,33 @@
+<?php
+/**
+ * @author  developer@phpfox.com
+ * @license phpfox.com
+ */
+
+namespace $PACKAGE_NAMESPACE$\Http\Resources\$VERSION$;
+
+use MetaFox\Platform\Resource\MobileSetting as Setting;
+
+/**
+ |--------------------------------------------------------------------------
+ | Inject this class to
+ | @link \$PACKAGE_NAMESPACE$\Listeners\PackageSettingListener::getMobileAppSettings()
+ |--------------------------------------------------------------------------
+ | stub: $STUB$
+ */
+
+
+/**
+ * Class MobileSetting
+ * @ignore
+ * @codeCoverageIgnore
+ */
+class MobileSetting extends Setting
+{
+    /**
+     * @var array<string,string>
+     */
+    protected $resources = [
+        // example
+    ];
+}

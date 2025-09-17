@@ -1,0 +1,83 @@
+<?php
+
+namespace $PACKAGE_NAMESPACE$\Http\Resources\v1\Category\Admin;
+
+use $PACKAGE_NAMESPACE$\Models\Category as Model;
+use $PACKAGE_NAMESPACE$\Repositories\CategoryRepositoryInterface;
+use MetaFox\Platform\MetaFoxForm;
+use MetaFox\Platform\Support\Form\AbstractForm;
+use MetaFox\Platform\Support\Form\Field\CancelButton;
+use MetaFox\Platform\Support\Form\Field\Choice;
+use MetaFox\Platform\Support\Form\Field\Submit;
+
+/**
+ * --------------------------------------------------------------------------
+ * Code Generator
+ * --------------------------------------------------------------------------
+ * stub: $STUB$
+ */
+
+/**
+ * Class DestroyCategoryForm.
+ * @property Model $resource
+ * @ignore
+ * @codeCoverageIgnore
+ */
+class DestroyCategoryForm extends AbstractForm
+{
+    protected function prepare(): void
+    {
+        $this->config([
+            'title'  => 'Delete Category',
+            'method' => MetaFoxForm::METHOD_DELETE,
+            'action' => url_utility()->makeApiUrl('/admincp/$PACKAGE_ALIAS$/category/' . $this->resource->id),
+        ]);
+    }
+
+    /**
+     * @return array<string,mixed>
+     */
+    private function getParentCategoryOptions(): array
+    {
+        $query = resolve(CategoryRepositoryInterface::class)->getModel()->newQuery();
+
+        $query->where([
+            ['id', '<>', $this->resource->id],
+            ['parent_id', '<>', $this->resource->id],
+        ])->orWhere([
+            ['id', '<>', $this->resource->id],
+            ['parent_id', '=', null],
+        ]);
+
+        return arrayToTree($query->get()->toArray(), 'id', 'parent_id', 'options');
+    }
+
+    protected function initialize(): void
+    {
+        $basic = $this->addBasic([]);
+
+        $basic->addFields(
+        // move to new category
+            new Choice([
+                'name'       => 'new_category_id',
+                'label'      => 'Move to category',
+                'required'   => false,
+                'labelProp'  => 'name',
+                'valueProp'  => 'id',
+                'validation' => [
+                    'nullable' => true,
+                    'required' => false,
+                    'type'     => 'number',
+                    'positive' => true,
+                ],
+                'options'    => $this->getParentCategoryOptions(),
+            ]),
+        );
+
+        $this->addFooter()
+            ->addFields(
+                new Submit(['label' => __p('core::phrase.delete')]),
+                new CancelButton(['label' => __p('core::phrase.cancel')])
+            );
+    }
+}

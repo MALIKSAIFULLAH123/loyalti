@@ -1,0 +1,39 @@
+<?php
+
+namespace $PACKAGE_NAMESPACE$\Jobs;
+
+use Illuminate\Foundation\Bus\Dispatchable;
+
+/**
+ * stub: $STUB$
+ */
+
+/**
+ * Class $NAME$
+ *
+ * @ignore
+ */
+class $NAME$
+{
+    use Dispatchable;
+
+    /**
+     * Create a new job instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        //
+    }
+
+    /**
+     * Execute the job.
+     *
+     * @return void
+     */
+    public function handle()
+    {
+        //
+    }
+}

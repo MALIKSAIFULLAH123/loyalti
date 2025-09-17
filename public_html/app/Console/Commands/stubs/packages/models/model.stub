@@ -1,0 +1,42 @@
+<?php
+
+namespace $PACKAGE_NAMESPACE$\Models;
+
+use MetaFox\Platform\Traits\Eloquent\Model\HasEntity;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use MetaFox\Platform\Contracts\Entity;
+use $PACKAGE_NAMESPACE$\Database\Factories\$NAME$Factory;
+
+/**
+ * stub: $STUB$
+ */
+
+/**
+ * Class $NAME$
+ *
+ * @property int $id
+ * @method static $NAME$Factory factory(...$parameters)
+ */
+class $NAME$ extends Model implements Entity
+{
+    use HasEntity;
+    use HasFactory;
+
+    public const ENTITY_TYPE = '$ENTITY_TYPE$';
+
+    protected $table = '$TABLE$';
+
+    /** @var string[] */
+    protected $fillable = [];
+
+    /**
+     * @return $NAME$Factory
+     */
+    protected static function newFactory()
+    {
+        return $NAME$Factory::new();
+    }
+}
+
+// end

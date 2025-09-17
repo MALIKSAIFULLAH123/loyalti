@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:loyalty_app/utils/api_constants.dart';
+import 'package:loyalty_app/Services/language_service.dart';
+
 import 'package:loyalty_app/utils/snackbar.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:flutter/foundation.dart';
@@ -67,7 +69,10 @@ class _ScanReceiptScreenState extends State<ScanReceiptScreen>
 
   /// Checks if receipt exists in the system using scanned barcode
   Future<bool> checkReceipt(String scannedFinCode) async {
+        final localizations = AppLocalizations.of(context)!;
+
     try {
+      final localizations = AppLocalizations.of(context)!;
       final prefs = await SharedPreferences.getInstance();
       final clientID = prefs.getString('clientID');
       final companyUrl = prefs.getString('company_url');
@@ -95,13 +100,13 @@ class _ScanReceiptScreenState extends State<ScanReceiptScreen>
         return await _processReceiptResponse(response);
       } else {
         _showErrorMessage(
-          'Failed to check receipt. Code: ${response.statusCode}',
+          localizations.failedToCheckReceiptCode.replaceFirst('%s', response.statusCode.toString()),
         );
         return false;
       }
     } catch (e) {
       debugPrint('❗ Exception in checkReceipt(): $e');
-      _showErrorMessage('Error checking receipt: ${e.toString()}');
+      _showErrorMessage(localizations.errorCheckingReceipt.replaceFirst('%s', e.toString()));
       return false;
     }
   }
@@ -113,11 +118,12 @@ class _ScanReceiptScreenState extends State<ScanReceiptScreen>
     String? softwareType,
     String? trdr,
   ) {
+    final localizations = AppLocalizations.of(context)!;
     if (clientID == null ||
         companyUrl == null ||
         softwareType == null ||
         trdr == null) {
-      _showErrorMessage('Missing configuration. Please restart the app.');
+      _showErrorMessage(localizations.missingConfiguration);
       return false;
     }
     return true;
@@ -166,11 +172,13 @@ class _ScanReceiptScreenState extends State<ScanReceiptScreen>
 
   /// Processes the API response for receipt check
   Future<bool> _processReceiptResponse(http.Response response) async {
+
+    final localizations = AppLocalizations.of(context)!;
     final data = jsonDecode(response.body);
     final totalCount = data['totalcount'] ?? 0;
 
     if (totalCount == 0) {
-      _showErrorMessage('No receipt found for this customer.');
+      _showErrorMessage(localizations.noReceiptFound);
       return false;
     }
 
@@ -193,14 +201,16 @@ class _ScanReceiptScreenState extends State<ScanReceiptScreen>
     required String findocID,
     required String cardPoints,
   }) async {
+    final localizations = AppLocalizations.of(context)!;
     try {
+      final localizations = AppLocalizations.of(context)!;
       final prefs = await SharedPreferences.getInstance();
       final clientID = prefs.getString('clientID');
       final companyUrl = prefs.getString('company_url');
       final softwareType = prefs.getString('software_type');
 
       if (clientID == null || companyUrl == null || softwareType == null) {
-        _showErrorMessage('Missing configuration. Please restart the app.');
+        _showErrorMessage(localizations.missingConfiguration);
         return false;
       }
 
@@ -218,12 +228,12 @@ class _ScanReceiptScreenState extends State<ScanReceiptScreen>
       if (response.statusCode == 200) {
         return _processBonusResponse(response);
       } else {
-        _showErrorMessage('Server error: ${response.statusCode}');
+        _showErrorMessage(localizations.serverError.replaceFirst('%s', response.statusCode.toString()));
         return false;
       }
     } catch (e) {
       debugPrint('❗ setBonusToReceipt exception: $e');
-      _showErrorMessage('Error applying bonus: ${e.toString()}');
+      _showErrorMessage(localizations.errorApplyingBonus.replaceFirst('%s', e.toString()));
       return false;
     }
   }
@@ -250,13 +260,14 @@ class _ScanReceiptScreenState extends State<ScanReceiptScreen>
 
   /// Processes the bonus assignment response
   bool _processBonusResponse(http.Response response) {
+    final localizations = AppLocalizations.of(context)!;
     final data = jsonDecode(response.body);
     if (data['success'] == true) {
-      _showSuccessMessage('Bonus successfully applied to receipt.');
+      _showSuccessMessage(localizations.bonusSuccessfullyApplied);
       return true;
     } else {
       _showErrorMessage(
-        'Failed to apply bonus: ${data['error'] ?? 'Unknown error'}',
+        localizations.failedToApplyBonus.replaceFirst('%s', data['error'] ?? localizations.unknownError),
       );
       return false;
     }
@@ -316,6 +327,8 @@ class _ScanReceiptScreenState extends State<ScanReceiptScreen>
 
   @override
   Widget build(BuildContext context) {
+    final localizations = AppLocalizations.of(context)!;
+    
     return Scaffold(
       backgroundColor: const Color(0xFFF5F5F5),
      
@@ -338,7 +351,7 @@ class _ScanReceiptScreenState extends State<ScanReceiptScreen>
               children: [
                 Image.asset(
                   'assets/images/scan-reciept.png',
-                  height: 300,
+                  height: 280,
                   width: double.infinity,
                   fit: BoxFit.contain,
                 ),
@@ -355,8 +368,8 @@ class _ScanReceiptScreenState extends State<ScanReceiptScreen>
             padding: const EdgeInsets.all(24),
             child: Column(
               children: [
-                const Text(
-                  'Scan your Receipt',
+                Text(
+                  localizations.scanYourReceipt,
                   style: TextStyle(
                     fontSize: 28,
                     fontWeight: FontWeight.bold,
@@ -364,8 +377,8 @@ class _ScanReceiptScreenState extends State<ScanReceiptScreen>
                   ),
                 ),
                 const SizedBox(height: 8),
-                const Text(
-                  'Earn points instantly and\nunlock amazing rewards',
+                Text(
+                  localizations.earnPointsInstantly,
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 16,
@@ -397,15 +410,15 @@ class _ScanReceiptScreenState extends State<ScanReceiptScreen>
                               color: Colors.white.withOpacity(0.1),
                               borderRadius: BorderRadius.circular(8),
                             ),
-                            child: const Icon(
+                            child: Icon(
                               Icons.qr_code_scanner,
                               color: Colors.white,
                               size: 20,
                             ),
                           ),
                           const SizedBox(width: 12),
-                          const Text(
-                            'START SCANNING',
+                          Text(
+                            localizations.startScanning,
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 16,
@@ -431,6 +444,8 @@ class _ScanReceiptScreenState extends State<ScanReceiptScreen>
 
   /// Shows dialog for unsupported web platform
   void _showNotSupportedDialog() {
+    final localizations = AppLocalizations.of(context)!;
+    
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
@@ -444,15 +459,15 @@ class _ScanReceiptScreenState extends State<ScanReceiptScreen>
                 color: Colors.red.withOpacity(0.1),
                 borderRadius: BorderRadius.circular(12),
               ),
-              child: const Icon(
+              child: Icon(
                 Icons.web_asset_off,
                 color: Colors.red,
                 size: 24,
               ),
             ),
             const SizedBox(width: 12),
-            const Text(
-              "Not Available",
+            Text(
+              localizations.notAvailable,
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 18,
@@ -462,7 +477,7 @@ class _ScanReceiptScreenState extends State<ScanReceiptScreen>
           ],
         ),
         content: Text(
-          "QR code scanning is not supported on web browsers. Please use the mobile app for the best experience.",
+          localizations.qrNotSupportedWeb,
           style: TextStyle(
             color: Colors.white.withOpacity(0.8),
             fontSize: 16,
@@ -475,7 +490,7 @@ class _ScanReceiptScreenState extends State<ScanReceiptScreen>
             height: 50,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(25),
-              gradient: const LinearGradient(
+              gradient: LinearGradient(
                 colors: [Color(0xFFFF6B35), Color(0xFFFF8E53)],
               ),
             ),
@@ -484,9 +499,9 @@ class _ScanReceiptScreenState extends State<ScanReceiptScreen>
               child: InkWell(
                 borderRadius: BorderRadius.circular(25),
                 onTap: () => Navigator.pop(context),
-                child: const Center(
+                child: Center(
                   child: Text(
-                    "Got It",
+                    localizations.gotIt,
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 16,
@@ -545,8 +560,10 @@ class _QRScannerScreenState extends State<QRScannerScreen>
 
   @override
   Widget build(BuildContext context) {
+    final localizations = AppLocalizations.of(context)!;
+    
     if (kIsWeb) {
-      return _buildWebUnsupportedView();
+      return _buildWebUnsupportedView(localizations);
     }
 
     return Scaffold(
@@ -555,8 +572,8 @@ class _QRScannerScreenState extends State<QRScannerScreen>
         children: [
           _buildCameraView(),
           _buildScanningOverlay(),
-          _buildInstructions(),
-          if (_isProcessing) _buildProcessingOverlay(),
+          _buildInstructions(localizations),
+          if (_isProcessing) _buildProcessingOverlay(localizations),
         ],
       ),
     );
@@ -626,16 +643,16 @@ class _QRScannerScreenState extends State<QRScannerScreen>
           decoration: BoxDecoration(
             border: Border(
               top: index < 2
-                  ? const BorderSide(color: Colors.orange, width: 3)
+                  ? BorderSide(color: Colors.orange, width: 3)
                   : BorderSide.none,
               bottom: index >= 2
-                  ? const BorderSide(color: Colors.orange, width: 3)
+                  ? BorderSide(color: Colors.orange, width: 3)
                   : BorderSide.none,
               left: index % 2 == 0
-                  ? const BorderSide(color: Colors.orange, width: 3)
+                  ? BorderSide(color: Colors.orange, width: 3)
                   : BorderSide.none,
               right: index % 2 == 1
-                  ? const BorderSide(color: Colors.orange, width: 3)
+                  ? BorderSide(color: Colors.orange, width: 3)
                   : BorderSide.none,
             ),
           ),
@@ -656,7 +673,7 @@ class _QRScannerScreenState extends State<QRScannerScreen>
           child: Container(
             height: 2,
             decoration: BoxDecoration(
-              gradient: const LinearGradient(
+              gradient: LinearGradient(
                 colors: [Colors.transparent, Colors.orange, Colors.transparent],
               ),
               borderRadius: BorderRadius.circular(1),
@@ -668,14 +685,14 @@ class _QRScannerScreenState extends State<QRScannerScreen>
   }
 
   /// Builds instruction text at bottom
-  Widget _buildInstructions() {
+  Widget _buildInstructions(AppLocalizations localizations) {
     return Positioned(
       bottom: 100,
       left: 0,
       right: 0,
       child: Container(
-        margin: const EdgeInsets.symmetric(horizontal: 40),
-        padding: const EdgeInsets.all(20),
+        margin: EdgeInsets.symmetric(horizontal: 40),
+        padding: EdgeInsets.all(20),
         decoration: BoxDecoration(
           color: Colors.black.withOpacity(0.7),
           borderRadius: BorderRadius.circular(15),
@@ -684,12 +701,12 @@ class _QRScannerScreenState extends State<QRScannerScreen>
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Icon(Icons.qr_code_2, color: Colors.orange, size: 30),
-            const SizedBox(height: 10),
+            Icon(Icons.qr_code_2, color: Colors.orange, size: 30),
+            SizedBox(height: 10),
             Text(
-              _scannedData ?? 'Position QR code within the frame',
+              _scannedData ?? localizations.positionQrCode,
               textAlign: TextAlign.center,
-              style: const TextStyle(
+              style: TextStyle(
                 color: Colors.white,
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
@@ -702,10 +719,10 @@ class _QRScannerScreenState extends State<QRScannerScreen>
   }
 
   /// Builds processing overlay
-  Widget _buildProcessingOverlay() {
+  Widget _buildProcessingOverlay(AppLocalizations localizations) {
     return Container(
       color: Colors.black.withOpacity(0.8),
-      child: const Center(
+      child: Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -714,7 +731,7 @@ class _QRScannerScreenState extends State<QRScannerScreen>
             ),
             SizedBox(height: 16),
             Text(
-              'Processing...',
+              localizations.processing,
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 16,
@@ -728,19 +745,19 @@ class _QRScannerScreenState extends State<QRScannerScreen>
   }
 
   /// Builds web unsupported view
-  Widget _buildWebUnsupportedView() {
+  Widget _buildWebUnsupportedView(AppLocalizations localizations) {
     return Scaffold(
       body: Container(
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
             colors: [Color(0xFF1a1a2e), Color(0xFF16213e), Color(0xFF0f3460)],
           ),
         ),
-        child: const Center(
+        child: Center(
           child: Text(
-            "QR Scanner is not available on Web.",
+            localizations.qrScannerNotAvailableWeb,
             style: TextStyle(color: Colors.white, fontSize: 18),
           ),
         ),
@@ -750,39 +767,41 @@ class _QRScannerScreenState extends State<QRScannerScreen>
 
   /// Shows success dialog after successful scan
   void _showSuccessDialog(String scannedData) {
+    final localizations = AppLocalizations.of(context)!;
+    
     showDialog(
       context: context,
       barrierDismissible: false,
       builder: (context) => AlertDialog(
-        backgroundColor: const Color(0xFF1a1a2e),
+        backgroundColor: Color(0xFF1a1a2e),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             Container(
-              padding: const EdgeInsets.all(20),
+              padding: EdgeInsets.all(20),
               decoration: BoxDecoration(
                 color: Colors.green.withOpacity(0.1),
                 shape: BoxShape.circle,
               ),
-              child: const Icon(
+              child: Icon(
                 Icons.check_circle,
                 color: Colors.green,
                 size: 60,
               ),
             ),
-            const SizedBox(height: 20),
-            const Text(
-              'Scan Successful!',
+            SizedBox(height: 20),
+            Text(
+              localizations.scanSuccessful,
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 24,
                 fontWeight: FontWeight.w700,
               ),
             ),
-            const SizedBox(height: 16),
+            SizedBox(height: 16),
             Container(
-              padding: const EdgeInsets.all(16),
+              padding: EdgeInsets.all(16),
               decoration: BoxDecoration(
                 color: Colors.white.withOpacity(0.05),
                 borderRadius: BorderRadius.circular(12),
@@ -792,7 +811,7 @@ class _QRScannerScreenState extends State<QRScannerScreen>
                 ),
               ),
               child: Text(
-                'Scanned: $scannedData',
+                '${localizations.scanned}: $scannedData',
                 style: TextStyle(
                   color: Colors.white.withOpacity(0.8),
                   fontSize: 14,
@@ -801,13 +820,13 @@ class _QRScannerScreenState extends State<QRScannerScreen>
                 textAlign: TextAlign.center,
               ),
             ),
-            const SizedBox(height: 24),
+            SizedBox(height: 24),
             Container(
               width: double.infinity,
               height: 50,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(25),
-                gradient: const LinearGradient(
+                gradient: LinearGradient(
                   colors: [Color(0xFFFF6B35), Color(0xFFFF8E53)],
                 ),
               ),
@@ -822,9 +841,9 @@ class _QRScannerScreenState extends State<QRScannerScreen>
                     // Call the callback with scanned data
                     await widget.onScanComplete(scannedData);
                   },
-                  child: const Center(
+                  child: Center(
                     child: Text(
-                      'Continue',
+                      localizations.continueText,
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 16,

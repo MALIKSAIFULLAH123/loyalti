@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:loyalty_app/Services/language_service.dart' show AppLocalizations;
 import 'package:loyalty_app/utils/api_constants.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
-import 'dart:io';
 import 'package:loyalty_app/Auth/LanguageSelectionPage.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -24,20 +24,21 @@ class _RewardsScreenState extends State<RewardsScreen> {
   final bool _isLoading = false;
   String userName = "User";
   String? profileImagePath;
-  int itemsToShow = 3;
-
+  int itemsToShow = 10;
+  bool _hasError = false;
   @override
   void initState() {
     super.initState();
     _loadUserData();
     fetchRewards();
+    loadTotalPoints();
   }
 
   Future<void> _loadUserData() async {
     final prefs = await SharedPreferences.getInstance();
     setState(() {
       totalPoints = prefs.getString('totalPoints') ?? '2000';
-      userName = prefs.getString('user_fullname') ?? 'user';
+      userName = prefs.getString('NAME') ?? 'user';
     });
   }
 
@@ -52,6 +53,103 @@ class _RewardsScreenState extends State<RewardsScreen> {
       itemsToShow = rewards.length;
       _updateDisplayedRewards();
     });
+  }
+
+  Future<void> loadTotalPoints() async {
+    if (_isLoading) return;
+
+    setState(() {
+      _hasError = false;
+    });
+
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final companyUrl = prefs.getString('company_url');
+      final softwareType = prefs.getString('software_type');
+      final clientID = prefs.getString('clientID');
+      final trdr = prefs.getString('TRDR');
+
+      if (companyUrl == null ||
+          softwareType == null ||
+          clientID == null ||
+          trdr == null) {
+        throw Exception("Missing required SharedPreferences values");
+      }
+
+      final servicePath = softwareType == "TESAE"
+          ? "/pegasus/a_xit/connector.php"
+          : "/s1services";
+
+      final uri = Uri.parse(
+        "${ApiConstants.baseUrl}https://$companyUrl$servicePath",
+      );
+
+      debugPrint("🔄 Making API call to: $uri");
+
+      final requestBody = {
+        "service": "SqlData",
+        "clientID": clientID,
+        "appId": "1001",
+        "SqlName": "9700",
+        "trdr": trdr,
+      };
+
+      final response = await http
+          .post(
+            uri,
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json',
+              'User-Agent': 'LoyaltyApp/1.0',
+            },
+            body: jsonEncode(requestBody),
+          )
+          .timeout(
+            const Duration(seconds: 10),
+            onTimeout: () {
+              throw Exception("Request timeout");
+            },
+          );
+
+      debugPrint("📥 Response status: ${response.statusCode}");
+      debugPrint("📥 Response body: ${response.body}");
+
+      if (response.statusCode == 200) {
+        final data = jsonDecode(response.body);
+        if (data is Map<String, dynamic> &&
+            data['success'] == true &&
+            data['rows'] != null &&
+            data['rows'].isNotEmpty) {
+          final points = data['rows'][0]['totalpoints']?.toString() ?? "0";
+
+          // Base64 image save karo
+          final base64Image = data['rows'][0]['CCCXITLIMAGE']?.toString() ?? '';
+
+          await prefs.setString('totalPoints', points);
+
+          // Base64 image ko SharedPreferences me save karo
+          if (base64Image.isNotEmpty) {
+            await prefs.setString('user_profile_base64', base64Image);
+          }
+
+          if (mounted) {
+            setState(() {
+              totalPoints = points;
+              profileImagePath = base64Image;
+              _hasError = false;
+            });
+          }
+          return;
+        }
+      } else {
+        throw Exception("HTTP ${response.statusCode}: ${response.body}");
+      }
+    } catch (e) {
+      debugPrint("❗ Error loading total points: $e");
+      if (mounted) {
+        setState(() {});
+      }
+    }
   }
 
   Future<void> fetchRewards() async {
@@ -216,15 +314,16 @@ class _RewardsScreenState extends State<RewardsScreen> {
   }
 
   // Fixed sticky header
-  Widget _buildStickyHeader() {
+  Widget _buildStickyHeader(BuildContext context) {
+    final localizations = AppLocalizations.of(context)!;
     return Container(
       color: Colors.white,
       child: Column(
         children: [
-          // Orange header section
+          // ✅ Orange Header Section (Logo + Profile + Welcome + Language)
           Container(
             width: double.infinity,
-            padding: const EdgeInsets.fromLTRB(20, 50, 20, 20),
+            padding: const EdgeInsets.fromLTRB(20, 13, 20, 10),
             decoration: const BoxDecoration(
               gradient: LinearGradient(
                 colors: [Color(0xFFEC7103), Color(0xFFFF8A3D)],
@@ -233,86 +332,102 @@ class _RewardsScreenState extends State<RewardsScreen> {
               ),
             ),
             child: SafeArea(
-              child: Row(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Container(
-                    width: 60,
-                    height: 60,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      border: Border.all(color: Colors.white, width: 3),
+                  // ✅ Top Logo
+                  Center(
+                    child: Image.asset(
+                      'assets/images/home-logo.png', // apna logo rakho
+                      width: 230,
+                      fit: BoxFit.contain,
                     ),
-                    child: ClipOval(
-                      child:
-                          profileImagePath != null &&
-                              File(profileImagePath!).existsSync()
-                          ? Image.file(
-                              File(profileImagePath!),
-                              fit: BoxFit.cover,
-                            )
-                          : Image.asset(
-                              'assets/images/profile_temp.jpg',
-                              fit: BoxFit.cover,
-                              errorBuilder: (context, error, stackTrace) {
-                                return Container(
-                                  decoration: const BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: Colors.white,
-                                  ),
-                                  child: const Icon(
-                                    Icons.person,
-                                    color: Color(0xFFEC7103),
-                                    size: 30,
-                                  ),
-                                );
-                              },
+                  ),
+
+                  const SizedBox(height: 8),
+
+                  // ✅ Profile + Welcome + Language
+                  Row(
+                    children: [
+                      // Profile Image
+                      Container(
+                        width: 60,
+                        height: 60,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: Border.all(color: Colors.white, width: 3),
+                        ),
+                        child: ClipOval(
+                          child:
+                              (profileImagePath != null &&
+                                  profileImagePath!.isNotEmpty)
+                              ? Image.memory(
+                                  base64Decode(
+                                    profileImagePath!,
+                                  ), // ✅ base64 to bytes
+                                  fit: BoxFit.cover,
+                                  errorBuilder: _defaultImageErrorBuilder,
+                                )
+                              : Image.asset(
+                                  'assets/images/profile_temp.jpg',
+                                  fit: BoxFit.cover,
+                                  errorBuilder: _defaultImageErrorBuilder,
+                                ),
+                        ),
+                      ),
+
+                      const SizedBox(width: 15),
+
+                      // Welcome text
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              localizations.welcome,
+                              style: GoogleFonts.jura(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500,
+                                color: Colors.white,
+                              ),
                             ),
-                    ),
-                  ),
-                  const SizedBox(width: 15),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Welcome',
-                          style: GoogleFonts.dmSans(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
-                            color: Colors.white,
-                          ),
+                            Text(
+                              userName,
+                              style: GoogleFonts.jura(
+                                fontSize: 24,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ],
                         ),
-                        Text(
-                          userName,
-                          style: GoogleFonts.dmSans(
-                            fontSize: 24,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                          ),
+                      ),
+
+                      // Language button
+                      IconButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  const LanguageSelectionPage(),
+                            ),
+                          );
+                        },
+                        icon: const Icon(
+                          Icons.g_translate,
+                          color: Colors.white,
+                          size: 28,
                         ),
-                      ],
-                    ),
-                  ),
-                  IconButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const LanguageSelectionPage(),
-                        ),
-                      );
-                    },
-                    icon: const Icon(
-                      Icons.g_translate,
-                      color: Colors.white,
-                      size: 28,
-                    ),
+                      ),
+                    ],
                   ),
                 ],
               ),
             ),
           ),
-          // Points section
+
+          // ✅ Points Section
           Container(
             margin: const EdgeInsets.fromLTRB(20, 20, 20, 5),
             child: Column(
@@ -343,8 +458,10 @@ class _RewardsScreenState extends State<RewardsScreen> {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Text(
-                        _isLoading ? 'Loading...' : '$totalPoints POINTS',
-                        style: GoogleFonts.dmSans(
+                        _isLoading
+                            ? localizations.loading
+                            : '$totalPoints ${localizations.points}',
+                        style: GoogleFonts.jura(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
                           color: const Color(0xFFEC7103),
@@ -367,6 +484,86 @@ class _RewardsScreenState extends State<RewardsScreen> {
                   ),
                 ),
                 const SizedBox(height: 20),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _defaultImageErrorBuilder(
+    BuildContext context,
+    Object error,
+    StackTrace? stackTrace,
+  ) {
+    return Container(
+      decoration: const BoxDecoration(
+        shape: BoxShape.circle,
+        color: Colors.white,
+      ),
+      child: const Icon(Icons.person, color: Color(0xFFEC7103), size: 30),
+    );
+  }
+
+  Widget _buildBalanceSection() {
+    return Container(
+      margin: const EdgeInsets.fromLTRB(20, 30, 20, 0),
+      child: Column(
+        children: [
+          Text(
+            'My balance',
+            style: GoogleFonts.jura(
+              fontSize: 20,
+              fontWeight: FontWeight.w600,
+              color: Colors.black87,
+            ),
+          ),
+          const SizedBox(height: 15),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 12),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(12),
+              border: Border.all(color: Colors.grey.shade400, width: 2),
+              boxShadow: [
+                BoxShadow(
+                  color: const Color.fromARGB(
+                    255,
+                    134,
+                    134,
+                    134,
+                  ).withOpacity(0.4),
+                  blurRadius: 6,
+                  offset: const Offset(9, 10),
+                ),
+              ],
+            ),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  _isLoading ? 'Loading...' : '$totalPoints POINTS',
+                  style: GoogleFonts.jura(
+                    fontSize: 20, // Bigger text like in image
+                    fontWeight: FontWeight.bold,
+                    color: const Color(0xFFEC7103),
+                  ),
+                ),
+                const SizedBox(width: 8),
+                // Bigger star icon
+                Image.asset(
+                  'assets/icons/star-icon.png',
+                  width: 30,
+                  height: 30,
+                  errorBuilder: (context, error, stackTrace) {
+                    return const Icon(
+                      Icons.star,
+                      color: Color(0xFFEC7103),
+                      size: 35,
+                    );
+                  },
+                ),
               ],
             ),
           ),
@@ -411,7 +608,7 @@ class _RewardsScreenState extends State<RewardsScreen> {
                                 'images/thinking1.png',
                                 width: 118,
                                 height: 118,
-                                 // optional
+                                // optional
                               ),
 
                               const SizedBox(height: 8),
@@ -597,7 +794,7 @@ class _RewardsScreenState extends State<RewardsScreen> {
       body: Column(
         children: [
           // Fixed header at top
-          _buildStickyHeader(),
+          _buildStickyHeader(context),
           // Scrollable content below
           Expanded(child: _buildScrollableContent()),
         ],
