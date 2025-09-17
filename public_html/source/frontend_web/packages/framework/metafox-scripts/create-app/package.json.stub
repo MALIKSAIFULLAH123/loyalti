@@ -1,0 +1,6 @@
+{
+  "name": "$$PACKAGE$$",
+  "version": "5.0.1",
+  "description": "$$PACKAGE$$",
+  "main": "dist/index.js"
+}

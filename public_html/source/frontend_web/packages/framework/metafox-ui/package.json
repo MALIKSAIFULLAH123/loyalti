@@ -1,0 +1,20 @@
+{
+  "name": "@metafox/ui",
+  "version": "5.0.1",
+  "main": "src/index.ts",
+  "author": "developer@phpfox.com",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "react-html-parser": "^2.0.2",
+    "clsx": "1.1.1"
+  },
+  "peerDependencies": {
+    "@metafox/framework": "*",
+    "@metafox/scripts": "*",
+    "@metafox/html-parser": "*"
+  },
+  "scripts": {
+    "unittest": "metafox jest-unittest"
+  }
+}

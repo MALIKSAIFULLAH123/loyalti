@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FeaturedFlag render 1`] = `
+<div>
+  <div
+    data-testid="infoLoader"
+  />
+  <span
+    class="MuiFlag-root MuiFlag-itemView"
+  >
+    <span
+      class="MuiFlag-item MuiFlag-white"
+      data-testid="featured"
+    >
+      <span
+        class="MuiFlag-icon"
+      >
+        <span
+          class="ico ico-diamond ltr-1o2x2pn-MuiIcon-root"
+        />
+      </span>
+      <span
+        class="MuiFlag-text"
+      >
+        featured
+      </span>
+    </span>
+  </span>
+</div>
+`;
+
+exports[`FeaturedFlag render color primary 1`] = `
+<div>
+  <div
+    data-testid="infoLoader"
+  />
+  <span
+    class="MuiFlag-root MuiFlag-itemView"
+  >
+    <span
+      class="MuiFlag-item MuiFlag-primary"
+      data-testid="featured"
+    >
+      <span
+        class="MuiFlag-icon"
+      >
+        <span
+          class="ico ico-diamond ltr-1o2x2pn-MuiIcon-root"
+        />
+      </span>
+      <span
+        class="MuiFlag-text"
+      >
+        featured
+      </span>
+    </span>
+  </span>
+</div>
+`;
+
+exports[`FeaturedFlag render null 1`] = `<div />`;

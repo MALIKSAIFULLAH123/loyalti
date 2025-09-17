@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunk_metafox_react=self.webpackChunk_metafox_react||[]).push([["metafox-pages-blocks-PageTabMember-Block"],{15849(e,a,t){t.r(a),t.d(a,{default:()=>c});var o=t(91557);let c=(0,o.WvA)({extendBlock:"core.block.tabContainer",defaults:{blockLayout:"Main Form"},overrides:{}})}}]);

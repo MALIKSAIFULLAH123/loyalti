@@ -1,0 +1,38 @@
+{
+  "noFooter": true,
+  "blockProps": {
+    "titleStyle": {
+      "sx": {
+        "typography": "body1",
+        "color": "text.secondary",
+        "textTransform": "uppercase"
+      },
+      "component": "span"
+    },
+    "contentStyle": {
+      "sx": {
+        "bgcolor": "none",
+        "pb": 3
+      }
+    },
+    "headerStyle": {
+      "sx": {
+        "height": "",
+        "pr": 2,
+        "pl": 2,
+        "pb": 0,
+        "mb": 1,
+        "mt": 2
+      }
+    },
+    "blockStyle": {
+      "sx": {
+        "bgcolor": "none"
+      }
+    }
+  },
+  "info": {
+    "bundle": "web",
+    "name": "sidebar shortcut"
+  }
+}

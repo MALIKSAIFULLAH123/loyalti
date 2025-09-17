@@ -1,0 +1,18 @@
+{
+  "gridContainerProps": {
+    "columnSpacing": 2,
+    "rowSpacing": 1
+  },
+  "gridItemProps": {
+    "sm": 12,
+    "md": 12,
+    "lg": 12,
+    "xl": 12,
+    "xs": 12
+  },
+  "gridVariant": "gridView",
+  "info": {
+    "bundle": "web",
+    "name": "Record Item - Table"
+  }
+}

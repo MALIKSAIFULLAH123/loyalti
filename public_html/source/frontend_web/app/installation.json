@@ -1,0 +1,23 @@
+{
+  "siteUrl": "/",
+  "build": {
+    "callbackUrl": ""
+  },
+  "env": {
+    "MFOX_API_URL": "/api/v1"
+  },
+  "cookie": {
+    "attributes": []
+  },
+  "localStore": {
+    "prefix": "mfox"
+  },
+  "i18n": {
+    "locale": "en",
+    "supports": ["en"]
+  },
+  "packages": {
+    "@metafox/core": "local",
+    "@metafox/installation": "local"
+  }
+}

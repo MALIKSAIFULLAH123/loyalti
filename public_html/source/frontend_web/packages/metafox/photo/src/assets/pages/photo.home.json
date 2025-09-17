@@ -1,0 +1,307 @@
+{
+  "large": {
+    "blocks": [
+      {
+        "blockId": "ia",
+        "component": "core.block.sideAppHeader",
+        "slotName": "side",
+        "title": "photos",
+        "icon": "ico-photos-alt-o",
+        "blockLayout": "sidebar app header",
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "textPrimary",
+          "noFooter": true,
+          "noHeader": true
+        },
+        "freeze": true
+      },
+      {
+        "blockId": "i5",
+        "component": "core.block.searchBox",
+        "slotName": "side",
+        "placeholder": "Search",
+        "title": "",
+        "freeze": true,
+        "blockLayout": "sidebar search box"
+      },
+      {
+        "component": "core.block.sidebarAppMenu",
+        "slotName": "side",
+        "blockId": "i27",
+        "title": "",
+        "menuName": "sidebarMenu",
+        "blockLayout": "sidebar app menu"
+      },
+      {
+        "blockId": "i12",
+        "component": "core.dividerBlock",
+        "slotName": "side",
+        "dividerVariant": "middle",
+        "title": "",
+        "blockProps": {
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "textPrimary",
+          "noFooter": true,
+          "noHeader": true
+        }
+      },
+      {
+        "component": "core.categoryBlock",
+        "slotName": "side",
+        "blockId": "i28",
+        "title": "categories",
+        "blockLayout": "sidebar app category"
+      },
+      {
+        "blockId": "pspl",
+        "component": "core.block.mainListingSponsor",
+        "slotName": "main",
+        "title": "sponsored_photos",
+        "itemView": "photo.itemView.mainCard",
+        "contentType": "photo",
+        "dataSource": {
+          "apiUrl": "/photo",
+          "apiParams": "view=sponsor&limit=4"
+        },
+        "displayRowsLimit": 1,
+        "blockLayout": "App List",
+        "gridLayout": "Photo - Main Card",
+        "emptyPage": "hide",
+        "itemLayout": "Photo - Main Card"
+      },
+      {
+        "blockId": "r7ov",
+        "component": "photo.block.photoListingBlock",
+        "slotName": "main",
+        "title": "featured_photos",
+        "itemView": "photo.itemView.mainCard",
+        "contentType": "photo",
+        "dataSource": {
+          "apiUrl": "/photo",
+          "apiParams": "view=feature&limit=4"
+        },
+        "headerActions": [
+          {
+            "label": "view_all",
+            "to": "/photo/search?is_featured=1&view=search"
+          }
+        ],
+        "displayRowsLimit": 1,
+        "blockLayout": "App List",
+        "gridLayout": "Photo - Main Card",
+        "emptyPage": "hide",
+        "itemLayout": "Photo - Main Card"
+      },
+      {
+        "blockId": "paspl",
+        "component": "core.block.mainListingSponsor",
+        "slotName": "main",
+        "pageName": "photo.home",
+        "pageSize": "large",
+        "title": "sponsored_albums",
+        "itemView": "photo_album.itemView.mainCard",
+        "contentType": "photo_album",
+        "dataSource": {
+          "apiUrl": "/photo-album",
+          "apiParams": "view=sponsor&limit=4"
+        },
+        "blockLayout": "App List",
+        "gridLayout": "Photo_album - Main Card",
+        "emptyPage": "hide",
+        "displayRowsLimit": 1,
+        "itemLayout": "Photo_album - Main Card"
+      },
+      {
+        "blockId": "zhhrr",
+        "component": "photo.block.albumListingBlock",
+        "slotName": "main",
+        "pageName": "photo.home",
+        "pageSize": "large",
+        "title": "featured_albums",
+        "itemView": "photo_album.itemView.mainCard",
+        "contentType": "photo_album",
+        "dataSource": {
+          "apiUrl": "/photo-album",
+          "apiParams": "view=feature&limit=4"
+        },
+        "headerActions": [
+          {
+            "label": "view_all",
+            "to": "/photo/albums/search?category=&is_featured=1"
+          }
+        ],
+        "blockLayout": "App List",
+        "gridLayout": "Photo_album - Main Card",
+        "emptyPage": "hide",
+        "displayRowsLimit": 1,
+        "itemLayout": "Photo_album - Main Card"
+      },
+      {
+        "blockId": "a0hq",
+        "component": "photo.block.photoListingBlock",
+        "slotName": "main",
+        "title": "popular_photos",
+        "itemView": "photo.itemView.mainCard",
+        "contentType": "photo",
+        "dataSource": {
+          "apiUrl": "/photo",
+          "apiParams": "sort=most_liked"
+        },
+        "blockLayout": "App List",
+        "gridLayout": "Photo - Main Card",
+        "emptyPage": "core.block.no_content_with_icon",
+        "emptyPageProps": {
+          "noBlock": 1,
+          "title": "no_photos_found"
+        },
+        "itemLayout": "Photo - Main Card",
+        "canLoadSmooth": 1,
+        "canLoadMore": 1,
+        "maxPageNumber": 2,
+        "numberOfItemsPerPage": 10
+      }
+    ],
+    "templateName": "two-column-fixed"
+  },
+  "small": {
+    "blocks": [
+      {
+        "blockId": "5hkgh",
+        "component": "core.block.sidebarAppMobile",
+        "slotName": "main",
+        "pageName": "photo.home",
+        "pageSize": "small",
+        "title": "",
+        "contents": [
+          {
+            "name": "core.block.searchBox"
+          },
+          {
+            "name": "core.block.sidebarAppMenu"
+          },
+          {
+            "name": "core.dividerBlock"
+          },
+          {
+            "name": "core.categoryBlock"
+          }
+        ]
+      },
+      {
+        "blockId": "pspm",
+        "component": "core.block.mainListingSponsor",
+        "slotName": "main",
+        "title": "sponsored_photos",
+        "itemView": "photo.itemView.mainCard",
+        "contentType": "photo",
+        "dataSource": {
+          "apiUrl": "/photo",
+          "apiParams": "view=sponsor&limit=4"
+        },
+        "displayRowsLimit": 1,
+        "blockLayout": "App List - Mobile",
+        "gridLayout": "Photo - Main Card",
+        "emptyPage": "hide",
+        "itemLayout": "Photo - Main Card"
+      },
+      {
+        "blockId": "r7ov",
+        "component": "photo.block.photoListingBlock",
+        "slotName": "main",
+        "title": "featured_photos",
+        "itemView": "photo.itemView.mainCard",
+        "contentType": "photo",
+        "dataSource": {
+          "apiUrl": "/photo",
+          "apiParams": "view=feature&limit=4"
+        },
+        "headerActions": [
+          {
+            "label": "view_all",
+            "to": "/photo/search?is_featured=1&view=search"
+          }
+        ],
+        "displayRowsLimit": 1,
+        "blockLayout": "App List - Mobile",
+        "gridLayout": "Photo - Main Card",
+        "emptyPage": "hide",
+        "itemLayout": "Photo - Main Card"
+      },
+      {
+        "blockId": "1x7u",
+        "component": "core.block.mainListingSponsor",
+        "slotName": "main",
+        "pageName": "photo.home",
+        "pageSize": "small",
+        "title": "sponsored_albums",
+        "itemView": "photo_album.itemView.mainCard",
+        "contentType": "photo_album",
+        "dataSource": {
+          "apiUrl": "/photo-album",
+          "apiParams": "view=sponsor&limit=4"
+        },
+        "blockLayout": "App List - Mobile",
+        "gridLayout": "Photo_album - Main Card",
+        "displayRowsLimit": 1,
+        "emptyPage": "hide",
+        "itemLayout": "Photo_album - Main Card"
+      },
+      {
+        "blockId": "1x7u",
+        "component": "photo.block.albumListingBlock",
+        "slotName": "main",
+        "pageName": "photo.home",
+        "pageSize": "small",
+        "title": "featured_albums",
+        "itemView": "photo_album.itemView.mainCard",
+        "contentType": "photo_album",
+        "dataSource": {
+          "apiUrl": "/photo-album",
+          "apiParams": "view=feature&limit=4"
+        },
+        "headerActions": [
+          {
+            "label": "view_all",
+            "to": "/photo/albums/search?category=&is_featured=1"
+          }
+        ],
+        "blockLayout": "App List - Mobile",
+        "gridLayout": "Photo_album - Main Card",
+        "displayRowsLimit": 1,
+        "emptyPage": "hide",
+        "itemLayout": "Photo_album - Main Card"
+      },
+      {
+        "blockId": "a0hq",
+        "component": "photo.block.photoListingBlock",
+        "slotName": "main",
+        "title": "popular_photos",
+        "itemView": "photo.itemView.mainCard",
+        "contentType": "photo",
+        "dataSource": {
+          "apiUrl": "/photo",
+          "apiParams": "sort=most_viewed"
+        },
+        "canLoadMore": 1,
+        "canLoadSmooth": 1,
+        "maxPageNumber": 2,
+        "blockLayout": "App List - Mobile",
+        "gridLayout": "Photo - Main Card",
+        "emptyPage": "core.block.no_content_with_icon",
+        "emptyPageProps": {
+          "title": "no_photos_found"
+        },
+        "itemLayout": "Photo - Main Card"
+      }
+    ],
+    "templateName": "mobile"
+  },
+  "info": {
+    "bundle": "web",
+    "name": "photo.home"
+  }
+}

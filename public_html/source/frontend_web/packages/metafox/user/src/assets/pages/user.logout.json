@@ -1,0 +1,26 @@
+{
+  "large": {
+    "templateName": "blank",
+    "blocks": [
+      {
+        "component": "user.block.userLoginContent",
+        "slotName": "main",
+        "blockId": "kd94"
+      }
+    ]
+  },
+  "small": {
+    "templateName": "blank",
+    "blocks": [
+      {
+        "component": "user.block.userLoginContent",
+        "slotName": "main",
+        "blockId": "xyh3w"
+      }
+    ]
+  },
+  "info": {
+    "bundle": "web",
+    "name": "user.logout"
+  }
+}

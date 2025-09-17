@@ -1,0 +1,51 @@
+{
+  "blockProps": {
+    "titleStyle": {
+      "component": "h2",
+      "sx": {
+        "typography": "h4"
+      }
+    },
+    "contentStyle": {
+      "sx": {
+        "pl": 2,
+        "pr": 2,
+        "pt": 2,
+        "pb": 2
+      }
+    },
+    "headerStyle": {
+      "dividerVariant": "fullWidth",
+      "sx": {
+        "pl": 2,
+        "pr": 2,
+        "pt": 0,
+        "pb": 0,
+        "mr": 0,
+        "mt": 0,
+        "mb": 0,
+        "minHeight": "48px",
+        "height": "48px"
+      }
+    },
+    "footerStyle": {
+      "dividerVariant": "0"
+    },
+    "blockStyle": {
+      "sx": {
+        "bgcolor": "background.paper",
+        "mr": 1,
+        "ml": 1,
+        "mt": 2,
+        "mb": 0,
+        "borderRadius": 1
+      }
+    }
+  },
+  "noHeader": 0,
+  "noFooter": true,
+  "info": {
+    "bundle": "admincp",
+    "name": "Admin - Block - Contained"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "blockProps": {
+    "titleStyle": {
+      "component": "h2",
+      "sx": {
+        "typography": "secondary",
+        "color": "text"
+      }
+    },
+    "contentStyle": {
+      "sx": {
+        "pl": 2,
+        "pr": 2,
+        "pt": 2,
+        "pb": 2,
+        "ml": 2,
+        "mr": 2,
+        "mt": 1,
+        "bgcolor": "background.paper",
+        "borderRadius": 1
+      },
+      "variant": "Admin Form"
+    },
+    "headerStyle": {
+      "dividerVariant": "0",
+      "sx": {
+        "pl": 2,
+        "pr": 2,
+        "pt": 3,
+        "pb": 1
+      }
+    },
+    "footerStyle": {},
+    "blockStyle": {
+      "sx": {
+        "mb": 2
+      }
+    }
+  },
+  "noHeader": true,
+  "noFooter": true,
+  "info": {
+    "bundle": "web",
+    "name": "Admin Form"
+  }
+}

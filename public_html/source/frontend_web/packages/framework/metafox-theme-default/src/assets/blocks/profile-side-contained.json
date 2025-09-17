@@ -1,0 +1,52 @@
+{
+  "blockProps": {
+    "titleStyle": {
+      "component": "h2",
+      "sx": {
+        "typography": "h4",
+        "color": ""
+      }
+    },
+    "contentStyle": {
+      "sx": {
+        "pl": 2,
+        "pr": 2,
+        "pt": 2,
+        "pb": 2
+      }
+    },
+    "headerStyle": {
+      "dividerVariant": "fullWidth",
+      "sx": {
+        "pl": 2,
+        "pr": 2,
+        "pt": 1,
+        "pb": 1,
+        "minHeight": "48px"
+      }
+    },
+    "footerStyle": {
+      "dividerVariant": "0",
+      "sx": {
+        "pl": 2,
+        "pr": 2,
+        "pt": 1,
+        "pb": 1
+      }
+    },
+    "blockStyle": {
+      "sx": {
+        "mb": 2,
+        "bgcolor": "background.paper",
+        "borderRadius": 1,
+        "pt": 0,
+        "mt": 2
+      }
+    }
+  },
+  "noFooter": 0,
+  "info": {
+    "bundle": "web",
+    "name": "Profile - Side Contained"
+  }
+}

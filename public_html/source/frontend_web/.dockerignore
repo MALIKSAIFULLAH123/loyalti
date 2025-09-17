@@ -1,0 +1,50 @@
+.git
+.github
+.gitattributes
+.gitignore-developer
+.gitignore-production
+tests
+todo.md
+
+##############################
+## Excludes release for production
+##############################
+
+## commercial packages
+packages/metafox/livestreaming
+packages/metafox/chatplus
+## non-core packages
+# packages/metafox/activity
+packages/metafox/activity-point
+packages/metafox/advertise
+packages/metafox/announcement
+packages/metafox/background-status
+packages/metafox/blog
+packages/metafox/chat
+packages/metafox/comment
+packages/metafox/event
+# packages/metafox/firebase
+packages/metafox/follow
+packages/metafox/forum
+# packages/metafox/friend
+packages/metafox/group
+packages/metafox/like
+packages/metafox/marketplace
+# packages/metafox/mobile
+packages/metafox/music
+# packages/metafox/mux
+packages/metafox/page
+# packages/metafox/paypal
+packages/metafox/poll
+packages/metafox/quiz
+packages/metafox/saved
+# packages/metafox/search
+# packages/metafox/socialite
+packages/metafox/sticker
+packages/metafox/subscription
+packages/metafox/twilio
+packages/metafox/video
+packages/metafox/invite
+## development utilities
+packages/metafox/rad
+packages/metafox/theme-flatten

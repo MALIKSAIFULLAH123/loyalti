@@ -1,0 +1,16 @@
+{
+  "name": "@metafox/payment",
+  "version": "5.0.1",
+  "main": "src/index.tsx",
+  "author": "developer@phpfox.com",
+  "license": "MIT",
+  "private": false,
+  "repository": {},
+  "dependencies": {
+    "@stripe/react-stripe-js": "^2.1.1",
+    "@stripe/stripe-js": "^1.54.1"
+  },
+  "scripts": {
+    "unittest": "metafox jest-unittest"
+  }
+}

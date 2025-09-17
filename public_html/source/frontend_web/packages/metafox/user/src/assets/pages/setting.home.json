@@ -1,0 +1,57 @@
+{
+  "large": {
+    "templateName": "two-column-fixed",
+    "blocks": [
+      {
+        "blockId": "6dpz4",
+        "component": "core.block.sidebarAppMenuSetting",
+        "slotName": "side",
+        "title": "",
+        "menuName": "settingMenu",
+        "blockLayout": "sidebar app menu"
+      },
+      {
+        "blockId": "rgmt",
+        "component": "core.block.mainBlock",
+        "slotName": "main",
+        "title": "profile_menu_settings",
+        "blockLayout": "Cards"
+      }
+    ]
+  },
+  "small": {
+    "templateName": "mobile",
+    "blocks": [
+      {
+        "component": "core.block.sidebarAppMobile",
+        "slotName": "main",
+        "blockProps": {
+          "variant": "plained",
+          "marginBottom": 2
+        },
+        "title": "account_settings",
+        "contents": [
+          {
+            "name": "core.block.sidebarAppMenuSetting",
+            "props": {
+              "menuName": "settingMenu",
+              "displayViewMore": false
+            }
+          }
+        ],
+        "blockId": "z8yi"
+      },
+      {
+        "blockId": "rgmt",
+        "component": "core.block.mainBlock",
+        "slotName": "main",
+        "title": "profile_menu_settings",
+        "blockLayout": "Plained"
+      }
+    ]
+  },
+  "info": {
+    "bundle": "web",
+    "name": "setting.home"
+  }
+}

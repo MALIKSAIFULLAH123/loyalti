@@ -1,0 +1,1728 @@
+{
+  "large": {
+    "templateName": "dashboard",
+    "blocks": [
+      {
+        "blockId": "32rjd",
+        "component": "core.block.AdminSiteStatus",
+        "slotName": "bottom2",
+        "pageName": "core.admincp.dashboard",
+        "pageSize": "large"
+      },
+      {
+        "blockId": "8r8c",
+        "component": "core.block.AdminDepthStats",
+        "slotName": "top2",
+        "pageName": "core.admincp.dashboard",
+        "pageSize": "large",
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "text",
+          "noFooter": true,
+          "noHeader": true,
+          "padding": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0
+          },
+          "gutter": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0
+          },
+          "contentGutter": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0
+          },
+          "headerGutter": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0
+          },
+          "footerGutter": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0
+          },
+          "blockStyle": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0,
+            "bgColor": "0",
+            "borderStyle": "0",
+            "borderColor": "0"
+          },
+          "contentStyle": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0,
+            "bgColor": "0",
+            "borderStyle": "0",
+            "borderColor": "0"
+          },
+          "headerStyle": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0,
+            "bgColor": "0",
+            "borderStyle": "0",
+            "borderColor": "0"
+          },
+          "footerStyle": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0,
+            "bgColor": "0",
+            "borderStyle": "0",
+            "borderColor": "0"
+          }
+        }
+      },
+      {
+        "blockId": "4i9sq",
+        "component": "core.block.AdminChartStats",
+        "slotName": "top",
+        "pageName": "core.admincp.dashboard",
+        "pageSize": "large",
+        "title": "",
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "text",
+          "noFooter": true,
+          "noHeader": true,
+          "padding": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0
+          },
+          "gutter": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0
+          },
+          "contentGutter": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0
+          },
+          "headerGutter": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0
+          },
+          "footerGutter": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0
+          },
+          "blockStyle": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0,
+            "bgColor": "0",
+            "borderStyle": "0",
+            "borderColor": "0"
+          },
+          "contentStyle": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0,
+            "bgColor": "0",
+            "borderStyle": "0",
+            "borderColor": "0"
+          },
+          "headerStyle": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0,
+            "bgColor": "0",
+            "borderStyle": "0",
+            "borderColor": "0"
+          },
+          "footerStyle": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0,
+            "bgColor": "0",
+            "borderStyle": "0",
+            "borderColor": "0"
+          }
+        }
+      },
+      {
+        "blockId": "v9pu",
+        "component": "core.block.AdminLatestAdminLogin",
+        "slotName": "bottom1",
+        "pageName": "core.admincp.dashboard",
+        "pageSize": "large"
+      },
+      {
+        "blockId": "mh7r",
+        "component": "core.block.AdminNewsUpdate",
+        "slotName": "bottom",
+        "pageName": "core.admincp.dashboard",
+        "pageSize": "large",
+        "title": "",
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "text",
+          "noFooter": true,
+          "noHeader": true,
+          "padding": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0
+          },
+          "gutter": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0
+          },
+          "contentGutter": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0
+          },
+          "headerGutter": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0
+          },
+          "footerGutter": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0
+          },
+          "blockStyle": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0,
+            "bgColor": "0",
+            "borderStyle": "0",
+            "borderColor": "0"
+          },
+          "contentStyle": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0,
+            "bgColor": "0",
+            "borderStyle": "0",
+            "borderColor": "0"
+          },
+          "headerStyle": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0,
+            "bgColor": "0",
+            "borderStyle": "0",
+            "borderColor": "0"
+          },
+          "footerStyle": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0,
+            "bgColor": "0",
+            "borderStyle": "0",
+            "borderColor": "0"
+          }
+        }
+      },
+      {
+        "blockId": "50j5",
+        "component": "core.block.AdminActiveAdmin",
+        "slotName": "bottom2",
+        "pageName": "core.admincp.dashboard",
+        "pageSize": "large",
+        "title": "",
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "text",
+          "noFooter": true,
+          "noHeader": true,
+          "padding": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0
+          },
+          "gutter": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0
+          },
+          "contentGutter": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0
+          },
+          "headerGutter": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0
+          },
+          "footerGutter": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0
+          },
+          "blockStyle": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0,
+            "bgColor": "0",
+            "borderStyle": "0",
+            "borderColor": "0"
+          },
+          "contentStyle": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0,
+            "bgColor": "0",
+            "borderStyle": "0",
+            "borderColor": "0"
+          },
+          "headerStyle": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0,
+            "bgColor": "0",
+            "borderStyle": "0",
+            "borderColor": "0"
+          },
+          "footerStyle": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0,
+            "bgColor": "0",
+            "borderStyle": "0",
+            "borderColor": "0"
+          }
+        }
+      },
+      {
+        "component": "core.block.sidebarPrimaryMenu",
+        "slotName": "side",
+        "blockId": "8r659",
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "textPrimary",
+          "noFooter": true,
+          "noHeader": true,
+          "blockStyle": {
+            "pl": 2,
+            "pt": 2,
+            "pr": 2,
+            "pb": 2
+          }
+        },
+        "title": ""
+      },
+      {
+        "component": "core.block.sidebarShortcutMenu",
+        "slotName": "side",
+        "blockId": "2c7hu",
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle2",
+          "titleColor": "textPrimary",
+          "noFooter": true,
+          "noHeader": false,
+          "blockStyle": {
+            "pl": 2,
+            "pr": 2,
+            "pb": 4
+          },
+          "headerStyle": {
+            "pb": 2
+          }
+        },
+        "title": "shortcuts"
+      },
+      {
+        "blockId": "yvxfo",
+        "component": "core.block.AdminItemStatistic",
+        "slotName": "main",
+        "blockProps": {
+          "variant": "contained",
+          "titleComponent": "h2",
+          "titleVariant": "secondary",
+          "titleColor": "textPrimary",
+          "noFooter": true,
+          "noHeader": false,
+          "blockStyle": {
+            "ml": 2,
+            "mt": 2,
+            "mr": 2,
+            "mb": 2,
+            "bgColor": "paper",
+            "borderRadius": "base"
+          },
+          "contentStyle": {
+            "pl": 2,
+            "pt": 2,
+            "pr": 2,
+            "pb": 2
+          },
+          "headerStyle": {
+            "pl": 2,
+            "pt": 1,
+            "pr": 2,
+            "pb": 1,
+            "dividerVariant": "0"
+          },
+          "footerStyle": {
+            "pl": 2,
+            "pt": 1,
+            "pr": 2,
+            "pb": 1,
+            "dividerVariant": "0"
+          }
+        },
+        "freeze": false
+      }
+    ]
+  },
+  "sMedium": {
+    "templateName": "dashboard",
+    "blocks": [
+      {
+        "blockId": "32rjd",
+        "component": "core.block.AdminSiteStatus",
+        "slotName": "bottom1",
+        "pageName": "core.admincp.dashboard",
+        "pageSize": "large"
+      },
+      {
+        "blockId": "8r8c",
+        "component": "core.block.AdminDepthStats",
+        "slotName": "top2",
+        "pageName": "core.admincp.dashboard",
+        "pageSize": "large",
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "text",
+          "noFooter": true,
+          "noHeader": true,
+          "padding": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0
+          },
+          "gutter": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0
+          },
+          "contentGutter": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0
+          },
+          "headerGutter": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0
+          },
+          "footerGutter": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0
+          },
+          "blockStyle": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0,
+            "bgColor": "0",
+            "borderStyle": "0",
+            "borderColor": "0"
+          },
+          "contentStyle": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0,
+            "bgColor": "0",
+            "borderStyle": "0",
+            "borderColor": "0"
+          },
+          "headerStyle": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0,
+            "bgColor": "0",
+            "borderStyle": "0",
+            "borderColor": "0"
+          },
+          "footerStyle": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0,
+            "bgColor": "0",
+            "borderStyle": "0",
+            "borderColor": "0"
+          }
+        }
+      },
+      {
+        "blockId": "4i9sq",
+        "component": "core.block.AdminChartStats",
+        "slotName": "top",
+        "pageName": "core.admincp.dashboard",
+        "pageSize": "large",
+        "title": "",
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "text",
+          "noFooter": true,
+          "noHeader": true,
+          "padding": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0
+          },
+          "gutter": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0
+          },
+          "contentGutter": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0
+          },
+          "headerGutter": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0
+          },
+          "footerGutter": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0
+          },
+          "blockStyle": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0,
+            "bgColor": "0",
+            "borderStyle": "0",
+            "borderColor": "0"
+          },
+          "contentStyle": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0,
+            "bgColor": "0",
+            "borderStyle": "0",
+            "borderColor": "0"
+          },
+          "headerStyle": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0,
+            "bgColor": "0",
+            "borderStyle": "0",
+            "borderColor": "0"
+          },
+          "footerStyle": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0,
+            "bgColor": "0",
+            "borderStyle": "0",
+            "borderColor": "0"
+          }
+        }
+      },
+      {
+        "blockId": "v9pu",
+        "component": "core.block.AdminLatestAdminLogin",
+        "slotName": "bottom1",
+        "pageName": "core.admincp.dashboard",
+        "pageSize": "large"
+      },
+      {
+        "blockId": "mh7r",
+        "component": "core.block.AdminNewsUpdate",
+        "slotName": "bottom",
+        "pageName": "core.admincp.dashboard",
+        "pageSize": "large",
+        "title": "",
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "text",
+          "noFooter": true,
+          "noHeader": true,
+          "padding": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0
+          },
+          "gutter": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0
+          },
+          "contentGutter": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0
+          },
+          "headerGutter": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0
+          },
+          "footerGutter": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0
+          },
+          "blockStyle": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0,
+            "bgColor": "0",
+            "borderStyle": "0",
+            "borderColor": "0"
+          },
+          "contentStyle": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0,
+            "bgColor": "0",
+            "borderStyle": "0",
+            "borderColor": "0"
+          },
+          "headerStyle": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0,
+            "bgColor": "0",
+            "borderStyle": "0",
+            "borderColor": "0"
+          },
+          "footerStyle": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0,
+            "bgColor": "0",
+            "borderStyle": "0",
+            "borderColor": "0"
+          }
+        }
+      },
+      {
+        "blockId": "50j5",
+        "component": "core.block.AdminActiveAdmin",
+        "slotName": "bottom1",
+        "pageName": "core.admincp.dashboard",
+        "pageSize": "large",
+        "title": "",
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "text",
+          "noFooter": true,
+          "noHeader": true,
+          "padding": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0
+          },
+          "gutter": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0
+          },
+          "contentGutter": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0
+          },
+          "headerGutter": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0
+          },
+          "footerGutter": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0
+          },
+          "blockStyle": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0,
+            "bgColor": "0",
+            "borderStyle": "0",
+            "borderColor": "0"
+          },
+          "contentStyle": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0,
+            "bgColor": "0",
+            "borderStyle": "0",
+            "borderColor": "0"
+          },
+          "headerStyle": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0,
+            "bgColor": "0",
+            "borderStyle": "0",
+            "borderColor": "0"
+          },
+          "footerStyle": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0,
+            "bgColor": "0",
+            "borderStyle": "0",
+            "borderColor": "0"
+          }
+        }
+      },
+      {
+        "component": "core.block.sidebarPrimaryMenu",
+        "slotName": "side",
+        "blockId": "8r659",
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "textPrimary",
+          "noFooter": true,
+          "noHeader": true,
+          "blockStyle": {
+            "pl": 2,
+            "pt": 2,
+            "pr": 2,
+            "pb": 2
+          }
+        },
+        "title": ""
+      },
+      {
+        "component": "core.block.sidebarShortcutMenu",
+        "slotName": "side",
+        "blockId": "2c7hu",
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle2",
+          "titleColor": "textPrimary",
+          "noFooter": true,
+          "noHeader": false,
+          "blockStyle": {
+            "pl": 2,
+            "pr": 2,
+            "pb": 4
+          },
+          "headerStyle": {
+            "pb": 2
+          }
+        },
+        "title": "shortcuts"
+      },
+      {
+        "blockId": "yvxfo",
+        "component": "core.block.AdminItemStatistic",
+        "slotName": "main",
+        "blockProps": {
+          "variant": "contained",
+          "titleComponent": "h2",
+          "titleVariant": "secondary",
+          "titleColor": "textPrimary",
+          "noFooter": true,
+          "noHeader": false,
+          "blockStyle": {
+            "ml": 2,
+            "mt": 2,
+            "mr": 2,
+            "mb": 2,
+            "bgColor": "paper",
+            "borderRadius": "base"
+          },
+          "contentStyle": {
+            "pl": 2,
+            "pt": 2,
+            "pr": 2,
+            "pb": 2
+          },
+          "headerStyle": {
+            "pl": 2,
+            "pt": 1,
+            "pr": 2,
+            "pb": 1,
+            "dividerVariant": "0"
+          },
+          "footerStyle": {
+            "pl": 2,
+            "pt": 1,
+            "pr": 2,
+            "pb": 1,
+            "dividerVariant": "0"
+          }
+        },
+        "freeze": false
+      }
+    ]
+  },
+  "small": {
+    "templateName": "dashboard",
+    "blocks": [
+      {
+        "blockId": "32rjd",
+        "component": "core.block.AdminSiteStatus",
+        "slotName": "bottom2",
+        "pageName": "core.admincp.dashboard",
+        "pageSize": "large"
+      },
+      {
+        "blockId": "8r8c",
+        "component": "core.block.AdminDepthStats",
+        "slotName": "top2",
+        "pageName": "core.admincp.dashboard",
+        "pageSize": "large",
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "text",
+          "noFooter": true,
+          "noHeader": true,
+          "padding": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0
+          },
+          "gutter": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0
+          },
+          "contentGutter": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0
+          },
+          "headerGutter": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0
+          },
+          "footerGutter": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0
+          },
+          "blockStyle": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0,
+            "bgColor": "0",
+            "borderStyle": "0",
+            "borderColor": "0"
+          },
+          "contentStyle": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0,
+            "bgColor": "0",
+            "borderStyle": "0",
+            "borderColor": "0"
+          },
+          "headerStyle": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0,
+            "bgColor": "0",
+            "borderStyle": "0",
+            "borderColor": "0"
+          },
+          "footerStyle": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0,
+            "bgColor": "0",
+            "borderStyle": "0",
+            "borderColor": "0"
+          }
+        }
+      },
+      {
+        "blockId": "4i9sq",
+        "component": "core.block.AdminChartStats",
+        "slotName": "top",
+        "pageName": "core.admincp.dashboard",
+        "pageSize": "large",
+        "title": "",
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "text",
+          "noFooter": true,
+          "noHeader": true,
+          "padding": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0
+          },
+          "gutter": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0
+          },
+          "contentGutter": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0
+          },
+          "headerGutter": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0
+          },
+          "footerGutter": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0
+          },
+          "blockStyle": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0,
+            "bgColor": "0",
+            "borderStyle": "0",
+            "borderColor": "0"
+          },
+          "contentStyle": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0,
+            "bgColor": "0",
+            "borderStyle": "0",
+            "borderColor": "0"
+          },
+          "headerStyle": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0,
+            "bgColor": "0",
+            "borderStyle": "0",
+            "borderColor": "0"
+          },
+          "footerStyle": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0,
+            "bgColor": "0",
+            "borderStyle": "0",
+            "borderColor": "0"
+          }
+        }
+      },
+      {
+        "blockId": "v9pu",
+        "component": "core.block.AdminLatestAdminLogin",
+        "slotName": "bottom1",
+        "pageName": "core.admincp.dashboard",
+        "pageSize": "large"
+      },
+      {
+        "blockId": "mh7r",
+        "component": "core.block.AdminNewsUpdate",
+        "slotName": "bottom",
+        "pageName": "core.admincp.dashboard",
+        "pageSize": "large",
+        "title": "",
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "text",
+          "noFooter": true,
+          "noHeader": true,
+          "padding": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0
+          },
+          "gutter": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0
+          },
+          "contentGutter": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0
+          },
+          "headerGutter": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0
+          },
+          "footerGutter": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0
+          },
+          "blockStyle": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0,
+            "bgColor": "0",
+            "borderStyle": "0",
+            "borderColor": "0"
+          },
+          "contentStyle": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0,
+            "bgColor": "0",
+            "borderStyle": "0",
+            "borderColor": "0"
+          },
+          "headerStyle": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0,
+            "bgColor": "0",
+            "borderStyle": "0",
+            "borderColor": "0"
+          },
+          "footerStyle": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0,
+            "bgColor": "0",
+            "borderStyle": "0",
+            "borderColor": "0"
+          }
+        }
+      },
+      {
+        "blockId": "50j5",
+        "component": "core.block.AdminActiveAdmin",
+        "slotName": "bottom2",
+        "pageName": "core.admincp.dashboard",
+        "pageSize": "large",
+        "title": "",
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "text",
+          "noFooter": true,
+          "noHeader": true,
+          "padding": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0
+          },
+          "gutter": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0
+          },
+          "contentGutter": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0
+          },
+          "headerGutter": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0
+          },
+          "footerGutter": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0
+          },
+          "blockStyle": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0,
+            "bgColor": "0",
+            "borderStyle": "0",
+            "borderColor": "0"
+          },
+          "contentStyle": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0,
+            "bgColor": "0",
+            "borderStyle": "0",
+            "borderColor": "0"
+          },
+          "headerStyle": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0,
+            "bgColor": "0",
+            "borderStyle": "0",
+            "borderColor": "0"
+          },
+          "footerStyle": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0,
+            "bgColor": "0",
+            "borderStyle": "0",
+            "borderColor": "0"
+          }
+        }
+      },
+      {
+        "component": "core.block.sidebarPrimaryMenu",
+        "slotName": "side",
+        "blockId": "8r659",
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "textPrimary",
+          "noFooter": true,
+          "noHeader": true,
+          "blockStyle": {
+            "pl": 2,
+            "pt": 2,
+            "pr": 2,
+            "pb": 2
+          }
+        },
+        "title": ""
+      },
+      {
+        "component": "core.block.sidebarShortcutMenu",
+        "slotName": "side",
+        "blockId": "2c7hu",
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle2",
+          "titleColor": "textPrimary",
+          "noFooter": true,
+          "noHeader": false,
+          "blockStyle": {
+            "pl": 2,
+            "pr": 2,
+            "pb": 4
+          },
+          "headerStyle": {
+            "pb": 2
+          }
+        },
+        "title": "shortcuts"
+      },
+      {
+        "blockId": "yvxfo",
+        "component": "core.block.AdminItemStatistic",
+        "slotName": "main",
+        "blockProps": {
+          "variant": "contained",
+          "titleComponent": "h2",
+          "titleVariant": "secondary",
+          "titleColor": "textPrimary",
+          "noFooter": true,
+          "noHeader": false,
+          "blockStyle": {
+            "ml": 2,
+            "mt": 2,
+            "mr": 2,
+            "mb": 2,
+            "bgColor": "paper",
+            "borderRadius": "base"
+          },
+          "contentStyle": {
+            "pl": 2,
+            "pt": 2,
+            "pr": 2,
+            "pb": 2
+          },
+          "headerStyle": {
+            "pl": 2,
+            "pt": 1,
+            "pr": 2,
+            "pb": 1,
+            "dividerVariant": "0"
+          },
+          "footerStyle": {
+            "pl": 2,
+            "pt": 1,
+            "pr": 2,
+            "pb": 1,
+            "dividerVariant": "0"
+          }
+        },
+        "freeze": false
+      }
+    ]
+  },
+  "info": {
+    "bundle": "admincp",
+    "name": "core.admincp.dashboard"
+  }
+}

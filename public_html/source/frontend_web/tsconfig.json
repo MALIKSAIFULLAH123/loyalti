@@ -1,0 +1,513 @@
+{
+  "compilerOptions": {
+    "composite": false,
+    "charset": "utf8",
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "checkJs": false,
+    "module": "commonjs",
+    "jsx": "react-jsx",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "declaration": true,
+    "isolatedModules": false,
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitAny": false,
+    "noImplicitReturns": false,
+    "strictNullChecks": false,
+    "noImplicitThis": false,
+    "noImplicitUseStrict": false,
+    "noLib": false,
+    "noResolve": false,
+    "noStrictGenericChecks": false,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "resolveJsonModule": true,
+    "pretty": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "sourceMap": false,
+    "version": true,
+    "skipDefaultLibCheck": true,
+    "skipLibCheck": true,
+    "lib": [
+      "es6",
+      "dom"
+    ],
+    "noEmit": true,
+    "strict": true,
+    "target": "ES2015",
+    "removeComments": true,
+    "types": [
+      "react",
+      "jest",
+      "node",
+      "webpack-env",
+      "@testing-library/jest-dom",
+      "googlemaps"
+    ],
+    "baseUrl": ".",
+    "rootDir": ".",
+    "paths": {
+      "@metafox/constants": [
+        "packages/framework/metafox-constants/src"
+      ],
+      "@metafox/constants/*": [
+        "packages/framework/metafox-constants/src/*"
+      ],
+      "@metafox/cookie": [
+        "packages/framework/metafox-cookie/src"
+      ],
+      "@metafox/cookie/*": [
+        "packages/framework/metafox-cookie/src/*"
+      ],
+      "@metafox/framework": [
+        "packages/framework/metafox-core/src"
+      ],
+      "@metafox/framework/*": [
+        "packages/framework/metafox-core/src/*"
+      ],
+      "@metafox/dialog": [
+        "packages/framework/metafox-dialog/src"
+      ],
+      "@metafox/dialog/*": [
+        "packages/framework/metafox-dialog/src/*"
+      ],
+      "@metafox/echo": [
+        "packages/framework/metafox-echo/src"
+      ],
+      "@metafox/echo/*": [
+        "packages/framework/metafox-echo/src/*"
+      ],
+      "@metafox/form-elements": [
+        "packages/framework/metafox-form-elements/src"
+      ],
+      "@metafox/form-elements/*": [
+        "packages/framework/metafox-form-elements/src/*"
+      ],
+      "@metafox/form": [
+        "packages/framework/metafox-form/src"
+      ],
+      "@metafox/form/*": [
+        "packages/framework/metafox-form/src/*"
+      ],
+      "@metafox/html-viewer": [
+        "packages/framework/metafox-html-viewer/src"
+      ],
+      "@metafox/html-viewer/*": [
+        "packages/framework/metafox-html-viewer/src/*"
+      ],
+      "@metafox/installation": [
+        "packages/framework/metafox-installation/src"
+      ],
+      "@metafox/installation/*": [
+        "packages/framework/metafox-installation/src/*"
+      ],
+      "@metafox/intl": [
+        "packages/framework/metafox-intl/src"
+      ],
+      "@metafox/intl/*": [
+        "packages/framework/metafox-intl/src/*"
+      ],
+      "@metafox/json2yup": [
+        "packages/framework/metafox-json2yup/src"
+      ],
+      "@metafox/json2yup/*": [
+        "packages/framework/metafox-json2yup/src/*"
+      ],
+      "@metafox/jsx": [
+        "packages/framework/metafox-jsx/src"
+      ],
+      "@metafox/jsx/*": [
+        "packages/framework/metafox-jsx/src/*"
+      ],
+      "@metafox/layout": [
+        "packages/framework/metafox-layout/src"
+      ],
+      "@metafox/layout/*": [
+        "packages/framework/metafox-layout/src/*"
+      ],
+      "@metafox/lexical": [
+        "packages/framework/metafox-lexical/src"
+      ],
+      "@metafox/lexical/*": [
+        "packages/framework/metafox-lexical/src/*"
+      ],
+      "@metafox/local-store": [
+        "packages/framework/metafox-local-store/src"
+      ],
+      "@metafox/local-store/*": [
+        "packages/framework/metafox-local-store/src/*"
+      ],
+      "@metafox/payment": [
+        "packages/framework/metafox-payment/src"
+      ],
+      "@metafox/payment/*": [
+        "packages/framework/metafox-payment/src/*"
+      ],
+      "@metafox/rest-client": [
+        "packages/framework/metafox-rest-client/src"
+      ],
+      "@metafox/rest-client/*": [
+        "packages/framework/metafox-rest-client/src/*"
+      ],
+      "@metafox/route": [
+        "packages/framework/metafox-route/src"
+      ],
+      "@metafox/route/*": [
+        "packages/framework/metafox-route/src/*"
+      ],
+      "@metafox/scrollbars": [
+        "packages/framework/metafox-scrollbars/src"
+      ],
+      "@metafox/scrollbars/*": [
+        "packages/framework/metafox-scrollbars/src/*"
+      ],
+      "@metafox/theme-default": [
+        "packages/framework/metafox-theme-default/src"
+      ],
+      "@metafox/theme-default/*": [
+        "packages/framework/metafox-theme-default/src/*"
+      ],
+      "@metafox/toast": [
+        "packages/framework/metafox-toast/src"
+      ],
+      "@metafox/toast/*": [
+        "packages/framework/metafox-toast/src/*"
+      ],
+      "@metafox/ui": [
+        "packages/framework/metafox-ui/src"
+      ],
+      "@metafox/ui/*": [
+        "packages/framework/metafox-ui/src/*"
+      ],
+      "@metafox/utils": [
+        "packages/framework/metafox-utils/src"
+      ],
+      "@metafox/utils/*": [
+        "packages/framework/metafox-utils/src/*"
+      ],
+      "@metafox/activity-point": [
+        "packages/metafox/activity-point/src"
+      ],
+      "@metafox/activity-point/*": [
+        "packages/metafox/activity-point/src/*"
+      ],
+      "@metafox/admincp": [
+        "packages/metafox/admincp/src"
+      ],
+      "@metafox/admincp/*": [
+        "packages/metafox/admincp/src/*"
+      ],
+      "@metafox/advertise": [
+        "packages/metafox/advertise/src"
+      ],
+      "@metafox/advertise/*": [
+        "packages/metafox/advertise/src/*"
+      ],
+      "@metafox/announcement": [
+        "packages/metafox/announcement/src"
+      ],
+      "@metafox/announcement/*": [
+        "packages/metafox/announcement/src/*"
+      ],
+      "@metafox/app": [
+        "packages/metafox/app/src"
+      ],
+      "@metafox/app/*": [
+        "packages/metafox/app/src/*"
+      ],
+      "@metafox/applepay": [
+        "packages/metafox/applepay/src"
+      ],
+      "@metafox/applepay/*": [
+        "packages/metafox/applepay/src/*"
+      ],
+      "@metafox/bgstatus": [
+        "packages/metafox/bgstatus/src"
+      ],
+      "@metafox/bgstatus/*": [
+        "packages/metafox/bgstatus/src/*"
+      ],
+      "@metafox/blog": [
+        "packages/metafox/blog/src"
+      ],
+      "@metafox/blog/*": [
+        "packages/metafox/blog/src/*"
+      ],
+      "@metafox/chat": [
+        "packages/metafox/chat/src"
+      ],
+      "@metafox/chat/*": [
+        "packages/metafox/chat/src/*"
+      ],
+      "@metafox/chatplus": [
+        "packages/metafox/chatplus/src"
+      ],
+      "@metafox/chatplus/*": [
+        "packages/metafox/chatplus/src/*"
+      ],
+      "@metafox/comment": [
+        "packages/metafox/comment/src"
+      ],
+      "@metafox/comment/*": [
+        "packages/metafox/comment/src/*"
+      ],
+      "@metafox/core": [
+        "packages/metafox/core/src"
+      ],
+      "@metafox/core/*": [
+        "packages/metafox/core/src/*"
+      ],
+      "@metafox/emoji": [
+        "packages/metafox/emoji/src"
+      ],
+      "@metafox/emoji/*": [
+        "packages/metafox/emoji/src/*"
+      ],
+      "@metafox/emoney": [
+        "packages/metafox/emoney/src"
+      ],
+      "@metafox/emoney/*": [
+        "packages/metafox/emoney/src/*"
+      ],
+      "@metafox/event": [
+        "packages/metafox/event/src"
+      ],
+      "@metafox/event/*": [
+        "packages/metafox/event/src/*"
+      ],
+      "@metafox/featured": [
+        "packages/metafox/featured/src"
+      ],
+      "@metafox/featured/*": [
+        "packages/metafox/featured/src/*"
+      ],
+      "@metafox/feed": [
+        "packages/metafox/feed/src"
+      ],
+      "@metafox/feed/*": [
+        "packages/metafox/feed/src/*"
+      ],
+      "@metafox/follow": [
+        "packages/metafox/follow/src"
+      ],
+      "@metafox/follow/*": [
+        "packages/metafox/follow/src/*"
+      ],
+      "@metafox/forum": [
+        "packages/metafox/forum/src"
+      ],
+      "@metafox/forum/*": [
+        "packages/metafox/forum/src/*"
+      ],
+      "@metafox/friend": [
+        "packages/metafox/friend/src"
+      ],
+      "@metafox/friend/*": [
+        "packages/metafox/friend/src/*"
+      ],
+      "@metafox/gettingstarted": [
+        "packages/metafox/gettingstarted/src"
+      ],
+      "@metafox/gettingstarted/*": [
+        "packages/metafox/gettingstarted/src/*"
+      ],
+      "@metafox/giphy": [
+        "packages/metafox/giphy/src"
+      ],
+      "@metafox/giphy/*": [
+        "packages/metafox/giphy/src/*"
+      ],
+      "@metafox/googlepay": [
+        "packages/metafox/googlepay/src"
+      ],
+      "@metafox/googlepay/*": [
+        "packages/metafox/googlepay/src/*"
+      ],
+      "@metafox/group": [
+        "packages/metafox/group/src"
+      ],
+      "@metafox/group/*": [
+        "packages/metafox/group/src/*"
+      ],
+      "@metafox/invite": [
+        "packages/metafox/invite/src"
+      ],
+      "@metafox/invite/*": [
+        "packages/metafox/invite/src/*"
+      ],
+      "@metafox/livestreaming": [
+        "packages/metafox/livestreaming/src"
+      ],
+      "@metafox/livestreaming/*": [
+        "packages/metafox/livestreaming/src/*"
+      ],
+      "@metafox/marketplace": [
+        "packages/metafox/marketplace/src"
+      ],
+      "@metafox/marketplace/*": [
+        "packages/metafox/marketplace/src/*"
+      ],
+      "@metafox/music": [
+        "packages/metafox/music/src"
+      ],
+      "@metafox/music/*": [
+        "packages/metafox/music/src/*"
+      ],
+      "@metafox/notification": [
+        "packages/metafox/notification/src"
+      ],
+      "@metafox/notification/*": [
+        "packages/metafox/notification/src/*"
+      ],
+      "@metafox/nowpayments": [
+        "packages/metafox/nowpayments/src"
+      ],
+      "@metafox/nowpayments/*": [
+        "packages/metafox/nowpayments/src/*"
+      ],
+      "@metafox/pages": [
+        "packages/metafox/pages/src"
+      ],
+      "@metafox/pages/*": [
+        "packages/metafox/pages/src/*"
+      ],
+      "@metafox/photo": [
+        "packages/metafox/photo/src"
+      ],
+      "@metafox/photo/*": [
+        "packages/metafox/photo/src/*"
+      ],
+      "@metafox/poll": [
+        "packages/metafox/poll/src"
+      ],
+      "@metafox/poll/*": [
+        "packages/metafox/poll/src/*"
+      ],
+      "@metafox/privacy": [
+        "packages/metafox/privacy/src"
+      ],
+      "@metafox/privacy/*": [
+        "packages/metafox/privacy/src/*"
+      ],
+      "@metafox/quiz": [
+        "packages/metafox/quiz/src"
+      ],
+      "@metafox/quiz/*": [
+        "packages/metafox/quiz/src/*"
+      ],
+      "@metafox/reaction": [
+        "packages/metafox/reaction/src"
+      ],
+      "@metafox/reaction/*": [
+        "packages/metafox/reaction/src/*"
+      ],
+      "@metafox/report": [
+        "packages/metafox/report/src"
+      ],
+      "@metafox/report/*": [
+        "packages/metafox/report/src/*"
+      ],
+      "@metafox/saved": [
+        "packages/metafox/saved/src"
+      ],
+      "@metafox/saved/*": [
+        "packages/metafox/saved/src/*"
+      ],
+      "@metafox/search": [
+        "packages/metafox/search/src"
+      ],
+      "@metafox/search/*": [
+        "packages/metafox/search/src/*"
+      ],
+      "@metafox/share": [
+        "packages/metafox/share/src"
+      ],
+      "@metafox/share/*": [
+        "packages/metafox/share/src/*"
+      ],
+      "@metafox/site-background": [
+        "packages/metafox/site-background/src"
+      ],
+      "@metafox/site-background/*": [
+        "packages/metafox/site-background/src/*"
+      ],
+      "@metafox/static-page": [
+        "packages/metafox/static-page/src"
+      ],
+      "@metafox/static-page/*": [
+        "packages/metafox/static-page/src/*"
+      ],
+      "@metafox/sticker": [
+        "packages/metafox/sticker/src"
+      ],
+      "@metafox/sticker/*": [
+        "packages/metafox/sticker/src/*"
+      ],
+      "@metafox/story-book": [
+        "packages/metafox/story-book/src"
+      ],
+      "@metafox/story-book/*": [
+        "packages/metafox/story-book/src/*"
+      ],
+      "@metafox/story": [
+        "packages/metafox/story/src"
+      ],
+      "@metafox/story/*": [
+        "packages/metafox/story/src/*"
+      ],
+      "@metafox/subscription": [
+        "packages/metafox/subscription/src"
+      ],
+      "@metafox/subscription/*": [
+        "packages/metafox/subscription/src/*"
+      ],
+      "@metafox/theme-flatten": [
+        "packages/metafox/theme-flatten/src"
+      ],
+      "@metafox/theme-flatten/*": [
+        "packages/metafox/theme-flatten/src/*"
+      ],
+      "@metafox/tourguide": [
+        "packages/metafox/tourguide/src"
+      ],
+      "@metafox/tourguide/*": [
+        "packages/metafox/tourguide/src/*"
+      ],
+      "@metafox/user": [
+        "packages/metafox/user/src"
+      ],
+      "@metafox/user/*": [
+        "packages/metafox/user/src/*"
+      ],
+      "@metafox/video": [
+        "packages/metafox/video/src"
+      ],
+      "@metafox/video/*": [
+        "packages/metafox/video/src/*"
+      ],
+      "@metafox/react-app": [
+        "app/src"
+      ],
+      "@metafox/react-app/*": [
+        "app/src/*"
+      ]
+    }
+  },
+  "include": [
+    "**/*/index.ts",
+    "packages",
+    "app",
+    "jest-dom/extend-expect"
+  ],
+  "exclude": [
+    "node_modules",
+    "**/*/dist",
+    "**/*/build",
+    "**/*/public",
+    "**/*/scripts",
+    "__test__",
+    "**/*.spec.ts"
+  ]
+}

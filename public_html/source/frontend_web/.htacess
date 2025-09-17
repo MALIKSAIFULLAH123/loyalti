@@ -1,0 +1,15 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  RewriteBase /social/
+
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteRule ^(storage|assets|install)/(.*) public/$1/$2
+
+  RewriteRule ^(api|chatplus|oauth)(/.*) public/index.php/$1$2 [NC,L]
+
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^(.*)$ public/web/$1 [L]
+
+</IfModule>

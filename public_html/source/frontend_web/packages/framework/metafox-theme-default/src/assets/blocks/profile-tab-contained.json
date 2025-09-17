@@ -1,0 +1,50 @@
+{
+  "blockProps": {
+    "titleStyle": {
+      "component": "h1",
+      "sx": {
+        "typography": "h4"
+      }
+    },
+    "contentStyle": {
+      "sx": {
+        "pl": 2,
+        "pr": 2,
+        "pt": 0,
+        "pb": 2,
+        "mt": 1
+      }
+    },
+    "headerStyle": {
+      "dividerVariant": "fullWidth",
+      "sx": {
+        "pl": 2,
+        "pr": 2,
+        "pt": 0.75,
+        "pb": 0.75,
+        "mr": 0,
+        "mt": 0,
+        "mb": 0,
+        "minHeight": "48px",
+        "height": "48px"
+      }
+    },
+    "footerStyle": {
+      "dividerVariant": "0"
+    },
+    "blockStyle": {
+      "sx": {
+        "bgcolor": "background.paper",
+        "borderRadius": 1,
+        "pt": 0,
+        "mt": 2
+      }
+    }
+  },
+  "noHeader": 0,
+  "noFooter": true,
+  "info": {
+    "bundle": "web",
+    "name": "Profile - Tab Contained"
+  }
+}

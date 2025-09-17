@@ -1,0 +1,28 @@
+{
+  "blockProps": {
+    "contentStyle": {
+      "sx": {
+        "pl": 2,
+        "pr": 2,
+        "pt": 2,
+        "pb": 2,
+        "bgcolor": "background.paper",
+        "borderRadius": 1
+      }
+    },
+    "headerStyle": {},
+    "footerStyle": {},
+    "blockStyle": {
+      "sx": {
+        "mb": 2,
+        "mt": 0
+      }
+    }
+  },
+  "noHeader": true,
+  "noFooter": true,
+  "info": {
+    "bundle": "web",
+    "name": "Blocker Discussions Search"
+  }
+}

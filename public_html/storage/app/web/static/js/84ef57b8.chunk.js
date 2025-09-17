@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunk_metafox_react=self.webpackChunk_metafox_react||[]).push([["metafox-photo-components-PhotoItem-Profile-LoadingSkeleton"],{33242(e,t,a){a.r(t),a.d(t,{default:()=>r});var n=a(40515),o=a(96540);function r({wrapAs:e,wrapProps:t}){return o.createElement(n.ne,{wrapAs:e,wrapProps:t},o.createElement(n.Qm,null,o.createElement(n.nn,{ratio:"169"})))}}}]);

@@ -1,0 +1,33 @@
+{
+  "bundle": "admincp",
+  "title": "AdminCP",
+  "blocks": [
+    {
+      "component": "core.block.AdminMainTop",
+      "slotName": "main_top"
+    }
+  ],
+  "content": {
+    "elements": {
+      "main": {
+        "gridContainer": true,
+        "disableGutters": true,
+        "wrap": "wrap",
+        "elements": {
+          "main_top": {
+            "xs": 12,
+            "slotName": "main_top"
+          },
+          "main": {
+            "xs": 12,
+            "slotName": "main"
+          }
+        }
+      }
+    }
+  },
+  "info": {
+    "bundle": "admincp",
+    "name": "admincp"
+  }
+}

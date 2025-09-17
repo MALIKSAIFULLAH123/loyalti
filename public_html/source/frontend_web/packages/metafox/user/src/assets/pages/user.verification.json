@@ -1,0 +1,16 @@
+{
+  "large": {
+    "templateName": "simple",
+    "blocks": [
+      {
+        "component": "user.block.verification",
+        "slotName": "main",
+        "blockId": "c7ire"
+      }
+    ]
+  },
+  "info": {
+    "bundle": "web",
+    "name": "user.verification"
+  }
+}

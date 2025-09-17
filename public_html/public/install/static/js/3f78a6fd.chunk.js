@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunk_metafox_react=self.webpackChunk_metafox_react||[]).push([["metafox-react-app-bundle-installation-theme-installation-views-tsx"],{6835(e,t,a){a.r(t),a.d(t,{default:()=>i,views:()=>s});let s={};function i(e){e.views=s}}}]);

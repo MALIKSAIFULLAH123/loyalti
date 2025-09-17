@@ -1,0 +1,49 @@
+{
+  "itemProps": {
+    "variant": "containedCard",
+    "content": {
+      "sx": {
+        "pt": 2,
+        "pl": 2,
+        "pb": 0,
+        "pr": 2,
+        "alignItems": "",
+        "justifyContent": "",
+        "bgcolor": "background.paper",
+        "borderRadius": 1,
+        "borderStyle": "solid",
+        "borderWidth": "thin",
+        "borderColor": "border.outlined"
+      },
+      "selectedVariant": "",
+      "dividerVariant": "",
+      "hoverVariant": ""
+    },
+    "media": {
+      "width": "auto",
+      "aspectRatio": "11",
+      "placement": ""
+    },
+    "title": {
+      "variant": "h5",
+      "lines": 0
+    },
+    "summary": {
+      "component": "div",
+      "variant": "h3",
+      "lines": 0,
+      "sx": {
+        "color": "text.primary"
+      }
+    },
+    "text": {
+      "sx": {
+        "pt": 0
+      }
+    }
+  },
+  "info": {
+    "bundle": "web",
+    "name": "Feed - Main Card"
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "title": "03 columns and fixed side",
+  "blocks": [],
+  "header": {
+    "elements": {
+      "header": {
+        "disableGutters": true,
+        "elements": {
+          "header": {}
+        },
+        "rootStyle": {
+          "minHeight": "appbar"
+        }
+      }
+    }
+  },
+  "content": {
+    "elements": {
+      "main": {
+        "gridContainer": true,
+        "disableGutters": true,
+        "rootStyle": {
+          "sx": {
+            "pr": 2
+          }
+        },
+        "elements": {
+          "side": {
+            "xs": 3,
+            "component": "layout.liveFixedSlot",
+            "rootStyle": {
+              "maxWidth": "xs1",
+              "minWidth": "xs2",
+              "sx": {
+                "mr": 2
+              }
+            },
+            "contentStyle": {
+              "sx": {
+                "bgcolor": "background.paper"
+              }
+            },
+            "slotName": "side"
+          },
+          "main": {
+            "flexWeight": 1,
+            "slotName": "main",
+            "stageStyle": {
+              "sx": {
+                "pr": 2
+              }
+            }
+          },
+          "subside": {
+            "xs": 3,
+            "component": "layout.liveFixedSlot",
+            "rootStyle": {
+              "maxWidth": "xs1",
+              "minWidth": "xs1"
+            }
+          }
+        }
+      }
+    }
+  },
+  "info": {
+    "bundle": "web",
+    "name": "three-column-fixed-dynamic-main"
+  }
+}

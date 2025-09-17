@@ -1,0 +1,11 @@
+{
+  "gridContainerProps": {
+    "columnSpacing": 0,
+    "rowSpacing": 0
+  },
+  "gridVariant": "listView",
+  "info": {
+    "bundle": "web",
+    "name": "Shortcut - Small Lists"
+  }
+}

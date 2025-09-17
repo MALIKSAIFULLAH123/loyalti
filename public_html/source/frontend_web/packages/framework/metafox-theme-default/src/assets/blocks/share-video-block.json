@@ -1,0 +1,30 @@
+{
+  "blockProps": {
+    "blockStyle": {
+      "sx": {
+        "bgcolor": "background.paper",
+        "borderRadius": 1,
+        "mb": 2,
+        "pt": 2,
+        "pr": 2,
+        "pb": 2,
+        "pl": 2,
+        "mt": 2,
+        "ml": 2,
+        "mr": 2
+      }
+    },
+    "headerStyle": {},
+    "titleStyle": {
+      "component": "h1",
+      "sx": {
+        "typography": "h3",
+        "color": "text.primary"
+      }
+    }
+  },
+  "info": {
+    "bundle": "web",
+    "name": "Share Video Block"
+  }
+}

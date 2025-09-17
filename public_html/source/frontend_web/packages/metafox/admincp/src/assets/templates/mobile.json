@@ -1,0 +1,59 @@
+{
+  "header": {
+    "elements": {
+      "header": {
+        "gridContainer": false,
+        "disableGutters": true,
+        "elements": {
+          "header": {
+            "maxWidth": false
+          }
+        }
+      }
+    }
+  },
+  "content": {
+    "elements": {
+      "top": {
+        "disableGutters": true,
+        "elements": {
+          "top": {}
+        }
+      },
+      "main": {
+        "elements": {
+          "main": {
+            "xs": 12
+          }
+        }
+      }
+    }
+  },
+  "footer": {
+    "elements": {
+      "main": {
+        "rootStyle": {
+          "maxWidth": "lg"
+        },
+        "elements": {
+          "bottom": {
+            "maxWidth": false
+          }
+        }
+      }
+    }
+  },
+  "blocks": [
+    {
+      "blockId": "jvpcv",
+      "component": "core.siteBarMobileBlock",
+      "slotName": "header",
+      "pageName": "home.member",
+      "pageSize": "small"
+    }
+  ],
+  "info": {
+    "bundle": "admincp",
+    "name": "mobile"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "blockProps": {
+    "blockStyle": {
+      "bgcolor": "background.paper",
+      "pl": 0,
+      "pt": 0,
+      "pr": 0,
+      "pb": 0,
+      "mb": 2,
+      "sx": {
+        "borderBottomLeftRadius": "8px",
+        "borderBottomRightRadius": "8px"
+      }
+    }
+  },
+  "noHeader": true,
+  "noFooter": true,
+  "info": {
+    "bundle": "web",
+    "name": "Detail - Paper - Radius Bottom"
+  }
+}

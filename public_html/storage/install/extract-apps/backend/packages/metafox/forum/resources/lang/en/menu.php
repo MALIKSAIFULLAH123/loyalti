@@ -1,0 +1,32 @@
+<?php
+
+/* this is auto generated file */
+return [
+    'close'                  => 'Close',
+    'copy'                   => 'Copy',
+    'copy_thread'            => 'Copy Thread',
+    'create_new_thread'      => 'Create New Thread',
+    'create_new_wiki'        => 'Create New Wiki',
+    'history'                => 'History',
+    'home'                   => 'Home',
+    'latest'                 => 'Latest',
+    'merge'                  => 'Merge',
+    'merge_thread'           => 'Merge Thread',
+    'move'                   => 'Move',
+    'move_thread'            => 'Move Thread',
+    'my_pending_posts'       => 'My Pending Posts',
+    'my_threads'             => 'My Threads',
+    'pending_posts'          => 'Pending Posts',
+    'pending_threads'        => 'Pending Threads',
+    'quote'                  => 'Quote',
+    'remove_from_saved_list' => 'Unsave',
+    'reopen'                 => 'Reopen',
+    'sponsor_in_feed'        => 'Sponsor in Feed',
+    'stick'                  => 'Stick',
+    'subscribe'              => 'Subscribe',
+    'subscribed_threads'     => 'Subscribed Threads',
+    'un-sponsor'             => 'Un-Sponsor',
+    'unstick'                => 'Unstick',
+    'unsubscribe'            => 'Unsubscribe',
+    'wiki'                   => 'Wiki',
+];

@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MenuItems render 1`] = `
+<div>
+  <div
+    data-testid="infoLoader"
+  />
+  <div
+    data-testid="moreMenu"
+  >
+    more menu
+  </div>
+  <div
+    data-testid="divider"
+  >
+    divider
+  </div>
+</div>
+`;

@@ -1,0 +1,73 @@
+{
+  "large": {
+    "blocks": [
+      {
+        "blockId": "ia",
+        "component": "core.block.sideAppHeader",
+        "slotName": "side",
+        "title": "featured",
+        "icon": "ico-compose-alt",
+        "blockLayout": "sidebar app header",
+        "blockOrigin": "page"
+      },
+      {
+        "component": "core.block.sidebarAppMenu",
+        "slotName": "side",
+        "title": "featured",
+        "blockId": "i8",
+        "menuName": "sidebarMenu",
+        "blockLayout": "sidebar app menu",
+        "blockOrigin": "page"
+      },
+      {
+        "blockId": "hz8y",
+        "component": "featured.block.featuredItems",
+        "slotName": "main",
+        "title": "items",
+        "blockLayout": "Large Main Lists",
+        "blockOrigin": "page"
+      }
+    ],
+    "pageName": "featured.home",
+    "templateName": "two-column-fixed"
+  },
+  "small": {
+    "blocks": [
+      {
+        "blockId": "ia",
+        "component": "core.block.sideAppHeader",
+        "slotName": "side",
+        "title": "featured",
+        "icon": "ico-compose-alt"
+      },
+      {
+        "component": "core.block.sidebarAppMenu",
+        "slotName": "side",
+        "title": "featured",
+        "blockId": "i8"
+      },
+      {
+        "component": "core.block.sidebarAppMobile",
+        "slotName": "main",
+        "blockProps": {
+          "variant": "plained",
+          "marginBottom": 2
+        },
+        "blockId": "ckbwe"
+      },
+      {
+        "component": "featured.block.featuredItems",
+        "slotName": "main",
+        "blockId": "p0fld",
+        "title": "items",
+        "blockLayout": "App List - Table - Mobile"
+      }
+    ],
+    "pageName": "featured.home",
+    "templateName": "mobile"
+  },
+  "info": {
+    "bundle": "web",
+    "name": "featured.home"
+  }
+}

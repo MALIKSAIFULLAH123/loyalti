@@ -1,0 +1,55 @@
+{
+  "itemProps": {
+    "variant": "contained",
+    "content": {
+      "sx": {
+        "alignItems": "center",
+        "justifyContent": "",
+        "bgcolor": "background.paper",
+        "borderTopWidth": 1,
+        "borderRightWidth": 1,
+        "borderBottomWidth": 1,
+        "borderLeftWidth": 1,
+        "borderColor": "border.secondary",
+        "borderStyle": "solid",
+        "borderRadius": 1,
+        "pt": 2,
+        "pr": 2,
+        "pb": 2,
+        "pl": 2
+      }
+    },
+    "showActionMenu": 0,
+    "title": {
+      "variant": "h4",
+      "lines": 0,
+      "sx": {
+        "mb": 1
+      }
+    },
+    "text": {
+      "sx": {
+        "pr": 2,
+        "pl": 2
+      }
+    },
+    "summary": {
+      "component": "div",
+      "variant": "body1",
+      "color": "textSecondary",
+      "lines": 1,
+      "sx": {
+        "mb": 2
+      }
+    },
+    "media": {
+      "placement": "start",
+      "aspectRatio": "11",
+      "width": "auto"
+    }
+  },
+  "info": {
+    "bundle": "web",
+    "name": "Friend - Cards - Mobile"
+  }
+}

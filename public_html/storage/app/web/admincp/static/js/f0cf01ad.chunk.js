@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunk_metafox_react=self.webpackChunk_metafox_react||[]).push([["metafox-music-blocks-AlbumListing-Block"],{92731(e,t,i){i.r(t),i.d(t,{default:()=>a});var l=i(91557);let c=(0,l.WvA)({name:"MusicAlbumListingBlock",extendBlock:"core.block.listview",defaults:{itemView:"music_album.itemView.profileCard"}}),a=c}}]);

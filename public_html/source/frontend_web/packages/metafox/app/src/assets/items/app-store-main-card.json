@@ -1,0 +1,51 @@
+{
+  "itemProps": {
+    "showActionMenu": 0,
+    "variant": "flattedCard",
+    "media": {
+      "width": 128,
+      "aspectRatio": "11",
+      "placement": "start",
+      "sx": {
+        "mr": 2,
+        "borderRadius": 1
+      }
+    },
+    "title": {
+      "component": "div",
+      "variant": "inherit",
+      "color": "primary",
+      "sx": {
+        "fontSize": "20px",
+        "fontWeight": "400"
+      }
+    },
+    "summary": {
+      "component": "div",
+      "variant": "body2",
+      "lines": 3,
+      "sx": {
+        "color": "text.secondary"
+      }
+    },
+    "content": {
+      "sx": {
+        "alignItems": "",
+        "justifyContent": "",
+        "bgcolor": "background.paper",
+        "borderRadius": 1,
+        "pt": 2,
+        "pb": 2,
+        "pl": 2,
+        "pr": 2
+      },
+      "selectedVariant": "",
+      "dividerVariant": "",
+      "hoverVariant": ""
+    }
+  },
+  "info": {
+    "bundle": "admincp",
+    "name": "App Store Product - Main Cards"
+  }
+}

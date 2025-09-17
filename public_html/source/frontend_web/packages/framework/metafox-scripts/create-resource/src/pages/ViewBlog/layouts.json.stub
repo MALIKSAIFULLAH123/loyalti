@@ -1,0 +1,107 @@
+{
+  "$$RESOURCE$$.view": {
+    "large": {
+      "blocks": [
+        {
+          "component": "$$RESOURCE$$.block.$$RESOURCE$$View",
+          "slotName": "main",
+          "blockProps": {
+            "blockStyle": {
+              "pl": 0,
+              "pt": 0,
+              "pr": 0,
+              "pb": 0,
+              "mb": 2,
+              "sx": {
+                "borderBottomLeftRadius": "8px",
+                "borderBottomRightRadius": "8px"
+              }
+            }
+          }
+        },
+        {
+          "blockId": "ia",
+          "component": "core.block.sideAppHeader",
+          "slotName": "side",
+          "title": "$$RESOURCE_STUDLY$$",
+          "icon": "ico-compose-alt",
+          "blockProps": {
+            "variant": "plained",
+            "titleComponent": "h2",
+            "titleVariant": "subtitle1",
+            "titleColor": "textPrimary",
+            "noFooter": true,
+            "noHeader": true
+          },
+          "freeze": true
+        },
+        {
+          "blockId": "i5",
+          "component": "core.block.searchBox",
+          "slotName": "side",
+          "placeholder": "Search",
+          "blockProps": {
+            "variant": "plained",
+            "titleComponent": "h2",
+            "titleVariant": "subtitle1",
+            "titleColor": "textPrimary",
+            "noFooter": true,
+            "noHeader": true
+          },
+          "title": "",
+          "freeze": true
+        },
+        {
+          "component": "core.block.sidebarAppMenu",
+          "slotName": "side",
+          "title": "$$RESOURCE_STUDLY$$",
+          "blockProps": {
+            "variant": "plained",
+            "noHeader": false,
+            "noFooter": false
+          },
+          "blockId": "i8",
+          "key": "i8"
+        },
+        {
+          "blockId": "v44br",
+          "component": "core.dividerBlock",
+          "slotName": "side",
+          "title": "",
+          "blockProps": {
+            "variant": "plained",
+            "titleComponent": "h2",
+            "titleVariant": "subtitle1",
+            "titleColor": "textPrimary",
+            "noFooter": true,
+            "noHeader": true,
+            "blockStyle": {
+              "mt": 4,
+              "mb": 1
+            }
+          },
+          "dividerVariant": "middle"
+        },
+        {
+          "component": "core.categoryBlock",
+          "slotName": "side",
+          "title": "Categories",
+          "href": "/$$RESOURCE_PATH$$/category",
+          "blockId": "i9",
+          "key": "i9"
+        }
+      ],
+      "templateName": "two-column-fixed"
+    },
+    "small": {
+      "blocks": [
+        {
+          "component": "$$RESOURCE$$.block.$$RESOURCE$$View",
+          "slotName": "main",
+          "blockProps": {}
+        }
+      ],
+      "templateName": "mobile"
+    }
+  }
+}

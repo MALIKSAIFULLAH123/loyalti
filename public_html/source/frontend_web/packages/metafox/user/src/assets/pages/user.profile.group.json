@@ -1,0 +1,142 @@
+{
+  "large": {
+    "templateName": "profile-tab",
+    "blocks": [
+      {
+        "component": "user.block.userProfileHeader",
+        "slotName": "top",
+        "title": "User Profile Header",
+        "blockProps": {
+          "marginBottom": 2,
+          "variant": "containted",
+          "noHeader": true,
+          "noFooter": true
+        },
+        "key": "gylrc",
+        "blockId": "gylrc"
+      },
+      {
+        "component": "groups.block.groupsListingBlock",
+        "slotName": "main",
+        "title": "groups",
+        "headerActionsResource": "group.group.headerItemActionOnUserProfileMenu",
+        "headerActions": [
+          {
+            "label": "add_new_group",
+            "to": "/group/add?owner_id=:id",
+            "showWhen": [
+              "or",
+              ["truthy", "isAuthUser"],
+              ["neq", "pageParams.module_name", "user"]
+            ]
+          }
+        ],
+        "moduleName": "group",
+        "resourceName": "group",
+        "actionName": "viewOnOwner",
+        "itemView": "group.itemView.mainCard",
+        "canLoadMore": true,
+        "key": "tkh7",
+        "blockId": "tkh7",
+        "contentType": "groups",
+        "hasSearchBox": true,
+        "placeholderSearchBox": "search_groups",
+        "freeze": false,
+        "blockLayout": "Profile - Contained",
+        "gridLayout": "Group - Profile - Main Card",
+        "privacyEmptyPage": "core.block.no_content_with_description",
+        "emptyPage": "core.block.no_item_with_icon",
+        "canLoadSmooth": 1,
+        "emptyPageProps": {
+          "image": "ico-user1-three-o",
+          "description": "no_groups_found"
+        },
+        "itemLayout": "Group - Profile - Main Card"
+      }
+    ]
+  },
+  "small": {
+    "blocks": [
+      {
+        "component": "core.block.sidebarAppMobile",
+        "slotName": "top",
+        "blockId": "raegh"
+      },
+      {
+        "component": "user.block.userProfileHeader",
+        "slotName": "top",
+        "title": "User Profile Header",
+        "blockProps": {
+          "marginBottom": 2,
+          "variant": "containted",
+          "noHeader": true,
+          "noFooter": true
+        }
+      },
+      {
+        "component": "groups.block.groupsListingBlock",
+        "slotName": "main",
+        "title": "groups",
+        "moduleName": "group",
+        "resourceName": "group",
+        "actionName": "viewOnOwner",
+        "headerActionsResource": "group.group.headerItemActionOnUserProfileMenu",
+        "headerActions": [
+          {
+            "label": "add_new_group",
+            "to": "/group/add?owner_id=:id",
+            "showWhen": [
+              "or",
+              ["truthy", "isAuthUser"],
+              ["neq", "pageParams.module_name", "user"]
+            ]
+          }
+        ],
+        "itemView": "group.itemView.mainCard",
+        "gridContainerProps": {
+          "spacing": 1
+        },
+        "gridItemProps": {
+          "md": 6,
+          "xs": 12
+        },
+        "blockProps": {
+          "variant": "contained",
+          "noHeader": false,
+          "noFooter": true,
+          "blockStyle": {
+            "mt": 2,
+            "mb": 2,
+            "borderRadius": "base",
+            "bgColor": "paper"
+          },
+          "contentStyle": {
+            "pb": 2,
+            "pt": 2,
+            "pr": 2,
+            "pl": 2
+          }
+        },
+        "canLoadMore": true,
+        "contentType": "groups",
+        "hasSearchBox": true,
+        "placeholderSearchBox": "search_groups",
+        "freeze": false,
+        "blockLayout": "Profile - Contained",
+        "gridLayout": "Group - Profile - Main Card",
+        "privacyEmptyPage": "core.block.no_content_with_description",
+        "emptyPage": "core.block.no_item_with_icon",
+        "emptyPageProps": {
+          "image": "ico-user1-three-o",
+          "description": "no_groups_found"
+        },
+        "itemLayout": "Group - Profile - Main Card"
+      }
+    ],
+    "templateName": "mobile"
+  },
+  "info": {
+    "bundle": "web",
+    "name": "user.profile.group"
+  }
+}

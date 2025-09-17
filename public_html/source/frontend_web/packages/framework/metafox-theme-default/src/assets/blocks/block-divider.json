@@ -1,0 +1,15 @@
+{
+  "blockProps": {
+    "blockStyle": {
+      "sx": {
+        "&:last-child": {
+          "display": "none"
+        }
+      }
+    }
+  },
+  "info": {
+    "bundle": "web",
+    "name": "Block Divider"
+  }
+}

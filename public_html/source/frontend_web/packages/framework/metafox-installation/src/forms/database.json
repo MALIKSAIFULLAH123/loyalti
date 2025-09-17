@@ -1,0 +1,159 @@
+{
+  "name": "database",
+  "component": "Form",
+  "title": "Database",
+  "testid": "FormDatabaseConfig",
+  "action": "install/?step=verify-database",
+  "method": "POST",
+  "value": {},
+  "validation": {
+    "type": "object",
+    "properties": {
+      "database": {
+        "type": "object",
+        "properties": {
+          "driver": {
+            "type": "string",
+            "errors": {
+              "required": "${path} is a required field."
+            },
+            "required": true,
+            "label": "Database driver"
+          },
+          "host": {
+            "type": "string",
+            "errors": {
+              "required": "${path} is a required field."
+            },
+            "required": true,
+            "label": "Host name"
+          },
+          "user": {
+            "type": "string",
+            "errors": {
+              "required": "${path} is a required field."
+            },
+            "required": true,
+            "label": "Username"
+          },
+          "password": {
+            "type": "string",
+            "errors": {
+              "required": "${path} is a required field."
+            },
+            "required": true,
+            "label": "Password"
+          },
+          "name": {
+            "type": "string",
+            "errors": {
+              "required": "${path} is a required field."
+            },
+            "required": true,
+            "label": "Database name"
+          },
+
+          "port": {
+            "type": "number",
+            "label": "Port",
+            "nullable": true,
+            "int": true,
+            "positive": true
+          }
+        }
+      }
+    }
+  },
+  "elements": {
+    "basic": {
+      "component": "Container",
+      "name": "basic",
+      "testid": "field basic",
+      "elements": {
+        "driver": {
+          "name": "database.driver",
+          "maxLength": 255,
+          "fullWidth": true,
+          "variant": "outlined",
+          "margin": "normal",
+          "size": "medium",
+          "component": "Select",
+          "required": true,
+          "autoComplete": "off",
+          "autoFocus": true,
+          "label": "Database driver",
+          "testid": "field database.driver",
+          "options": [
+            { "label": "PostgreSQL", "value": "pgsql" },
+            { "label": "MySql", "value": "mysql" }
+          ]
+        },
+        "host": {
+          "name": "database.host",
+          "maxLength": 255,
+          "fullWidth": true,
+          "required": true,
+          "variant": "outlined",
+          "margin": "normal",
+          "size": "medium",
+          "component": "Text",
+          "label": "Host name",
+          "autoComplete": "off",
+          "testid": "field database.host"
+        },
+        "user": {
+          "name": "database.user",
+          "maxLength": 255,
+          "fullWidth": true,
+          "required": true,
+          "variant": "outlined",
+          "margin": "normal",
+          "size": "medium",
+          "component": "Text",
+          "label": "Username",
+          "autoComplete": "off",
+          "testid": "field database.user"
+        },
+        "password": {
+          "name": "database.password",
+          "maxLength": 255,
+          "fullWidth": true,
+          "required": true,
+          "variant": "outlined",
+          "margin": "normal",
+          "size": "medium",
+          "component": "Password",
+          "label": "Password",
+          "autoComplete": "off",
+          "testid": "field database.password"
+        },
+        "name": {
+          "name": "database.name",
+          "maxLength": 255,
+          "fullWidth": true,
+          "required": true,
+          "variant": "outlined",
+          "margin": "normal",
+          "size": "medium",
+          "component": "Text",
+          "label": "Database Name",
+          "autoComplete": "off",
+          "testid": "field database.name"
+        },
+        "port": {
+          "name": "database.port",
+          "maxLength": 6,
+          "fullWidth": true,
+          "variant": "outlined",
+          "margin": "normal",
+          "size": "medium",
+          "component": "Text",
+          "description": "default 5432 for PostgresSql, 3306 for MySQL",
+          "label": "Port",
+          "autoComplete": "off",
+          "testid": "field database.port"
+        }
+      }
+    }
+  }
+}

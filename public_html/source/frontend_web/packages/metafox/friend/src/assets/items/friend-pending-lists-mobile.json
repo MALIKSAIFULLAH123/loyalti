@@ -1,0 +1,46 @@
+{
+  "itemProps": {
+    "variant": "flatted",
+    "content": {
+      "sx": {
+        "pt": 0,
+        "pl": 0,
+        "pb": 0,
+        "pr": 0,
+        "alignItems": "",
+        "justifyContent": "",
+        "bgcolor": "",
+        "borderRadius": ""
+      },
+      "selectedVariant": "background",
+      "dividerVariant": "",
+      "hoverVariant": "background"
+    },
+    "media": {
+      "width": "auto",
+      "aspectRatio": "11",
+      "placement": "start"
+    },
+    "title": {
+      "variant": "h5",
+      "lines": 0
+    },
+    "summary": {
+      "component": "div",
+      "variant": "h3",
+      "lines": 0,
+      "sx": {
+        "color": "text.primary"
+      }
+    },
+    "text": {
+      "sx": {
+        "pl": 2
+      }
+    }
+  },
+  "info": {
+    "bundle": "web",
+    "name": "Friend - Pending Lists Mobile"
+  }
+}

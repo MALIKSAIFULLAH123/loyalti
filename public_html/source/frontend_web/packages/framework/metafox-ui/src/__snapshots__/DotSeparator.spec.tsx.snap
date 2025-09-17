@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DotSeparator render empty item 1`] = `
+<div>
+  <div
+    class="MuiBox-root css-1fhe8qf-DotSeparator-root"
+  />
+</div>
+`;
+
+exports[`DotSeparator render have item 1`] = `
+<div>
+  <div
+    class="MuiBox-root css-1fhe8qf-DotSeparator-root"
+  >
+    <span>
+      item 
+      1
+    </span>
+    <span>
+      item 
+      2
+    </span>
+  </div>
+</div>
+`;

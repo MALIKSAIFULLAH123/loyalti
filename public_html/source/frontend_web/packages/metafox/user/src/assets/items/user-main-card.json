@@ -1,0 +1,53 @@
+{
+  "itemProps": {
+    "variant": "containedCard",
+    "content": {
+      "sx": {
+        "pt": 2,
+        "pl": 2,
+        "pb": 2,
+        "pr": 2,
+        "alignItems": "center",
+        "justifyContent": "",
+        "bgcolor": "background.paper",
+        "borderRadius": 1
+      },
+      "selectedVariant": "",
+      "dividerVariant": "",
+      "hoverVariant": ""
+    },
+    "media": {
+      "width": "auto",
+      "aspectRatio": "11",
+      "placement": "start"
+    },
+    "title": {
+      "variant": "h4",
+      "lines": 1,
+      "fixHeight": 1,
+      "sx": {
+        "mb": 1
+      }
+    },
+    "summary": {
+      "component": "span",
+      "variant": "body2",
+      "lines": 1,
+      "fixHeight": 1,
+      "sx": {
+        "color": "text.secondary"
+      }
+    },
+    "text": {
+      "sx": {
+        "ml": 2,
+        "mr": 2
+      }
+    },
+    "showActionMenu": 1
+  },
+  "info": {
+    "bundle": "web",
+    "name": "User - Main Card"
+  }
+}

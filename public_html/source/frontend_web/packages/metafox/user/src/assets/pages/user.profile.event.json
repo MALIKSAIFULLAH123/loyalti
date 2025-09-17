@@ -1,0 +1,323 @@
+{
+  "large": {
+    "templateName": "profile-tab",
+    "blocks": [
+      {
+        "component": "user.block.userProfileHeader",
+        "slotName": "top",
+        "title": "User Profile Header",
+        "blockProps": {
+          "marginBottom": 2,
+          "variant": "containted",
+          "noHeader": true,
+          "noFooter": true
+        },
+        "key": "f6ud",
+        "blockId": "f6ud"
+      },
+      {
+        "blockId": "hehe12",
+        "parentBlockId": "23uw",
+        "component": "core.block.listContainer",
+        "slotName": "main",
+        "freeze": false,
+        "name": "past"
+      },
+      {
+        "blockId": "oake3",
+        "parentBlockId": "23uw",
+        "component": "core.block.listContainer",
+        "slotName": "main",
+        "freeze": false,
+        "name": "ongoing"
+      },
+      {
+        "blockId": "123ew",
+        "parentBlockId": "23uw",
+        "component": "core.block.listContainer",
+        "slotName": "main",
+        "freeze": false,
+        "name": "upcoming"
+      },
+      {
+        "blockId": "laz34",
+        "parentBlockId": "hehe12",
+        "component": "event.block.eventListingBlock",
+        "slotName": "main",
+        "gridLayout": "Event - Profile - Cards",
+        "dataSource": {
+          "apiParams": "when=past&user_id=:id",
+          "apiUrl": "/event"
+        },
+        "itemView": "event.itemView.mainCard",
+        "contentType": "event",
+        "gridVariant": "gridView",
+        "canLoadMore": true,
+        "freeze": false,
+        "hasSearchBox": true,
+        "blockLayout": "Profile - Clean Body Only No Default Empty Page",
+        "emptyPage": "core.block.no_item_with_icon",
+        "emptyPageProps": {
+          "description": "no_ended_events_found",
+          "image": "ico-calendar-o"
+        },
+        "itemLayout": "Event - Profile - Cards"
+      },
+      {
+        "blockId": "utc21",
+        "parentBlockId": "oake3",
+        "component": "event.block.eventListingBlock",
+        "slotName": "main",
+        "title": "Upcoming",
+        "gridLayout": "Event - Profile - Cards",
+        "dataSource": {
+          "apiParams": "when=ongoing&user_id=:id",
+          "apiUrl": "/event"
+        },
+        "itemView": "event.itemView.mainCard",
+        "contentType": "event",
+        "blockLayout": "Profile - Clean Body Only No Default Empty Page",
+        "canLoadMore": true,
+        "freeze": false,
+        "emptyPage": "core.block.no_item_with_icon",
+        "emptyPageProps": {
+          "description": "no_ongoing_events",
+          "image": "ico-calendar-o"
+        },
+        "hasSearchBox": true,
+        "itemLayout": "Event - Profile - Cards"
+      },
+      {
+        "blockId": "hui21",
+        "parentBlockId": "123ew",
+        "component": "event.block.eventListingBlock",
+        "slotName": "main",
+        "title": "Upcoming",
+        "gridLayout": "Event - Profile - Cards",
+        "dataSource": {
+          "apiParams": "when=upcoming&user_id=:id",
+          "apiUrl": "/event"
+        },
+        "itemView": "event.itemView.mainCard",
+        "contentType": "event",
+        "blockLayout": "Profile - Clean Body Only No Default Empty Page",
+        "canLoadMore": true,
+        "freeze": false,
+        "emptyPage": "core.block.no_item_with_icon",
+        "emptyPageProps": {
+          "description": "no_upcoming_events",
+          "image": "ico-calendar-o"
+        },
+        "hasSearchBox": true,
+        "itemLayout": "Event - Profile - Cards"
+      },
+      {
+        "blockId": "23uw",
+        "component": "core.block.tabContainer",
+        "blockLayout": "Profile - Tab Contained",
+        "slotName": "main",
+        "title": "events",
+        "freeze": false,
+        "hasSearchBox": true,
+        "tabProps": {
+          "placeholderSearch": "search_events",
+          "tabs": [
+            {
+              "id": 1,
+              "label": "tab_event_upcoming",
+              "tab": "upcoming"
+            },
+            {
+              "id": 2,
+              "label": "tab_event_ongoing",
+              "tab": "ongoing"
+            },
+            {
+              "id": 3,
+              "label": "tab_event_past",
+              "tab": "past"
+            }
+          ]
+        },
+        "headerActionsResource": "event.event.headerItemActionOnUserProfileMenu",
+        "headerActions": [
+          {
+            "label": "add_new_event",
+            "to": "/event/add?owner_id=:id",
+            "showWhen": [
+              "or",
+              ["truthy", "isAuthUser"],
+              ["neq", "pageParams.module_name", "user"]
+            ]
+          }
+        ],
+        "privacyEmptyPage": "core.block.no_content_with_description"
+      }
+    ]
+  },
+  "small": {
+    "blocks": [
+      {
+        "component": "core.block.sidebarAppMobile",
+        "slotName": "top",
+        "blockId": "raegh"
+      },
+      {
+        "component": "user.block.userProfileHeader",
+        "slotName": "top",
+        "title": "User Profile Header",
+        "blockProps": {
+          "marginBottom": 2,
+          "variant": "containted",
+          "noHeader": true,
+          "noFooter": true
+        },
+        "key": "wws38",
+        "blockId": "wws38"
+      },
+      {
+        "blockId": "hehe12",
+        "parentBlockId": "23uw",
+        "component": "core.block.listContainer",
+        "slotName": "main",
+        "freeze": false,
+        "name": "past"
+      },
+      {
+        "blockId": "oake3",
+        "parentBlockId": "23uw",
+        "component": "core.block.listContainer",
+        "slotName": "main",
+        "freeze": false,
+        "name": "ongoing"
+      },
+      {
+        "blockId": "123ew",
+        "parentBlockId": "23uw",
+        "component": "core.block.listContainer",
+        "slotName": "main",
+        "freeze": false,
+        "name": "upcoming"
+      },
+      {
+        "blockId": "laz34",
+        "parentBlockId": "hehe12",
+        "component": "event.block.eventListingBlock",
+        "slotName": "main",
+        "gridLayout": "Event - Profile - Cards",
+        "dataSource": {
+          "apiParams": "when=past&user_id=:id",
+          "apiUrl": "/event"
+        },
+        "itemView": "event.itemView.mainCard",
+        "contentType": "event",
+        "gridVariant": "gridView",
+        "canLoadMore": true,
+        "freeze": false,
+        "hasSearchBox": true,
+        "blockLayout": "Profile - Clean Body Only No Default Empty Page",
+        "emptyPage": "core.block.no_item_with_icon",
+        "emptyPageProps": {
+          "description": "no_ended_events_found",
+          "image": "ico-calendar-o"
+        },
+        "itemLayout": "Event - Profile - Cards"
+      },
+      {
+        "blockId": "utc21",
+        "parentBlockId": "oake3",
+        "component": "event.block.eventListingBlock",
+        "slotName": "main",
+        "title": "Upcoming",
+        "gridLayout": "Event - Profile - Cards",
+        "dataSource": {
+          "apiParams": "when=ongoing&user_id=:id",
+          "apiUrl": "/event"
+        },
+        "itemView": "event.itemView.mainCard",
+        "contentType": "event",
+        "blockLayout": "Profile - Clean Body Only No Default Empty Page",
+        "canLoadMore": true,
+        "freeze": false,
+        "emptyPage": "core.block.no_item_with_icon",
+        "emptyPageProps": {
+          "description": "no_ongoing_events",
+          "image": "ico-calendar-o"
+        },
+        "hasSearchBox": true,
+        "itemLayout": "Event - Profile - Cards"
+      },
+      {
+        "blockId": "hui21",
+        "parentBlockId": "123ew",
+        "component": "event.block.eventListingBlock",
+        "slotName": "main",
+        "title": "Upcoming",
+        "gridLayout": "Event - Profile - Cards",
+        "dataSource": {
+          "apiParams": "when=upcoming&user_id=:id",
+          "apiUrl": "/event"
+        },
+        "itemView": "event.itemView.mainCard",
+        "contentType": "event",
+        "blockLayout": "Profile - Clean Body Only No Default Empty Page",
+        "canLoadMore": true,
+        "freeze": false,
+        "emptyPage": "core.block.no_item_with_icon",
+        "emptyPageProps": {
+          "description": "no_upcoming_events",
+          "image": "ico-calendar-o"
+        },
+        "hasSearchBox": true,
+        "itemLayout": "Event - Profile - Cards"
+      },
+      {
+        "blockId": "23uw",
+        "component": "core.block.tabContainer",
+        "blockLayout": "Profile - Tab Contained",
+        "slotName": "main",
+        "title": "events",
+        "freeze": false,
+        "hasSearchBox": true,
+        "tabProps": {
+          "placeholderSearch": "search_events",
+          "tabs": [
+            {
+              "id": 1,
+              "label": "tab_event_upcoming",
+              "tab": "upcoming"
+            },
+            {
+              "id": 2,
+              "label": "tab_event_ongoing",
+              "tab": "ongoing"
+            },
+            {
+              "id": 3,
+              "label": "tab_event_past",
+              "tab": "past"
+            }
+          ]
+        },
+        "headerActionsResource": "event.event.headerItemActionOnUserProfileMenu",
+        "headerActions": [
+          {
+            "label": "add_new_event",
+            "to": "/event/add?owner_id=:id",
+            "showWhen": [
+              "or",
+              ["truthy", "isAuthUser"],
+              ["neq", "pageParams.module_name", "user"]
+            ]
+          }
+        ],
+        "privacyEmptyPage": "core.block.no_content_with_description"
+      }
+    ],
+    "templateName": "mobile"
+  },
+  "info": {
+    "bundle": "web",
+    "name": "user.profile.event"
+  }
+}

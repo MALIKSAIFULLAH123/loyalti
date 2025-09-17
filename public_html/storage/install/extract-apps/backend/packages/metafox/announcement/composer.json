@@ -1,0 +1,47 @@
+{
+    "name": "metafox/announcement",
+    "version": "5.0.21",
+    "description": "",
+    "authors": [
+        {
+            "name": "phpFox",
+            "email": "developer@phpfox.com",
+            "homepage": "https://www.phpfox.com"
+        }
+    ],
+    "extra": {
+        "metafox": {
+            "path": "packages/metafox/announcement",
+            "title": "Announcement",
+            "core": false,
+            "alias": "announcement",
+            "asset": "announcement",
+            "namespace": "MetaFox\\Announcement",
+            "internalAdminUrl": "/announcement/announcement/browse",
+            "providers": [
+                "MetaFox\\Announcement\\Providers\\PackageServiceProvider"
+            ],
+            "frontend": {
+                "@metafox/announcement": "*"
+            },
+            "frontendPaths": [
+                "packages/metafox/announcement"
+            ],
+            "require": {
+                "metafox/core": "5.1.18 - 5.1.19"
+            },
+            "aliases": {
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "MetaFox\\Announcement\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "MetaFox\\Announcement\\Tests\\": "tests/"
+        }
+    }
+}

@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunk_metafox_react=self.webpackChunk_metafox_react||[]).push([["metafox-event-blocks-Group-GroupEventOverview-Block"],{99047(e,t,c){c.r(t),c.d(t,{default:()=>o});var l=c(91557);let o=(0,l.WvA)({extendBlock:"core.block.listview",defaults:{title:"Upcoming Event"}})}}]);

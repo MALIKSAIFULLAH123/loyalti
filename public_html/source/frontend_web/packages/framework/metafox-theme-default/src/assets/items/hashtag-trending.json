@@ -1,0 +1,28 @@
+{
+  "itemProps": {
+    "variant": "flattedCard",
+    "content": {
+      "dividerVariant": "bottom",
+      "hoverVariant": "background",
+      "sx": {
+        "alignItems": "center",
+        "pt": 3,
+        "pb": 3,
+        "pr": 2,
+        "pl": 2
+      }
+    },
+    "title": {
+      "variant": "h5",
+      "lines": 1,
+      "fixHeight": 1,
+      "sx": {
+        "mb": 0.5
+      }
+    }
+  },
+  "info": {
+    "bundle": "web",
+    "name": "Hashtag - Trending"
+  }
+}

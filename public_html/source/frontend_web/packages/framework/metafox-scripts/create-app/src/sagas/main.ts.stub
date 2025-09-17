@@ -1,0 +1,8 @@
+/**
+ * @type: saga
+ * name: $$NAME$$.saga.main
+ */
+
+const sagas = [];
+
+export default sagas;

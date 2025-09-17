@@ -1,0 +1,41 @@
+<?php
+
+/* this is auto generated file */
+return [
+    'birthday_is_a_required_field'                        => 'Birthday is a required field.',
+    'cannot_find_this_user'                               => 'Sorry, we could not find your account.',
+    'cannot update_item_privacy_setting'                  => 'Cannot update item privacy setting.',
+    'cannot_update_profile_menu_setting'                  => 'Cannot update profile menu setting.',
+    'cannot_update_profile_setting'                       => 'Cannot update profile setting.',
+    'country_is_a_required_field'                         => 'Country is a required field.',
+    'custom_gender_field_is_a_required_field'             => 'Custom gender is required field.',
+    'custom_gender_is_a_required_field'                   => 'Custom Gender is a required field.',
+    'gender_is_a_required_field'                          => 'Gender is a required field.',
+    'id'                                                  => [
+        'exists' => 'The user does not exist.',
+    ],
+    'insufficient_permission_to_update_role'              => 'Insufficient permission to assign user to the selected role.',
+    'invalid_email_and_password'                          => 'Invalid email and password.',
+    'max_date_of_birth_end'                               => 'Date of Birth (Start) must be less than or equal to Date of Birth (End).',
+    'min_date_of_birth_end'                               => 'Date of Birth (End) must be greater than or equal to Date of Birth (Start).',
+    'profile_image_is_a_required_field'                   => 'Profile Image is a required field.',
+    'profile_image_must_be_type'                          => 'Profile image must be a file of type: :values.',
+    'profile_not_found'                                   => 'Profile not found',
+    'reason_id'                                           => [
+        'active'  => 'The reason has been deactivated. Please reload the page.',
+        'default' => 'The reason has not been set as default. Please do not deactivate it.',
+        'exists'  => 'The reason does not exist.',
+    ],
+    'the_item_privacy_setting_invalid'                    => 'The \':attribute\' item privacy setting is invalid.',
+    'the_profile_menu_setting_invalid'                    => 'The \':attribute\' menu setting is invalid.',
+    'the_profile_setting_invalid'                         => 'The \':attribute\' privacy setting is invalid.',
+    'the_selected_custom_gender_is_invalid'               => 'The selected custom gender is invalid.',
+    'the_setting_invalid'                                 => 'The \':attribute\' setting is invalid.',
+    'value_does_not_exist_in_any_of_the_specified_tables' => 'The value does not exist in any of the specified tables.',
+    'this_email_has_already_been_registered'              => 'This email address has already been registered.',
+    'this_email_is_not_exist'                             => 'This email address does not exist.',
+    'verification_email'                                  => 'Your email has been verified or it isn\'t associated with any account on our site.',
+    'account_verified'                                    => 'Either the account has been verified, or the provided information isn\'t associated with any account on our site.',
+    'pending_email_verification'                          => 'You need to verify your email address first. If you need support, please <a href="/contact" target="_blank" rel="noopener noreferrer">contact us</a>.',
+    'pending_phone_number_verification'                   => 'You need to verify your phone number first. If you need support, please <a href="/contact" target="_blank" rel="noopener noreferrer">contact us</a>.',
+];

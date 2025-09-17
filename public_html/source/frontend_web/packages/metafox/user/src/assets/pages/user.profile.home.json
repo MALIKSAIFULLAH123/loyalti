@@ -1,0 +1,468 @@
+{
+  "seo": "user.profile.seo",
+  "large": {
+    "templateName": "profile-Subside",
+    "blocks": [
+      {
+        "component": "user.block.userProfileHeader",
+        "slotName": "top",
+        "title": "User Profile Header",
+        "blockProps": {
+          "variant": "containted",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "textPrimary",
+          "noFooter": true,
+          "noHeader": true,
+          "contentStyle": {},
+          "headerStyle": {},
+          "footerStyle": {},
+          "marginBottom": 2
+        },
+        "blockId": "2hsm9"
+      },
+      {
+        "component": "user.block.privateUser",
+        "slotName": "top",
+        "title": "User Profile Header",
+        "blockId": "j213",
+        "showWhen": ["falsy", "profile.profile_settings.profile_view_profile"]
+      },
+      {
+        "component": "user.block.userProfileAboutOverview",
+        "slotName": "subside",
+        "title": "about_me",
+        "blockId": "s38kf",
+        "blockLayout": "Profile - Side Contained",
+        "errorPage": "hide",
+        "showWhen": [
+          "and",
+          ["truthy", "profile.profile_settings.profile_basic_info"],
+          ["truthy", "profile.profile_settings.profile_view_profile"]
+        ]
+      },
+      {
+        "component": "photo.block.profilePhotoOverview",
+        "slotName": "subside",
+        "title": "photos",
+        "blockId": "y545p",
+        "itemView": "photo.itemView.smallCard",
+        "emptyPage": "hide",
+        "errorPage": "hide",
+        "contentType": "photo",
+        "dataSource": {
+          "apiUrl": "/photo",
+          "apiParams": "sort=latest&user_id=:id"
+        },
+        "blockLayout": "Profile - Side Contained (no header divider)",
+        "gridLayout": "Photo - Profile - Small Card",
+        "showWhen": ["truthy", "profile.profile_settings.profile_view_profile"],
+        "itemLayout": "Photo - Profile - Small Card"
+      },
+      {
+        "component": "friend.block.profileFriendOverview",
+        "slotName": "subside",
+        "title": "friends",
+        "itemView": "friend.itemView.profileFriendCard",
+        "blockId": "q40u",
+        "contentType": "friend",
+        "dataSource": {
+          "apiUrl": "/friend",
+          "apiParams": "user_id=:id&view=latest&limit=6"
+        },
+        "blockLayout": "Profile - Side Contained (no header divider)",
+        "displayLimit": 5,
+        "gridLayout": "Profile Friends Small Lists",
+        "emptyPage": "hide",
+        "errorPage": "hide",
+        "itemLayout": "Profile Friends Small Lists"
+      },
+      {
+        "component": "core.block.footer",
+        "slotName": "subside",
+        "dividerVariant": "middle",
+        "blockLayout": "footer",
+        "blockId": "qlfp",
+        "showWhen": ["truthy", "profile.profile_settings.profile_view_profile"]
+      },
+      {
+        "component": "feed.block.statusComposer",
+        "slotName": "main",
+        "title": "Status Composer",
+        "blockId": "srfte",
+        "variant": "default",
+        "blockLayout": "Status Composer"
+      },
+      {
+        "component": "feed.block.profileFeeds",
+        "slotName": "main",
+        "title": "Activity Feed",
+        "blockId": "ymm1q",
+        "itemView": "feed.itemView.mainCard",
+        "canLoadMore": true,
+        "canLoadSmooth": true,
+        "emptyPage": "core.block.no_content_with_description",
+        "blockLayout": "Main Listings",
+        "gridLayout": "Feed - Main Card",
+        "itemLayout": "Feed - Main Card"
+      }
+    ]
+  },
+  "small": {
+    "templateName": "mobile",
+    "blocks": [
+      {
+        "component": "core.block.sidebarAppMobile",
+        "slotName": "top",
+        "blockId": "raegh"
+      },
+      {
+        "component": "user.block.userProfileHeader",
+        "slotName": "top",
+        "title": "User Profile Header",
+        "blockProps": {
+          "variant": "containted",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "textPrimary",
+          "noFooter": true,
+          "noHeader": true,
+          "blockStyle": {
+            "mb": 2
+          },
+          "contentStyle": {},
+          "headerStyle": {},
+          "footerStyle": {},
+          "marginBottom": 2
+        },
+        "blockId": "2hsm9"
+      },
+      {
+        "component": "user.block.privateUser",
+        "slotName": "top",
+        "title": "User Profile Header",
+        "blockId": "j213",
+        "showWhen": ["falsy", "profile.profile_settings.profile_view_profile"]
+      },
+      {
+        "component": "user.block.userProfileAbout",
+        "slotName": "side",
+        "title": "about",
+        "blockProps": {
+          "variant": "contained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "textPrimary",
+          "blockStyle": {
+            "mb": 2,
+            "bgColor": "paper",
+            "borderRadius": "base"
+          },
+          "headerStyle": {
+            "pl": 2,
+            "pt": 1,
+            "pb": 1,
+            "pr": 2
+          },
+          "contentStyle": {
+            "pl": 2,
+            "pt": 2,
+            "pb": 2,
+            "pr": 2
+          },
+          "footerStyle": {
+            "pl": 2,
+            "pt": 1,
+            "pb": 1,
+            "pr": 2
+          }
+        },
+        "blockId": "t68l"
+      },
+      {
+        "component": "friend.block.profileFriendOverview",
+        "slotName": "side",
+        "title": "friends",
+        "blockProps": {
+          "variant": "contained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "textPrimary",
+          "blockStyle": {
+            "mb": 2,
+            "bgColor": "paper",
+            "borderRadius": "base"
+          },
+          "headerStyle": {
+            "pl": 2,
+            "pt": 1,
+            "pb": 1,
+            "pr": 2
+          },
+          "contentStyle": {},
+          "footerStyle": {
+            "pl": 2,
+            "pt": 1,
+            "pb": 1,
+            "pr": 2
+          }
+        },
+        "gridContainerProps": {
+          "spacing": 0
+        },
+        "gridItemProps": {
+          "xs": 12,
+          "md": 12
+        },
+        "itemView": "friend.itemView.profileFriendCard",
+        "blockId": "c1mqh"
+      },
+      {
+        "component": "friend.block.profileFriendRequestOverview",
+        "slotName": "side",
+        "title": "Friends Request",
+        "blockProps": {
+          "variant": "contained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "textPrimary",
+          "blockStyle": {
+            "mb": 2,
+            "bgColor": "paper",
+            "borderRadius": "base"
+          },
+          "headerStyle": {
+            "pl": 2,
+            "pt": 1,
+            "pb": 1,
+            "pr": 2
+          },
+          "contentStyle": {},
+          "footerStyle": {
+            "pl": 2,
+            "pt": 1,
+            "pb": 1,
+            "pr": 2
+          }
+        },
+        "blockId": "iob9",
+        "gridContainerProps": {
+          "spacing": 0
+        },
+        "gridItemProps": {
+          "xs": 12,
+          "md": 12
+        },
+        "itemView": "friend_pendingRequest.itemView.smallCard"
+      },
+      {
+        "component": "photo.block.profilePhotoOverview",
+        "slotName": "subside",
+        "title": "photos",
+        "blockProps": {
+          "variant": "contained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "textPrimary",
+          "blockStyle": {
+            "mb": 2,
+            "bgColor": "paper",
+            "borderRadius": "base"
+          },
+          "headerStyle": {
+            "pl": 2,
+            "pt": 1,
+            "pb": 1,
+            "pr": 2
+          },
+          "contentStyle": {
+            "pl": 2,
+            "pt": 2,
+            "pb": 2,
+            "pr": 2
+          },
+          "footerStyle": {
+            "pl": 2,
+            "pt": 1,
+            "pb": 1,
+            "pr": 2
+          }
+        },
+        "blockId": "y545p",
+        "itemView": "photo.itemView.smallCard",
+        "gridContainerProps": {
+          "spacing": 1
+        },
+        "gridItemProps": {
+          "xs": 1,
+          "sm": 6,
+          "md": 4,
+          "lg": 4,
+          "xl": 3
+        }
+      },
+      {
+        "component": "photo_album.block.profilePhotoAlbumOverview",
+        "slotName": "subside",
+        "title": "Albums",
+        "blockProps": {
+          "variant": "contained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "textPrimary",
+          "blockStyle": {
+            "mb": 2,
+            "bgColor": "paper",
+            "borderRadius": "base"
+          },
+          "headerStyle": {
+            "pl": 2,
+            "pt": 1,
+            "pb": 1,
+            "pr": 2
+          },
+          "contentStyle": {
+            "pl": 2,
+            "pt": 2,
+            "pb": 2,
+            "pr": 2
+          },
+          "footerStyle": {
+            "pl": 2,
+            "pt": 1,
+            "pb": 1,
+            "pr": 2
+          }
+        },
+        "blockId": "3wyht",
+        "itemView": "photo_album.itemView.smallCard",
+        "gridContainerProps": {
+          "spacing": 1
+        },
+        "gridItemProps": {
+          "xs": 1,
+          "sm": 6,
+          "md": 4,
+          "lg": 4,
+          "xl": 3
+        }
+      },
+      {
+        "component": "pages.block.profilePagesListingOverview",
+        "slotName": "subside",
+        "title": "pages",
+        "blockProps": {
+          "variant": "contained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "textPrimary",
+          "blockStyle": {
+            "mb": 2,
+            "bgColor": "paper",
+            "borderRadius": "base"
+          },
+          "headerStyle": {
+            "pl": 2,
+            "pt": 1,
+            "pb": 1,
+            "pr": 2
+          },
+          "contentStyle": {
+            "pl": 2,
+            "pt": 2,
+            "pb": 2,
+            "pr": 2
+          },
+          "footerStyle": {
+            "pl": 2,
+            "pt": 1,
+            "pb": 1,
+            "pr": 2
+          }
+        },
+        "blockId": "8exko",
+        "itemView": "pages.itemView.smallCard",
+        "gridContainerProps": {
+          "spacing": 0
+        },
+        "gridItemProps": {
+          "xs": 12,
+          "sm": 12,
+          "md": 12
+        }
+      },
+      {
+        "component": "groups.block.profileGroupsListingOverview",
+        "slotName": "subside",
+        "title": "groups",
+        "blockProps": {
+          "variant": "contained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "textPrimary",
+          "blockStyle": {
+            "mb": 2,
+            "bgColor": "paper",
+            "borderRadius": "base"
+          },
+          "headerStyle": {
+            "pl": 2,
+            "pt": 1,
+            "pb": 1,
+            "pr": 2
+          },
+          "contentStyle": {
+            "pl": 2,
+            "pt": 2,
+            "pb": 2,
+            "pr": 2
+          },
+          "footerStyle": {
+            "pl": 2,
+            "pt": 1,
+            "pb": 1,
+            "pr": 2
+          }
+        },
+        "blockId": "u1frk",
+        "itemView": "groups.itemView.smallCard",
+        "gridContainerProps": {
+          "spacing": 0
+        },
+        "gridItemProps": {
+          "xs": 12,
+          "sm": 12,
+          "md": 12
+        }
+      },
+      {
+        "component": "feed.block.statusComposer",
+        "slotName": "main",
+        "title": "Status Composer",
+        "blockId": "srfte",
+        "variant": "default",
+        "blockLayout": "Blocker - Mobile"
+      },
+      {
+        "blockId": "drm9",
+        "component": "feed.block.profileFeeds",
+        "slotName": "main",
+        "pageName": "user.profile.home",
+        "pageSize": "small",
+        "title": "Activity Feed",
+        "itemView": "feed.itemView.mainCard",
+        "canLoadMore": true,
+        "canLoadSmooth": true,
+        "contentType": "feed",
+        "emptyPage": "core.block.no_content_with_description",
+        "blockLayout": "Main Listings",
+        "gridLayout": "Feeds - Mobile",
+        "itemLayout": "Feeds - Mobile"
+      }
+    ]
+  },
+  "info": {
+    "bundle": "web",
+    "name": "user.profile.home"
+  }
+}

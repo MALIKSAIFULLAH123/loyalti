@@ -1,0 +1,46 @@
+{
+  "blockProps": {
+    "titleStyle": {
+      "component": "h1",
+      "sx": {
+        "typography": "h4"
+      }
+    },
+    "contentStyle": {
+      "sx": {
+        "pl": 2,
+        "pr": 2,
+        "pt": 2,
+        "pb": 2
+      }
+    },
+    "headerStyle": {
+      "dividerVariant": "fullWidth",
+      "sx": {
+        "pl": 2,
+        "pr": 2,
+        "height": "48px"
+      }
+    },
+    "footerStyle": {
+      "dividerVariant": "0",
+      "sx": {
+        "pl": 2,
+        "pr": 2,
+        "pt": 1,
+        "pb": 1
+      }
+    },
+    "blockStyle": {
+      "sx": {
+        "mt": 2,
+        "borderRadius": 1
+      }
+    }
+  },
+  "noFooter": 0,
+  "info": {
+    "bundle": "web",
+    "name": "Side Contained"
+  }
+}

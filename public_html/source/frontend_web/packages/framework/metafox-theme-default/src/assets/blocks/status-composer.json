@@ -1,0 +1,30 @@
+{
+  "blockProps": {
+    "contentStyle": {
+      "sx": {
+        "pl": 2,
+        "pr": 2,
+        "pt": 2,
+        "pb": 2,
+        "bgcolor": "background.paper",
+        "borderRadius": 1,
+        "borderColor": "divider",
+        "borderWidth": 1,
+        "borderStyle": "solid"
+      }
+    },
+    "blockStyle": {
+      "sx": {
+        "mb": 0,
+        "mt": 2,
+        "borderRadius": 1
+      }
+    }
+  },
+  "noHeader": true,
+  "noFooter": true,
+  "info": {
+    "bundle": "web",
+    "name": "Status Composer"
+  }
+}

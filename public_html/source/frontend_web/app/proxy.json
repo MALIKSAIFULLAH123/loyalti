@@ -1,0 +1,15 @@
+{
+  "/api/v1/layout": {
+    "target": "http://localhost:3002",
+    "changeOrigin": true,
+    "secure": false,
+    "pathRewrite": {
+      "^/api/v1/": "/"
+    }
+  },
+  "/api": {
+    "target": "https://preview.metafox.app/",
+    "changeOrigin": true,
+    "secure": false
+  }
+}

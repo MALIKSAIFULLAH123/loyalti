@@ -1,0 +1,13 @@
+{
+  "blockProps": {
+    "contentStyle": {},
+    "headerStyle": {},
+    "footerStyle": {}
+  },
+  "noHeader": 1,
+  "noFooter": 1,
+  "info": {
+    "bundle": "admincp",
+    "name": "Clean - Body Only"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "gridContainerProps": {
+    "columnSpacing": 2,
+    "rowSpacing": 2
+  },
+  "gridItemProps": {
+    "xs": 12,
+    "sm": 6,
+    "md": 6,
+    "lg": 6,
+    "xl": 4
+  },
+  "gridVariant": "gridView",
+  "info": {
+    "bundle": "web",
+    "name": "Friend - Cards"
+  }
+}

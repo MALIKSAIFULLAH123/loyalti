@@ -1,0 +1,15 @@
+{
+  "name": "@metafox/html-viewer",
+  "version": "5.0.1",
+  "main": "src/index.tsx",
+  "author": "developer@phpfox.com",
+  "license": "MIT",
+  "private": false,
+  "repository": {},
+  "dependencies": {
+    "react-html-parser": "2.0.2"
+  },
+  "scripts": {
+    "unittest": "metafox jest-unittest"
+  }
+}

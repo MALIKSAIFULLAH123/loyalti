@@ -1,0 +1,19 @@
+{
+  "itemProps": {
+    "showActionMenu": 1,
+    "variant": "containedCard",
+    "content": {
+      "sx": {
+        "width": "100%",
+        "color": "text.secondary",
+        "fontSize": 15,
+        "display": "flex",
+        "alignItems": "center"
+      }
+    }
+  },
+  "info": {
+    "bundle": "web",
+    "name": "Record Item - Table - Paper"
+  }
+}

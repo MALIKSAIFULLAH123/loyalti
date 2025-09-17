@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SponsorFlag render 1`] = `
+<div>
+  <div
+    data-testid="infoLoader"
+  />
+  <span
+    class="MuiFlag-root MuiFlag-itemView"
+  >
+    <span
+      class="MuiFlag-item MuiFlag-white"
+      data-testid="sponsor"
+    >
+      <span
+        class="MuiFlag-icon"
+      >
+        <span
+          class="ico ico-sponsor ltr-1o2x2pn-MuiIcon-root"
+        />
+      </span>
+      <span
+        class="MuiFlag-text MuiFlag-is_sponsor"
+      >
+        sponsored
+      </span>
+    </span>
+  </span>
+</div>
+`;
+
+exports[`SponsorFlag render color primary 1`] = `
+<div>
+  <div
+    data-testid="infoLoader"
+  />
+  <span
+    class="MuiFlag-root MuiFlag-itemView"
+  >
+    <span
+      class="MuiFlag-item MuiFlag-primary"
+      data-testid="sponsor"
+    >
+      <span
+        class="MuiFlag-icon"
+      >
+        <span
+          class="ico ico-sponsor ltr-1o2x2pn-MuiIcon-root"
+        />
+      </span>
+      <span
+        class="MuiFlag-text MuiFlag-is_sponsor"
+      >
+        sponsored
+      </span>
+    </span>
+  </span>
+</div>
+`;
+
+exports[`SponsorFlag render null 1`] = `<div />`;

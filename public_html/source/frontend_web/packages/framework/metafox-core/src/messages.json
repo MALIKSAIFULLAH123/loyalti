@@ -1,0 +1,23 @@
+{
+  "edit_layout": "Edit Layout",
+  "edit_layout_slot": "Edit Location",
+  "choose_preview_size": "Choose Preview Device",
+  "toggle_layout_editor": "Toggle Layout Editor",
+  "toggle_live_edit": "Toggle Live Edit",
+  "dark_mode": "Dark Mode",
+  "edit_theme_styles": "Edit Styling",
+  "rtl": "RTL",
+  "shortcuts": "Shortcuts",
+  "settings": "Settings",
+  "comments": "Comments",
+  "shares": "Shares",
+  "react": "React",
+  "comment": "Comment",
+  "share": "Share",
+  "featured": "Featured",
+  "sponsored": "Sponsored",
+  "sign_in_to_admincp": "Sign In AdminCP",
+  "sign_in_to_your_account_to_continue": "Sign In to AdminCP to continue",
+  "rows_per_page": "Rows per page:",
+  "something_went_wrong": "Whoops, something went wrong"
+}

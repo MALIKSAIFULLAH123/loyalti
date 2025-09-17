@@ -1,0 +1,42 @@
+{
+  "blockProps": {
+    "titleStyle": {
+      "component": "h2",
+      "sx": {
+        "typography": "secondary",
+        "color": "text"
+      }
+    },
+    "contentStyle": {
+      "sx": {
+        "ml": 1,
+        "mr": 1
+      },
+      "variant": "Admin Form"
+    },
+    "headerStyle": {
+      "dividerVariant": "0",
+      "sx": {
+        "pl": 2,
+        "pr": 2,
+        "pt": 3,
+        "pb": 1
+      }
+    },
+    "footerStyle": {},
+    "blockStyle": {
+      "sx": {
+        "mb": 2,
+        "maxWidth": "sm",
+        "margin": "0 auto"
+      }
+    }
+  },
+  "noHeader": 0,
+  "noFooter": true,
+  "freeze": 0,
+  "info": {
+    "bundle": "web",
+    "name": "Blocked Setting Mobile"
+  }
+}

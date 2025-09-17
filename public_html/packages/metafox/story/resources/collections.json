@@ -1,0 +1,169 @@
+[
+    {
+        "title": "Popular",
+        "items": [
+            {
+                "path": "co1/bg1.png",
+                "variants": {
+                    "50x50": "co1/bg1_48.png"
+                }
+            },
+            {
+                "path": "co1/bg2.png",
+                "variants": {
+                    "50x50": "co1/bg2_48.png"
+                }
+            },
+            {
+                "path": "co1/bg3.png",
+                "variants": {
+                    "50x50": "co1/bg3_48.png"
+                }
+            },
+            {
+                "path": "co1/bg4.png",
+                "variants": {
+                    "50x50": "co1/bg4_48.png"
+                }
+            },
+            {
+                "path": "co1/bg5.png",
+                "variants": {
+                    "50x50": "co1/bg5_48.png"
+                }
+            },
+            {
+                "path": "co1/bg6.png",
+                "variants": {
+                    "50x50": "co1/bg6_48.png"
+                }
+            },
+            {
+                "path": "co1/bg7.png",
+                "variants": {
+                    "50x50": "co1/bg7_48.png"
+                }
+            },
+            {
+                "path": "co1/bg8.png",
+                "variants": {
+                    "50x50": "co1/bg8_48.png"
+                }
+            },
+            {
+                "path": "co1/bg9.png",
+                "variants": {
+                    "50x50": "co1/bg9_48.png"
+                }
+            },
+            {
+                "path": "co1/bg10.png",
+                "variants": {
+                    "50x50": "co1/bg10_48.png"
+                }
+            },
+            {
+                "path": "co1/bg11.png",
+                "variants": {
+                    "50x50": "co1/bg11_48.png"
+                }
+            },
+            {
+                "path": "co1/bg12.png",
+                "variants": {
+                    "50x50": "co1/bg12_48.png"
+                }
+            },
+            {
+                "path": "co1/bg13.png",
+                "variants": {
+                    "50x50": "co1/bg13_48.png"
+                }
+            },
+            {
+                "path": "co1/bg14.png",
+                "variants": {
+                    "50x50": "co1/bg14_48.png"
+                }
+            },
+            {
+                "path": "co1/bg15.png",
+                "variants": {
+                    "50x50": "co1/bg15_48.png"
+                }
+            },
+            {
+                "path": "co1/bg16.png",
+                "variants": {
+                    "50x50": "co1/bg16_48.png"
+                }
+            },
+            {
+                "path": "co1/bg17.png",
+                "variants": {
+                    "50x50": "co1/bg17_48.png"
+                }
+            },
+            {
+                "path": "co1/bg18.png",
+                "variants": {
+                    "50x50": "co1/bg18_48.png"
+                }
+            },
+            {
+                "path": "co1/bg19.png",
+                "variants": {
+                    "50x50": "co1/bg19_48.png"
+                }
+            },
+            {
+                "path": "co1/bg20.png",
+                "variants": {
+                    "50x50": "co1/bg20_48.png"
+                }
+            },
+            {
+                "path": "co1/bg21.png",
+                "variants": {
+                    "50x50": "co1/bg21_48.png"
+                }
+            },
+            {
+                "path": "co1/bg22.png",
+                "variants": {
+                    "50x50": "co1/bg22_48.png"
+                }
+            },
+            {
+                "path": "co1/bg23.png",
+                "variants": {
+                    "50x50": "co1/bg23_48.png"
+                }
+            },
+            {
+                "path": "co1/bg24.png",
+                "variants": {
+                    "50x50": "co1/bg24_48.png"
+                }
+            },
+            {
+                "path": "co1/bg25.png",
+                "variants": {
+                    "50x50": "co1/bg25_48.png"
+                }
+            },
+            {
+                "path": "co1/bg26.png",
+                "variants": {
+                    "50x50": "co1/bg26_48.png"
+                }
+            },
+            {
+                "path": "co1/bg27.png",
+                "variants": {
+                    "50x50": "co1/bg27_48.png"
+                }
+            }
+        ]
+    }
+]

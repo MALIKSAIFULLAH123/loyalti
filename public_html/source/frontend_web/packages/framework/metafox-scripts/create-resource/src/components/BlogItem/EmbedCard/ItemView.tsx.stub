@@ -1,0 +1,15 @@
+/**
+ * @type: embedView
+ * name: $$RESOURCE$$.embedItem.insideFeedItem
+ */
+import { connectItemView } from '@metafox/framework';
+import actionCreators from '$$PACKAGE$$/actions/$$RESOURCE$$ItemActions';
+import React from 'react';
+
+export function $$RESOURCE_STUDLY$$EmbedView() {
+  return <>Embed View</>;
+}
+
+$$RESOURCE_STUDLY$$EmbedView.displayName = '$$RESOURCE_STUDLY$$ItemEmbedView';
+
+export default connectItemView($$RESOURCE_STUDLY$$EmbedView, actionCreators);

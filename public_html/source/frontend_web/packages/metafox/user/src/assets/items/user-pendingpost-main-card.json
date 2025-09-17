@@ -1,0 +1,30 @@
+{
+  "itemProps": {
+    "variant": "containedCard",
+    "summary": {
+      "sx": {
+        "mb": 2
+      }
+    },
+    "content": {
+      "sx": {
+        "bgcolor": "background.paper",
+        "borderRadius": 1,
+        "borderTopWidth": 1,
+        "borderRightWidth": 1,
+        "borderBottomWidth": 1,
+        "borderLeftWidth": 1,
+        "borderColor": "border.secondary",
+        "borderStyle": "solid",
+        "pt": 0,
+        "pr": 2,
+        "pb": 2,
+        "pl": 2
+      }
+    }
+  },
+  "info": {
+    "bundle": "web",
+    "name": "User - PendingPost - Main Card"
+  }
+}

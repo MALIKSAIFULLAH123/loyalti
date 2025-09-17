@@ -1,0 +1,26 @@
+{
+  "info": {
+    "bundle": "web",
+    "name": "core.error500"
+  },
+  "large": {
+    "templateName": "simple",
+    "blocks": [
+      {
+        "component": "core.block.error404",
+        "slotName": "main",
+        "blockId": "tidp6"
+      }
+    ]
+  },
+  "small": {
+    "templateName": "mobile",
+    "blocks": [
+      {
+        "component": "core.block.error404",
+        "slotName": "main",
+        "blockId": "uwnxf"
+      }
+    ]
+  }
+}

@@ -1,0 +1,100 @@
+{
+  "large": {
+    "templateName": "profile-tab",
+    "blocks": [
+      {
+        "component": "user.block.userProfileHeader",
+        "slotName": "top",
+        "title": "User Profile Header",
+        "blockProps": {
+          "marginBottom": 2,
+          "variant": "containted",
+          "noHeader": true,
+          "noFooter": true
+        },
+        "key": "520j",
+        "blockId": "520j"
+      },
+      {
+        "component": "pages.block.pagesListingBlock",
+        "slotName": "main",
+        "title": "pages",
+        "dataSource": {
+          "apiParams": "user_id=:id&sort=latest&limit=12",
+          "apiUrl": "/page"
+        },
+        "headerActionsResource": "page.page.headerItemActionOnUserProfileMenu",
+        "itemView": "page.itemView.mainCard",
+        "canLoadMore": true,
+        "hasSearchBox": true,
+        "placeholderSearchBox": "search_pages",
+        "key": "noty5",
+        "blockId": "noty5",
+        "contentType": "page",
+        "freeze": false,
+        "blockLayout": "Profile - Contained",
+        "gridLayout": "Page - Profile - Main Card",
+        "privacyEmptyPage": "core.block.no_content_with_description",
+        "emptyPage": "core.block.no_item_with_icon",
+        "emptyPageProps": {
+          "description": "no_pages_found",
+          "image": "ico-flag-waving-o"
+        },
+        "itemLayout": "Page User - Main Card"
+      }
+    ]
+  },
+  "small": {
+    "blocks": [
+      {
+        "component": "core.block.sidebarAppMobile",
+        "slotName": "top",
+        "blockId": "raegh"
+      },
+      {
+        "component": "user.block.userProfileHeader",
+        "slotName": "top",
+        "title": "User Profile Header",
+        "blockProps": {
+          "marginBottom": 2,
+          "variant": "containted",
+          "noHeader": true,
+          "noFooter": true
+        },
+        "key": "5ym0j",
+        "blockId": "5ym0j"
+      },
+      {
+        "component": "pages.block.pagesListingBlock",
+        "slotName": "main",
+        "title": "pages",
+        "dataSource": {
+          "apiParams": "user_id=:id&sort=latest&limit=12",
+          "apiUrl": "/page"
+        },
+        "headerActionsResource": "page.page.headerItemActionOnUserProfileMenu",
+        "itemView": "page.itemView.mainCard",
+        "canLoadMore": true,
+        "key": "oz0hb",
+        "blockId": "oz0hb",
+        "contentType": "page",
+        "blockLayout": "Profile - Contained",
+        "gridLayout": "Page - Main Card",
+        "hasSearchBox": 1,
+        "placeholderSearchBox": "search_pages",
+        "privacyEmptyPage": "core.block.no_content_with_description",
+        "emptyPage": "core.block.no_item_with_icon",
+        "emptyPageProps": {
+          "description": "no_pages_found",
+          "image": "ico-flag-waving-o"
+        },
+        "itemLayout": "Page User - Main Card"
+      }
+    ],
+    "templateName": "mobile"
+  },
+  "info": {
+    "bundle": "web",
+    "name": "user.profile.page"
+  }
+}

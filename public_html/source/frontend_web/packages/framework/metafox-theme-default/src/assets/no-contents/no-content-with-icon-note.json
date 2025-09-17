@@ -1,0 +1,49 @@
+{
+  "titleStyle": {
+    "component": "h3",
+    "variant": "h3",
+    "sx": {
+      "color": "text.primary"
+    }
+  },
+  "summaryStyle": {
+    "variant": "h4",
+    "sx": {
+      "color": "text.secondary",
+      "fontWeight": 400,
+      "pt": 2
+    },
+    "component": "h5"
+  },
+  "noMedia": 0,
+  "contentStyle": {
+    "sx": {
+      "justifyContent": "center",
+      "pt": 4,
+      "pr": 2,
+      "pb": 2,
+      "pl": 2,
+      "mt": 0
+    }
+  },
+  "textStyle": {
+    "sx": {
+      "textAlign": "center"
+    }
+  },
+  "mediaStyle": {
+    "sx": {
+      "textAlign": "center",
+      "pt": 4,
+      "pr": 2,
+      "pb": 4,
+      "pl": 2
+    }
+  },
+  "noSummary": 0,
+  "noTitle": 0,
+  "info": {
+    "bundle": "web",
+    "name": "No Content With Icon & Note"
+  }
+}

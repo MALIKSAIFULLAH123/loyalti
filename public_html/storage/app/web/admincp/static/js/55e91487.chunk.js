@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunk_metafox_react=self.webpackChunk_metafox_react||[]).push([["metafox-forum-blocks-ForumListing-Block"],{74791(e,t,a){a.r(t),a.d(t,{default:()=>m});var o=a(91557);let m=(0,o.WvA)({extendBlock:"core.block.listview",name:"forums",defaults:{itemView:"forum.itemView.mainCard"}})}}]);

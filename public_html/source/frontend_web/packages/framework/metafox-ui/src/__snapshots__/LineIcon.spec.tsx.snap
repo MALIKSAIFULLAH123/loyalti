@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LineIcon render icon 1`] = `
+<div>
+  <span
+    class="ico ico-angle-right css-1o2x2pn-MuiIcon-root"
+  />
+</div>
+`;

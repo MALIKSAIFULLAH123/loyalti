@@ -1,0 +1,38 @@
+{
+  "large": {
+    "blocks": [
+      {
+        "component": "feed.block.feedView",
+        "slotName": "main",
+        "blockId": "kfze4",
+        "title": "",
+        "itemProps": {
+          "showActionMenu": true
+        },
+        "itemView": "feed.itemView.mainCard",
+        "gridLayout": "Feed - Main Card",
+        "itemLayout": "Feed - Main Card",
+        "blockLayout": "Feed Detail"
+      }
+    ],
+    "templateName": "simple"
+  },
+  "small": {
+    "blocks": [
+      {
+        "component": "feed.block.feedView",
+        "slotName": "main",
+        "blockId": "6xflq",
+        "itemView": "feed.itemView.mainCard",
+        "gridLayout": "Feed - Main Card",
+        "itemLayout": "Feed - Main Card",
+        "blockLayout": "Feed Detail"
+      }
+    ],
+    "templateName": "mobile"
+  },
+  "info": {
+    "bundle": "web",
+    "name": "feed.view"
+  }
+}

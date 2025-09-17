@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunk_metafox_react=self.webpackChunk_metafox_react||[]).push([["metafox-event-blocks-EventListing-Block"],{69869(e,t,a){a.r(t),a.d(t,{default:()=>l});var i=a(91557);let l=(0,i.WvA)({extendBlock:"core.block.listview",defaults:{title:"Events",itemView:"event.itemView.mainCard"}})}}]);

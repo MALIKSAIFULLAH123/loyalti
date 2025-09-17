@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunk_metafox_react=self.webpackChunk_metafox_react||[]).push([["metafox-admincp-blocks-AdminDetailDataListing-ItemData-DefaultValue"],{83282(a,e,t){function u({format:a,value:e}){return e||null}t.r(e),t.d(e,{default:()=>u})}}]);

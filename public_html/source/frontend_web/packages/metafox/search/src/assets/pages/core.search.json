@@ -1,0 +1,57 @@
+{
+  "large": {
+    "templateName": "two-column-fixed",
+    "blocks": [
+      {
+        "component": "search.block.SearchResultListings",
+        "slotName": "main",
+        "blockId": "d90mi",
+        "searchSectionAction": "viewAll",
+        "searchPreviewAction": "viewAllSectionItem"
+      },
+      {
+        "component": "core.globalSearchFilterBlock",
+        "slotName": "side",
+        "blockId": "8dm7i",
+        "title": "search_results",
+        "blockLayout": "Search Menu"
+      }
+    ]
+  },
+  "small": {
+    "templateName": "mobile",
+    "blocks": [
+      {
+        "component": "core.block.sidebarAppMobile",
+        "slotName": "main",
+        "blockProps": {
+          "variant": "plained",
+          "marginBottom": 2
+        },
+        "title": "search_results",
+        "contents": [
+          {
+            "name": "core.globalSearchFilterBlock",
+            "props": {
+              "noHeader": true
+            }
+          }
+        ],
+        "blockId": "ks3wd"
+      },
+      {
+        "component": "search.block.SearchResultListings",
+        "slotName": "main",
+        "blockId": "d90mi",
+        "title": "Search Results",
+        "blockLayout": "App List - Mobile",
+        "searchSectionAction": "viewAll",
+        "searchPreviewAction": "viewAllSectionItem"
+      }
+    ]
+  },
+  "info": {
+    "bundle": "web",
+    "name": "core.search"
+  }
+}

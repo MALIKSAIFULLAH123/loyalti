@@ -1,0 +1,32 @@
+{
+  "blockProps": {
+    "titleStyle": {
+      "component": "h1",
+      "sx": {
+        "typography": "secondary"
+      }
+    },
+    "headerStyle": {
+      "dividerVariant": "0",
+      "sx": {
+        "mt": 3,
+        "mb": 3,
+        "ml": 2,
+        "mr": 2
+      }
+    },
+    "blockStyle": {
+      "sx": {
+        "pl": 0,
+        "pr": 0,
+        "bgcolor": "background.paper",
+        "borderRadius": "0"
+      }
+    }
+  },
+  "noFooter": false,
+  "info": {
+    "bundle": "web",
+    "name": "sidebar app message"
+  }
+}

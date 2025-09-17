@@ -1,0 +1,92 @@
+[
+  {
+    "icon": "ico-user-man-three-o",
+    "value": 71,
+    "label": "Members"
+  },
+  {
+    "icon": "ico-photos-alt-o",
+    "value": 218,
+    "label": "Photos"
+  },
+  {
+    "icon": "ico-photos-alt-o",
+    "value": 180,
+    "label": "Albums"
+  },
+  {
+    "icon": "ico-comment-square-o",
+    "value": 445,
+    "label": "Comments"
+  },
+  {
+    "icon": "ico-comments-o",
+    "value": 445,
+    "label": "Forum Posts"
+  },
+  {
+    "icon": "ico-compose-alt",
+    "value": 13444,
+    "label": "Blogs"
+  },
+  {
+    "icon": "ico-video",
+    "value": 33335,
+    "label": "Videos"
+  },
+  {
+    "icon": "ico-comments-o",
+    "value": 442,
+    "label": "Forum Threads"
+  },
+  {
+    "icon": "ico-music-note-o",
+    "value": 442,
+    "label": "Songs"
+  },
+  {
+    "icon": "ico-user-man-three-o",
+    "value": 71,
+    "label": "Members"
+  },
+  {
+    "icon": "ico-photos-alt-o",
+    "value": 218,
+    "label": "Photos"
+  },
+  {
+    "icon": "ico-photos-alt-o",
+    "value": 180,
+    "label": "Albums"
+  },
+  {
+    "icon": "ico-comment-square-o",
+    "value": 445,
+    "label": "Comments"
+  },
+  {
+    "icon": "ico-comments-o",
+    "value": 445,
+    "label": "Forum Posts"
+  },
+  {
+    "icon": "ico-compose-alt",
+    "value": 13444,
+    "label": "Blogs"
+  },
+  {
+    "icon": "ico-video",
+    "value": 33335,
+    "label": "Videos"
+  },
+  {
+    "icon": "ico-comments-o",
+    "value": 442,
+    "label": "Forum Threads"
+  },
+  {
+    "icon": "ico-music-note-o",
+    "value": 442,
+    "label": "Songs"
+  }
+]

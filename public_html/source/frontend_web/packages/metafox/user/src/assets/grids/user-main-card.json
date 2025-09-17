@@ -1,0 +1,21 @@
+{
+  "gridContainerProps": {
+    "rowSpacing": 2,
+    "columnSpacing": 2
+  },
+  "gridItemProps": {
+    "xs": 12,
+    "sm": 6,
+    "md": 6,
+    "lg": 6,
+    "xl": 4,
+    "variant": "containedCard",
+    "divider": "",
+    "hover": ""
+  },
+  "gridVariant": "gridView",
+  "info": {
+    "bundle": "web",
+    "name": "User - Main Card"
+  }
+}

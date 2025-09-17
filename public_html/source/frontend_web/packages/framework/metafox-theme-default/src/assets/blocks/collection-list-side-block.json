@@ -1,0 +1,38 @@
+{
+  "blockProps": {
+    "titleStyle": {
+      "sx": {
+        "typography": "h4",
+        "color": "text.secondary"
+      }
+    },
+    "contentStyle": {
+      "sx": {
+        "pt": 0,
+        "pr": 1,
+        "pl": 1,
+        "pb": 0
+      }
+    },
+    "headerStyle": {
+      "sx": {
+        "mb": 1,
+        "pr": 2,
+        "pl": 2
+      }
+    },
+    "blockStyle": {
+      "sx": {
+        "pr": 0,
+        "pl": 0,
+        "mt": 2.875
+      }
+    }
+  },
+  "noHeader": 0,
+  "noFooter": 0,
+  "info": {
+    "bundle": "web",
+    "name": "Collection List Side Block"
+  }
+}

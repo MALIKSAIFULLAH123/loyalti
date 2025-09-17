@@ -1,0 +1,1118 @@
+{
+  "large:default": {
+    "containers": {
+      "header": {
+        "containerName": "header",
+        "sectionName": "header",
+        "maxWidth": false,
+        "disableGutters": true,
+        "elements": [
+          {
+            "slotName": "header"
+          }
+        ]
+      },
+      "top": {
+        "containerName": "top",
+        "sectionName": "content",
+        "maxWidth": false,
+        "disableGutters": true,
+        "elements": [
+          {
+            "slotName": "top"
+          }
+        ]
+      },
+      "main": {
+        "containerName": "main",
+        "sectionName": "content",
+        "gridContainer": true,
+        "spacing": 2,
+        "elements": [
+          {
+            "slotName": "side",
+            "md": 3
+          },
+          {
+            "slotName": "main",
+            "md": 6
+          },
+          {
+            "slotName": "subside",
+            "md": 3
+          }
+        ]
+      },
+      "bottom": {
+        "containerName": "bottom",
+        "sectionName": "content",
+        "gridContainer": false,
+        "disableGutters": true,
+        "maxWidth": false,
+        "elements": [
+          {
+            "slotName": "bottom",
+            "maxWidth": false
+          }
+        ]
+      },
+      "footer": {
+        "containerName": "footer",
+        "sectionName": "footer",
+        "gridContainer": false,
+        "disableGutters": true,
+        "maxWidth": false,
+        "elements": [
+          {
+            "slotName": "footer",
+            "maxWidth": false
+          }
+        ]
+      }
+    },
+    "blocks": [
+      {
+        "component": "core.block.appbar",
+        "slotName": "header"
+      }
+    ]
+  },
+  "large:simple": {
+    "containers": {
+      "header": {
+        "name": "header",
+        "sectionName": "header",
+        "gridContainer": false,
+        "maxWidth": false,
+        "disableGutters": true,
+        "elements": [
+          {
+            "slotName": "header",
+            "maxWidth": false
+          }
+        ]
+      },
+      "main": {
+        "name": "main",
+        "sectionName": "content",
+        "gridContainer": true,
+        "spacing": 2,
+        "elements": [
+          {
+            "slotName": "main",
+            "maxWidth": false
+          },
+          {
+            "slotName": "subside",
+            "maxWidth": false
+          }
+        ]
+      },
+      "footer": {
+        "name": "footer",
+        "sectionName": "footer",
+        "gridContainer": false,
+        "disableGutters": true,
+        "maxWidth": false,
+        "elements": [
+          {
+            "slotName": "bottom",
+            "maxWidth": false
+          }
+        ]
+      }
+    },
+    "blocks": [
+      {
+        "component": "core.block.appbar",
+        "slotName": "header"
+      }
+    ]
+  },
+  "large:blank": {
+    "containers": {
+      "main": {
+        "name": "main",
+        "sectionName": "content",
+        "maxWidth": false,
+        "disableGutters": true,
+        "elements": [
+          {
+            "slotName": "main"
+          }
+        ]
+      }
+    }
+  },
+  "large:home.visitor": {
+    "templateName": "default",
+    "blocks": []
+  },
+  "large:core.error404": {
+    "templateName": "simple",
+    "blocks": [
+      {
+        "component": "core.block.error404",
+        "slotName": "main"
+      }
+    ]
+  },
+  "large:home.member": {
+    "templateName": "default",
+    "blocks": [
+      {
+        "component": "feed.block.statusComposer",
+        "slotName": "main",
+        "title": "Status Composer",
+        "blockProps": {
+          "noHeader": true,
+          "noFooter": true,
+          "variant": "contained"
+        }
+      },
+      {
+        "component": "feed.block.homeFeeds",
+        "slotName": "main",
+        "title": "Activity Feed"
+      },
+      {
+        "component": "core.block.sidebarPrimaryMenu",
+        "slotName": "side"
+      },
+      {
+        "component": "core.block.sidebarShortcutMenu",
+        "slotName": "side"
+      }
+    ]
+  },
+  "large:user.profile.photo": {
+    "blocks": [
+      {
+        "component": "user.block.userProfileHeader",
+        "slotName": "top",
+        "title": "User Profile Header",
+        "blockProps": {
+          "marginBottom": 2,
+          "variant": "containted",
+          "noHeader": true,
+          "noFooter": true
+        }
+      },
+      {
+        "component": "photo.block.profilePhotoOverview",
+        "slotName": "side",
+        "title": "Photos",
+        "blockProps": {
+          "variant": "contained",
+          "noHeader": false,
+          "noFooter": true
+        },
+        "gridContainerProps": {
+          "spacing": 1
+        },
+        "gridItemProps": {
+          "xs": 4,
+          "sm": 4,
+          "md": 4
+        }
+      },
+      {
+        "component": "core.block.listview",
+        "slotName": "main",
+        "title": "Update",
+        "dataSource": {
+          "apiParams": "profile_id=:id&sort=latest&limit=12",
+          "apiUrl": "/photo"
+        },
+        "itemView": "photo.itemView.card",
+        "gridContainerProps": {
+          "spacing": 1
+        },
+        "gridItemProps": {
+          "md": 4,
+          "xs": 4
+        },
+        "blockProps": {
+          "variant": "contained",
+          "noHeader": true,
+          "noFooter": true
+        }
+      }
+    ]
+  },
+  "large:user.profile.blog": {
+    "blocks": [
+      {
+        "component": "user.block.userProfileHeader",
+        "slotName": "top",
+        "title": "User Profile Header",
+        "blockProps": {
+          "marginBottom": 2,
+          "variant": "containted",
+          "noHeader": true,
+          "noFooter": true
+        }
+      },
+      {
+        "component": "photo.block.profilePhotoOverview",
+        "slotName": "side",
+        "title": "Photos",
+        "blockProps": {
+          "variant": "contained",
+          "noHeader": false,
+          "noFooter": true
+        },
+        "gridContainerProps": {
+          "spacing": 0
+        },
+        "gridItemProps": {
+          "xs": 4,
+          "sm": 4,
+          "md": 4
+        }
+      },
+      {
+        "component": "core.block.listview",
+        "slotName": "main",
+        "title": "Update",
+        "dataSource": {
+          "apiParams": "profile_id=:id&sort=latest&limit=12",
+          "apiUrl": "/blog"
+        },
+        "itemView": "blog.itemView.mainCard",
+        "gridContainerProps": {
+          "spacing": 1
+        },
+        "gridItemProps": {
+          "md": 4,
+          "xs": 4
+        },
+        "blockProps": {
+          "variant": "contained",
+          "noHeader": true,
+          "noFooter": true
+        }
+      }
+    ]
+  },
+  "large:user.profile.friend": {
+    "blocks": [
+      {
+        "component": "user.block.userProfileHeader",
+        "slotName": "top",
+        "title": "User Profile Header",
+        "blockProps": {
+          "marginBottom": 2,
+          "variant": "containted",
+          "noHeader": true,
+          "noFooter": true
+        }
+      },
+      {
+        "component": "photo.block.profilePhotoOverview",
+        "slotName": "side",
+        "title": "Photos",
+        "blockProps": {
+          "variant": "contained",
+          "noHeader": false,
+          "noFooter": true
+        },
+        "gridContainerProps": {
+          "spacing": 0
+        },
+        "gridItemProps": {
+          "xs": 4,
+          "sm": 4,
+          "md": 4
+        }
+      },
+      {
+        "component": "core.block.listview",
+        "slotName": "main",
+        "title": "Update",
+        "dataSource": {
+          "apiParams": {
+            "profile_id": ":user_id",
+            "sort": "latest",
+            "limit": 12
+          },
+          "apiUrl": "/blog"
+        },
+        "itemView": "blog.itemView.mainCard",
+        "gridContainerProps": {
+          "spacing": 1
+        },
+        "gridItemProps": {
+          "md": 4,
+          "xs": 4
+        },
+        "blockProps": {
+          "variant": "contained",
+          "noHeader": true,
+          "noFooter": true
+        }
+      }
+    ]
+  },
+  "large:user.home": {
+    "blocks": [
+      {
+        "component": "user.block.userListingBlock",
+        "slotName": "side",
+        "title": "Featured Blocks",
+        "blockProps": {
+          "marginBottom": "2",
+          "variant": "contained"
+        },
+        "itemView": "user.itemView.smallCard",
+        "gridItemProps": {
+          "xs": 12,
+          "sm": 12,
+          "md": 12,
+          "lg": 12,
+          "xl": 12
+        }
+      },
+      {
+        "component": "user.block.userListingBlock",
+        "slotName": "main",
+        "title": "People You May Know",
+        "dataSource": {
+          "apiParams": "view=recommend&limit=4"
+        },
+        "gridItemProps": {
+          "xs": 12,
+          "sm": 12,
+          "md": 12,
+          "lg": 12,
+          "xl": 12
+        },
+        "itemView": "user.itemView.mainCard",
+        "blockProps": {
+          "marginBottom": "2",
+          "variant": "contained"
+        },
+        "gridContainerProps": {
+          "spacing": 2
+        }
+      },
+      {
+        "component": "user.block.userListingBlock",
+        "slotName": "main",
+        "title": "Recent Active",
+        "dataSource": {
+          "apiParams": "sort=active&limit=6"
+        },
+        "blockProps": {
+          "marginBottom": "2",
+          "variant": "contained"
+        },
+        "itemView": "user.itemView.mainCard",
+        "gridItemProps": {
+          "xs": 12,
+          "sm": 12,
+          "md": 12,
+          "lg": 12,
+          "xl": 12
+        }
+      }
+    ],
+    "pageName": "user.home"
+  },
+  "large:user.login": {
+    "templateName": "blank",
+    "blocks": [
+      {
+        "component": "user.block.userLoginContent",
+        "slotName": "main"
+      }
+    ],
+    "pageName": "user.login",
+    "noHeaderContainer": true,
+    "noFooterContainer": true
+  },
+  "large:user.profile": {
+    "blocks": [
+      {
+        "component": "user.block.userProfileHeader",
+        "slotName": "top",
+        "title": "User Profile Header",
+        "blockProps": {
+          "marginBottom": 2,
+          "noHeader": true,
+          "noFooter": true,
+          "variant": "containted"
+        }
+      },
+      {
+        "component": "user.block.userProfileAbout",
+        "slotName": "side",
+        "title": "About",
+        "blockProps": {
+          "variant": "contained",
+          "noHeader": false,
+          "noFooter": false,
+          "marginBottom": 2
+        }
+      },
+      {
+        "component": "friend.block.profileFriendOverview",
+        "slotName": "side",
+        "title": "Friends",
+        "blockProps": {
+          "variant": "contained",
+          "noHeader": false,
+          "noFooter": true,
+          "marginBottom": 2
+        }
+      },
+      {
+        "component": "friend.block.profileFriendRequestOverview",
+        "slotName": "side",
+        "title": "Friends Request",
+        "blockProps": {
+          "variant": "contained",
+          "noHeader": false,
+          "noFooter": true,
+          "marginBottom": 2
+        }
+      },
+      {
+        "component": "photo.block.profilePhotoOverview",
+        "slotName": "subside",
+        "title": "Photos",
+        "blockProps": {
+          "variant": "contained",
+          "noHeader": false,
+          "noFooter": true,
+          "marginBottom": 2
+        }
+      },
+      {
+        "component": "photo_album.block.profilePhotoAlbumOverview",
+        "slotName": "subside",
+        "title": "Albums",
+        "blockProps": {
+          "variant": "contained",
+          "noHeader": false,
+          "noFooter": true,
+          "marginBottom": 2
+        }
+      },
+      {
+        "component": "pages.block.profilePagesListingOverview",
+        "slotName": "subside",
+        "title": "Pages",
+        "blockProps": {
+          "variant": "contained",
+          "noHeader": false,
+          "noFooter": true,
+          "marginBottom": 2
+        }
+      },
+      {
+        "component": "groups.block.profileGroupsListingOverview",
+        "slotName": "subside",
+        "title": "Groups",
+        "blockProps": {
+          "variant": "contained",
+          "noHeader": false,
+          "noFooter": true,
+          "marginBottom": 2
+        }
+      },
+      {
+        "component": "feed.block.statusComposer",
+        "slotName": "main",
+        "title": "Status Composer",
+        "blockProps": {
+          "noHeader": true,
+          "noFooter": true,
+          "variant": "contained",
+          "marginBottom": 2
+        }
+      },
+      {
+        "component": "feed.block.profileFeeds",
+        "slotName": "main",
+        "title": "Update"
+      }
+    ]
+  },
+  "large:blog.home": {
+    "blocks": [
+      {
+        "component": "blog.block.BrowseBlogs",
+        "slotName": "subside",
+        "props": {
+          "key": "",
+          "blockId": ""
+        },
+        "title": "Blog Featured",
+        "blockProps": {
+          "variant": "contained"
+        },
+        "itemView": "blog.itemView.smallCard",
+        "gridContainerProps": {
+          "spacing": 2
+        },
+        "gridItemProps": {
+          "xs": 12,
+          "sm": 12,
+          "md": 12,
+          "lg": 12,
+          "xl": 12
+        }
+      },
+      {
+        "component": "core.block.sidebarAppMenu",
+        "slotName": "side",
+        "title": "Blogs",
+        "blockProps": {
+          "variant": "plained",
+          "noHeader": false,
+          "noFooter": false
+        }
+      },
+      {
+        "component": "core.categoryBlock",
+        "slotName": "side",
+        "title": "Categories",
+        "href": "/blog/category"
+      },
+      {
+        "component": "blog.block.BrowseBlogs",
+        "slotName": "main",
+        "title": "Recents",
+        "dataSource": {
+          "apiParams": "sort=latest&limit=4"
+        },
+        "blockProps": {
+          "variant": "contained"
+        },
+        "blockView": "ui.block.default",
+        "itemProps": {}
+      },
+      {
+        "component": "blog.block.BrowseBlogs",
+        "slotName": "main",
+        "title": "Featured",
+        "dataSource": {
+          "apiParams": "sort=latest&limit=4"
+        },
+        "itemProps": {}
+      }
+    ],
+    "containers": {},
+    "pageName": "blog.home"
+  },
+  "large:video.home": {
+    "blocks": [
+      {
+        "component": "video.block.videoListingFeaturedBlock",
+        "slotName": "subside",
+        "props": {
+          "key": "",
+          "blockId": ""
+        },
+        "title": "Videos Featured"
+      },
+      {
+        "component": "core.block.sidebarAppMenu",
+        "slotName": "side",
+        "props": {
+          "key": "",
+          "blockId": ""
+        },
+        "title": "Videos",
+        "blockProps": {
+          "variant": "plained",
+          "noHeader": true,
+          "noFooter": false
+        }
+      },
+      {
+        "component": "core.categoryBlock",
+        "slotName": "side",
+        "props": {
+          "key": "",
+          "blockId": ""
+        },
+        "title": "Categories",
+        "blockProps": {
+          "variant": "plained"
+        }
+      },
+      {
+        "component": "video.block.videoListingBlock",
+        "slotName": "main",
+        "props": {
+          "key": "",
+          "blockId": ""
+        },
+        "title": "Videos",
+        "blockProps": {
+          "variant": "contained"
+        },
+        "itemView": "video.itemView.mainCard",
+        "gridContainerProps": {
+          "spacing": 2
+        },
+        "gridItemProps": {
+          "xs": 12,
+          "sm": 12,
+          "md": 6,
+          "lg": 6,
+          "xl": 6
+        }
+      }
+    ],
+    "containers": {},
+    "pageName": "video.home"
+  },
+  "large:event.home": {
+    "blocks": [
+      {
+        "component": "event.block.eventListingBlock",
+        "slotName": "subside",
+        "props": {
+          "key": "",
+          "blockId": ""
+        },
+        "title": "My Events",
+        "blockProps": {
+          "variant": "contained"
+        },
+        "itemView": "event.itemView.smallCard",
+        "gridContainerProps": {
+          "spacing": 2
+        },
+        "gridItemProps": {
+          "xs": 12,
+          "sm": 12,
+          "md": 12,
+          "lg": 12,
+          "xl": 12
+        },
+        "dataSource": {
+          "apiParams": "view=my"
+        }
+      },
+      {
+        "component": "core.categoryBlock",
+        "slotName": "side",
+        "title": "Categories"
+      },
+      {
+        "component": "event.block.eventListingBlock",
+        "slotName": "main",
+        "title": "Events",
+        "gridItemProps": {
+          "md": 6,
+          "xs": 12
+        }
+      }
+    ],
+    "containers": {},
+    "pageName": "event.home"
+  },
+  "large:quiz.home": {
+    "blocks": [
+      {
+        "component": "quiz.block.quizListingBlock",
+        "slotName": "subside",
+        "props": {
+          "key": "",
+          "blockId": ""
+        },
+        "title": "featured_quizzes",
+        "dataSource": {
+          "apiUrl": "/quiz",
+          "apiParams": "view=feature&limit=6"
+        },
+        "blockProps": {
+          "variant": "contained"
+        },
+        "itemView": "quiz.itemView.SmallCard",
+        "gridContainerProps": {
+          "spacing": 2
+        },
+        "gridItemProps": {
+          "xs": 12,
+          "sm": 12,
+          "md": 12,
+          "lg": 12,
+          "xl": 12
+        }
+      },
+      {
+        "component": "core.block.listview",
+        "slotName": "main",
+        "title": "Recent Quizzes",
+        "dataSource": {
+          "apiUrl": "/quiz",
+          "apiParams": "sort=latest&limit=6"
+        },
+        "itemView": "quiz.itemView.mainCard",
+        "gridItemProps": {
+          "md": 6,
+          "xs": 12,
+          "sm": 12,
+          "lg": 12,
+          "xl": 12
+        },
+        "gridContainerProps": {
+          "spacing": 2
+        },
+        "blockProps": {
+          "variant": "contained",
+          "noHeader": false,
+          "noFooter": false
+        }
+      }
+    ],
+    "containers": {},
+    "pageName": "quiz.home"
+  },
+  "large:groups.home": {
+    "blocks": [
+      {
+        "component": "groups.block.groupsListingBlock",
+        "slotName": "main",
+        "title": "Groups"
+      },
+      {
+        "component": "core.block.sidebarAppMenu",
+        "slotName": "side",
+        "title": "Groups",
+        "blockProps": {
+          "variant": "plained",
+          "noHeader": true,
+          "noFooter": true,
+          "marginBottom": 2
+        }
+      },
+      {
+        "component": "core.categoryBlock",
+        "slotName": "side",
+        "title": "Categories",
+        "blockProps": {
+          "variant": "plained",
+          "noHeader": false,
+          "noFooter": true,
+          "marginBottom": 2
+        }
+      }
+    ],
+    "pageName": "groups.home"
+  },
+  "large:pages.home": {
+    "blocks": [
+      {
+        "component": "core.block.sidebarAppMenu",
+        "slotName": "side"
+      },
+      {
+        "component": "core.categoryBlock",
+        "slotName": "side",
+        "title": "Categories"
+      },
+      {
+        "component": "pages.block.pagesListingBlock",
+        "slotName": "main",
+        "title": "Recents",
+        "dataSource": {
+          "apiParams": "sort=latest&limit=6"
+        },
+        "gridItemProps": {
+          "md": 4,
+          "xs": 12
+        }
+      },
+      {
+        "component": "core.block.listview",
+        "slotName": "subside",
+        "title": "Featured",
+        "blockProps": {
+          "variant": "contained"
+        },
+        "dataSource": {
+          "apiUrl": "/pages",
+          "apiParams": "view=feature&limit=6"
+        },
+        "itemView": "pages.itemView.smallCard",
+        "gridItemProps": {
+          "md": 12,
+          "xs": 12
+        }
+      }
+    ]
+  },
+  "large:poll.home": {
+    "blocks": [
+      {
+        "component": "core.block.listview",
+        "slotName": "main",
+        "title": "Recent Polls",
+        "dataSource": {
+          "apiUrl": "/poll",
+          "apiParams": "sort=latest&limit=6"
+        },
+        "itemView": "poll.itemView.mainCard",
+        "gridItemProps": {
+          "md": 6,
+          "xs": 12,
+          "sm": 12,
+          "lg": 12,
+          "xl": 12
+        },
+        "displayLimit": 6,
+        "gridContainerProps": {
+          "spacing": 2
+        },
+        "blockProps": {
+          "variant": "contained",
+          "noHeader": false,
+          "noFooter": false
+        }
+      },
+      {
+        "component": "core.block.listview",
+        "slotName": "subside",
+        "title": "Featured Polls",
+        "dataSource": {
+          "apiUrl": "/poll",
+          "apiParams": "view=feature&limit=6"
+        },
+        "itemView": "poll.itemView.SmallCard",
+        "gridItemProps": {
+          "md": 12,
+          "xs": 12,
+          "sm": 12,
+          "lg": 12,
+          "xl": 12
+        },
+        "displayLimit": 6,
+        "gridContainerProps": {
+          "spacing": 2
+        },
+        "blockProps": {
+          "variant": "contained",
+          "noHeader": false,
+          "noFooter": false
+        }
+      }
+    ],
+    "containers": {},
+    "pageName": "poll.home"
+  },
+  "large:photo.home": {
+    "blocks": [
+      {
+        "component": "core.block.sidebarAppMenu",
+        "slotName": "side"
+      },
+      {
+        "component": "core.categoryBlock",
+        "slotName": "side"
+      },
+      {
+        "component": "photo.block.photoListingBlock",
+        "slotName": "main",
+        "title": "Recents",
+        "blockProps": {
+          "variant": "contained"
+        },
+        "dataSource": {
+          "apiParams": "sort=latest"
+        },
+        "gridItemProps": {
+          "md": 4,
+          "xs": 6
+        }
+      },
+      {
+        "component": "photo.block.photoListingBlock",
+        "slotName": "main",
+        "title": "Featured",
+        "blockProps": {
+          "variant": "contained",
+          "noHeader": false,
+          "noFooter": true
+        },
+        "dataSource": {
+          "apiUrl": "/photo",
+          "apiParams": "view=feature&limit=6"
+        },
+        "itemView": "photo.itemView.mainCard",
+        "gridItemProps": {
+          "md": 3,
+          "xs": 6
+        }
+      }
+    ]
+  },
+  "large:friend.home": {
+    "blocks": [
+      {
+        "component": "friend.block.friends",
+        "slotName": "main",
+        "title": "Friends"
+      }
+    ],
+    "pageName": "friend.home"
+  },
+  "large:friend.pendingRequest": {
+    "blocks": [
+      {
+        "component": "friend.block.pendingFriendRequests",
+        "slotName": "main",
+        "blockProps": {
+          "variant": "contained",
+          "marginBottom": 2
+        },
+        "title": "Pending Requests"
+      }
+    ],
+    "pageName": "friend.pendingRequest",
+    "containers": {}
+  },
+  "large:music.album": {
+    "blocks": [
+      {
+        "component": "core.categoryBlock",
+        "slotName": "side",
+        "title": "Categories"
+      },
+      {
+        "component": "music.block.musicSongListingBlock",
+        "slotName": "main",
+        "title": "Recents Songs",
+        "dataSource": {
+          "apiParams": ""
+        },
+        "gridItemProps": {
+          "md": 6,
+          "xs": 12
+        }
+      },
+      {
+        "component": "music.block.musicSongListingBlock",
+        "slotName": "main",
+        "title": "Featured Songs",
+        "dataSource": {
+          "apiParams": ""
+        },
+        "gridItemProps": {
+          "md": 6,
+          "xs": 12
+        }
+      }
+    ]
+  },
+  "large:music.home": {
+    "blocks": [
+      {
+        "component": "core.categoryBlock",
+        "slotName": "side",
+        "title": "Categories"
+      },
+      {
+        "component": "music.block.musicSongListingBlock",
+        "slotName": "main",
+        "title": "Recents Songs",
+        "dataSource": {
+          "apiParams": ""
+        },
+        "gridItemProps": {
+          "md": 6,
+          "xs": 12
+        }
+      },
+      {
+        "component": "music.block.musicSongListingBlock",
+        "slotName": "subside",
+        "title": "Featured Songs",
+        "dataSource": {
+          "apiParams": "view=feature&limit=6"
+        },
+        "itemView": "music_song.itemView.smallCard",
+        "gridItemProps": {
+          "md": 6,
+          "xs": 12
+        }
+      }
+    ]
+  },
+  "large:marketplace.home": {
+    "blocks": [
+      {
+        "component": "ui.block.topbanner",
+        "slotName": "main",
+        "title": "Marketplace",
+        "icon": "ico-home",
+        "color": "#fff",
+        "backgroundImage": "linear-gradient(to top, #2682d5, #075092)"
+      },
+      {
+        "component": "marketplace.block.listingBlock",
+        "slotName": "main",
+        "title": "Recent Listing"
+      },
+      {
+        "component": "core.block.sidebarAppMenu",
+        "slotName": "side",
+        "title": "Marketplace",
+        "icon": "ico-home",
+        "blockProps": {
+          "variant": "plained",
+          "noHeader": true,
+          "noFooter": true
+        },
+        "footerItemView": "marketplace.view.navigationBottom.block",
+        "footerItemProps": {
+          "children": "Create New Listing",
+          "href": "/marketplace/add"
+        }
+      },
+      {
+        "component": "marketplace.block.listingBlock",
+        "slotName": "main",
+        "title": "Featured Listing"
+      },
+      {
+        "component": "core.categoryBlock",
+        "slotName": "side"
+      },
+      {
+        "component": "core.block.listview",
+        "slotName": "main",
+        "title": "Trending",
+        "blockProps": {
+          "variant": "contained",
+          "noHeader": false,
+          "marginBottom": 2
+        },
+        "dataSource": {
+          "apiUrl": "/marketplace",
+          "apiParams": "view=trending&limit=4"
+        },
+        "itemView": "marketplace.view.trendingItem",
+        "gridItemProps": {
+          "sm": 3,
+          "md": 4
+        }
+      }
+    ]
+  },
+  "large:notification.home": {
+    "blocks": [
+      {
+        "component": "notification.block.notificationListingBlock",
+        "slotName": "main",
+        "title": "Notifications"
+      }
+    ],
+    "pageName": "notification.home"
+  }
+}

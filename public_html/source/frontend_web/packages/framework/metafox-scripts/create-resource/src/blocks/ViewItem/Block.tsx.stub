@@ -1,0 +1,26 @@
+/**
+ * @type: block
+ * name: $$RESOURCE$$.block.$$RESOURCE$$View
+ * title: $$RESOURCE_STUDLY$$ Detail
+ * keywords: $$RESOURCE$$
+ * description: Display $$RESOURCE$$ detail
+ */
+
+import { connectItemView, connectSubject, createBlock } from '@metafox/framework';
+import actionCreators from '$$PACKAGE$$/actions/$$RESOURCE$$ItemActions';
+import React from 'react';
+
+export function $$RESOURCE_STUDLY$$DetailView() {
+  return <>DetailView</>;
+}
+
+$$RESOURCE_STUDLY$$DetailView.displayName = '$$RESOURCE_STUDLY$$ItemDetailView';
+
+const Enhance = connectSubject(
+  connectItemView($$RESOURCE_STUDLY$$DetailView, actionCreators, {})
+);
+
+export default createBlock({
+  extendBlock: Enhance,
+  defaults: {}
+});

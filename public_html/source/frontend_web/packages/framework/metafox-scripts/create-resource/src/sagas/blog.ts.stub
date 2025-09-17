@@ -1,0 +1,8 @@
+/**
+ * @type: saga
+ * name: $$NAME$$_$$RESOURCE$$.saga.root
+ */
+
+const sagas = [];
+
+export default sagas;

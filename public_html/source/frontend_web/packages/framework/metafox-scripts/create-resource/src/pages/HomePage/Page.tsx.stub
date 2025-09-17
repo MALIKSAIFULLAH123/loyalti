@@ -1,0 +1,15 @@
+/**
+ * @type: route
+ * name: $$RESOURCE$$.home
+ * path: /$$RESOURCE_PATH$$
+ * chunkName: pages.$$RESOURCE_PATH$$
+ * bundle: web
+ */
+
+import { createLandingPage } from '@metafox/framework';
+
+export default createLandingPage({
+  appName: '$$RESOURCE$$',
+  pageName: '$$RESOURCE$$.home',
+  resourceName: '$$RESOURCE$$'
+});

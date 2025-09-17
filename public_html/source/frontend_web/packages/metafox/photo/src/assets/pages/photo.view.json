@@ -1,0 +1,36 @@
+{
+  "large": {
+    "templateName": "fixed-full",
+    "blocks": [
+      {
+        "blockId": "4upgh",
+        "component": "photo.block.photoView",
+        "slotName": "main-fixed"
+      }
+    ]
+  },
+  "small": {
+    "blocks": [
+      {
+        "component": "core.block.sidebarAppMobile",
+        "slotName": "main",
+        "blockId": "raegh"
+      },
+      {
+        "blockId": "4upgh",
+        "component": "photo.block.photoViewMobile",
+        "slotName": "main",
+        "title": "",
+        "placeholder": "Search",
+        "headerActions": {
+          "mt": 0
+        }
+      }
+    ],
+    "templateName": "mobile"
+  },
+  "info": {
+    "bundle": "web",
+    "name": "photo.view"
+  }
+}

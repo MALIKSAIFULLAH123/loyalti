@@ -1,0 +1,48 @@
+{
+    "name": "metafox/video",
+    "version": "5.0.28",
+    "description": "",
+    "authors": [
+        {
+            "name": "phpFox",
+            "email": "developer@phpfox.com",
+            "homepage": "https://www.phpfox.com"
+        }
+    ],
+    "extra": {
+        "metafox": {
+            "core": false,
+            "alias": "video",
+            "asset": "video",
+            "namespace": "MetaFox\\Video",
+            "path": "packages/metafox/video",
+            "title": "Video",
+            "internalAdminUrl": "/video/setting",
+            "providers": [
+                "MetaFox\\Video\\Providers\\PackageServiceProvider"
+            ],
+            "frontend": {
+                "@metafox/video": "*"
+            },
+            "frontendPaths": [
+                "packages/metafox/video"
+            ],
+            "require": {
+                "metafox/core": "5.1.18 - 5.1.19"
+            },
+            "aliases": {
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "MetaFox\\Video\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "MetaFox\\Video\\": "",
+            "MetaFox\\Video\\Tests\\": "tests/"
+        }
+    }
+}

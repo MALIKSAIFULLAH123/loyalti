@@ -1,0 +1,31 @@
+{
+  "emptyPage": "core.block.no_content",
+  "gridVariant": "gridView",
+  "blockProps": {
+    "titleStyle": {
+      "component": "h2",
+      "sx": {
+        "typography": "subtitle1",
+        "color": "text"
+      }
+    },
+    "contentStyle": {
+      "sx": {
+        "mb": "2"
+      }
+    },
+    "headerStyle": {},
+    "footerStyle": {},
+    "blockStyle": {
+      "sx": {
+        "mt": 2
+      }
+    }
+  },
+  "noHeader": true,
+  "noFooter": true,
+  "info": {
+    "bundle": "web",
+    "name": "Profile - Clean Body Only"
+  }
+}

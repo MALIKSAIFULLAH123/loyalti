@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunk_metafox_react=self.webpackChunk_metafox_react||[]).push([["pages.saved"],{27519(e,a,s){s.r(a),s.d(a,{default:()=>t});var r=s(91557);let t=(0,r.XZB)({appName:"saved",resourceName:"saved",pageName:"saved.search"})}}]);

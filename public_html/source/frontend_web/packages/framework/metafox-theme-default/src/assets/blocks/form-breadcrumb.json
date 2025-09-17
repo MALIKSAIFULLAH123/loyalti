@@ -1,0 +1,35 @@
+{
+  "blockProps": {
+    "titleStyle": {
+      "component": "h2",
+      "sx": {
+        "typography": "subtitle1"
+      }
+    },
+    "headerStyle": {
+      "dividerVariant": "0",
+      "sx": {
+        "pb": 1,
+        "pt": 0
+      }
+    },
+    "footerStyle": {
+      "dividerVariant": "0"
+    },
+    "blockStyle": {
+      "sx": {
+        "pt": 0,
+        "mt": 2,
+        "ml": 2,
+        "mr": 2,
+        "bgcolor": "0",
+        "borderRadius": "0"
+      }
+    }
+  },
+  "noHeader": 0,
+  "info": {
+    "bundle": "web",
+    "name": "form breadcrumb"
+  }
+}

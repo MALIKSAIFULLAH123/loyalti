@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <meta name="apple-mobile-web-app-status-bar-style" content="light" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Installation Wizard • MetaFox</title>
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="https://metafox-assets.s3.eu-north-1.amazonaws.com/favicon.ico"
+    />
+    <style type="text/css">
+      @font-face {
+        font-family: 'lineficon';
+        src: url('/static/fonts/lineficon.eot?bqj3lm');
+        src: url('/static/fonts/lineficon.eot?bqj3lm#iefix')
+            format('embedded-opentype'),
+          url('/static/fonts/lineficon.ttf?bqj3lm') format('truetype'),
+          url('/static/fonts/lineficon.woff?bqj3lm') format('woff');
+        font-weight: normal;
+        font-style: normal;
+      }
+    </style>
+  </head>
+  <script>
+    window.__base_name__ = window.location.pathname.split('/install').shift();
+    window.__api_url__ =
+      window.location.pathname.split('/install').shift() + '/api/v1';
+  </script>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>

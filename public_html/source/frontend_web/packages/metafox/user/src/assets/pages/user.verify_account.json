@@ -1,0 +1,30 @@
+{
+  "large": {
+    "templateName": "simple",
+    "blocks": [
+      {
+        "blockId": "gbuzi",
+        "component": "user.block.verifyAccount",
+        "slotName": "main",
+        "title": "",
+        "blockLayout": "Full Screen Form"
+      }
+    ]
+  },
+  "small": {
+    "templateName": "mobile",
+    "blocks": [
+      {
+        "component": "user.block.verifyAccount",
+        "slotName": "main",
+        "title": "",
+        "blockLayout": "Full Screen Form",
+        "blockId": "a5glr"
+      }
+    ]
+  },
+  "info": {
+    "bundle": "web",
+    "name": "user.verify_account"
+  }
+}

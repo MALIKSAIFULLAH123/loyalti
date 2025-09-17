@@ -1,0 +1,46 @@
+{
+  "itemProps": {
+    "variant": "containedCard",
+    "showActionMenu": 1,
+    "content": {
+      "sx": {
+        "pt": 2,
+        "pl": 2,
+        "pb": 2,
+        "pr": 2,
+        "alignItems": "center",
+        "justifyContent": "",
+        "bgcolor": "background.paper",
+        "borderRadius": 1,
+        "borderWidth": 1,
+        "borderColor": "border.secondary",
+        "borderStyle": "solid"
+      },
+      "selectedVariant": "",
+      "dividerVariant": "",
+      "hoverVariant": ""
+    },
+    "media": {
+      "width": "auto",
+      "aspectRatio": "11",
+      "placement": "start"
+    },
+    "title": {
+      "variant": "h4",
+      "lines": 1,
+      "fixHeight": 1,
+      "sx": {
+        "mb": 1
+      }
+    },
+    "text": {
+      "sx": {
+        "pl": 2
+      }
+    }
+  },
+  "info": {
+    "bundle": "web",
+    "name": "Page User - Main Card"
+  }
+}

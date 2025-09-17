@@ -1,0 +1,11 @@
+{
+  "gridContainerProps": {
+    "rowSpacing": 0,
+    "columnSpacing": 0
+  },
+  "gridVariant": "listView",
+  "info": {
+    "bundle": "web",
+    "name": "Friend List - Small List"
+  }
+}

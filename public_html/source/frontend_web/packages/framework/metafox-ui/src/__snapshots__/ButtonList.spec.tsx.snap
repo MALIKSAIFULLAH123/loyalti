@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ButtonList render ButtonList 1`] = `
+<div>
+  <div
+    class="MuiBox-root css-zdhto5"
+  />
+</div>
+`;
+
+exports[`ButtonList render prop variant 1`] = `
+<div>
+  <div
+    class="MuiBox-root css-eeu4j0"
+    variant="fillFirst"
+  >
+    <div
+      data-testid="children"
+    >
+      content children
+    </div>
+  </div>
+</div>
+`;
+
+exports[`ButtonList render prop variant medium 1`] = `
+<div>
+  <div
+    class="MuiBox-root css-wa8404"
+    spacing="medium"
+    variant="fillFirst"
+  >
+    <div
+      data-testid="children"
+    >
+      content children
+    </div>
+  </div>
+</div>
+`;

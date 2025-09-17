@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CategoryList render item 1`] = `
+<div
+  className="MuiBox-root css-1yy5cbc-DotSeparator-root"
+>
+  <span>
+    <a
+      className="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1ps4owl-MuiTypography-root-MuiLink-root"
+      href="/blog/1"
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+    >
+      category 1
+    </a>
+  </span>
+  <span>
+    <a
+      className="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1ps4owl-MuiTypography-root-MuiLink-root"
+      href="/blog/2"
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+    >
+      category 2
+    </a>
+  </span>
+</div>
+`;
+
+exports[`CategoryList render null 1`] = `null`;

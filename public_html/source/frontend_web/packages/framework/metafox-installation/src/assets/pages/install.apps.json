@@ -1,0 +1,20 @@
+{
+  "large": {
+    "blocks": [
+      {
+        "blockId": "sba8a",
+        "component": "install.SelectApps",
+        "slotName": "main",
+        "blockLayout": "Admin Form",
+        "dataSource": {
+          "apiUrl": "/install/?step=select-apps"
+        }
+      }
+    ],
+    "templateName": "installer"
+  },
+  "info": {
+    "bundle": "installation",
+    "name": "install.apps"
+  }
+}

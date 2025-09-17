@@ -1,0 +1,80 @@
+{
+  "large": {
+    "blocks": [
+      {
+        "blockId": "1srw",
+        "component": "ewallet.block.dashboard",
+        "slotName": "main",
+        "title": "insights",
+        "blockLayout": "Large Main Lists"
+      },
+      {
+        "blockId": "iu11",
+        "component": "ewallet.block.paymentSetting",
+        "slotName": "main",
+        "blockLayout": "Ewallet payment setting"
+      },
+      {
+        "blockId": "ia",
+        "component": "core.block.sideAppHeader",
+        "slotName": "side",
+        "title": "activity_points",
+        "icon": "ico-compose-alt",
+        "blockLayout": "sidebar app header",
+        "freeze": true
+      },
+      {
+        "component": "core.block.sidebarAppMenu",
+        "slotName": "side",
+        "title": "activity_points",
+        "blockId": "i8"
+      }
+    ],
+    "containers": {},
+    "pageName": "blog.home",
+    "templateName": "two-column-fixed"
+  },
+  "small": {
+    "blocks": [
+      {
+        "component": "core.block.sidebarAppMobile",
+        "slotName": "main",
+        "blockProps": {
+          "variant": "plained",
+          "marginBottom": 2
+        },
+        "contents": [
+          {
+            "name": "core.block.searchBox"
+          },
+          {
+            "name": "core.block.sidebarAppMenu"
+          },
+          {
+            "name": "core.categoryBlock"
+          }
+        ],
+        "blockId": "ks3wd"
+      },
+      {
+        "blockId": "1srw",
+        "component": "ewallet.block.dashboard",
+        "slotName": "main",
+        "title": "insights",
+        "blockLayout": "Large Main Lists Mobile - Paper"
+      },
+      {
+        "blockId": "iu11",
+        "component": "ewallet.block.paymentSetting",
+        "slotName": "main",
+        "blockLayout": "Ewallet payment setting"
+      }
+    ],
+    "containers": {},
+    "templateName": "mobile"
+  },
+  "info": {
+    "bundle": "web",
+    "name": "ewallet.home"
+  }
+}

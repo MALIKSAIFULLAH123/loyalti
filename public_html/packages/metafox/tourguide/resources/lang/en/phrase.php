@@ -1,0 +1,51 @@
+<?php
+/**
+ * @author developer@phpfox.com
+ * @license phpfox.com
+ */
+
+return [
+    'tour_guide'                                      => 'Tour Guide',
+    'complete'                                        => 'Complete',
+    'manage_guides'                                   => 'Manage Guides',
+    'new_tour_guide'                                  => 'New Tour Guide',
+    'update_tour_guide'                               => 'Update Tour Guide',
+    'tour_guide_name'                                 => 'Tour Guide Name',
+    'positioning'                                     => 'Positioning',
+    'save_and_continue'                               => 'Save and Continue',
+    'is_active'                                       => 'Is Active',
+    'enable_autorun'                                  => 'Enable Autorun',
+    'create_on'                                       => 'Created On',
+    'created_by'                                      => 'Created By',
+    'update_step'                                     => 'Edit Step',
+    'step'                                            => 'Step',
+    'view_steps'                                      => 'View Steps',
+    'add_new_step'                                    => 'Add New Step',
+    'guide'                                           => 'Guide',
+    'page_url'                                        => 'Page Url',
+    'user_permissions'                                => 'User Permissions',
+    'do_not_show_it_again_for_this_page'              => 'Do not show it again for this page?',
+    'tour_guide_delete_confirm'                       => 'Are you sure you want to permanently delete this tour guide?',
+    'step_title'                                      => 'Give a Header/Title here',
+    'step_desc'                                       => 'Description and overview of the feature',
+    'step_delay_time'                                 => 'Time delay (in seconds) between each step',
+    'step_custom_background'                          => 'Custom background',
+    'tour_guide_step_was_order_successfully'          => 'Tour guide step was ordered successfully.',
+    'warning_edit_url_tour_guide'                     => 'Be cautious when modifying this—ensure its value is the URL of the page where you want to add the tour guide.',
+    'step_custom_font'                                => 'Custom font',
+    'tour_guide_step_was_updated_successfully'        => 'Tour guide step was updated successfully.',
+    'tour_guide_step_was_deleted_successfully'        => 'Tour guide step was deleted successfully.',
+    'tour_guide_was_created_successfully'             => 'Tour guide was created successfully.',
+    'tour_guide_was_updated_successfully'             => 'Tour guide was updated successfully.',
+    'tour_guide_was_deleted_successfully'             => 'Tour guide was deleted successfully.',
+    'tour_guide_was_reset_successfully'               => 'Tour guide was reset successfully.',
+    'tour_guide_s_was_deleted_successfully'           => 'Tour guide(s) was deleted successfully.',
+    'tour_guide_was_marked_as_completed_successfully' => 'Tour guide was marked as completed successfully.',
+    'privacy'                                         => [
+        'everyone'    => 'Everyone',
+        'member_only' => 'Member Only',
+        'guest'       => 'Guest',
+    ],
+    'step_font_color' => 'Font color',
+    'create_guide'    => 'Create Tour',
+];

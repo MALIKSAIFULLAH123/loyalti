@@ -1,0 +1,182 @@
+{
+  "large": {
+    "pageName": "friend.birthday",
+    "templateName": "two-column-fixed",
+    "blocks": [
+      {
+        "moduleName": "friend",
+        "resourceName": "friend",
+        "actionName": "getFriendBirthday",
+        "component": "friend.block.friendBirthday",
+        "slotName": "main",
+        "title": "birthdays",
+        "canLoadMore": true,
+        "blockId": "s8f2",
+        "numberOfItemsPerPage": 50,
+        "emptyPage": "core.block.no_content_with_icon",
+        "itemView": "friend.itemView.birthdayMainCard",
+        "contentType": "friend",
+        "canLoadSmooth": 1,
+        "emptyPageProps": {
+          "variant": "default",
+          "title": "no_friends_found",
+          "noBlock": 1,
+          "description": "no_friends_found_description",
+          "icon": "ico-user-circle-o"
+        },
+        "blockLayout": "Friend Birthday",
+        "gridLayout": "Friend - Cards",
+        "noContentLayout": "No Content With Icon & Note",
+        "itemLayout": "Friend - Cards"
+      },
+      {
+        "blockId": "ia",
+        "component": "core.block.sideAppHeader",
+        "slotName": "side",
+        "title": "friends",
+        "icon": "ico-user1-two",
+        "blockLayout": "sidebar app header",
+        "freeze": true
+      },
+      {
+        "blockId": "i5",
+        "component": "core.block.searchBox",
+        "slotName": "side",
+        "title": "SideBarSearchBox",
+        "blockLayout": "sidebar search box",
+        "freeze": true
+      },
+      {
+        "component": "core.block.sidebarAppMenu",
+        "slotName": "side",
+        "title": "friends",
+        "icon": "ico-home",
+        "blockId": "yta6vr",
+        "menuName": "sidebarMenu",
+        "blockLayout": "sidebar app menu"
+      },
+      {
+        "blockId": "v32u",
+        "component": "core.dividerBlock",
+        "slotName": "side",
+        "title": "",
+        "dividerVariant": "middle",
+        "blockLayout": "sidebar divider"
+      },
+      {
+        "blockId": "xz2c3",
+        "component": "friend.block.FriendListListing",
+        "slotName": "side",
+        "pageName": "friend.home",
+        "pageSize": "large",
+        "title": "friend_lists",
+        "gridItemProps": {
+          "xs": 12,
+          "md": 12
+        },
+        "itemView": "friend_list.itemView.mainCard",
+        "contentType": "friend_list",
+        "dataSource": {
+          "apiUrl": "/friend/list"
+        },
+        "canLoadMore": 1,
+        "blockLayout": "Friend List Side Block",
+        "gridLayout": "Friend List - Small List",
+        "emptyPage": "core.block.no_content_with_icon",
+        "emptyPageProps": {
+          "variant": "side",
+          "title": "no_friend_lists",
+          "description": "no_friend_lists_found",
+          "color": "inherit",
+          "noBlock": 1
+        },
+        "noContentLayout": "Side with description",
+        "itemLayout": "Friend List - Small List"
+      }
+    ]
+  },
+  "small": {
+    "blocks": [
+      {
+        "blockId": "08u5o",
+        "component": "core.block.sidebarAppMobile",
+        "slotName": "main",
+        "pageSize": "small",
+        "title": "",
+        "contents": [
+          {
+            "name": "core.block.searchBox"
+          },
+          {
+            "name": "core.block.sidebarAppMenu"
+          },
+          {
+            "name": "core.dividerBlock"
+          },
+          {
+            "name": "friend.block.FriendListListing",
+            "props": {
+              "pageName": "friend.home",
+              "pageSize": "large",
+              "title": "friend_list",
+              "gridItemProps": {
+                "xs": 12,
+                "md": 12
+              },
+              "itemView": "friend_list.itemView.mainCard",
+              "contentType": "friend_list",
+              "dataSource": {
+                "apiUrl": "/friend/list"
+              },
+              "canLoadMore": 1,
+              "blockLayout": "Friend List Side Block",
+              "gridLayout": "Friend List - Small List",
+              "emptyPage": "core.block.no_content_with_icon",
+              "emptyPageProps": {
+                "variant": "side",
+                "title": "no_friend_lists",
+                "description": "no_friend_lists_found",
+                "color": "inherit",
+                "noBlock": 1
+              },
+              "noContentLayout": "Side with description",
+              "itemLayout": "Friend List - Small List"
+            }
+          }
+        ]
+      },
+      {
+        "moduleName": "friend",
+        "resourceName": "friend",
+        "actionName": "getFriendBirthday",
+        "component": "friend.block.friendBirthday",
+        "slotName": "main",
+        "title": "birthdays",
+        "canLoadMore": true,
+        "blockId": "s8f2",
+        "numberOfItemsPerPage": 50,
+        "emptyPage": "core.block.no_content_with_icon",
+        "itemView": "friend.itemView.birthdayMainCard",
+        "contentType": "friend",
+        "canLoadSmooth": 1,
+        "emptyPageProps": {
+          "variant": "default",
+          "title": "no_friends_found",
+          "noBlock": 1,
+          "description": "no_friends_found_description",
+          "icon": "ico-user-circle-o"
+        },
+        "blockLayout": "App List - Mobile",
+        "gridLayout": "Friend - Cards",
+        "noContentLayout": "No Content With Icon & Note",
+        "itemLayout": "Friend - Cards"
+      }
+    ],
+    "pageName": "friend.birthday",
+    "templateName": "mobile"
+  },
+  "info": {
+    "bundle": "web",
+    "name": "friend.birthday"
+  }
+}

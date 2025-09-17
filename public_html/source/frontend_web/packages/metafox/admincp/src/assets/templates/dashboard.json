@@ -1,0 +1,104 @@
+{
+  "bundle": "admincp",
+  "blocks": [
+    {
+      "component": "core.block.AdminMainTop",
+      "slotName": "main_top"
+    }
+  ],
+  "content": {
+    "elements": {
+      "top": {
+        "gridContainer": true,
+        "disableGutters": true,
+        "rootStyle": {
+          "pl": 1,
+          "pr": 1
+        },
+        "wrap": "wrap",
+        "elements": {
+          "top": {
+            "xs": 12,
+            "rootStyle": {
+              "xs": 12,
+              "sm": 8
+            },
+            "slotName": "top",
+            "stageStyle": {
+              "sx": {
+                "height": "100%"
+              }
+            },
+            "contentStyle": {
+              "sx": {
+                "height": "100%"
+              }
+            }
+          },
+          "top2": {
+            "xs": 12,
+            "rootStyle": {
+              "xs": 12,
+              "sm": 4
+            }
+          }
+        }
+      },
+      "main": {
+        "gridContainer": true,
+        "disableGutters": true,
+        "rootStyle": {
+          "pl": 1,
+          "pr": 1
+        },
+        "elements": {
+          "main": {
+            "xs": 12
+          }
+        }
+      },
+      "bottom": {
+        "gridContainer": true,
+        "disableGutters": true,
+        "rootStyle": {
+          "pl": 1,
+          "pr": 1,
+          "pb": 2
+        },
+        "wrap": "wrap",
+        "elements": {
+          "bottom1": {
+            "xs": 12,
+            "rootStyle": {
+              "xs": 12,
+              "sm": 4,
+              "md": 3
+            }
+          },
+          "bottom": {
+            "xs": 12,
+            "rootStyle": {
+              "xs": 12,
+              "sm": 8,
+              "md": 6
+            }
+          },
+          "bottom2": {
+            "xs": 12,
+            "rootStyle": {
+              "xs": 12,
+              "sm": 4,
+              "md": 3
+            }
+          }
+        }
+      }
+    }
+  },
+  "title": "AdminCP dashboard template",
+  "description": "",
+  "info": {
+    "bundle": "admincp",
+    "name": "dashboard"
+  }
+}

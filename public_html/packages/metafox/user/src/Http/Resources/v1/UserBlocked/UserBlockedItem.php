@@ -1,0 +1,36 @@
+<?php
+
+namespace MetaFox\User\Http\Resources\v1\UserBlocked;
+
+use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\JsonResource;
+use MetaFox\User\Models\UserEntity as Model;
+
+/**
+ * Class UserBlockedItem.
+ * @property Model $resource
+ * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+ */
+class UserBlockedItem extends JsonResource
+{
+    /**
+     * Transform the resource collection into an array.
+     *
+     * @param  Request  $request
+     *
+     * @return array<string, mixed>
+     */
+    public function toArray($request)
+    {
+        return [
+            'id'            => $this->resource->id,
+            'module_name'   => 'user',
+            'resource_name' => 'user_blocked',
+            'user_name'     => $this->resource->user_name,
+            'full_name'     => $this->resource->name,
+            'avatar'        => $this->resource->avatars,
+            'is_featured'   => false,
+            'is_blocked'    => true,
+        ];
+    }
+}

@@ -1,0 +1,148 @@
+{
+  "$$RESOURCE$$.browse": {
+    "large": { 
+      "blocks": [
+        {
+          "component": "core.block.mainListing",
+          "slotName": "main",
+          "title": "$$RESOURCE_STUDLY$$",
+          "emptyPageProps": {
+            "noHeader": true,
+            "contentStyle": {
+              "bgColor": "0"
+            },
+            "variant": "default",
+            "title": "No $$RESOURCE_STUDLY$$ Found",
+            "noBlock": 1
+          },
+          "dataSource": {
+            "apiParams": "sort=latest",
+            "apiUrl": "/$$RESOURCE_PATH$$"
+          },
+          "blockId": "i11",
+          "key": "i11",
+          "itemView": "$$RESOURCE$$.itemView.mainList",
+          "contentType": "$$RESOURCE$$",
+          "canLoadMore": true,
+          "blockLayout": "Large Main Lists",
+          "canLoadSmooth": 1,
+          "gridLayout": "$$RESOURCE_STUDLY$$ Lists",
+          "emptyPage": "core.block.no_content_with_icon"
+        },
+        {
+          "blockId": "ia",
+          "component": "core.block.sideAppHeader",
+          "slotName": "side",
+          "title": "$$RESOURCE_STUDLY$$",
+          "icon": "ico-compose-alt",
+          "blockProps": {
+            "variant": "plained",
+            "titleComponent": "h2",
+            "titleVariant": "subtitle1",
+            "titleColor": "textPrimary",
+            "noFooter": true,
+            "noHeader": true
+          },
+          "freeze": true
+        },
+        {
+          "blockId": "i5",
+          "component": "core.block.searchBox",
+          "slotName": "side",
+          "placeholder": "Search",
+          "blockProps": {
+            "variant": "plained",
+            "titleComponent": "h2",
+            "titleVariant": "subtitle1",
+            "titleColor": "textPrimary",
+            "noFooter": true,
+            "noHeader": true
+          },
+          "title": "",
+          "freeze": true
+        },
+        {
+          "component": "core.block.sidebarAppMenu",
+          "slotName": "side",
+          "title": "$$RESOURCE_STUDLY$$",
+          "blockId": "i8",
+          "key": "i8",
+          "menuName": "sidebarMenu",
+          "blockLayout": "sidebar app menu"
+        },
+        {
+          "blockId": "v44br",
+          "component": "core.dividerBlock",
+          "slotName": "side",
+          "title": "sidebar divider",
+          "dividerVariant": "middle",
+          "blockLayout": "sidebar divider"
+        },
+        {
+          "component": "core.categoryBlock",
+          "slotName": "side",
+          "title": "Categories",
+          "href": "/$$RESOURCE_PATH$$/category",
+          "blockId": "i9",
+          "key": "i9",
+          "blockLayout": "sidebar app category"
+        }
+      ],
+      "containers": {},
+      "pageName": "$$RESOURCE$$.home",
+      "templateName": "two-column-fixed"
+    },
+    "small": {
+      "blocks": [
+        {
+          "component": "core.block.sidebarAppMobile",
+          "slotName": "main",
+          "blockProps": {
+            "variant": "plained",
+            "marginBottom": 2
+          },
+          "contents": [
+            {
+              "name": "core.block.searchBox"
+            },
+            {
+              "name": "core.block.sidebarAppMenu"
+            },
+            {
+              "name": "core.categoryBlock"
+            }
+          ],
+          "key": "tggha",
+          "blockId": "tggha"
+        },
+        {
+          "component": "core.block.mainListing",
+          "slotName": "main",
+          "blockView": "ui.block.default",
+          "blockId": "i10",
+          "key": "i10",
+          "itemView": "$$RESOURCE$$.itemView.mainList",
+          "gridItemProps": {
+            "xs": 12,
+            "sm": 6,
+            "md": 6,
+            "lg": 6,
+            "xl": 4
+          },
+          "canLoadMore": true,
+          "contentType": "$$RESOURCE$$",
+          "title": "",
+          "blockLayout": "App List - Mobile - Paper",
+          "gridLayout": "$$RESOURCE_STUDLY$$ - Mobile Main Card",
+          "emptyPageProps": {
+            "noBlock": 1
+          },
+          "emptyPage": "core.block.no_content_with_icon"
+        }
+      ],
+      "containers": {},
+      "pageName": "$$RESOURCE$$.home",
+      "templateName": "mobile"
+    }
+  }
+}

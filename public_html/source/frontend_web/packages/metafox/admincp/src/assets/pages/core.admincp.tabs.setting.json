@@ -1,0 +1,22 @@
+{
+  "info": {
+    "title": "Admin/Setting tabs",
+    "bundle": "admincp",
+    "name": "core.admincp.tabs.setting"
+  },
+  "large": {
+    "templateName": "admincp",
+    "blocks": [
+      {
+        "blockId": "qwsdf",
+        "component": "user.block.AdminFormTabs",
+        "slotName": "main",
+        "pageName": "core.admincp.tabs.setting",
+        "pageSize": "large",
+        "title": "EditSetting",
+        "blockLayout": "Admin Form",
+        "fixedFooter": true
+      }
+    ]
+  }
+}

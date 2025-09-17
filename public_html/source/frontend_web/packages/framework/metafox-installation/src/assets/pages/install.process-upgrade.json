@@ -1,0 +1,21 @@
+{
+  "large": {
+    "blocks": [
+      {
+        "blockId": "sba8a",
+        "component": "install.Processing",
+        "slotName": "main",
+        "title": "Filter Form",
+        "blockLayout": "Admin Form",
+        "dataSource": {
+          "apiUrl": "install/?step=process-upgrade"
+        }
+      }
+    ],
+    "templateName": "installer"
+  },
+  "info": {
+    "bundle": "installation",
+    "name": "install.process-upgrade"
+  }
+}

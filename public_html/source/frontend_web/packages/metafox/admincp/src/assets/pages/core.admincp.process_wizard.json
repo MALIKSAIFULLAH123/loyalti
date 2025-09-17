@@ -1,0 +1,18 @@
+{
+  "info": {
+    "title": "",
+    "bundle": "admincp",
+    "name": "core.admincp.process_wizard"
+  },
+  "large": {
+    "templateName": "admincp",
+    "blocks": [
+      {
+        "blockId": "s5qrr",
+        "component": "admincp.block.ProcessWizard",
+        "slotName": "main",
+        "blockLayout": "Admin - Contained"
+      }
+    ]
+  }
+}

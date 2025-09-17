@@ -1,0 +1,10 @@
+{
+  "gridContainerProps": {
+    "columnSpacing": 0,
+    "rowSpacing": 0
+  },
+  "gridVariant": "listView",
+  "info": {
+    "name": "Friend - Small List"
+  }
+}

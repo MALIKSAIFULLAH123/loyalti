@@ -1,0 +1,49 @@
+{
+    "name": "metafox/anti-spam-question",
+    "version": "5.0.0",
+    "description": "Anti-Spam Question",
+    "keyword": "Anti-Spam Question",
+    "authors": [
+        {
+            "name": "phpFox",
+            "email": "developer@phpfox.com",
+            "homepage": "https://www.phpfox.com"
+        }
+    ],
+    "extra": {
+        "metafox": {
+            "core": false,
+            "priority": 99,
+            "alias": "antispamquestion",
+            "asset": "antispamquestion",
+            "namespace": "MetaFox\\AntiSpamQuestion",
+            "path": "packages/metafox/anti-spam-question",
+            "title": "Anti-Spam Question",
+            "type": "app",
+            "providers": [
+                "MetaFox\\AntiSpamQuestion\\Providers\\PackageServiceProvider"
+            ],
+            "aliases": {
+            },
+            "require": {
+                "metafox/core": "5.1.19"
+            },
+            "frontend": {
+            },
+            "frontendPaths": [
+            ],
+            "internalUrl": "/antispamquestion",
+            "internalAdminUrl": "/antispamquestion/setting"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "MetaFox\\AntiSpamQuestion\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "MetaFox\\AntiSpamQuestion\\Tests\\": "tests/"
+        }
+    }
+}

@@ -1,0 +1,19 @@
+{
+  "noHeader": true,
+  "noFooter": true,
+  "blockProps": {
+    "blockStyle": {
+      "sx": {
+        "mt": 0,
+        "mb": 4.75,
+        "pr": 0,
+        "pl": 0,
+        "pt": 0
+      }
+    }
+  },
+  "info": {
+    "bundle": "web",
+    "name": "footer - login"
+  }
+}

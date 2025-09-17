@@ -1,0 +1,17 @@
+/**
+ * @type: route
+ * name: $$RESOURCE$$.my
+ * path: /$$RESOURCE_PATH$$/my
+ * chunkName: pages.$$RESOURCE_PATH$$
+ * bundle: web
+ */
+
+import { createLandingPage } from '@metafox/framework';
+
+export default createLandingPage({
+  appName: '$$RESOURCE$$',
+  pageName: '$$RESOURCE$$.my',
+  resourceName: '$$RESOURCE$$',
+  defaultTab: 'my',
+  loginRequired: true
+});

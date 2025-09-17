@@ -1,0 +1,82 @@
+{
+  "large": {
+    "templateName": "profile-tab",
+    "blocks": [
+      {
+        "component": "user.block.userProfileHeader",
+        "slotName": "top",
+        "title": "User Profile Header",
+        "blockProps": {
+          "marginBottom": 2,
+          "variant": "containted",
+          "noHeader": true,
+          "noFooter": true
+        },
+        "key": "j18hu",
+        "blockId": "j18hu"
+      },
+      {
+        "component": "user.block.privateUser",
+        "slotName": "top",
+        "title": "User Profile Header",
+        "key": "j213",
+        "blockId": "j213",
+        "showWhen": [
+          "falsy",
+          "profile.profile_settings.profile_profile_info"
+        ]
+      },
+      {
+        "component": "user.block.detailsAbout",
+        "slotName": "main",
+        "title": "about",
+        "key": "5523",
+        "blockId": "43242",
+        "blockLayout": "Profile - Contained",
+        "showWhen": [
+          "truthy",
+          "profile.profile_settings.profile_profile_info"
+        ]
+      }
+    ]
+  },
+  "small": {
+    "blocks": [
+      {
+        "component": "core.block.sidebarAppMobile",
+        "slotName": "top",
+        "blockId": "raegh"
+      },
+      {
+        "component": "user.block.userProfileHeader",
+        "slotName": "top",
+        "title": "User Profile Header",
+        "blockProps": {
+          "marginBottom": 2,
+          "variant": "containted",
+          "noHeader": true,
+          "noFooter": true
+        },
+        "key": "1mde2",
+        "blockId": "1mde2"
+      },
+      {
+        "component": "user.block.detailsAbout",
+        "title": "about",
+        "slotName": "main",
+        "key": "5523",
+        "blockId": "43242",
+        "blockLayout": "Profile - Contained",
+        "showWhen": [
+          "truthy",
+          "profile.profile_settings.profile_profile_info"
+        ]
+      }
+    ],
+    "templateName": "mobile"
+  },
+  "info": {
+    "bundle": "web",
+    "name": "user.profile.about"
+  }
+}

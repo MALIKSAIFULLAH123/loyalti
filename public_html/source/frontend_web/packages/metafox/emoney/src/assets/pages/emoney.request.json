@@ -1,0 +1,67 @@
+{
+  "large": {
+    "blocks": [
+      {
+        "blockId": "hz8y",
+        "component": "ewallet.block.request",
+        "slotName": "main",
+        "title": "withdrawal_requests",
+        "blockLayout": "Ewallet Main Block"
+      },
+      {
+        "blockId": "ia",
+        "component": "core.block.sideAppHeader",
+        "slotName": "side",
+        "title": "ewallet",
+        "icon": "ico-compose-alt",
+        "blockLayout": "sidebar app header",
+        "freeze": true
+      },
+      {
+        "component": "core.block.sidebarAppMenu",
+        "slotName": "side",
+        "title": "ewallet",
+        "blockId": "i8"
+      }
+    ],
+    "pageName": "ewallet.request",
+    "templateName": "two-column-fixed"
+  },
+  "small": {
+    "blocks": [
+      {
+        "component": "core.block.sidebarAppMobile",
+        "slotName": "main",
+        "blockProps": {
+          "variant": "plained",
+          "marginBottom": 2
+        },
+        "contents": [
+          {
+            "name": "core.block.searchBox"
+          },
+          {
+            "name": "core.block.sidebarAppMenu"
+          },
+          {
+            "name": "core.categoryBlock"
+          }
+        ],
+        "blockId": "ks3wd"
+      },
+      {
+        "blockId": "hz8y",
+        "component": "ewallet.block.request",
+        "slotName": "main",
+        "title": "withdrawal_requests",
+        "blockLayout": "App List - Table - Mobile"
+      }
+    ],
+    "containers": {},
+    "templateName": "mobile"
+  },
+  "info": {
+    "bundle": "web",
+    "name": "ewallet.request"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "content": {
+    "elements": {
+      "main": {
+        "elements": {
+          "main": {
+            "flexWeight": "1"
+          }
+        }
+      }
+    }
+  },
+  "title": "Blank - Layout without header, footer",
+  "description": "",
+  "info": {
+    "bundle": "web",
+    "name": "blank"
+  }
+}

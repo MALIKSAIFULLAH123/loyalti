@@ -1,0 +1,18 @@
+{
+  "large": {
+    "blocks": [
+      {
+        "blockId": "sba8a",
+        "component": "install.InstallFailed",
+        "slotName": "main",
+        "title": "Filter Form",
+        "blockLayout": "Admin Form"
+      }
+    ],
+    "templateName": "installer"
+  },
+  "info": {
+    "bundle": "installation",
+    "name": "install.failed"
+  }
+}

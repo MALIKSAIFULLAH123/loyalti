@@ -1,0 +1,87 @@
+/**
+ * @type: itemView
+ * name: $$RESOURCE$$.itemView.mainCard
+ */
+
+import { connectItemView, Link, useGlobal } from '@metafox/framework';
+import actionCreators from '$$PACKAGE$$/actions/$$RESOURCE$$ItemActions';
+import { $$RESOURCE_STUDLY$$ItemProps as ItemProps } from '$$PACKAGE$$/types';
+import { useBlock } from '@metafox/layout';
+import {
+  DotSeparator,
+  FeaturedFlag,
+  FormatDate,
+  Image,
+  ImageSkeleton,
+  ItemAction,
+  ItemMedia,
+  ItemText,
+  ItemTitle,
+  ItemView,
+  SponsorFlag
+} from '@metafox/ui';
+import { getImageSrc } from '@metafox/utils';
+import { Skeleton } from '@mui/material';
+import React from 'react';
+
+export function $$RESOURCE_STUDLY$$ItemMainCard({
+  item,
+  user,
+  identity,
+  state,
+  itemProps,
+  handleAction,
+  wrapAs,
+  wrapProps
+}: ItemProps) {
+  const { ItemActionMenu, getSetting,assetUrl } = useGlobal();
+  const { creation_date } = item;
+  const cover = getImageSrc(item?.image, '500', assetUrl('blog.no_image'));
+  const {
+    itemLinkProps,
+    itemProps: { media }
+  } = useBlock();
+
+  return (
+    <ItemView testid={item.resource_name} wrapAs={wrapAs} wrapProps={wrapProps}>
+      <ItemMedia src={cover} alt={item.title} backgroundImage>
+        <Link to={item.link} {...itemLinkProps}>
+          <Image src={cover} {...media} />
+        </Link>
+      </ItemMedia>
+      <ItemText>
+        <ItemTitle>
+          <FeaturedFlag variant="itemView" value={item.is_featured} />
+          <SponsorFlag variant="itemView" value={item.is_sponsor} />
+          <Link to={item.link} {...itemLinkProps}>
+            {item.title}
+          </Link>
+        </ItemTitle>
+        {itemProps.showActionMenu ? (
+          <ItemAction placement="bottom-end">
+            <ItemActionMenu
+              identity={identity}
+              icon={'ico-dottedmore-vertical-o'}
+              state={state}
+              handleAction={handleAction}
+            />
+          </ItemAction>
+        ) : null}
+        <DotSeparator sx={{ color: 'text.secondary', mt: 1 }}>
+          <Link
+            hoverCard={`/user/${user.id}`}
+            to={user.link}
+            children={user.full_name}
+          />
+          <FormatDate
+            data-testid="creationDate"
+            value={creation_date}
+            format="ll"
+          />
+        </DotSeparator>
+      </ItemText>
+    </ItemView>
+  );
+}
+
+export default connectItemView($$RESOURCE_STUDLY$$ItemMainCard, actionCreators);

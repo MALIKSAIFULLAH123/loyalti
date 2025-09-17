@@ -1,0 +1,37 @@
+{
+  "itemProps": {
+    "variant": "containedCard",
+    "content": {
+      "dividerVariant": "",
+      "hoverVariant": "",
+      "selectedVariant": "",
+      "sx": {
+        "alignItems": "",
+        "justifyContent": "",
+        "bgcolor": "background.paper",
+        "borderRadius": 1
+      }
+    },
+    "title": {
+      "variant": "h3",
+      "lines": 0
+    },
+    "summary": {
+      "component": "div",
+      "variant": "h3",
+      "lines": 0,
+      "sx": {
+        "color": "text.primary"
+      }
+    },
+    "media": {
+      "placement": "top",
+      "aspectRatio": "169",
+      "width": "100%"
+    }
+  },
+  "info": {
+    "bundle": "web",
+    "name": "Photo - Main Card - Listings"
+  }
+}

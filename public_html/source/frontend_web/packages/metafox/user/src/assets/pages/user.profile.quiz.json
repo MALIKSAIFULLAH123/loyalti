@@ -1,0 +1,111 @@
+{
+  "large": {
+    "templateName": "profile-tab",
+    "blocks": [
+      {
+        "component": "user.block.userProfileHeader",
+        "slotName": "top",
+        "title": "Page Profile Header",
+        "blockProps": {
+          "variant": "containted",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "textPrimary",
+          "noFooter": true,
+          "noHeader": true,
+          "contentStyle": {},
+          "headerStyle": {},
+          "footerStyle": {},
+          "marginBottom": 2
+        },
+        "key": "nphx",
+        "blockId": "nphx"
+      },
+      {
+        "component": "quiz.block.ProfileQuizListing",
+        "slotName": "main",
+        "title": "quizzes",
+        "dataSource": {
+          "apiParams": "user_id=:id&sort=latest&limit=12",
+          "apiUrl": "/quiz"
+        },
+        "headerActionsResource": "quiz.quiz.headerItemActionOnUserProfileMenu",
+        "canLoadMore": true,
+        "hasSearchBox": true,
+        "placeholderSearchBox": "search_quizzes",
+        "key": "noty5",
+        "blockId": "noty5",
+        "contentType": "quiz",
+        "freeze": false,
+        "blockLayout": "Profile - Contained",
+        "gridLayout": "Quiz - Main Card",
+        "privacyEmptyPage": "core.block.no_content_with_description",
+        "emptyPage": "core.block.no_item_with_icon",
+        "emptyPageProps": {
+          "description": "no_quiz_found",
+          "image": "ico-question-mark"
+        },
+        "itemLayout": "Quiz User - Main Card",
+        "itemLinkProps": {
+          "asModal": 1
+        }
+      }
+    ]
+  },
+  "small": {
+    "templateName": "mobile",
+    "blocks": [
+      {
+        "component": "core.block.sidebarAppMobile",
+        "slotName": "top",
+        "blockId": "raegh"
+      },
+      {
+        "component": "user.block.userProfileHeader",
+        "slotName": "top",
+        "title": "User Profile Header",
+        "blockProps": {
+          "marginBottom": 2,
+          "variant": "containted",
+          "noHeader": true,
+          "noFooter": true
+        },
+        "key": "r345m",
+        "blockId": "r345m"
+      },
+      {
+        "component": "quiz.block.ProfileQuizListing",
+        "slotName": "main",
+        "title": "quizzes",
+        "dataSource": {
+          "apiParams": "user_id=:id&sort=latest&limit=12",
+          "apiUrl": "/quiz"
+        },
+        "headerActionsResource": "quiz.quiz.headerItemActionOnUserProfileMenu",
+        "canLoadMore": true,
+        "hasSearchBox": true,
+        "placeholderSearchBox": "search_quizzes",
+        "key": "noty5",
+        "blockId": "noty5",
+        "contentType": "quiz",
+        "freeze": false,
+        "blockLayout": "Profile - Contained",
+        "gridLayout": "Quiz - Main Card",
+        "privacyEmptyPage": "core.block.no_content_with_description",
+        "emptyPage": "core.block.no_item_with_icon",
+        "emptyPageProps": {
+          "description": "no_quiz_found",
+          "image": "ico-question-mark"
+        },
+        "itemLayout": "Quiz User - Main Card",
+        "itemLinkProps": {
+          "asModal": 1
+        }
+      }
+    ]
+  },
+  "info": {
+    "bundle": "web",
+    "name": "user.profile.quiz"
+  }
+}

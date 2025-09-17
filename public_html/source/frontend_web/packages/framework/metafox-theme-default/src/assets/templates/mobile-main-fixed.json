@@ -1,0 +1,62 @@
+{
+  "title": "mobile-main-fixed",
+  "blocks": [],
+  "header": {
+    "elements": {
+      "header": {
+        "disableGutters": true,
+        "elements": {
+          "header": {
+            "slotName": "header",
+            "stageStyle": {
+              "minHeight": "appbar"
+            }
+          }
+        },
+        "rootStyle": {
+          "minHeight": "appbar"
+        }
+      }
+    }
+  },
+  "content": {
+    "elements": {
+      "main": {
+        "gridContainer": true,
+        "disableGutters": true,
+        "elements": {
+          "main": {
+            "component": "layout.liveFixedSlot",
+            "disabledScroll": true,
+            "xs": 12,
+            "contentStyle": {
+              "bottom": "48px !important",
+              "zIndex": 99
+            }
+          }
+        },
+        "rootStyle": {
+          "minHeight": "screen"
+        }
+      }
+    }
+  },
+  "footer": {
+    "elements": {
+      "main": {
+        "rootStyle": {
+          "maxWidth": "lg"
+        },
+        "elements": {
+          "bottom": {
+            "maxWidth": false
+          }
+        }
+      }
+    }
+  },
+  "info": {
+    "bundle": "web",
+    "name": "mobile-main-fixed"
+  }
+}

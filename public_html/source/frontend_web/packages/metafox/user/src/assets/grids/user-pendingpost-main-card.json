@@ -1,0 +1,11 @@
+{
+  "gridContainerProps": {
+    "columnSpacing": 2,
+    "rowSpacing": 2
+  },
+  "gridVariant": "listView",
+  "info": {
+    "bundle": "web",
+    "name": "User - PendingPost - Main Card"
+  }
+}

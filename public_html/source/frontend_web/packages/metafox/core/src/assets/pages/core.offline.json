@@ -1,0 +1,26 @@
+{
+  "info": {
+    "bundle": "web",
+    "name": "core.offline"
+  },
+  "large": {
+    "templateName": "default-full",
+    "blocks": [
+      {
+        "component": "core.block.offline",
+        "slotName": "main",
+        "blockId": "pdb"
+      }
+    ]
+  },
+  "small": {
+    "templateName": "default-full",
+    "blocks": [
+      {
+        "component": "core.block.offline",
+        "slotName": "main",
+        "blockId": "sqih"
+      }
+    ]
+  }
+}

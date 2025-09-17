@@ -1,0 +1,53 @@
+{
+  "itemProps": {
+    "variant": "containedCard",
+    "content": {
+      "dividerVariant": "bottom",
+      "hoverVariant": "background",
+      "selectedVariant": "",
+      "sx": {
+        "alignItems": "center",
+        "justifyContent": "",
+        "bgcolor": "",
+        "borderRadius": "",
+        "pt": 2,
+        "pb": 2,
+        "pl": 2,
+        "pr": 2,
+        "ml": 0
+      }
+    },
+    "title": {
+      "variant": "h5",
+      "lines": 1,
+      "sx": {
+        "mt": 0.5
+      }
+    },
+    "summary": {
+      "component": "div",
+      "variant": "body2",
+      "lines": 0,
+      "sx": {
+        "mt": 0.5,
+        "color": "textHint"
+      }
+    },
+    "media": {
+      "placement": "start",
+      "aspectRatio": "11",
+      "width": "auto",
+      "sx": {
+        "position": "relative"
+      }
+    },
+    "text": {
+      "sx": {
+        "ml": 1.5
+      }
+    }
+  },
+  "info": {
+    "name": "Friend - Small List"
+  }
+}

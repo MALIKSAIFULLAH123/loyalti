@@ -1,0 +1,27 @@
+{
+  "info": {
+    "bundle": "admincp",
+    "name": "core.admincp.browseTree"
+  },
+  "large": {
+    "templateName": "admincp",
+    "blocks": [
+      {
+        "blockId": "sba8a",
+        "component": "core.block.AdminBrowseSearchForm",
+        "slotName": "main",
+        "title": "Filter Form",
+        "blockLayout": "Admin Form",
+        "actionName": "searchForm",
+        "isRemote": true
+      },
+      {
+        "blockId": "sba8b",
+        "component": "core.block.AdminBrowseDataGrid",
+        "slotName": "main",
+        "title": "Data Grid",
+        "blockLayout": "Admin Table"
+      }
+    ]
+  }
+}

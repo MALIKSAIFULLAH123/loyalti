@@ -1,0 +1,33 @@
+{
+  "itemProps": {
+    "variant": "containedCard",
+    "content": {
+      "sx": {
+        "borderRadius": 1,
+        "pt": 2,
+        "pr": 2,
+        "pb": 2,
+        "pl": 2,
+        "bgcolor": "background.paper"
+      }
+    },
+    "showActionMenu": 1,
+    "title": {
+      "variant": "h4",
+      "lines": 1,
+      "fixHeight": 1
+    },
+    "media": {
+      "placement": "start",
+      "aspectRatio": "11",
+      "width": "auto",
+      "sx": {
+        "mr": 2
+      }
+    }
+  },
+  "info": {
+    "bundle": "web",
+    "name": "Global - Search Item Card"
+  }
+}

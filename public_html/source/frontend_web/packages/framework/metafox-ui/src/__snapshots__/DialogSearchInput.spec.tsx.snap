@@ -1,0 +1,57 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DialogSearchInput render 1`] = `
+<div>
+  <div
+    aria-controls="search_complete"
+    class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-adornedStart css-1fngovj-MuiInputBase-root-InputBaseStyled-root"
+    variant="search"
+  >
+    <span
+      class="ico ico-search-o css-1o2x2pn-MuiIcon-root"
+    />
+    <input
+      aria-autocomplete="list"
+      aria-expanded="true"
+      aria-label="typing key search...."
+      autocomplete="off"
+      class="MuiInputBase-input MuiInputBase-inputTypeSearch MuiInputBase-inputAdornedStart css-19fibzo-MuiInputBase-input"
+      data-testid="searchBox"
+      name="search"
+      placeholder="typing key search...."
+      role="combobox"
+      spellcheck="false"
+      type="search"
+      value=""
+    />
+  </div>
+</div>
+`;
+
+exports[`DialogSearchInput render onchange 1`] = `
+<div>
+  <div
+    aria-controls="search_complete"
+    class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-adornedStart css-1fngovj-MuiInputBase-root-InputBaseStyled-root"
+    variant="search"
+  >
+    <span
+      class="ico ico-search-o css-1o2x2pn-MuiIcon-root"
+    />
+    <input
+      aria-autocomplete="list"
+      aria-expanded="true"
+      aria-label="typing key search...."
+      autocomplete="off"
+      class="MuiInputBase-input MuiInputBase-inputTypeSearch MuiInputBase-inputAdornedStart css-19fibzo-MuiInputBase-input"
+      data-testid="searchBox"
+      name="search"
+      placeholder="typing key search...."
+      role="combobox"
+      spellcheck="false"
+      type="search"
+      value=""
+    />
+  </div>
+</div>
+`;

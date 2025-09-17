@@ -1,0 +1,37 @@
+{
+  "blockProps": {
+    "titleStyle": {
+      "sx": {
+        "typography": "h4"
+      },
+      "component": "h3"
+    },
+    "headerStyle": {
+      "dividerVariant": "none",
+      "sx": {
+        "height": "48px",
+        "pl": 2,
+        "pr": 2
+      }
+    },
+    "footerStyle": {
+      "dividerVariant": "0"
+    },
+    "blockStyle": {
+      "sx": {
+        "bgcolor": "background.paper",
+        "borderRadius": 1,
+        "pl": 0,
+        "mb": 2,
+        "mt": 2,
+        "overflow": "hidden"
+      }
+    }
+  },
+  "noHeader": 0,
+  "noFooter": true,
+  "info": {
+    "bundle": "web",
+    "name": "Profile - Side Contained (no header divider)"
+  }
+}

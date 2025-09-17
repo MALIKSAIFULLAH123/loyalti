@@ -1,0 +1,131 @@
+{
+  "large": {
+    "templateName": "profile-tab",
+    "blocks": [
+      {
+        "component": "user.block.userProfileHeader",
+        "slotName": "top",
+        "title": "User Profile Header",
+        "blockProps": {
+          "marginBottom": 2,
+          "variant": "containted",
+          "noHeader": true,
+          "noFooter": true
+        },
+        "key": "arwc",
+        "blockId": "arwc"
+      },
+      {
+        "component": "livestreaming.block.profileBlock",
+        "slotName": "main",
+        "props": {
+          "key": "",
+          "blockId": ""
+        },
+        "title": "live_videos",
+        "blockId": "i98",
+        "contentType": "livestreaming",
+        "dataSource": {
+          "apiUrl": "/live-video",
+          "apiParams": "user_id=:id&sort=recent&limit=12"
+        },
+        "gridLayout": "Live_video - Main Card",
+        "displayLimit": "3",
+        "itemLayout": "Live_video - Main Card",
+        "headerActionsResource": "livestreaming.live_video.headerItemActionOnUserProfileMenu",
+        "headerActions": [
+          {
+            "label": "create_live_video",
+            "to": "/live-video/add?owner_id=:id",
+            "showWhen": [
+              "or",
+              ["truthy", "isAuthUser"],
+              ["neq", "pageParams.module_name", "user"]
+            ]
+          }
+        ],
+        "canLoadMore": true,
+        "key": "lj4h4",
+        "hasSearchBox": true,
+        "placeholderSearchBox": "search_live_videos",
+        "freeze": false,
+        "blockLayout": "Profile - Contained",
+        "emptyPage": "core.block.no_item_with_icon",
+        "emptyPageProps": {
+          "description": "no_live_videos_are_found",
+          "image": "ico ico-videocam-o"
+        },
+        "privacyEmptyPage": "core.block.no_content_with_description"
+      }
+    ]
+  },
+  "small": {
+    "blocks": [
+      {
+        "component": "core.block.sidebarAppMobile",
+        "slotName": "top",
+        "blockId": "raegh"
+      },
+      {
+        "component": "user.block.userProfileHeader",
+        "slotName": "top",
+        "title": "User Profile Header",
+        "blockProps": {
+          "marginBottom": 2,
+          "variant": "containted",
+          "noHeader": true,
+          "noFooter": true
+        },
+        "key": "ayo5",
+        "blockId": "ayo5"
+      },
+      {
+        "component": "livestreaming.block.profileBlock",
+        "slotName": "main",
+        "props": {
+          "key": "",
+          "blockId": ""
+        },
+        "title": "live_videos",
+        "blockId": "i98",
+        "contentType": "livestreaming",
+        "dataSource": {
+          "apiUrl": "/live-video",
+          "apiParams": "user_id=:id&sort=recent&limit=12"
+        },
+        "gridLayout": "Livestream - Flat View",
+        "displayLimit": "3",
+        "itemLayout": "Livestream - Flat View",
+        "headerActionsResource": "livestreaming.live_video.headerItemActionOnUserProfileMenu",
+        "headerActions": [
+          {
+            "label": "create_live_video",
+            "to": "/live-video/add?owner_id=:id",
+            "showWhen": [
+              "or",
+              ["truthy", "isAuthUser"],
+              ["neq", "pageParams.module_name", "user"]
+            ]
+          }
+        ],
+        "canLoadMore": true,
+        "key": "lj4h4",
+        "hasSearchBox": true,
+        "placeholderSearchBox": "search_live_videos",
+        "freeze": false,
+        "blockLayout": "Profile - Contained",
+        "emptyPage": "core.block.no_item_with_icon",
+        "emptyPageProps": {
+          "description": "no_live_videos_are_found",
+          "image": "ico ico-videocam-o"
+        },
+        "privacyEmptyPage": "core.block.no_content_with_description"
+      }
+    ],
+    "templateName": "mobile"
+  },
+  "info": {
+    "bundle": "web",
+    "name": "user.profile.live-video"
+  }
+}

@@ -1,0 +1,146 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ActButton render 1`] = `
+Array [
+  <div
+    data-testid="infoLoader"
+  />,
+  <button
+    className="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium ltr-tfi57h-MuiButtonBase-root-MuiIconButton-root-ActBtn-root"
+    data-testid="demo"
+    disabled={false}
+    onBlur={[Function]}
+    onContextMenu={[Function]}
+    onDragLeave={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchEnd={[Function]}
+    onTouchMove={[Function]}
+    onTouchStart={[Function]}
+    tabIndex={0}
+    type="button"
+  />,
+]
+`;
+
+exports[`ActButton render icon 1`] = `
+Array [
+  <div
+    data-testid="infoLoader"
+  />,
+  <button
+    className="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium ltr-tfi57h-MuiButtonBase-root-MuiIconButton-root-ActBtn-root"
+    data-testid="demo"
+    disabled={false}
+    onBlur={[Function]}
+    onContextMenu={[Function]}
+    onDragLeave={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchEnd={[Function]}
+    onTouchMove={[Function]}
+    onTouchStart={[Function]}
+    tabIndex={0}
+    type="button"
+  >
+    <span
+      className="ico ico-comment-o ltr-1l9xn4c-MuiIcon-root"
+    />
+    <span
+      className="MuiTouchRipple-root ltr-8je8zh-MuiTouchRipple-root"
+    />
+  </button>,
+]
+`;
+
+exports[`ActButton render icon label 1`] = `
+Array [
+  <div
+    data-testid="infoLoader"
+  />,
+  <button
+    className="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall ltr-b4ge7q-MuiButtonBase-root-MuiIconButton-root-ActBtn-root"
+    data-testid="demo"
+    disabled={false}
+    onBlur={[Function]}
+    onContextMenu={[Function]}
+    onDragLeave={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchEnd={[Function]}
+    onTouchMove={[Function]}
+    onTouchStart={[Function]}
+    tabIndex={0}
+    type="button"
+  >
+    <span
+      className="ico ico-comment-o ltr-1l9xn4c-MuiIcon-root"
+    />
+    <span
+      className="ltr-kkay2y-ActBtn-label"
+    >
+      Comment/Edit
+    </span>
+  </button>,
+]
+`;
+
+exports[`ActButton render icon src 1`] = `
+Array [
+  <div
+    data-testid="infoLoader"
+  />,
+  <button
+    className="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium ltr-tfi57h-MuiButtonBase-root-MuiIconButton-root-ActBtn-root"
+    data-testid="demo"
+    disabled={false}
+    onBlur={[Function]}
+    onContextMenu={[Function]}
+    onDragLeave={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchEnd={[Function]}
+    onTouchMove={[Function]}
+    onTouchStart={[Function]}
+    tabIndex={0}
+    type="button"
+  >
+    <img
+      className="ltr-1byr5q5-ActBtn-img"
+      draggable={false}
+      src="https://preview-foxsocial.phpfox.us/v5-backend/files/blog/planningyourpr_295522496.jpeg"
+    />
+  </button>,
+]
+`;
+
+exports[`ActButton render mini label 1`] = `
+Array [
+  <div
+    data-testid="infoLoader"
+  />,
+  <span
+    className="ltr-118bvo4-ActBtn-smallButton"
+    data-testid="demo"
+    role="button"
+  >
+    Comment/Edit
+  </span>,
+]
+`;

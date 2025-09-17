@@ -1,0 +1,50 @@
+{
+  "info": {
+    "title": "Admin/Apps/Installed",
+    "bundle": "admincp",
+    "name": "core.admincp.app.purchased"
+  },
+  "large": {
+    "templateName": "admincp",
+    "blocks": [
+      {
+        "blockId": "tn06o",
+        "component": "user.block.AdminDataGrid",
+        "slotName": "main",
+        "pageName": "core.admincp.app.manage",
+        "pageSize": "large",
+        "title": "Installed",
+        "blockProps": {
+          "variant": "Admin Table",
+          "titleComponent": "h2",
+          "titleVariant": "secondary",
+          "titleColor": "text",
+          "noFooter": true,
+          "noHeader": false,
+          "blockStyle": {
+            "mb": 2
+          },
+          "contentStyle": {
+            "ml": 2,
+            "mt": 2,
+            "mr": 2,
+            "bgColor": "paper",
+            "borderRadius": "base"
+          },
+          "headerStyle": {
+            "pl": 2,
+            "pt": 3,
+            "pr": 2,
+            "pb": 1,
+            "dividerVariant": "0"
+          }
+        },
+        "dataGridProps": {
+          "appName": "core",
+          "resourceName": "module_admin",
+          "gridName": "installed"
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,13 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"/><meta name="apple-mobile-web-app-status-bar-style" content="light"/><meta http-equiv="X-UA-Compatible" content="ie=edge"/><title>Installation Wizard • MetaFox</title><link rel="icon" type="image/x-icon" href="https://metafox-assets.s3.eu-north-1.amazonaws.com/favicon.ico"/><style>@font-face {
+        font-family: 'lineficon';
+        src: url('/static/fonts/lineficon.eot?bqj3lm');
+        src: url('/static/fonts/lineficon.eot?bqj3lm#iefix')
+            format('embedded-opentype'),
+          url('/static/fonts/lineficon.ttf?bqj3lm') format('truetype'),
+          url('/static/fonts/lineficon.woff?bqj3lm') format('woff');
+        font-weight: normal;
+        font-style: normal;
+      }</style><link href="index.css" rel="stylesheet"></head><script>window.__base_name__ = window.location.pathname.split('/install').shift();
+    window.__api_url__ =
+      window.location.pathname.split('/install').shift() + '/api/v1';</script><body> <h1>Install page working</h1>
+<div id="root"></div><script defer="defer" src="static/js/runtime-index.1cc4a2a0.js"></script><script defer="defer" src="static/js/vendor.1f0e6707.js"></script><script defer="defer" src="static/js/material.edafa5ea.js"></script><script defer="defer" src="static/js/commons.cf6b9d98.js"></script><script defer="defer" src="static/js/index.9f6d29ad.js"></script></body></html>

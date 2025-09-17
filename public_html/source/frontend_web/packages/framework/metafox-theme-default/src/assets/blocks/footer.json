@@ -1,0 +1,19 @@
+{
+  "noHeader": true,
+  "noFooter": true,
+  "blockProps": {
+    "blockStyle": {
+      "sx": {
+        "mt": 2,
+        "mb": 3,
+        "pr": 0,
+        "pl": 0,
+        "pt": 0
+      }
+    }
+  },
+  "info": {
+    "bundle": "web",
+    "name": "footer"
+  }
+}

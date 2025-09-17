@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunk_metafox_react=self.webpackChunk_metafox_react||[]).push([["metafox-ui-ListInfo-AsComponent-DateBasic"],{7160(e,t,a){a.r(t),a.d(t,{default:()=>n});var f=a(91557);function n(e){let{value:t,valueFormat:a,format:n="L"}=e,{moment:u}=(0,f.PCX)();return t?u(t,a).format(n):null}}}]);

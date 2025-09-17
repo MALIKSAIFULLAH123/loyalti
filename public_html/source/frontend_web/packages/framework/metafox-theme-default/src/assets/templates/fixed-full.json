@@ -1,0 +1,26 @@
+{
+  "blocks": [],
+  "header": {
+    "elements": {
+      "header": {
+        "disableGutters": true,
+        "elements": {
+          "header": {}
+        }
+      }
+    }
+  },
+  "content": {
+    "elements": {
+      "main-fixed": {
+        "elements": {
+          "main-fixed": {}
+        }
+      }
+    }
+  },
+  "info": {
+    "bundle": "web",
+    "name": "fixed-full"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "blockProps": {
+    "titleStyle": {},
+    "contentStyle": {
+      "sx": {
+        "pl": 2,
+        "pr": 2,
+        "pt": 2,
+        "pb": 0,
+        "mb": -2
+      }
+    },
+    "headerStyle": {},
+    "footerStyle": {},
+    "blockStyle": {}
+  },
+  "noHeader": true,
+  "noFooter": true,
+  "info": {
+    "bundle": "web",
+    "name": "Login Languages"
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "title": "02 columns and fixed side",
+  "blocks": [],
+  "header": {
+    "elements": {
+      "header": {
+        "disableGutters": true,
+        "elements": {
+          "header": {
+            "slotName": "header",
+            "stageStyle": {
+              "minHeight": "appbar"
+            }
+          }
+        },
+        "rootStyle": {
+          "minHeight": "appbar"
+        }
+      }
+    }
+  },
+  "content": {
+    "elements": {
+      "main": {
+        "gridContainer": true,
+        "disableGutters": true,
+        "elements": {
+          "side": {
+            "xs": 3,
+            "rootStyle": {
+              "minWidth": "xs1",
+              "maxWidth": "xs2",
+              "sx": {
+                "mr": 2
+              }
+            },
+            "contentStyle": {
+              "sx": {
+                "bgcolor": "background.paper"
+              }
+            },
+            "component": "layout.liveFixedSlot",
+            "freeze": 2,
+            "disableGutters": false,
+            "slotName": "side",
+            "stageStyle": {
+              "sx": {
+                "margin": "0 auto"
+              }
+            }
+          },
+          "main": {
+            "flexWeight": "1",
+            "stageStyle": {
+              "sx": {
+                "pr": 2,
+                "margin": "0 auto"
+              }
+            },
+            "slotName": "main"
+          }
+        }
+      }
+    }
+  },
+  "info": {
+    "bundle": "web",
+    "name": "two-column-fixed"
+  }
+}

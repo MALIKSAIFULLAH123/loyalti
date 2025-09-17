@@ -1,0 +1,49 @@
+{
+  "blockProps": {
+    "titleStyle": {
+      "component": "h2",
+      "sx": {
+        "typography": "h4"
+      }
+    },
+    "contentStyle": {
+      "sx": {
+        "pt": 0,
+        "pb": 0
+      }
+    },
+    "headerStyle": {
+      "dividerVariant": "fullWidth",
+      "sx": {
+        "pl": 2,
+        "pr": 2,
+        "pt": 0,
+        "pb": 0,
+        "mr": 0,
+        "mt": 0,
+        "mb": 0,
+        "minHeight": "48px",
+        "height": "48px"
+      }
+    },
+    "footerStyle": {
+      "dividerVariant": "0"
+    },
+    "blockStyle": {
+      "sx": {
+        "bgcolor": "background.paper",
+        "mr": 2,
+        "ml": 2,
+        "mt": 1,
+        "mb": 2,
+        "borderRadius": 1
+      }
+    }
+  },
+  "noHeader": 0,
+  "noFooter": true,
+  "info": {
+    "bundle": "admincp",
+    "name": "Admin - Table - Contained"
+  }
+}

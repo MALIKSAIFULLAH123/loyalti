@@ -1,0 +1,31 @@
+{
+  "blockProps": {
+    "titleStyle": {
+      "component": "h1",
+      "sx": {
+        "typography": "h4"
+      }
+    },
+    "contentStyle": {
+      "sx": {
+        "px": 0,
+        "py": 0,
+        "mt": 0.5
+      }
+    },
+    "headerStyle": {},
+    "footerStyle": {},
+    "blockStyle": {
+      "sx": {
+        "pt": 0,
+        "mt": 0
+      }
+    }
+  },
+  "noHeader": 0,
+  "noFooter": true,
+  "info": {
+    "bundle": "web",
+    "name": "App Simple - Tab Contained"
+  }
+}

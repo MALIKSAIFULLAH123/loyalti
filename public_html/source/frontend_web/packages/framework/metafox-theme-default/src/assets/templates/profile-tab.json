@@ -1,0 +1,47 @@
+{
+  "blocks": [],
+  "header": {
+    "elements": {
+      "header": {
+        "disableGutters": true,
+        "elements": {
+          "header": {}
+        },
+        "rootStyle": {
+          "minHeight": "appbar"
+        }
+      }
+    }
+  },
+  "content": {
+    "elements": {
+      "top": {
+        "elements": {
+          "top": {
+            "flexWeight": 1
+          }
+        }
+      },
+      "main": {
+        "gridContainer": true,
+        "rootStyle": {
+          "maxWidth": "md",
+          "gutter": true,
+          "sx": {
+            "pb": 2
+          }
+        },
+        "elements": {
+          "main": {
+            "xs": 12,
+            "stageStyle": {}
+          }
+        }
+      }
+    }
+  },
+  "info": {
+    "bundle": "web",
+    "name": "profile-tab"
+  }
+}

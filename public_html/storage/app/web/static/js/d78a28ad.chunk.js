@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunk_metafox_react=self.webpackChunk_metafox_react||[]).push([["metafox-group-blocks-RelatedGroups-Block"],{59523(e,t,a){a.r(t),a.d(t,{default:()=>o});var l=a(91557);let o=(0,l.WvA)({name:"blockRelatedGroups",extendBlock:"core.block.listview",defaults:{itemView:"group.itemView.mainCard"}})}}]);

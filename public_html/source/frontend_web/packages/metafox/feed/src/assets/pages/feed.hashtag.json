@@ -1,0 +1,201 @@
+{
+  "large": {
+    "blocks": [
+      {
+        "component": "search.block.SearchResultListings",
+        "slotName": "main",
+        "blockId": "mngh",
+        "searchSectionAction": "viewAll",
+        "searchPreviewAction": "viewAllSectionItem"
+      },
+      {
+        "blockId": "ia",
+        "component": "core.block.sideAppHeader",
+        "slotName": "side",
+        "title": "Feed - Main Card",
+        "icon": "ico-compose-alt",
+        "blockLayout": "sidebar app header"
+      },
+      {
+        "blockId": "hze8y",
+        "component": "core.block.sidebarQuickFilter",
+        "slotName": "side",
+        "title": "Filters",
+        "blockLayout": "sidebar app filter",
+        "formName": "search_hash_tag"
+      },
+      {
+        "component": "core.block.trendingHashtag",
+        "slotName": "subside",
+        "title": "trending",
+        "blockId": "7f0ek",
+        "maxPageNumber": 1,
+        "numberOfItemsPerPage": 4,
+        "itemView": "feed.itemView.trendingHashtag",
+        "blockLayout": "Profile - Side Contained (no gutter)",
+        "gridLayout": "Hashtag - Trending",
+        "contentType": "hashtag",
+        "errorPage": "hide",
+        "emptyPage": "hide",
+        "itemLayout": "Hashtag - Trending"
+      },
+      {
+        "component": "core.block.footer",
+        "slotName": "subside",
+        "dividerVariant": "middle",
+        "blockLayout": "footer",
+        "blockId": "qlfp"
+      }
+    ],
+    "pageName": "feed.hashtag",
+    "templateName": "three-column-fixed"
+  },
+  "small": {
+    "blocks": [
+      {
+        "blockId": "17hnk",
+        "component": "core.block.sidebarAppMobile",
+        "slotName": "main",
+        "pageName": "feed.hashtag",
+        "contents": [
+          {
+            "name": "core.block.sideAppHeader"
+          },
+          {
+            "name": "core.block.sidebarQuickFilter",
+            "props": {
+              "formName": "search_hash_tag",
+              "resourceNameAction": "viewSections"
+            }
+          }
+        ],
+        "title": "hashtag",
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "text",
+          "noFooter": true,
+          "noHeader": true,
+          "padding": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0
+          },
+          "gutter": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0
+          },
+          "contentGutter": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0
+          },
+          "headerGutter": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0
+          },
+          "footerGutter": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0
+          },
+          "blockStyle": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0,
+            "bgColor": "0",
+            "borderStyle": "0",
+            "borderColor": "0"
+          },
+          "contentStyle": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0,
+            "bgColor": "0",
+            "borderStyle": "0",
+            "borderColor": "0"
+          },
+          "headerStyle": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0,
+            "bgColor": "0",
+            "borderStyle": "0",
+            "borderColor": "0"
+          },
+          "footerStyle": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0,
+            "bgColor": "0",
+            "borderStyle": "0",
+            "borderColor": "0"
+          },
+          "testid": "sidebarMenu",
+          "title": "App Menu Mobile"
+        }
+      },
+      {
+        "component": "search.block.SearchResultListings",
+        "slotName": "main",
+        "blockId": "mngh",
+        "searchSectionAction": "viewAll",
+        "searchPreviewAction": "viewAllSectionItem"
+      }
+    ],
+    "pageName": "feed.hashtag",
+    "templateName": "mobile"
+  },
+  "info": {
+    "bundle": "web",
+    "name": "feed.hashtag"
+  }
+}

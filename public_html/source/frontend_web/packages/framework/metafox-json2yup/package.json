@@ -1,0 +1,21 @@
+{
+  "name": "@metafox/json2yup",
+  "version": "5.0.1",
+  "description": "a",
+  "main": "./dist/index.js",
+  "typings": "./typings/index.d.ts",
+  "dependencies": {
+    "date-fns": "^2.16.1",
+    "yup": "^0.32.11"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "unittest": "metafox jest-unittest"
+  },
+  "repository": {},
+  "keywords": [
+    "metafox, normalization"
+  ],
+  "author": "phpfox <developer@phpfox.com>",
+  "license": "ISC"
+}

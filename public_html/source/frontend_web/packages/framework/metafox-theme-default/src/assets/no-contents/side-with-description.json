@@ -1,0 +1,25 @@
+{
+  "noSummary": true,
+  "noMedia": true,
+  "titleStyle": {
+    "component": "h4",
+    "sx": {
+      "typography": "h4",
+      "color": "text.secondary",
+      "pl": 0
+    },
+    "variant": "h2"
+  },
+  "textStyle": {
+    "sx": {
+      "pl": 2,
+      "pb": 2,
+      "pr": 2,
+      "pt": 2
+    }
+  },
+  "info": {
+    "bundle": "web",
+    "name": "Side with description"
+  }
+}

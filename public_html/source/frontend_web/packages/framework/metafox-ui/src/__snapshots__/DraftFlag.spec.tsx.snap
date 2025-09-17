@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DraftFlag render 1`] = `
+<div>
+  <span
+    class="css-wkuw4q-DraftFlag-root"
+  >
+    <span
+      class="MuiTypography-root MuiTypography-h3 css-1mhtmdn-MuiTypography-root"
+    >
+      [draft]
+    </span>
+  </span>
+</div>
+`;
+
+exports[`DraftFlag render null 1`] = `<div />`;

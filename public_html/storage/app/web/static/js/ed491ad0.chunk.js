@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunk_metafox_react=self.webpackChunk_metafox_react||[]).push([["metafox-group-blocks-GroupListing-Block"],{22772(e,t,i){i.r(t),i.d(t,{default:()=>a});var o=i(91557);let a=(0,o.WvA)({name:"GroupsListingBlock",extendBlock:"core.block.listview",overrides:{},defaults:{title:"Groups",emptyPage:"hide",itemView:"group.itemView.mainCard"}})}}]);

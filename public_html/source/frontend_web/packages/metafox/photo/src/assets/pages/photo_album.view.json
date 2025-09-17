@@ -1,0 +1,62 @@
+{
+  "large": {
+    "blocks": [
+      {
+        "blockId": "4upgh",
+        "component": "photo.block.photoAlbumView",
+        "slotName": "main",
+        "blockProps": {
+          "blockStyle": {
+            "pl": 2,
+            "pt": 2,
+            "pr": 2,
+            "pb": 2
+          }
+        }
+      }
+    ],
+    "templateName": "simple"
+  },
+  "small": {
+    "blocks": [
+      {
+        "blockId": "wwaza",
+        "component": "core.block.sidebarAppMobile",
+        "slotName": "main",
+        "pageName": "photo_album.view",
+        "pageSize": "small",
+        "contents": [
+          {
+            "name": "core.block.searchBox"
+          },
+          {
+            "name": "core.block.sidebarAppMenu"
+          },
+          {
+            "name": "core.dividerBlock"
+          },
+          {
+            "name": "core.categoryBlock"
+          }
+        ]
+      },
+      {
+        "blockId": "4upgh",
+        "component": "photo.block.photoAlbumMobileView",
+        "slotName": "main",
+        "blockProps": {
+          "blockStyle": {
+            "pt": 0,
+            "pr": 0,
+            "pb": 0
+          }
+        }
+      }
+    ],
+    "templateName": "mobile"
+  },
+  "info": {
+    "bundle": "web",
+    "name": "photo_album.view"
+  }
+}

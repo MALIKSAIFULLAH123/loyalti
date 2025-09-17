@@ -1,0 +1,75 @@
+{
+  "large": {
+    "templateName": "master-child",
+    "blocks": [
+      {
+        "blockId": "qgl4n",
+        "component": "core.block.sideAppHeader",
+        "slotName": "side",
+        "title": "Friend Requests",
+        "blockLayout": "sidebar app header"
+      },
+      {
+        "component": "friend.block.pendingRequest",
+        "slotName": "side",
+        "title": "Incoming Requests",
+        "emptyPage": "no_content",
+        "emptyPageProps": {
+          "noHeader": true,
+          "variant": "side",
+          "title": "no_requests_found",
+          "noBlock": 0
+        },
+        "blockId": "jjaan",
+        "itemView": "friend_pendingRequest.itemView.smallCard",
+        "contentType": "friend_request",
+        "dataSource": {
+          "apiUrl": "/friend/request",
+          "apiParams": "view=pending"
+        },
+        "loadMoreType": "button",
+        "canLoadMore": 1,
+        "canLoadSmooth": 1,
+        "blockLayout": "Clean - Body Only",
+        "gridLayout": "Friend - Pending Lists",
+        "noContentLayout": "Side with description",
+        "linkProps": {
+          "asModal": 0
+        },
+        "itemLayout": "Friend - Pending Lists"
+      }
+    ]
+  },
+  "small": {
+    "templateName": "mobile",
+    "blocks": [
+      {
+        "component": "friend.block.pendingRequest",
+        "slotName": "side",
+        "title": "Pending Requests",
+        "blockId": "jjaab",
+        "loadMoreType": "button",
+        "blockProps": {
+          "variant": "contained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "textPrimary",
+          "noFooter": false,
+          "noHeader": false
+        },
+        "gridContainerProps": {
+          "spacing": 2
+        },
+        "gridItemProps": {
+          "xs": 12,
+          "md": 12
+        },
+        "itemView": "friend_pendingRequest.itemView.smallCard"
+      }
+    ]
+  },
+  "info": {
+    "bundle": "web",
+    "name": "friend.incomingRequests"
+  }
+}

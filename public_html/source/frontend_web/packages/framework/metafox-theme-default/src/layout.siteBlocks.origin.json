@@ -1,0 +1,43 @@
+{
+  "small": [
+    {
+      "blockId": "appbar0",
+      "component": "core.siteBarMobileBlock",
+      "slotName": "bottom",
+      "blockOrigin": "site",
+      "blockLayout": "none"
+    },
+    {
+      "blockId": "appbar0",
+      "component": "core.siteBarBrandHeaderMobileBlock",
+      "slotName": "header",
+      "blockOrigin": "site",
+      "blockLayout": "none"
+    }
+  ],
+  "sMedium": [
+    {
+      "blockId": "appbar0",
+      "component": "core.siteBarMobileBlock",
+      "slotName": "bottom",
+      "blockOrigin": "site",
+      "blockLayout": "none"
+    },
+    {
+      "blockId": "appbar0",
+      "component": "core.siteBarBrandHeaderMobileBlock",
+      "slotName": "header",
+      "blockOrigin": "site",
+      "blockLayout": "none"
+    }
+  ],
+  "large": [
+    {
+      "component": "core.block.appbar",
+      "slotName": "header",
+      "blockId": "appbar0",
+      "blockOrigin": "site",
+      "blockLayout": "none"
+    }
+  ]
+}

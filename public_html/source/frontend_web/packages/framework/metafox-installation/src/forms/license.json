@@ -1,0 +1,81 @@
+{
+  "name": "license",
+  "testid": "LicenseConfig",
+  "component": "Form",
+  "title": "MetaFox License",
+  "action": "install/?step=verify-license",
+  "method": "POST",
+  "value": {
+    "license": {}
+  },
+  "validation": {
+    "type": "object",
+    "properties": {
+      "license": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "errors": {
+              "required": "${path} is a required field.",
+              "matches": "Invalid ${path}"
+            },
+            "required": true,
+            "matches": {
+              "regex": "\\w+"
+            },
+            "label": "License ID"
+          },
+          "key": {
+            "type": "string",
+            "errors": {
+              "required": "${path} is a required field.",
+              "matches": "Invalid ${path}"
+            },
+            "required": true,
+            "matches": {
+              "regex": "\\w+"
+            },
+            "label": "License Key"
+          }
+        }
+      }
+    }
+  },
+  "elements": {
+    "basic": {
+      "component": "Container",
+      "name": "basic",
+      "testid": "field basic",
+      "elements": {
+        "license.id": {
+          "name": "license.id",
+          "maxLength": 255,
+          "fullWidth": true,
+          "variant": "outlined",
+          "margin": "normal",
+          "size": "medium",
+          "component": "Text",
+          "required": true,
+          "autoComplete": "off",
+          "autoFocus": true,
+          "label": "License ID",
+          "testid": "field license.id"
+        },
+        "license.key": {
+          "name": "license.key",
+          "maxLength": 255,
+          "fullWidth": true,
+          "required": true,
+          "variant": "outlined",
+          "margin": "normal",
+          "size": "medium",
+          "component": "Text",
+          "label": "License Key",
+          "autoComplete": "off",
+          "testid": "field license.key"
+        }
+      }
+    }
+  }
+}

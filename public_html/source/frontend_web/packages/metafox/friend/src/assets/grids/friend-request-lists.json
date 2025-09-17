@@ -1,0 +1,18 @@
+{
+  "gridContainerProps": {
+    "columnSpacing": 2,
+    "rowSpacing": 2
+  },
+  "gridItemProps": {
+    "xs": 12,
+    "sm": 12,
+    "md": 6,
+    "lg": 4,
+    "xl": 4
+  },
+  "gridVariant": "gridView",
+  "info": {
+    "bundle": "web",
+    "name": "Friend - Request Lists"
+  }
+}

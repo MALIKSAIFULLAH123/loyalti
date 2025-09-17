@@ -1,0 +1,19 @@
+{
+  "gridContainerProps": {
+    "rowSpacing": 2,
+    "columnSpacing": 2
+  },
+  "gridItemProps": {
+    "xl": 4,
+    "llg": 4,
+    "lg": 6,
+    "md": 6,
+    "sm": 12,
+    "xs": 12
+  },
+  "gridVariant": "gridView",
+  "info": {
+    "bundle": "admincp",
+    "name": "App Store Product - Main Cards"
+  }
+}

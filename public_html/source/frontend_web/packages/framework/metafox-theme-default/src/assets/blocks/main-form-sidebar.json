@@ -1,0 +1,18 @@
+{
+  "noHeader": true,
+  "noFooter": true,
+  "blockProps": {
+    "contentStyle": {
+      "sx": {
+        "pt": 2,
+        "pr": 2,
+        "pb": 2,
+        "pl": 2
+      }
+    }
+  },
+  "info": {
+    "bundle": "web",
+    "name": "Main Form SideBar"
+  }
+}

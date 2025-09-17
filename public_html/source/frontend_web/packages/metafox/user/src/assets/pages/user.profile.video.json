@@ -1,0 +1,120 @@
+{
+  "large": {
+    "templateName": "profile-tab",
+    "blocks": [
+      {
+        "component": "user.block.userProfileHeader",
+        "slotName": "top",
+        "title": "User Profile Header",
+        "blockProps": {
+          "marginBottom": 2,
+          "variant": "containted",
+          "noHeader": true,
+          "noFooter": true
+        },
+        "key": "arwc",
+        "blockId": "arwc"
+      },
+      {
+        "component": "video.block.userVideoListingBlock",
+        "slotName": "main",
+        "title": "videos",
+        "dataSource": {
+          "apiParams": "user_id=:id&sort=recent&limit=12",
+          "apiUrl": "/video"
+        },
+        "headerActionsResource": "video.video.headerItemActionOnUserProfileMenu",
+        "headerActions": [
+          {
+            "label": "add_videos",
+            "to": "/video/share?owner_id=:id",
+            "showWhen": [
+              "or",
+              ["truthy", "isAuthUser"],
+              ["neq", "pageParams.module_name", "user"]
+            ]
+          }
+        ],
+        "canLoadMore": true,
+        "key": "lj4h4",
+        "blockId": "lj4h4",
+        "contentType": "video",
+        "hasSearchBox": true,
+        "placeholderSearchBox": "search_videos",
+        "freeze": false,
+        "blockLayout": "Profile - Contained",
+        "gridLayout": "Video - Main Card",
+        "emptyPage": "core.block.no_item_with_icon",
+        "emptyPageProps": {
+          "description": "no_videos_found",
+          "image": "ico-video-player-o"
+        },
+        "privacyEmptyPage": "core.block.no_content_with_description",
+        "itemLayout": "Video User - Main Card"
+      }
+    ]
+  },
+  "small": {
+    "blocks": [
+      {
+        "component": "core.block.sidebarAppMobile",
+        "slotName": "top",
+        "blockId": "raegh"
+      },
+      {
+        "component": "user.block.userProfileHeader",
+        "slotName": "top",
+        "title": "User Profile Header",
+        "blockProps": {
+          "marginBottom": 2,
+          "variant": "containted",
+          "noHeader": true,
+          "noFooter": true
+        },
+        "key": "ayo5",
+        "blockId": "ayo5"
+      },
+      {
+        "component": "video.block.userVideoListingBlock",
+        "slotName": "main",
+        "title": "videos",
+        "dataSource": {
+          "apiParams": "user_id=:id&limit=12",
+          "apiUrl": "/video"
+        },
+        "headerActionsResource": "video.video.headerItemActionOnUserProfileMenu",
+        "headerActions": [
+          {
+            "label": "add_videos",
+            "to": "/video/share?owner_id=:id",
+            "showWhen": [
+              "or",
+              ["truthy", "isAuthUser"],
+              ["neq", "pageParams.module_name", "user"]
+            ]
+          }
+        ],
+        "canLoadMore": true,
+        "placeholderSearchBox": "search_videos",
+        "key": "vqz69",
+        "blockId": "vqz69",
+        "contentType": "video",
+        "emptyPage": "core.block.no_item_with_icon",
+        "emptyPageProps": {
+          "description": "no_videos_found",
+          "image": "ico-video-player-o"
+        },
+        "blockLayout": "Profile - Contained",
+        "hasSearchBox": 1,
+        "privacyEmptyPage": "core.block.no_content_with_description",
+        "gridLayout": "Video - Flat View",
+        "itemLayout": "Video - Flat View"
+      }
+    ],
+    "templateName": "mobile"
+  },
+  "info": {
+    "bundle": "web",
+    "name": "user.profile.video"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "blockProps": {
+    "titleStyle": {
+      "component": "h1",
+      "sx": {
+        "typography": "subtitle1"
+      }
+    },
+    "headerStyle": {
+      "dividerVariant": "0",
+      "sx": {
+        "pt": 1,
+        "pb": 2
+      }
+    },
+    "footerStyle": {
+      "dividerVariant": "0",
+      "sx": {
+        "mt": 2
+      }
+    },
+    "blockStyle": {
+      "blockShadow": 0,
+      "sx": {
+        "mt": 2,
+        "mb": 2,
+        "bgcolor": "0",
+        "borderRadius": "0"
+      }
+    }
+  },
+  "noHeader": true,
+  "noFooter": true,
+  "info": {
+    "bundle": "web",
+    "name": "Home Feed Main Listings"
+  }
+}

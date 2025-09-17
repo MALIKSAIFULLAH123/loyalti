@@ -1,0 +1,19 @@
+{
+  "gridContainerProps": {
+    "spacing": 0,
+    "columnSpacing": 0,
+    "rowSpacing": 0
+  },
+  "gridItemProps": {
+    "xs": 12,
+    "variant": "flatted",
+    "divider": "",
+    "hover": "background",
+    "item": true
+  },
+  "gridVariant": "listView",
+  "info": {
+    "bundle": "web",
+    "name": "Friend - Pending Lists Mobile"
+  }
+}

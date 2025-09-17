@@ -1,0 +1,29 @@
+{
+  "blockProps": {
+    "titleStyle": {
+      "component": "h1",
+      "sx": {
+        "typography": "primary"
+      }
+    },
+    "headerStyle": {
+      "dividerVariant": "0"
+    },
+    "footerStyle": {
+      "dividerVariant": "0"
+    },
+    "blockStyle": {
+      "blockShadow": 0,
+      "sx": {
+        "pl": 0,
+        "pr": 0,
+        "bgcolor": "0",
+        "borderRadius": "0"
+      }
+    }
+  },
+  "info": {
+    "bundle": "web",
+    "name": "sidebar app menu"
+  }
+}

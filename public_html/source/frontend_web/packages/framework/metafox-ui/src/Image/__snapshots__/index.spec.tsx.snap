@@ -1,0 +1,141 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Image render 1`] = `
+<div>
+  <div
+    data-testid="infoLoader"
+  />
+  <div
+    class="MuiImage-root MuiImage-square MuiImage-ratioauto MuiImage-cover"
+    data-testid="image"
+  >
+    <img
+      alt="picture"
+      src="/images/bg-img-1x1.png"
+    />
+  </div>
+</div>
+`;
+
+exports[`Image render ImageBlock aspectRatio:169 backgroundImage playerOverlay 1`] = `
+<div>
+  <div
+    data-testid="infoLoader"
+  />
+  <div
+    class="MuiImage-root MuiImage-square MuiImage-ratio169 MuiImage-cover"
+    data-testid="image"
+  >
+    <div
+      class="MuiImage-inner"
+    >
+      <span
+        class="ltr-1330e3l"
+        style="background-image: url(/images/bg-img-1x1.png);"
+      />
+    </div>
+    <div
+      class="ltr-19ezo3w-Overlay-root"
+    >
+      <span
+        class="ico ico-angle-right ltr-1o2x2pn-MuiIcon-root"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Image render ImageBlock aspectRatio:169 playerOverlay 1`] = `
+<div>
+  <div
+    data-testid="infoLoader"
+  />
+  <div
+    class="MuiImage-root MuiImage-square MuiImage-ratio169 MuiImage-cover"
+    data-testid="image"
+  >
+    <div
+      class="MuiImage-inner"
+    >
+      <img
+        alt="picture"
+        draggable="false"
+        src="/images/bg-img-1x1.png"
+      />
+    </div>
+    <div
+      class="ltr-19ezo3w-Overlay-root"
+    >
+      <span
+        class="ico ico-angle-right ltr-1o2x2pn-MuiIcon-root"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Image render ImageBlock aspectRatio:auto 1`] = `
+<div>
+  <div
+    data-testid="infoLoader"
+  />
+  <div
+    class="MuiImage-root MuiImage-square MuiImage-ratioauto MuiImage-cover"
+    data-testid="image"
+  >
+    <img
+      alt="picture"
+      src="/images/bg-img-1x1.png"
+    />
+  </div>
+</div>
+`;
+
+exports[`Image render link  1`] = `
+<div>
+  <div
+    data-testid="infoLoader"
+  />
+  <a
+    class="MuiImage-root MuiImage-square MuiImage-ratioauto MuiImage-cover"
+    data-testid="image"
+    href="/home"
+  >
+    <img
+      alt="picture"
+      src="/images/bg-img-1x1.png"
+    />
+  </a>
+</div>
+`;
+
+exports[`Image render link host asModal 1`] = `
+<div>
+  <div
+    data-testid="infoLoader"
+  />
+  <a
+    class="MuiImage-root MuiImage-square MuiImage-ratioauto MuiImage-cover"
+    data-testid="image"
+    href="/home"
+    target="_blank"
+  >
+    <img
+      alt="picture"
+      src="/images/bg-img-1x1.png"
+    />
+  </a>
+</div>
+`;
+
+exports[`PlayerOverlay render playerOverlay 1`] = `
+<div>
+  <div
+    class="css-3y3vt2-Overlay-root"
+  >
+    <span
+      class="ico ico-angle-right css-1o2x2pn-MuiIcon-root"
+    />
+  </div>
+</div>
+`;

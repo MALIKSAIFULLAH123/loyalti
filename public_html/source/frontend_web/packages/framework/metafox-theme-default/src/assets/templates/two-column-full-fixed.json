@@ -1,0 +1,68 @@
+{
+  "title": "02 columns full and fixed side",
+  "blocks": [],
+  "header": {
+    "elements": {
+      "header": {
+        "disableGutters": true,
+        "elements": {
+          "header": {
+            "slotName": "header",
+            "stageStyle": {
+              "minHeight": "appbar"
+            }
+          }
+        },
+        "rootStyle": {
+          "minHeight": "appbar"
+        }
+      }
+    }
+  },
+  "content": {
+    "elements": {
+      "main": {
+        "gridContainer": true,
+        "disableGutters": true,
+        "elements": {
+          "side": {
+            "xs": 3,
+            "rootStyle": {
+              "minWidth": "xs1",
+              "maxWidth": "xs2",
+              "sx": {}
+            },
+            "contentStyle": {
+              "sx": {
+                "bgcolor": "background.paper"
+              }
+            },
+            "component": "layout.liveFixedSlot",
+            "freeze": 2,
+            "disableGutters": false,
+            "slotName": "side",
+            "stageStyle": {
+              "sx": {
+                "margin": "0 auto"
+              }
+            }
+          },
+          "main": {
+            "component": "layout.liveFixedSlot",
+            "slotName": "main",
+            "disabledScroll": true,
+            "flexWeight": "1",
+            "xs": 12
+          }
+        },
+        "rootStyle": {
+          "minHeight": "screen"
+        }
+      }
+    }
+  },
+  "info": {
+    "bundle": "web",
+    "name": "two-column-full-fixed"
+  }
+}

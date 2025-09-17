@@ -1,0 +1,44 @@
+{
+  "title": "messages",
+  "blocks": [],
+  "header": {
+    "elements": {
+      "header": {
+        "disableGutters": true,
+        "elements": {
+          "header": {
+            "slotName": "header",
+            "stageStyle": {
+              "minHeight": "appbar"
+            }
+          }
+        },
+        "rootStyle": {
+          "minHeight": "appbar"
+        }
+      }
+    }
+  },
+  "content": {
+    "elements": {
+      "main": {
+        "gridContainer": true,
+        "disableGutters": true,
+        "elements": {
+          "main": {
+            "component": "layout.liveFixedSlot",
+            "disabledScroll": true,
+            "xs": 12
+          }
+        },
+        "rootStyle": {
+          "minHeight": "screen"
+        }
+      }
+    }
+  },
+  "info": {
+    "bundle": "web",
+    "name": "messages"
+  }
+}

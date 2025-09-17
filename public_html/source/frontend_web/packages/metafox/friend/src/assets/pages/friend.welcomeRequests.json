@@ -1,0 +1,92 @@
+{
+  "large": {
+    "templateName": "blank",
+    "blocks": [
+      {
+        "component": "friend.block.welcome",
+        "slotName": "main",
+        "blockId": "g3zng"
+      }
+    ]
+  },
+  "small": {
+    "blocks": [
+      {
+        "blockId": "08u5o",
+        "component": "core.block.sidebarAppMobile",
+        "slotName": "main",
+        "pageSize": "small",
+        "title": "",
+        "contents": [
+          {
+            "name": "core.block.sidebarAppMenu"
+          },
+          {
+            "name": "core.dividerBlock"
+          },
+          {
+            "name": "friend.block.FriendListListing",
+            "props": {
+              "pageName": "friend.home",
+              "pageSize": "large",
+              "title": "friend_list",
+              "gridItemProps": {
+                "xs": 12,
+                "md": 12
+              },
+              "itemView": "friend_list.itemView.mainCard",
+              "contentType": "friend_list",
+              "dataSource": {
+                "apiUrl": "/friend/list"
+              },
+              "canLoadMore": 1,
+              "blockLayout": "Friend List Side Block",
+              "gridLayout": "Friend List - Small List",
+              "emptyPage": "core.block.no_content_with_icon",
+              "emptyPageProps": {
+                "variant": "side",
+                "title": "no_friend_lists",
+                "description": "no_friend_lists_found",
+                "color": "inherit",
+                "noBlock": 1
+              },
+              "noContentLayout": "Side with description",
+              "itemLayout": "Friend List - Small List"
+            }
+          }
+        ]
+      },
+      {
+        "blockId": "uj6oo",
+        "component": "friend.block.pendingRequest",
+        "slotName": "main",
+        "pageName": "friend.welcomeRequests",
+        "pageSize": "small",
+        "title": "friend_requests",
+        "itemView": "friend_pendingRequest.itemView.smallCard",
+        "emptyPage": "core.block.no_content_with_icon",
+        "emptyPageProps": {
+          "title": "no_requests_found",
+          "description": "you_don_have_any_new_friend_request",
+          "image": "ico-user1-two"
+        },
+        "contentType": "friend_request",
+        "dataSource": {
+          "apiUrl": "/friend/request",
+          "apiParams": "view=pending"
+        },
+        "canLoadMore": 1,
+        "canLoadSmooth": 1,
+        "blockLayout": "App List - Mobile",
+        "gridLayout": "Friend - Request Lists",
+        "noContentLayout": "No Content With Icon & Note",
+        "itemLayout": "Friend - Request Lists"
+      }
+    ],
+    "templateName": "mobile"
+  },
+  "info": {
+    "bundle": "web",
+    "name": "friend.welcomeRequests"
+  }
+}

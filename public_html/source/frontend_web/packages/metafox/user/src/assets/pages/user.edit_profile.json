@@ -1,0 +1,30 @@
+{
+  "large": {
+    "blocks": [
+      {
+        "component": "core.block.mainForm",
+        "slotName": "main",
+        "blockId": "1exr",
+        "title": "Edit Profile",
+        "blockLayout": "Full Screen Form"
+      }
+    ],
+    "templateName": "profile-tab"
+  },
+  "small": {
+    "blocks": [
+      {
+        "component": "core.block.mainForm",
+        "slotName": "main",
+        "blockId": "1exr",
+        "title": "Edit Profile",
+        "blockLayout": "Full Screen Form"
+      }
+    ],
+    "templateName": "mobile"
+  },
+  "info": {
+    "bundle": "web",
+    "name": "user.edit_profile"
+  }
+}

@@ -1,0 +1,46 @@
+{
+    "name": "metafox/storage",
+    "version": "5.0.21",
+    "description": "",
+    "authors": [
+        {
+            "name": "phpFox",
+            "email": "developer@phpfox.com",
+            "homepage": "https://www.phpfox.com"
+        }
+    ],
+    "extra": {
+        "metafox": {
+            "core": true,
+            "priority": 100,
+            "alias": "storage",
+            "asset": "storage",
+            "namespace": "MetaFox\\Storage",
+            "path": "packages/metafox/storage",
+            "title": "Storage",
+            "internalAdminUrl": "/storage/setting",
+            "providers": [
+                "MetaFox\\Storage\\Providers\\AliasStorageProvider",
+                "MetaFox\\Storage\\Providers\\PackageServiceProvider"
+            ],
+            "frontend": [],
+            "aliases": null,
+            "type": "app",
+            "mobile": [],
+            "store_id": 0,
+            "store_url": null,
+            "internalUrl": ""
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "MetaFox\\Storage\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "MetaFox\\Storage\\Tests\\": "tests/"
+        }
+    },
+    "keyword": ""
+}

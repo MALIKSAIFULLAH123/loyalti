@@ -1,0 +1,26 @@
+{
+  "info": {
+    "bundle": "web",
+    "name": "core.refreshToken"
+  },
+  "large": {
+    "templateName": "blank",
+    "blocks": [
+      {
+        "component": "Loading",
+        "slotName": "main",
+        "blockId": "pdbc"
+      }
+    ]
+  },
+  "small": {
+    "templateName": "blank",
+    "blocks": [
+      {
+        "component": "Loading",
+        "slotName": "main",
+        "blockId": "sqihd"
+      }
+    ]
+  }
+}

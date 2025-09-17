@@ -1,0 +1,43 @@
+{
+  "blockProps": {
+    "titleStyle": {
+      "component": "h2",
+      "sx": {
+        "typography": "secondary",
+        "color": "text"
+      }
+    },
+    "contentStyle": {
+      "sx": {
+        "bgcolor": "background.paper",
+        "p": 2,
+        "borderRadius": 1
+      },
+      "variant": "Admin Form"
+    },
+    "headerStyle": {
+      "dividerVariant": "0",
+      "sx": {
+        "pb": 2,
+        "pt": 3
+      }
+    },
+    "footerStyle": {},
+    "blockStyle": {
+      "sx": {
+        "mb": 2,
+        "maxWidth": "sm",
+        "marginLeft": "auto",
+        "marginRight": "auto",
+        "borderRadius": 1
+      }
+    }
+  },
+  "noHeader": 0,
+  "noFooter": true,
+  "freeze": 0,
+  "info": {
+    "bundle": "web",
+    "name": "Edit Info List"
+  }
+}

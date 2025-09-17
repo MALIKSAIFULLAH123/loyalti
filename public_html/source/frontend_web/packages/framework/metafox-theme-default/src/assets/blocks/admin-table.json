@@ -1,0 +1,40 @@
+{
+  "blockProps": {
+    "titleStyle": {
+      "component": "h2",
+      "sx": {
+        "typography": "secondary",
+        "color": "text"
+      }
+    },
+    "contentStyle": {
+      "sx": {
+        "ml": 2,
+        "mr": 2,
+        "mt": 1,
+        "bgcolor": "background.paper",
+        "borderRadius": 1
+      }
+    },
+    "headerStyle": {
+      "dividerVariant": "0",
+      "sx": {
+        "pl": 2,
+        "pr": 2,
+        "pt": 3,
+        "pb": 1
+      }
+    },
+    "blockStyle": {
+      "sx": {
+        "mb": 2
+      }
+    }
+  },
+  "noHeader": false,
+  "noFooter": true,
+  "info": {
+    "bundle": "web",
+    "name": "Admin Table"
+  }
+}

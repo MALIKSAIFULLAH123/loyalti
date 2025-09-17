@@ -1,0 +1,17 @@
+{
+  "name": "@metafox/normalization",
+  "version": "5.0.1",
+  "description": "modular json normalization support",
+  "main": "src/index.ts",
+  "private": false,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "unittest": "metafox jest-unittest"
+  },
+  "repository": {},
+  "keywords": [
+    "metafox, normalization"
+  ],
+  "author": "phpfox <developer@phpfox.com>",
+  "license": "ISC"
+}

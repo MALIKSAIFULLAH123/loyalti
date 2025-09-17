@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FeedEmbedCardMedia render 1`] = `
+<div>
+  <div
+    data-testid="infoLoader"
+  />
+  <div
+    class="MuiFeedEmbedCardMedia-root media ltr-kvqzwk-MuiFeedEmbedCardMedia-bgCover"
+  >
+    <div
+      class="MuiImage-root MuiImage-square MuiImage-ratio11 MuiImage-cover"
+    >
+      <div
+        class="MuiImage-inner"
+      >
+        <img
+          draggable="false"
+          src="[object Object]"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`FeedEmbedCardMedia render have link, host props 1`] = `
+<div>
+  <div
+    data-testid="infoLoader"
+  />
+  <div
+    class="MuiFeedEmbedCardMedia-root media ltr-kvqzwk-MuiFeedEmbedCardMedia-bgCover"
+  >
+    <a
+      class="MuiImage-root MuiImage-square MuiImage-ratio11 MuiImage-cover"
+      href="/home"
+      target="_blank"
+    >
+      <div
+        class="MuiImage-inner"
+      >
+        <img
+          draggable="false"
+          src="[object Object]"
+        />
+      </div>
+    </a>
+  </div>
+</div>
+`;

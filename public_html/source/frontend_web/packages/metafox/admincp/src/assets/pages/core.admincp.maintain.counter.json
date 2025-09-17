@@ -1,0 +1,55 @@
+{
+  "info": {
+    "title": "Admin/Maintain/Counter",
+    "bundle": "admincp",
+    "name": "core.admincp.maintain.counter"
+  },
+  "large": {
+    "templateName": "admincp",
+    "blocks": [
+      {
+        "blockId": "vuf9b",
+        "component": "core.block.AdminManageCounter",
+        "slotName": "main",
+        "pageSize": "large",
+        "title": "Manage Counter",
+        "blockProps": {
+          "variant": "contained",
+          "titleComponent": "h2",
+          "titleVariant": "secondary",
+          "titleColor": "textPrimary",
+          "blockStyle": {
+            "ml": 2,
+            "mr": 2,
+            "mt": 2,
+            "mb": 2,
+            "bgColor": "paper",
+            "borderRadius": "base"
+          },
+          "headerStyle": {
+            "pl": 2,
+            "pt": 1,
+            "pb": 1,
+            "pr": 2,
+            "dividerVariant": "0"
+          },
+          "contentStyle": {
+            "pl": 2,
+            "pt": 2,
+            "pb": 2,
+            "pr": 2
+          },
+          "footerStyle": {
+            "pl": 2,
+            "pt": 1,
+            "pb": 1,
+            "pr": 2,
+            "dividerVariant": "0"
+          },
+          "noHeader": false
+        },
+        "freeze": false
+      }
+    ]
+  }
+}

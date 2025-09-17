@@ -1,0 +1,26 @@
+{
+  "emptyPage": "hide",
+  "gridVariant": "gridView",
+  "blockProps": {
+    "titleStyle": {
+      "component": "h2",
+      "sx": {
+        "typography": "subtitle1",
+        "color": "text"
+      }
+    },
+    "contentStyle": {
+      "sx": {
+        "mb": "2"
+      }
+    },
+    "headerStyle": {},
+    "footerStyle": {}
+  },
+  "noHeader": true,
+  "noFooter": true,
+  "info": {
+    "bundle": "web",
+    "name": "Cards"
+  }
+}

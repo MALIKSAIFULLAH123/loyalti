@@ -1,0 +1,29 @@
+{
+  "blockProps": {
+    "titleStyle": {
+      "component": "h2",
+      "sx": {
+        "typography": "subtitle1",
+        "color": "textPrimary"
+      }
+    },
+    "contentStyle": {
+      "sx": {
+        "pt": 1,
+        "pb": 1
+      }
+    },
+    "headerStyle": {
+      "sx": {
+        "pt": 1,
+        "pb": 1
+      }
+    },
+    "footerStyle": {},
+    "blockStyle": {}
+  },
+  "info": {
+    "bundle": "admincp",
+    "name": "Plained"
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "blockProps": {
+    "contentStyle": {
+      "sx": {
+        "pl": 2,
+        "pr": 2,
+        "pt": 2,
+        "pb": 2,
+        "bgcolor": "background.paper",
+        "borderRadius": 1
+      }
+    },
+    "headerStyle": {
+      "sx": {
+        "pt": 2,
+        "pb": 2
+      }
+    },
+    "footerStyle": {},
+    "blockStyle": {
+      "sx": {
+        "mb": 0,
+        "mt": 2
+      }
+    }
+  },
+  "noHeader": true,
+  "noFooter": true,
+  "info": {
+    "bundle": "admincp",
+    "name": "Blocker"
+  }
+}

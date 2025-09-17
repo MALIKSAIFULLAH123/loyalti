@@ -1,0 +1,15 @@
+{
+  "name": "@metafox/react-app",
+  "version": "0.0.1",
+  "main": "index.js",
+  "license": "MIT",
+  "eslintConfig": {
+    "extends": [
+      "metafox"
+    ]
+  },
+  "scripts": {
+    "analyze": "analyzer=1 metafox start-dev-server",
+    "unittest": "metafox jest-unittest"
+  }
+}

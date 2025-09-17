@@ -1,0 +1,68 @@
+{
+  "blocks": [],
+  "header": {
+    "elements": {
+      "header": {
+        "disableGutters": true,
+        "elements": {
+          "header": {}
+        },
+        "rootStyle": {
+          "minHeight": "appbar"
+        }
+      }
+    }
+  },
+  "content": {
+    "elements": {
+      "top": {
+        "elements": {
+          "top": {
+            "flexWeight": 1
+          }
+        }
+      },
+      "main": {
+        "gridContainer": true,
+        "rootStyle": {
+          "maxWidth": "md",
+          "gutter": true,
+          "sx": {
+            "pb": 2
+          }
+        },
+        "elements": {
+          "main": {
+            "flexWeight": "1",
+            "xs": 9,
+            "rootStyle": {},
+            "contentStyle": {},
+            "stageStyle": {
+              "minHeight": "screen",
+              "sx": {
+                "pr": 2
+              }
+            },
+            "slotName": "main"
+          },
+          "subside": {
+            "xs": 3,
+            "rootStyle": {
+              "maxWidth": "xs2",
+              "minWidth": "xs1"
+            },
+            "contentStyle": {},
+            "stageStyle": {}
+          }
+        },
+        "maxWidth": "lg",
+        "paddingLeft": "0",
+        "paddingRight": "0"
+      }
+    }
+  },
+  "info": {
+    "bundle": "web",
+    "name": "profile-Subside"
+  }
+}

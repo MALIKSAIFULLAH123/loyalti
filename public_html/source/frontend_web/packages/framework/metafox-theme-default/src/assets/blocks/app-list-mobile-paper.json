@@ -1,0 +1,38 @@
+{
+  "blockProps": {
+    "blockStyle": {
+      "sx": {
+        "bgcolor": "",
+        "borderRadius": "",
+        "pr": 0,
+        "pl": 0
+      }
+    },
+    "contentStyle": {
+      "sx": {
+        "bgcolor": "background.paper",
+        "borderRadius": 1,
+        "pr": 2,
+        "pl": 2,
+        "pt": 2,
+        "pb": 2
+      }
+    },
+    "titleStyle": {
+      "component": "h2",
+      "sx": {
+        "color": "text.primary"
+      }
+    },
+    "headerStyle": {
+      "sx": {
+        "height": "50px",
+        "pl": 2
+      }
+    }
+  },
+  "info": {
+    "bundle": "web",
+    "name": "App List - Mobile - Paper"
+  }
+}

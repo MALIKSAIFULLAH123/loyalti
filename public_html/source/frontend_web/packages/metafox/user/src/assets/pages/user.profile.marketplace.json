@@ -1,0 +1,255 @@
+{
+  "large": {
+    "templateName": "profile-tab",
+    "blocks": [
+      {
+        "component": "user.block.userProfileHeader",
+        "slotName": "top",
+        "title": "User Profile Header",
+        "blockProps": {
+          "marginBottom": 2,
+          "variant": "containted",
+          "noHeader": true,
+          "noFooter": true
+        },
+        "key": "9auj",
+        "blockId": "9auj"
+      },
+      {
+        "parentBlockId": "n42p",
+        "component": "marketplace.block.pagelistingBlock",
+        "slotName": "main",
+        "canLoadMore": true,
+        "key": "rz72",
+        "blockId": "rz72",
+        "itemView": "marketplace.itemView.mainCard",
+        "contentType": "marketplace",
+        "dataSource": {
+          "apiUrl": "/marketplace",
+          "apiParams": "view=alive&user_id=:id"
+        },
+        "hasSearchBox": true,
+        "freeze": false,
+        "title": "Marketplace Listings",
+        "blockLayout": "Profile - Clean Body Only No Default Empty Page",
+        "gridLayout": "Marketplace - Main Card",
+        "itemLayout": "Marketplace - Profile - Main Card",
+        "emptyPage": "core.block.no_item_with_icon",
+        "emptyPageProps": {
+          "description": "no_marketplace_found",
+          "image": "ico-shopbasket"
+        }
+      },
+      {
+        "parentBlockId": "n43p",
+        "component": "marketplace.block.pagelistingBlock",
+        "slotName": "main",
+        "canLoadMore": true,
+        "key": "rz73",
+        "blockId": "rz73",
+        "itemView": "marketplace.itemView.mainCard",
+        "contentType": "marketplace",
+        "dataSource": {
+          "apiParams": "view=expire&user_id=:id",
+          "apiUrl": "/marketplace"
+        },
+        "hasSearchBox": true,
+        "freeze": false,
+        "title": "Marketplace Listings",
+        "blockLayout": "Profile - Clean Body Only No Default Empty Page",
+        "gridLayout": "Marketplace - Main Card",
+        "itemLayout": "Marketplace - Profile - Main Card",
+        "emptyPage": "core.block.no_item_with_icon",
+        "emptyPageProps": {
+          "description": "no_marketplace_found",
+          "image": "ico-shopbasket"
+        }
+      },
+      {
+        "blockId": "n42p",
+        "parentBlockId": "hr4k",
+        "component": "core.block.listContainer",
+        "slotName": "main",
+        "pageName": "page.profile.marketplace",
+        "pageSize": "large",
+        "name": "listing",
+        "freeze": false
+      },
+      {
+        "blockId": "n43p",
+        "parentBlockId": "hr4k",
+        "component": "core.block.listContainer",
+        "slotName": "main",
+        "pageName": "page.profile.marketplace",
+        "pageSize": "large",
+        "name": "expired",
+        "freeze": false
+      },
+      {
+        "blockId": "hr4k",
+        "component": "core.block.tabContainer",
+        "slotName": "main",
+        "pageName": "page.profile.marketplace",
+        "pageSize": "large",
+        "hasSearchBox": true,
+        "title": "marketplace",
+        "tabProps": {
+          "placeholderSearch": "search_listings",
+          "tabs": [
+            {
+              "id": 1,
+              "label": "listings",
+              "tab": "listing"
+            },
+            {
+              "id": 2,
+              "label": "expired",
+              "tab": "expired",
+              "showWhen": [
+                "or",
+                ["truthy", "acl.marketplace.marketplace.moderate"],
+                ["truthy", "isAuthUser"],
+                ["truthy", "acl.marketplace.marketplace.view_expired"]
+              ]
+            }
+          ]
+        },
+        "headerActionsResource": "marketplace.marketplace.headerItemActionOnUserProfileMenu",
+        "profileActionMenu": "actionMenuProfileMarketplace",
+        "blockLayout": "Profile - Tab Contained",
+        "privacyEmptyPage": "core.block.no_content_with_description"
+      }
+    ]
+  },
+  "small": {
+    "blocks": [
+      {
+        "component": "core.block.sidebarAppMobile",
+        "slotName": "top",
+        "blockId": "raegh"
+      },
+      {
+        "component": "user.block.userProfileHeader",
+        "slotName": "top",
+        "title": "User Profile Header",
+        "blockProps": {
+          "marginBottom": 2,
+          "variant": "containted",
+          "noHeader": true,
+          "noFooter": true
+        },
+        "key": "2x9el",
+        "blockId": "2x9el"
+      },
+      {
+        "parentBlockId": "n42p",
+        "component": "marketplace.block.pagelistingBlock",
+        "slotName": "main",
+        "canLoadMore": true,
+        "key": "rz72",
+        "blockId": "rz72",
+        "itemView": "marketplace.itemView.mainCard",
+        "contentType": "marketplace",
+        "dataSource": {
+          "apiUrl": "/marketplace",
+          "apiParams": "view=alive&user_id=:id"
+        },
+        "hasSearchBox": true,
+        "freeze": false,
+        "title": "Marketplace Listings",
+        "blockLayout": "Profile - Clean Body Only No Default Empty Page",
+        "gridLayout": "Marketplace - Main Card",
+        "itemLayout": "Marketplace - Profile - Main Card",
+        "emptyPage": "core.block.no_item_with_icon",
+        "emptyPageProps": {
+          "description": "no_marketplace_found",
+          "image": "ico-shopbasket"
+        }
+      },
+      {
+        "parentBlockId": "n43p",
+        "component": "marketplace.block.pagelistingBlock",
+        "slotName": "main",
+        "canLoadMore": true,
+        "key": "rz73",
+        "blockId": "rz73",
+        "itemView": "marketplace.itemView.mainCard",
+        "contentType": "marketplace",
+        "dataSource": {
+          "apiParams": "view=expire&user_id=:id",
+          "apiUrl": "/marketplace"
+        },
+        "hasSearchBox": true,
+        "freeze": false,
+        "title": "Marketplace Listings",
+        "blockLayout": "Profile - Clean Body Only No Default Empty Page",
+        "gridLayout": "Marketplace - Main Card",
+        "itemLayout": "Marketplace - Profile - Main Card",
+        "emptyPage": "core.block.no_item_with_icon",
+        "emptyPageProps": {
+          "description": "no_marketplace_found",
+          "image": "ico-shopbasket"
+        }
+      },
+      {
+        "blockId": "n42p",
+        "parentBlockId": "hr4k",
+        "component": "core.block.listContainer",
+        "slotName": "main",
+        "pageName": "page.profile.marketplace",
+        "pageSize": "large",
+        "name": "listing",
+        "freeze": false
+      },
+      {
+        "blockId": "n43p",
+        "parentBlockId": "hr4k",
+        "component": "core.block.listContainer",
+        "slotName": "main",
+        "pageName": "page.profile.marketplace",
+        "pageSize": "large",
+        "name": "expired",
+        "freeze": false
+      },
+      {
+        "blockId": "hr4k",
+        "component": "core.block.tabContainer",
+        "slotName": "main",
+        "pageName": "page.profile.marketplace",
+        "pageSize": "large",
+        "hasSearchBox": true,
+        "title": "marketplace",
+        "tabProps": {
+          "placeholderSearch": "search_listings",
+          "tabs": [
+            {
+              "id": 1,
+              "label": "listings",
+              "tab": "listing"
+            },
+            {
+              "id": 2,
+              "label": "expired",
+              "tab": "expired",
+              "showWhen": [
+                "or",
+                ["truthy", "acl.marketplace.marketplace.moderate"],
+                ["truthy", "isAuthUser"],
+                ["truthy", "acl.marketplace.marketplace.view_expired"]
+              ]
+            }
+          ]
+        },
+        "headerActionsResource": "marketplace.marketplace.headerItemActionOnUserProfileMenu",
+        "profileActionMenu": "actionMenuProfileMarketplace",
+        "blockLayout": "Profile - Tab Contained",
+        "privacyEmptyPage": "core.block.no_content_with_description"
+      }
+    ],
+    "templateName": "mobile"
+  },
+  "info": {
+    "bundle": "web",
+    "name": "user.profile.marketplace"
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "freeze": false,
+  "blockProps": {
+    "titleStyle": {
+      "component": "h2",
+      "sx": {
+        "typography": "subtitle1",
+        "color": "text"
+      }
+    },
+    "contentStyle": {
+      "sx": {
+        "bgcolor": "background.paper",
+        "borderRadius": 1,
+        "overflow": "hidden"
+      },
+      "variant": "Blocker"
+    },
+    "headerStyle": {
+      "dividerVariant": "0",
+      "sx": {
+        "pt": 1,
+        "pb": 2
+      }
+    },
+    "footerStyle": {
+      "dividerVariant": "0"
+    },
+    "blockStyle": {
+      "sx": {
+        "bgcolor": "0",
+        "borderRadius": "0",
+        "mt": 2,
+        "mb": 0
+      }
+    }
+  },
+  "noHeader": 0,
+  "noFooter": true,
+  "info": {
+    "bundle": "web",
+    "name": "Large Main Lists"
+  }
+}

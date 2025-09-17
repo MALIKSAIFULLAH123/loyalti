@@ -1,0 +1,213 @@
+{
+  "large": {
+    "templateName": "profile-tab",
+    "blocks": [
+      {
+        "component": "user.block.userProfileHeader",
+        "slotName": "top",
+        "title": "Page Profile Header",
+        "key": "j6kmn",
+        "blockId": "j6kmn"
+      },
+      {
+        "blockId": "h23i",
+        "parentBlockId": "gowz",
+        "component": "music.block.musicSongListingBlock",
+        "slotName": "main",
+        "title": "Songs",
+        "canLoadMore": true,
+        "hasSearchBox": 1,
+        "contentType": "music",
+        "dataSource": {
+          "apiParams": "user_id=:id&limit=6",
+          "apiUrl": "/music/song"
+        },
+        "gridLayout": "Music - Main Card",
+        "itemLayout": "Music - Profile - Main Card",
+        "blockLayout": "Profile - Clean Body Only No Default Empty Page",
+        "emptyPage": "core.block.no_item_with_icon",
+        "emptyPageProps": {
+          "description": "no_songs_found",
+          "image": "ico-music-album"
+        }
+      },
+      {
+        "blockId": "ki98",
+        "parentBlockId": "n42p",
+        "component": "music.block.musicAlbumListingBlock",
+        "slotName": "main",
+        "title": "Albums",
+        "canLoadMore": true,
+        "hasSearchBox": 1,
+        "dataSource": {
+          "apiParams": "user_id=:id&limit=6",
+          "apiUrl": "/music/album"
+        },
+        "contentType": "music",
+        "gridLayout": "Music - Main Card",
+        "itemLayout": "Music - Profile - Main Card",
+        "blockLayout": "Profile - Clean Body Only No Default Empty Page",
+        "emptyPage": "core.block.no_item_with_icon",
+        "emptyPageProps": {
+          "description": "no_albums_found",
+          "image": "ico-music-album"
+        }
+      },
+      {
+        "blockId": "gowz",
+        "parentBlockId": "hr4k",
+        "component": "core.block.listContainer",
+        "slotName": "main",
+        "pageSize": "large",
+        "freeze": false,
+        "name": "my_songs"
+      },
+      {
+        "blockId": "n42p",
+        "parentBlockId": "hr4k",
+        "component": "core.block.listContainer",
+        "slotName": "main",
+        "pageSize": "large",
+        "freeze": false,
+        "name": "my_albums"
+      },
+      {
+        "blockId": "hr4k",
+        "component": "core.block.tabContainer",
+        "slotName": "main",
+        "pageName": "page.profile.music",
+        "pageSize": "large",
+        "title": "music",
+        "hasSearchBox": 1,
+        "headerActionsResource": "music.music_song.headerItemActionOnUserProfileMenu",
+        "tabProps": {
+          "tabs": [
+            {
+              "placeholderSearch": "search_songs",
+              "id": 1,
+              "label": "songs",
+              "tab": "my_songs"
+            },
+            {
+              "placeholderSearch": "search_albums",
+              "id": 2,
+              "label": "albums",
+              "tab": "my_albums"
+            }
+          ]
+        },
+        "blockLayout": "Profile - Tab Contained",
+        "privacyEmptyPage": "core.block.no_content_with_description"
+      }
+    ]
+  },
+  "small": {
+    "templateName": "mobile",
+    "blocks": [
+      {
+        "component": "core.block.sidebarAppMobile",
+        "slotName": "top",
+        "blockId": "raegh"
+      },
+      {
+        "component": "user.block.userProfileHeader",
+        "slotName": "top",
+        "title": "Page Profile Header"
+      },
+      {
+        "blockId": "h23i",
+        "parentBlockId": "gowz",
+        "component": "music.block.musicSongListingBlock",
+        "slotName": "main",
+        "title": "Songs",
+        "canLoadMore": true,
+        "hasSearchBox": 1,
+        "contentType": "music",
+        "dataSource": {
+          "apiParams": "user_id=:id&limit=6",
+          "apiUrl": "/music/song"
+        },
+        "gridLayout": "Music - Main Card - Mobile",
+        "itemLayout": "Music - Profile - Main Card - Mobile",
+        "blockLayout": "Profile - Clean Body Only No Default Empty Page",
+        "emptyPage": "core.block.no_item_with_icon",
+        "emptyPageProps": {
+          "description": "no_songs_found",
+          "image": "ico-music-album"
+        }
+      },
+      {
+        "blockId": "ki98",
+        "parentBlockId": "n42p",
+        "component": "music.block.musicAlbumListingBlock",
+        "slotName": "main",
+        "title": "Albums",
+        "canLoadMore": true,
+        "hasSearchBox": 1,
+        "dataSource": {
+          "apiParams": "user_id=:id&limit=6",
+          "apiUrl": "/music/album"
+        },
+        "contentType": "music",
+        "gridLayout": "Music - Main Card - Mobile",
+        "itemLayout": "Music - Profile - Main Card - Mobile",
+        "blockLayout": "Profile - Clean Body Only No Default Empty Page",
+        "emptyPage": "core.block.no_item_with_icon",
+        "emptyPageProps": {
+          "description": "no_albums_found",
+          "image": "ico-music-album"
+        }
+      },
+      {
+        "blockId": "gowz",
+        "parentBlockId": "hr4k",
+        "component": "core.block.listContainer",
+        "slotName": "main",
+        "pageSize": "large",
+        "freeze": false,
+        "name": "my_songs"
+      },
+      {
+        "blockId": "n42p",
+        "parentBlockId": "hr4k",
+        "component": "core.block.listContainer",
+        "slotName": "main",
+        "pageSize": "large",
+        "freeze": false,
+        "name": "my_albums"
+      },
+      {
+        "blockId": "hr4k",
+        "component": "core.block.tabContainer",
+        "slotName": "main",
+        "pageName": "page.profile.music",
+        "pageSize": "large",
+        "title": "music",
+        "hasSearchBox": 1,
+        "headerActionsResource": "music.music_song.headerItemActionOnUserProfileMenu",
+        "tabProps": {
+          "tabs": [
+            {
+              "placeholderSearch": "search_songs",
+              "id": 1,
+              "label": "songs",
+              "tab": "my_songs"
+            },
+            {
+              "placeholderSearch": "search_albums",
+              "id": 2,
+              "label": "albums",
+              "tab": "my_albums"
+            }
+          ]
+        },
+        "blockLayout": "Profile - Tab Contained",
+        "privacyEmptyPage": "core.block.no_content_with_description"
+      }
+    ]
+  },
+  "info": {
+    "bundle": "web",
+    "name": "user.profile.music"
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "itemProps": {
+    "variant": "containedCard",
+    "content": {
+      "dividerVariant": "",
+      "hoverVariant": "",
+      "selectedVariant": "",
+      "sx": {
+        "alignItems": "",
+        "justifyContent": "",
+        "bgcolor": "background.paper",
+        "borderRadius": 1,
+        "pt": 0,
+        "pr": 0,
+        "pb": 2,
+        "pl": 0
+      }
+    },
+    "title": {
+      "variant": "h4",
+      "lines": 2,
+      "sx": {
+        "mt": 1.5,
+        "mb": 1.5
+      },
+      "fixHeight": 0
+    },
+    "summary": {
+      "component": "span",
+      "variant": "body2",
+      "lines": 1,
+      "fixHeight": 1,
+      "sx": {
+        "mb": 1,
+        "color": "text.secondary"
+      }
+    },
+    "media": {
+      "placement": "top",
+      "aspectRatio": "169",
+      "width": "100%"
+    },
+    "text": {
+      "sx": {
+        "pr": 2,
+        "pl": 2
+      }
+    },
+    "showActionMenu": 1
+  },
+  "info": {
+    "bundle": "web",
+    "name": "Photo_album - Main Card"
+  }
+}

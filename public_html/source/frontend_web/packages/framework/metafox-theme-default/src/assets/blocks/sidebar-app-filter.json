@@ -1,0 +1,30 @@
+{
+  "blockProps": {
+    "titleStyle": {
+      "component": "h1",
+      "sx": {
+        "typography": "primary"
+      }
+    },
+    "headerStyle": {
+      "dividerVariant": "0"
+    },
+    "footerStyle": {
+      "dividerVariant": "0"
+    },
+    "blockStyle": {
+      "sx": {
+        "bgcolor": "0",
+        "borderRadius": "0",
+        "pr": 2,
+        "pl": 2
+      }
+    }
+  },
+  "noHeader": true,
+  "noFooter": true,
+  "info": {
+    "bundle": "web",
+    "name": "sidebar app filter"
+  }
+}

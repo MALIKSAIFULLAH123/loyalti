@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunk_metafox_react=self.webpackChunk_metafox_react||[]).push([["metafox-photo-components-PhotoItem-PinCard-LoadingSkeleton"],{44334(e,t,n){n.r(t),n.d(t,{default:()=>r});var a=n(40515),o=n(96540);function r({wrapAs:e,wrapProps:t}){return o.createElement(a.Qm,null,o.createElement(a.nn,{ratio:"169"}))}}}]);

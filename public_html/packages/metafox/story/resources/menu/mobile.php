@@ -1,0 +1,108 @@
+<?php
+
+/* this is auto generated file */
+return [
+    [
+        'showWhen' => [
+            'and',
+            ['falsy', 'item.is_owner'],
+            ['falsy', 'item.is_muted'],
+        ],
+        'menu'     => 'story.story.itemActionMenu',
+        'name'     => 'mute',
+        'label'    => 'mute_user_stories',
+        'ordering' => 5,
+        'as'       => 'storyItemLabel',
+        'value'    => 'story/mute',
+        'icon'     => 'ico-eye-alt-blocked',
+    ],
+    [
+        'showWhen' => [
+            'and',
+            ['falsy', 'item.is_owner'],
+            ['truthy', 'item.is_muted'],
+        ],
+        'menu'     => 'story.story.itemActionMenu',
+        'name'     => 'unmute',
+        'label'    => 'unmute_user_stories',
+        'ordering' => 5,
+        'as'       => 'storyItemLabel',
+        'value'    => 'story/unmute',
+        'icon'     => 'ico-eye-alt',
+    ],
+    [
+        'showWhen' => [
+            'and',
+            ['falsy', 'item.is_archive'],
+        ],
+        'menu'     => 'story.story.itemActionMenu',
+        'name'     => 'copy_link',
+        'label'    => 'story::phrase.copy_link',
+        'ordering' => 8,
+        'value'    => 'copyLink',
+        'icon'     => 'ico-link',
+    ],
+    [
+        'showWhen' => [
+            'and',
+            ['truthy', 'item.extra.can_delete'],
+        ],
+        'menu'     => 'story.story.itemActionMenu',
+        'name'     => 'delete',
+        'label'    => 'story::phrase.delete_story',
+        'style'    => 'danger',
+        'ordering' => 10,
+        'value'    => 'deleteItem',
+    ],
+    [
+        'showWhen' => [],
+        'tab'      => 'landing',
+        'params'   => [
+            'module_name'   => 'story',
+            'resource_name' => 'user_story',
+        ],
+        'menu'     => 'story.sidebarMenu',
+        'name'     => 'landing',
+        'label'    => 'story::web.all_stories',
+        'ordering' => 1,
+        'value'    => 'viewAll',
+        'to'       => '/user_story',
+    ],
+    [
+        'showWhen' => [],
+        'tab'      => 'archive',
+        'params'   => [
+            'module_name'   => 'story',
+            'resource_name' => 'story',
+        ],
+        'menu'     => 'story.sidebarMenu',
+        'name'     => 'archive',
+        'label'    => 'story::phrase.my_story_archive',
+        'ordering' => 2,
+        'value'    => 'viewArchives',
+        'to'       => '/story-archive',
+    ],
+    [
+        'showWhen' => [],
+        'tab'      => 'muted',
+        'params'   => [
+            'module_name'   => 'story',
+            'resource_name' => 'story_mute',
+        ],
+        'menu'     => 'story.sidebarMenu',
+        'name'     => 'muted',
+        'label'    => 'story::phrase.story_you_have_muted',
+        'ordering' => 2,
+        'value'    => 'viewAll',
+        'to'       => '/story-mute',
+    ],
+    [
+        'showWhen' => [],
+        'menu'     => 'story.story_mute.itemActionMenu',
+        'name'     => 'unmute',
+        'label'    => 'story::phrase.unmute',
+        'ordering' => 2,
+        'as'       => 'storyItemLabel',
+        'value'    => 'deleteItem',
+    ],
+];

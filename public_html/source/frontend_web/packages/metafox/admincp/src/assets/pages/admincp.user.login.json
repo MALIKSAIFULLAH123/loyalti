@@ -1,0 +1,16 @@
+{
+  "large": {
+    "templateName": "blank",
+    "blocks": [
+      {
+        "component": "user.block.AdminUserLogin",
+        "slotName": "main",
+        "blockId": "bu56b"
+      }
+    ]
+  },
+  "info": {
+    "bundle": "admincp",
+    "name": "admincp.user.login"
+  }
+}

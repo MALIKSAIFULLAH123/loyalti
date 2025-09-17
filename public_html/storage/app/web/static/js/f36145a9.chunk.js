@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunk_metafox_react=self.webpackChunk_metafox_react||[]).push([["metafox-ui-SmartDataGrid-YesNoCell"],{50625(e,a,t){t.r(a),t.d(a,{default:()=>f});var r=t(91557),l=t(58156),n=t.n(l),s=t(96540);function f({row:e,colDef:{field:a}}){let{i18n:t}=(0,r.PCX)();return s.createElement("span",null,t.formatMessage({id:n()(e,a,0)?"yes":"no"}))}}}]);

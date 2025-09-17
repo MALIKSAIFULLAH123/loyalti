@@ -1,0 +1,105 @@
+{
+  "large": {
+    "templateName": "profile-tab",
+    "blocks": [
+      {
+        "blockId": "3v4qqa",
+        "component": "forum_thread.block.ProfileThreads",
+        "slotName": "main",
+        "pageName": "user.profile.forum",
+        "pageSize": "large",
+        "title": "threads",
+        "contentType": "thread",
+        "moduleName": "forum",
+        "resourceName": "forum_thread",
+        "actionName": "viewProfile",
+        "blockLayout": "Profile - Contained - Content Paper Full",
+        "gridLayout": "Forum_thread - Main Card",
+        "canLoadMore": 1,
+        "canLoadSmooth": 1,
+        "noPin": true,
+        "hasSearchBox": 1,
+        "placeholderSearchBox": "search_discussions",
+        "emptyPage": "core.block.no_item_with_icon",
+        "emptyPageProps": {
+          "description": "no_threads_found",
+          "image": "ico-comments"
+        },
+        "headerActionsResource": "forum.forum.headerItemActionOnUserProfileMenu",
+        "itemLinkProps": {
+          "asModal": 1
+        },
+        "itemLayout": "Forum_thread - Main Card"
+      },
+      {
+        "component": "user.block.userProfileHeader",
+        "slotName": "top",
+        "title": "User Profile Header",
+        "blockProps": {
+          "marginBottom": 2,
+          "variant": "containted",
+          "noHeader": true,
+          "noFooter": true
+        },
+        "key": "m6btkc",
+        "blockId": "m6btkc"
+      }
+    ]
+  },
+  "small": {
+    "blocks": [
+      {
+        "component": "core.block.sidebarAppMobile",
+        "slotName": "top",
+        "blockId": "raegh"
+      },
+      {
+        "component": "user.block.userProfileHeader",
+        "slotName": "top",
+        "title": "User Profile Header",
+        "blockProps": {
+          "marginBottom": 2,
+          "variant": "containted",
+          "noHeader": true,
+          "noFooter": true
+        },
+        "key": "zig6e",
+        "blockId": "zig6e"
+      },
+      {
+        "blockId": "3va",
+        "component": "forum_thread.block.ProfileThreads",
+        "slotName": "main",
+        "pageName": "user.profile.forum",
+        "pageSize": "large",
+        "title": "threads",
+        "contentType": "thread",
+        "moduleName": "forum",
+        "resourceName": "forum_thread",
+        "actionName": "viewProfile",
+        "blockLayout": "Profile - Contained - Content Paper Full",
+        "gridLayout": "Forum_thread - Main Card",
+        "canLoadMore": 1,
+        "noPin": true,
+        "canLoadSmooth": 1,
+        "hasSearchBox": 1,
+        "placeholderSearchBox": "search_discussions",
+        "emptyPage": "core.block.no_item_with_icon",
+        "emptyPageProps": {
+          "description": "no_threads_found",
+          "image": "ico-comments"
+        },
+        "headerActionsResource": "forum.forum.headerItemActionOnUserProfileMenu",
+        "itemLinkProps": {
+          "asModal": 1
+        },
+        "itemLayout": "Forum_thread - Small Card"
+      }
+    ],
+    "templateName": "mobile"
+  },
+  "info": {
+    "bundle": "web",
+    "name": "user.profile.forum"
+  }
+}

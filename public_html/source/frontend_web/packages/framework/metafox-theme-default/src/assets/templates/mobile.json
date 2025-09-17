@@ -1,0 +1,56 @@
+{
+  "header": {
+    "elements": {
+      "header": {
+        "gridContainer": false,
+        "disableGutters": true,
+        "elements": {
+          "header": {
+            "maxWidth": false
+          }
+        }
+      }
+    }
+  },
+  "content": {
+    "elements": {
+      "top": {
+        "disableGutters": true,
+        "elements": {
+          "top": {}
+        }
+      },
+      "main": {
+        "rootStyle": {
+          "sx": {
+            "pb": 2
+          }
+        },
+        "elements": {
+          "main": {
+            "xs": 12
+          }
+        }
+      }
+    }
+  },
+  "footer": {
+    "elements": {
+      "footer": {
+        "rootStyle": {
+          "maxWidth": "lg"
+        },
+        "elements": {
+          "bottom": {
+            "maxWidth": false
+          }
+        }
+      }
+    }
+  },
+  "blocks": [],
+  "info": {
+    "bundle": "web",
+    "name": "mobile"
+  }
+}

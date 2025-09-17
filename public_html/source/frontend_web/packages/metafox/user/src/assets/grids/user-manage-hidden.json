@@ -1,0 +1,10 @@
+{
+  "gridContainerProps": {
+    "columnSpacing": 0,
+    "rowSpacing": 1
+  },
+  "gridVariant": "listView",
+  "info": {
+    "name": "User - Manage Hidden"
+  }
+}

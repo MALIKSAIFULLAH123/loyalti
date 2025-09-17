@@ -1,0 +1,232 @@
+{
+  "large": {
+    "blocks": [
+      {
+        "blockId": "lyvw",
+        "component": "core.block.sideAppHeader",
+        "slotName": "side",
+        "title": "photos",
+        "blockLayout": "sidebar app header",
+        "freeze": true
+      },
+      {
+        "blockId": "cjaan",
+        "component": "core.block.searchBox",
+        "slotName": "side",
+        "title": "",
+        "placeholder": "Search",
+        "blockLayout": "sidebar search box",
+        "freeze": true
+      },
+      {
+        "component": "core.block.sidebarAppMenu",
+        "slotName": "side",
+        "blockId": "xv9ya",
+        "menuName": "sidebarMenu",
+        "blockLayout": "sidebar app menu"
+      },
+      {
+        "blockId": "ichmc",
+        "component": "core.dividerBlock",
+        "slotName": "side",
+        "title": "",
+        "dividerVariant": "middle",
+        "blockLayout": "sidebar divider"
+      },
+      {
+        "component": "core.categoryBlock",
+        "slotName": "side",
+        "title": "categories",
+        "blockId": "602rw",
+        "blockLayout": "sidebar app category"
+      },
+      {
+        "blockId": "zhhrr",
+        "component": "photo.block.photoListingBlock",
+        "slotName": "main",
+        "title": "my_photos",
+        "itemView": "photo.itemView.mainCard",
+        "contentType": "photo",
+        "dataSource": {
+          "apiUrl": "/photo",
+          "apiParams": "view=my"
+        },
+        "canLoadMore": true,
+        "canLoadSmooth": 1,
+        "blockLayout": "App List",
+        "gridLayout": "Photo - Main Card",
+        "itemLayout": "Photo - Main Card",
+        "displayLimit": 6,
+        "emptyPage": "core.block.no_content_with_icon",
+        "emptyPageProps": {
+          "title": "no_photos_found"
+        }
+      }
+    ],
+    "pageName": "photo.home",
+    "templateName": "two-column-fixed"
+  },
+  "small": {
+    "blocks": [
+      {
+        "blockId": "5hkgh",
+        "component": "core.block.sidebarAppMobile",
+        "slotName": "main",
+        "pageName": "photo.home",
+        "pageSize": "small",
+        "title": "",
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "text",
+          "noFooter": true,
+          "noHeader": true,
+          "padding": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0
+          },
+          "gutter": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0
+          },
+          "contentGutter": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0
+          },
+          "headerGutter": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0
+          },
+          "footerGutter": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0
+          },
+          "blockStyle": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0,
+            "bgColor": "0",
+            "borderStyle": "0",
+            "borderColor": "0"
+          },
+          "contentStyle": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0,
+            "bgColor": "0",
+            "borderStyle": "0",
+            "borderColor": "0"
+          },
+          "headerStyle": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0,
+            "bgColor": "0",
+            "borderStyle": "0",
+            "borderColor": "0"
+          },
+          "footerStyle": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0,
+            "bgColor": "0",
+            "borderStyle": "0",
+            "borderColor": "0"
+          },
+          "testid": "sidebarMenu",
+          "title": "App Menu Mobile"
+        },
+        "contents": [
+          {
+            "name": "core.block.searchBox"
+          },
+          {
+            "name": "core.block.sidebarAppMenu"
+          },
+          {
+            "name": "core.dividerBlock"
+          },
+          {
+            "name": "core.categoryBlock"
+          }
+        ]
+      },
+      {
+        "blockId": "zhhrr",
+        "component": "photo.block.photoListingBlock",
+        "slotName": "main",
+        "title": "my_photos",
+        "itemView": "photo.itemView.mainCard",
+        "contentType": "photo",
+        "dataSource": {
+          "apiUrl": "/photo",
+          "apiParams": "view=my"
+        },
+        "blockLayout": "App List - Mobile",
+        "gridLayout": "Photo - Main Card",
+        "itemLayout": "Photo - Main Card",
+        "displayLimit": 6,
+        "emptyPage": "core.block.no_content_with_icon",
+        "emptyPageProps": {
+          "title": "no_photos_found"
+        }
+      }
+    ],
+    "templateName": "mobile"
+  },
+  "info": {
+    "bundle": "web",
+    "name": "photo.my"
+  }
+}

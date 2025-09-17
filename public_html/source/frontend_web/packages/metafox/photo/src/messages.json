@@ -1,0 +1,23 @@
+{
+  "crop": "Crop",
+  "rotate": "Rotate",
+  "tags": "Tags",
+  "could_not_load_photo": "Oops, we could not load the selected photo.",
+  "flip_vertical": "Flip Vertical",
+  "flip_horizontal": "Flip Horizontal",
+  "discard": "Discard",
+  "update_photo_successfully": "Update photo successfully",
+  "name_type_photo": "Photo",
+  "name_type_photo_set": "Photo",
+  "name_type_photo_album": "Album",
+  "add_album": "Add Album",
+  "no_photos_found": "No photos found",
+  "no_photos_found_description": "Upload new photos for everyone to join",
+  "from_album_name": "From album <b>{name}</b>",
+  "total_more_categories": "{total} more categories",
+  "all_albums_from_name": "All albums from {name}",
+  "this_media_is_pending_state": "This {value, select, photo {photo} video {video} other {media}} is in pending state",
+  "contents_from_this_media_will_be_public_visible_after_admins_approve_it": "Contents from this {value, select, photo {photo} video {video} other {media}} will be public visible after admins approve it.",
+  "sponsored_photos": "Sponsored Photos",
+  "sponsored_albums": "Sponsored Albums"
+}

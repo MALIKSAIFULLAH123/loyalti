@@ -1,0 +1,18 @@
+{
+  "info": {
+    "title": "",
+    "bundle": "admincp",
+    "name": "core.admincp.controlled"
+  },
+  "large": {
+    "templateName": "admincp",
+    "blocks": [
+      {
+        "blockId": "s5qrr",
+        "component": "admincp.block.controlled",
+        "slotName": "main",
+        "blockLayout": "Admin - Contained"
+      }
+    ]
+  }
+}

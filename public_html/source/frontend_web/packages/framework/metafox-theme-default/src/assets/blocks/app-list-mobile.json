@@ -1,0 +1,50 @@
+{
+  "blockProps": {
+    "titleStyle": {
+      "component": "h1",
+      "sx": {
+        "typography": "subtitle1"
+      }
+    },
+    "headerStyle": {
+      "dividerVariant": "0",
+      "sx": {
+        "minHeight": "50px",
+        "pl": 2,
+        "pr": 2,
+        "pt": 1,
+        "pb": 1
+      }
+    },
+    "contentStyle": {
+      "sx": {
+        "bgcolor": "0",
+        "pr": 2,
+        "pl": 2,
+        "pt": 0,
+        "pb": 0
+      }
+    },
+    "footerStyle": {
+      "dividerVariant": "0",
+      "sx": {
+        "m": 0,
+        "p": 0
+      }
+    },
+    "blockStyle": {
+      "sx": {
+        "bgcolor": "0",
+        "borderRadius": "0",
+        "pr": 0,
+        "pl": 0
+      }
+    }
+  },
+  "noHeader": 0,
+  "noFooter": 0,
+  "info": {
+    "bundle": "web",
+    "name": "App List - Mobile"
+  }
+}

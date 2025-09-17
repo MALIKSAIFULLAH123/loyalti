@@ -1,0 +1,199 @@
+{
+  "$$RESOURCE$$.my": {
+    "large": {
+      "blocks": [
+        {
+          "blockId": "ia",
+          "component": "core.block.sideAppHeader",
+          "slotName": "side",
+          "title": "$$RESOURCE_STUDLY$$",
+          "icon": "ico-compose-alt",
+          "blockProps": {
+            "variant": "plained",
+            "titleComponent": "h2",
+            "titleVariant": "subtitle1",
+            "titleColor": "textPrimary",
+            "noFooter": true,
+            "noHeader": true
+          },
+          "freeze": true
+        },
+        {
+          "blockId": "i5",
+          "component": "core.block.searchBox",
+          "slotName": "side",
+          "placeholder": "Search",
+          "blockProps": {
+            "variant": "plained",
+            "titleComponent": "h2",
+            "titleVariant": "subtitle1",
+            "titleColor": "textPrimary",
+            "noFooter": true,
+            "noHeader": true
+          },
+          "title": "",
+          "freeze": true
+        },
+        {
+          "component": "core.block.sidebarAppMenu",
+          "slotName": "side",
+          "title": "$$RESOURCE_STUDLY$$",
+          "blockProps": {
+            "variant": "plained",
+            "noHeader": false,
+            "noFooter": false
+          },
+          "blockId": "i8",
+          "key": "i8"
+        },
+        {
+          "blockId": "v44br",
+          "component": "core.dividerBlock",
+          "slotName": "side",
+          "title": "",
+          "blockProps": {
+            "variant": "plained",
+            "titleComponent": "h2",
+            "titleVariant": "subtitle1",
+            "titleColor": "textPrimary",
+            "noFooter": true,
+            "noHeader": true,
+            "blockStyle": {
+              "mt": 4,
+              "mb": 1
+            }
+          },
+          "dividerVariant": "middle"
+        },
+        {
+          "component": "core.categoryBlock",
+          "slotName": "side",
+          "title": "Categories",
+          "href": "/$$RESOURCE_PATH$$/category",
+          "blockId": "i9",
+          "key": "i9"
+        },
+        {
+          "component": "$$RESOURCE$$.block.$$RESOURCE$$ListingBlock",
+          "slotName": "main",
+          "title": "My Pending $$RESOURCE_STUDLY$$",
+          "dataSource": {
+            "apiParams": "view=pending&user_id=:authId",
+            "apiUrl": "/$$RESOURCE_PATH$$"
+          },
+          "blockId": "i11",
+          "key": "i11",
+          "itemView": "$$RESOURCE$$.itemView.mainList",
+          "contentType": "$$RESOURCE$$",
+          "canLoadMore": true,
+          "emptyPage": "hide",
+          "blockLayout": "Large Main Lists",
+          "gridLayout": "$$RESOURCE_STUDLY$$ Lists"
+        },
+        {
+          "blockId": "ne9v",
+          "component": "$$RESOURCE$$.block.$$RESOURCE$$ListingBlock",
+          "slotName": "main",
+          "emptyPage": "core.block.no_content_with_icon",
+          "emptyPageProps": {
+            "noHeader": true,
+            "contentStyle": {
+              "bgColor": "0"
+            },
+            "noBlock": 1
+          },
+          "title": "My $$RESOURCE_STUDLY$$",
+          "itemView": "$$RESOURCE$$.itemView.mainList",
+          "contentType": "$$RESOURCE$$",
+          "dataSource": {
+            "apiUrl": "/$$RESOURCE_PATH$$",
+            "apiParams": "view=my"
+          },
+          "canLoadMore": true,
+          "blockLayout": "Large Main Lists",
+          "gridLayout": "$$RESOURCE_STUDLY$$ Lists"
+        }
+      ],
+      "containers": {},
+      "pageName": "$$RESOURCE$$.home",
+      "templateName": "two-column-fixed"
+    },
+    "small": {
+      "blocks": [
+        {
+          "component": "core.block.sidebarAppMobile",
+          "slotName": "main",
+          "blockProps": {
+            "variant": "plained",
+            "marginBottom": 2
+          },
+          "contents": [
+            {
+              "name": "core.block.searchBox"
+            },
+            {
+              "name": "core.block.sidebarAppMenu"
+            },
+            {
+              "name": "core.categoryBlock"
+            }
+          ],
+          "key": "hqnu",
+          "blockId": "hqnu"
+        },
+        {
+          "component": "$$RESOURCE$$.block.$$RESOURCE$$ListingBlock",
+          "slotName": "main",
+          "title": "Pending $$RESOURCE_STUDLY$$",
+          "dataSource": {
+            "apiParams": "view=pending",
+            "apiUrl": "/$$RESOURCE_PATH$$"
+          },
+          "blockView": "ui.block.default",
+          "itemView": "$$RESOURCE$$.itemView.mainList",
+          "emptyPage": "hide",
+          "canLoadMore": true,
+          "gridItemProps": {
+            "xs": 12,
+            "sm": 12,
+            "md": 12,
+            "lg": 12,
+            "xl": 12
+          },
+          "key": "lvvh",
+          "blockLayout": "App List - Mobile - Paper",
+          "gridLayout": "$$RESOURCE_STUDLY$$ - Mobile Main Card",
+          "blockId": "lvvh",
+          "contentType": "$$RESOURCE$$"
+        },
+        {
+          "component": "$$RESOURCE$$.block.$$RESOURCE$$ListingBlock",
+          "slotName": "main",
+          "title": "My $$RESOURCE_STUDLY$$",
+          "dataSource": {
+            "apiUrl": "/$$RESOURCE_PATH$$",
+            "apiParams": "view=my"
+          },
+          "canLoadMore": true,
+          "blockView": "ui.block.default",
+          "itemView": "$$RESOURCE$$.itemView.mainList",
+          "gridItemProps": {
+            "xs": 12,
+            "sm": 12,
+            "md": 12,
+            "lg": 12,
+            "xl": 12
+          },
+          "key": "0gkn",
+          "blockId": "0gkn",
+          "blockLayout": "App List - Mobile - Paper",
+          "gridLayout": "$$RESOURCE_STUDLY$$ - Mobile Main Card",
+          "contentType": "$$RESOURCE$$"
+        }
+      ],
+      "containers": {},
+      "pageName": "$$RESOURCE$$.home",
+      "templateName": "mobile"
+    }
+  }
+}

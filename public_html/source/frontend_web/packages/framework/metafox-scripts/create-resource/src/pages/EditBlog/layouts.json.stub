@@ -1,0 +1,26 @@
+{
+  "$$RESOURCE$$.edit": {
+    "large": {
+      "blocks": [
+        {
+          "component": "core.block.mainForm",
+          "slotName": "main",
+          "key": "ahpah",
+          "blockId": "ahpah",
+          "title": "Form",
+          "blockLayout": "Main Form"
+        }
+      ],
+      "templateName": "simple"
+    },
+    "small": {
+      "blocks": [
+        {
+          "component": "core.block.mainForm",
+          "slotName": "main"
+        }
+      ],
+      "templateName": "mobile"
+    }
+  }
+}

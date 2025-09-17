@@ -1,0 +1,14 @@
+{
+  "name": "@metafox/route",
+  "version": "5.0.1",
+  "main": "src/index.tsx",
+  "author": "developer@phpfox.com",
+  "license": "MIT",
+  "private": false,
+  "repository": {},
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "unittest": "metafox jest-unittest"
+  }
+}

@@ -1,0 +1,401 @@
+{
+  "large": {
+    "templateName": "profile-tab",
+    "blocks": [
+      {
+        "component": "user.block.userProfileHeader",
+        "slotName": "top",
+        "title": "photos",
+        "blockProps": {
+          "variant": "containted",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "textPrimary",
+          "noFooter": true,
+          "noHeader": true,
+          "contentStyle": {},
+          "headerStyle": {},
+          "footerStyle": {},
+          "marginBottom": 2
+        },
+        "key": "h12i",
+        "blockId": "h12i"
+      },
+      {
+        "blockId": "h23i",
+        "parentBlockId": "gowz",
+        "component": "photo.block.profilePhotos",
+        "slotName": "main",
+        "title": "photos",
+        "canLoadMore": 1,
+        "contentType": "photo",
+        "hasSearchBox": true,
+        "dataSource": {
+          "apiUrl": "/photo",
+          "apiParams": "sort=recent&user_id=:id"
+        },
+        "blockLayout": "Profile - Clean Body Only No Default Empty Page",
+        "gridLayout": "Photo - Main Card",
+        "emptyPage": "core.block.no_item_with_icon",
+        "emptyPageProps": {
+          "description": "no_photos_found",
+          "image": "ico-photo"
+        },
+        "itemLayout": "Photo - Main Card"
+      },
+      {
+        "blockId": "ki98",
+        "parentBlockId": "n42p",
+        "component": "photo.block.profileAlbums",
+        "slotName": "main",
+        "title": "Photo Albums",
+        "canLoadMore": true,
+        "hasSearchBox": true,
+        "dataSource": {
+          "apiUrl": "/photo-album",
+          "apiParams": "sort=latest&user_id=:id"
+        },
+        "contentType": "photo_album",
+        "emptyPage": "core.block.no_item_with_icon",
+        "emptyPageProps": {
+          "description": "no_albums_found",
+          "image": "ico-photos"
+        },
+        "blockLayout": "Profile - Clean Body Only No Default Empty Page",
+        "gridLayout": "Photo_album - Main Card",
+        "canLoadSmooth": true,
+        "itemLayout": "Photo_album User - Main Card"
+      },
+      {
+        "blockId": "mc96",
+        "parentBlockId": "mk31",
+        "component": "photo.block.profilePhotos",
+        "slotName": "main",
+        "title": "photos",
+        "canLoadMore": true,
+        "hasSearchBox": true,
+        "dataSource": {
+          "apiUrl": "/photo",
+          "apiParams": "view=tag_wall&user_id=:id"
+        },
+        "contentType": "photo_album",
+        "blockLayout": "Profile - Clean Body Only No Default Empty Page",
+        "gridLayout": "Photo - Main Card",
+        "emptyPage": "core.block.no_item_with_icon",
+        "emptyPageProps": {
+          "description": "no_photos_found",
+          "image": "ico-photo"
+        },
+        "canLoadSmooth": true,
+        "itemLayout": "Photo - Main Card"
+      },
+      {
+        "blockId": "gowz",
+        "parentBlockId": "hr4k111",
+        "component": "core.block.listContainer",
+        "slotName": "main",
+        "pageName": "user.profile.photo",
+        "pageSize": "large",
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h1",
+          "titleVariant": "primary",
+          "titleColor": "text",
+          "noFooter": false,
+          "noHeader": false,
+          "blockStyle": {},
+          "contentStyle": {},
+          "headerStyle": {
+            "dividerVariant": "0"
+          },
+          "footerStyle": {
+            "dividerVariant": "0"
+          }
+        },
+        "freeze": false,
+        "name": "photos"
+      },
+      {
+        "blockId": "n42p",
+        "parentBlockId": "hr4k111",
+        "component": "core.block.listContainer",
+        "slotName": "main",
+        "pageName": "user.profile.photo",
+        "pageSize": "large",
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h1",
+          "titleVariant": "primary",
+          "titleColor": "text",
+          "noFooter": false,
+          "noHeader": false,
+          "blockStyle": {},
+          "contentStyle": {},
+          "headerStyle": {
+            "dividerVariant": "0"
+          },
+          "footerStyle": {
+            "dividerVariant": "0"
+          }
+        },
+        "freeze": false,
+        "name": "albums"
+      },
+      {
+        "blockId": "mk31",
+        "parentBlockId": "hr4k111",
+        "component": "core.block.listContainer",
+        "slotName": "main",
+        "pageName": "user.profile.photo",
+        "pageSize": "large",
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h1",
+          "titleVariant": "primary",
+          "titleColor": "text",
+          "noFooter": false,
+          "noHeader": false,
+          "blockStyle": {},
+          "contentStyle": {},
+          "headerStyle": {
+            "dividerVariant": "0"
+          },
+          "footerStyle": {
+            "dividerVariant": "0"
+          }
+        },
+        "freeze": false,
+        "name": "photo_of_user"
+      },
+      {
+        "blockId": "hr4k111dw",
+        "component": "photo_album.block.profileViewAlbumDetail",
+        "slotName": "main",
+        "pageName": "user.profile.photo",
+        "pageSize": "large",
+        "showWhen": ["truthy", "pageParams.album_id"]
+      },
+      {
+        "blockId": "hr4k111",
+        "component": "photo.block.profileTab",
+        "slotName": "main",
+        "pageName": "user.profile.photo",
+        "pageSize": "large",
+        "title": "photos",
+        "headerActionsResource": "photo.photo.headerItemActionOnUserProfileMenu",
+        "profileActionMenu": "actionMenuProfileMedia",
+        "blockLayout": "Profile - Tab Contained",
+        "hasSearchBox": 1,
+        "privacyWhen": [
+          "falsy",
+          "profile.profile_settings.photo_display_on_profile"
+        ],
+        "showWhen": ["falsy", "pageParams.album_id"],
+        "privacyEmptyPage": "core.block.no_content_with_description"
+      }
+    ]
+  },
+  "small": {
+    "blocks": [
+      {
+        "component": "core.block.sidebarAppMobile",
+        "slotName": "top",
+        "blockId": "raegh"
+      },
+      {
+        "component": "user.block.userProfileHeader",
+        "slotName": "top",
+        "title": "photos",
+        "blockProps": {
+          "variant": "containted",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "textPrimary",
+          "noFooter": true,
+          "noHeader": true,
+          "contentStyle": {},
+          "headerStyle": {},
+          "footerStyle": {},
+          "marginBottom": 2
+        },
+        "key": "h12i",
+        "blockId": "h12i"
+      },
+      {
+        "blockId": "h23i",
+        "parentBlockId": "gowz",
+        "component": "photo.block.profilePhotos",
+        "slotName": "main",
+        "title": "photos",
+        "canLoadMore": true,
+        "hasSearchBox": true,
+        "contentType": "photo",
+        "dataSource": {
+          "apiUrl": "/photo",
+          "apiParams": "sort=recent&user_id=:id"
+        },
+        "blockLayout": "Profile - Clean Body Only No Default Empty Page",
+        "gridLayout": "Photo - Main Card",
+        "itemLayout": "Photo - Main Card",
+        "emptyPage": "core.block.no_item_with_icon",
+        "emptyPageProps": {
+          "description": "no_photos_found",
+          "image": "ico-photo"
+        }
+      },
+      {
+        "blockId": "mc96",
+        "parentBlockId": "mk31",
+        "component": "photo.block.profilePhotos",
+        "slotName": "main",
+        "title": "photos",
+        "canLoadMore": true,
+        "hasSearchBox": true,
+        "contentType": "photo",
+        "dataSource": {
+          "apiUrl": "/photo",
+          "apiParams": "view=tag_wall&user_id=:id"
+        },
+        "blockLayout": "Profile - Clean Body Only No Default Empty Page",
+        "gridLayout": "Photo - Main Card",
+        "itemLayout": "Photo - Main Card",
+        "emptyPage": "core.block.no_item_with_icon",
+        "emptyPageProps": {
+          "description": "no_photos_found",
+          "image": "ico-photo"
+        }
+      },
+      {
+        "blockId": "ki98",
+        "parentBlockId": "n42p",
+        "component": "photo.block.profileAlbums",
+        "slotName": "main",
+        "title": "Photo Albums",
+        "canLoadMore": true,
+        "hasSearchBox": true,
+        "dataSource": {
+          "apiUrl": "/photo-album",
+          "apiParams": "user_id=:id&sort=recent&limit=12"
+        },
+        "contentType": "photo_album",
+        "blockLayout": "Profile - Clean Body Only No Default Empty Page",
+        "gridLayout": "Photo_album - Main Card",
+        "itemLayout": "Photo_album User - Main Card",
+        "emptyPage": "core.block.no_item_with_icon",
+        "emptyPageProps": {
+          "description": "no_albums_found",
+          "image": "ico-photos"
+        }
+      },
+      {
+        "blockId": "gowz",
+        "parentBlockId": "hr4k111",
+        "component": "core.block.listContainer",
+        "slotName": "main",
+        "pageName": "user.profile.photo",
+        "pageSize": "large",
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h1",
+          "titleVariant": "primary",
+          "titleColor": "text",
+          "noFooter": false,
+          "noHeader": false,
+          "blockStyle": {},
+          "contentStyle": {},
+          "headerStyle": {
+            "dividerVariant": "0"
+          },
+          "footerStyle": {
+            "dividerVariant": "0"
+          }
+        },
+        "freeze": false,
+        "name": "photos"
+      },
+      {
+        "blockId": "mk31",
+        "parentBlockId": "hr4k111",
+        "component": "core.block.listContainer",
+        "slotName": "main",
+        "pageName": "user.profile.photo",
+        "pageSize": "large",
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h1",
+          "titleVariant": "primary",
+          "titleColor": "text",
+          "noFooter": false,
+          "noHeader": false,
+          "blockStyle": {},
+          "contentStyle": {},
+          "headerStyle": {
+            "dividerVariant": "0"
+          },
+          "footerStyle": {
+            "dividerVariant": "0"
+          }
+        },
+        "freeze": false,
+        "name": "photo_of_user"
+      },
+      {
+        "blockId": "n42p",
+        "parentBlockId": "hr4k111",
+        "component": "core.block.listContainer",
+        "slotName": "main",
+        "pageName": "user.profile.photo",
+        "pageSize": "large",
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h1",
+          "titleVariant": "primary",
+          "titleColor": "text",
+          "noFooter": false,
+          "noHeader": false,
+          "blockStyle": {},
+          "contentStyle": {},
+          "headerStyle": {
+            "dividerVariant": "0"
+          },
+          "footerStyle": {
+            "dividerVariant": "0"
+          }
+        },
+        "freeze": false,
+        "name": "albums"
+      },
+      {
+        "blockId": "hr4k111dw",
+        "component": "photo_album.block.profileViewAlbumDetail",
+        "slotName": "main",
+        "pageName": "user.profile.photo",
+        "pageSize": "large",
+        "showWhen": ["truthy", "pageParams.album_id"]
+      },
+      {
+        "blockId": "hr4k111",
+        "component": "photo.block.profileTab",
+        "slotName": "main",
+        "pageName": "user.profile.photo",
+        "pageSize": "large",
+        "title": "photos",
+        "headerActionsResource": "photo.photo.headerItemActionOnUserProfileMenu",
+        "profileActionMenu": "actionMenuProfileMedia",
+        "blockLayout": "Profile - Tab Contained",
+        "hasSearchBox": 1,
+        "privacyWhen": [
+          "falsy",
+          "profile.profile_settings.photo_display_on_profile"
+        ],
+        "showWhen": ["falsy", "pageParams.album_id"],
+        "privacyEmptyPage": "core.block.no_content_with_description"
+      }
+    ],
+    "templateName": "mobile"
+  },
+  "info": {
+    "bundle": "web",
+    "name": "user.profile.photo"
+  }
+}

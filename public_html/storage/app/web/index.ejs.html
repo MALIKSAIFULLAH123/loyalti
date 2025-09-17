@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimum-scale=1.0, initial-scale=1.0"
+    />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta
+      name="msapplication-config"
+      content="%ASSET_PATH%/browserconfig.xml"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>%MFOX_SITE_TITLE%</title>
+    <meta name="description" content="%MFOX_SITE_DESCRIPTION%" data-rh="true" />
+    <meta name="keywords" content="%MFOX_SITE_KEYWORDS%" data-rh="true" />
+    <meta name="buildAt" content="%MFOX_BUILD_AT%" />
+    <% if (process.env.MFOX_MOBILE_APPLE_APP_ID){ %>
+    <meta name="apple-itunes-app" content="app-id=%MFOX_MOBILE_APPLE_APP_ID%" />
+    <% } %> <% if (process.env.MFOX_MOBILE_GOOGLE_APP_ID){ %>
+    <meta name="google-play-app" content="app-id=%MFOX_MOBILE_GOOGLE_APP_ID%" />
+    <% } %> <% if (process.env.MFOX_APPLE_TOUCH_ICON_URL){ %>
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="%MFOX_APPLE_TOUCH_ICON_URL%"
+    />
+    <% } %> <% if (process.env.MFOX_MASK_ICON_URL){ %>
+    <link rel="mask-icon" href="%MFOX_MASK_ICON_URL%" color="#2682d5" />
+    <% } %> <% if (process.env.MFOX_FAVICON_URL){ %>
+    <link rel="icon" type="image/x-icon" href="%MFOX_FAVICON_URL%" />
+    <% } %>
+    <link rel="manifest" href="%ASSET_PATH%/site.webmanifest" />
+    <style type="text/css">
+      @font-face {
+        font-family: 'lineficon';
+        src: url('%ASSET_PATH%/static/fonts/lineficon.eot?bqj3lm');
+        src: url('%ASSET_PATH%/static/fonts/lineficon.eot?bqj3lm#iefix')
+            format('embedded-opentype'),
+          url('%ASSET_PATH%/static/fonts/lineficon.ttf?bqj3lm')
+            format('truetype'),
+          url('%ASSET_PATH%/static/fonts/lineficon.woff?bqj3lm') format('woff');
+        font-weight: normal;
+        font-style: normal;
+      }
+    </style>
+    <script defer type="text/javascript">
+      const matched =
+        window.matchMedia &&
+        window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const body = document.getElementsByTagName('body');
+      if (body && body.style) {
+        body.style.backgroundColor = matched ? '%MFOX_LOADING_BG%' : '#fff';
+      }
+      window.addEventListener('beforeinstallprompt', e => {
+      // Prevent the mini-infobar from appearing on mobile
+      e.preventDefault();
+      // Stash the event so it can be triggered later.
+      window.promptPWA = e
+      window.hasPWA = true
+    });
+    </script>
+    %MFOX_END_HEAD_HTML%
+  </head>
+  <body>
+    %MFOX_START_BODY_HTML%
+    <div id="root">%MFOX_INIT_BODY_HTML%</div>
+    %MFOX_END_BODY_HTML%
+  </body>
+</html>

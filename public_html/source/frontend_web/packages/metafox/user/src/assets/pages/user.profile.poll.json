@@ -1,0 +1,99 @@
+{
+  "large": {
+    "templateName": "profile-tab",
+    "blocks": [
+      {
+        "component": "user.block.userProfileHeader",
+        "slotName": "top",
+        "title": "User Profile Header",
+        "blockProps": {
+          "variant": "containted",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "textPrimary",
+          "noFooter": true,
+          "noHeader": true,
+          "contentStyle": {},
+          "headerStyle": {},
+          "footerStyle": {},
+          "marginBottom": 2
+        },
+        "key": "43mv",
+        "blockId": "12ip"
+      },
+      {
+        "component": "poll.view.profilePollListing",
+        "slotName": "main",
+        "title": "polls",
+        "canLoadMore": true,
+        "key": "3uk3k",
+        "blockId": "3uk3k",
+        "dataSource": {
+          "apiUrl": "/poll",
+          "apiParams": "user_id=:id&limit=6"
+        },
+        "privacyEmptyPage": "core.block.no_content_with_description",
+        "headerActionsResource": "poll.poll.headerItemActionOnUserProfileMenu",
+        "blockLayout": "Profile - Contained",
+        "gridLayout": "Poll - Main Card",
+        "emptyPage": "core.block.no_item_with_icon",
+        "emptyPageProps": {
+          "description": "no_poll_found",
+          "image": "ico-barchart-o"
+        },
+        "hasSearchBox": 1,
+        "placeholderSearchBox": "search_polls",
+        "contentType": "poll",
+        "canLoadSmooth": 1,
+        "itemLinkProps": {
+          "asModal": 1
+        },
+        "itemLayout": "Poll User - Main Card"
+      }
+    ]
+  },
+  "small": {
+    "templateName": "mobile",
+    "blocks": [
+      {
+        "component": "core.block.sidebarAppMobile",
+        "slotName": "top",
+        "blockId": "raegh"
+      },
+      {
+        "component": "user.block.userProfileHeader",
+        "slotName": "top",
+        "title": "User Profile Header",
+        "blockProps": {
+          "marginBottom": 2,
+          "variant": "containted",
+          "noHeader": true,
+          "noFooter": true
+        },
+        "key": "qddup",
+        "blockId": "qddup"
+      },
+      {
+        "component": "poll.view.profilePollListing",
+        "slotName": "main",
+        "title": "polls",
+        "hasSearchBox": 1,
+        "placeholderSearchBox": "search_polls",
+        "headerActionsResource": "poll.poll.headerItemActionOnUserProfileMenu",
+        "canLoadMore": true,
+        "emptyPage": "core.block.no_item_with_icon",
+        "emptyPageProps": {
+          "description": "no_poll_found",
+          "image": "ico-barchart-o"
+        },
+        "blockLayout": "Profile - Contained",
+        "gridLayout": "Poll - Main Card - Mobile",
+        "itemLayout": "Poll - Profile - Main Card"
+      }
+    ]
+  },
+  "info": {
+    "bundle": "web",
+    "name": "user.profile.poll"
+  }
+}

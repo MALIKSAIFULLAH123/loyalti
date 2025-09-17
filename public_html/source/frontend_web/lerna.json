@@ -1,0 +1,13 @@
+{
+  "version": "independent",
+  "npmClient": "yarn",
+  "useWorkspaces": true,
+  "packages": ["packages/framework/*", "packages/metafox/*", "app"],
+  "command": {
+    "publish": {
+      "conventionalCommits": true,
+      "access": "public",
+      "allowBranch": ["master", "develop", "feature/*"]
+    }
+  }
+}

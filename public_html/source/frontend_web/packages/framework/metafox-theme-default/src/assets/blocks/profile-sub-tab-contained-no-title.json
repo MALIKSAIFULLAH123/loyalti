@@ -1,0 +1,36 @@
+{
+  "gridVariant": "gridView",
+  "blockProps": {
+    "titleStyle": {
+      "component": "h2",
+      "sx": {
+        "typography": "h4",
+        "display": "none"
+      }
+    },
+    "contentStyle": {
+      "sx": {
+        "mb": "2"
+      }
+    },
+    "headerStyle": {
+      "sx": {
+        "pb": 2,
+        "m": 0,
+        "justify-content": "right"
+      }
+    },
+    "footerStyle": {},
+    "blockStyle": {
+      "sx": {
+        "mb": 2
+      }
+    }
+  },
+  "noHeader": false,
+  "noFooter": true,
+  "info": {
+    "bundle": "web",
+    "name": "Profile - Sub Tab Contained No Title"
+  }
+}

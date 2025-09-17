@@ -1,0 +1,60 @@
+{
+  "blocks": [],
+  "header": {
+    "elements": {
+      "header": {
+        "disableGutters": true,
+        "elements": {
+          "header": {
+            "slotName": "header",
+            "stageStyle": {
+              "minHeight": "appbar"
+            }
+          }
+        },
+        "rootStyle": {
+          "minHeight": "appbar"
+        }
+      }
+    }
+  },
+  "content": {
+    "elements": {
+      "main": {
+        "gridContainer": true,
+        "disableGutters": true,
+        "elements": {
+          "side": {
+            "xs": 3,
+            "rootStyle": {
+              "minWidth": "xs1",
+              "maxWidth": "xs2"
+            },
+            "contentStyle": {
+              "sx": {
+                "bgcolor": "background.paper"
+              }
+            },
+            "stageStyle": {},
+            "component": "layout.liveFixedSlot",
+            "disabledScroll": false,
+            "slotName": "side"
+          },
+          "main": {
+            "embedChildPage": true,
+            "xs": 9,
+            "flexWeight": "1",
+            "rootStyle": {},
+            "contentStyle": {},
+            "stageStyle": {},
+            "slotName": "main"
+          }
+        }
+      }
+    }
+  },
+  "info": {
+    "bundle": "web",
+    "name": "master-child"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "info": {
+    "title": "Admin/Apps/Uploaded",
+    "bundle": "admincp",
+    "name": "core.admincp.app.uploaded"
+  },
+  "large": {
+    "templateName": "admincp",
+    "blocks": [
+      {
+        "blockId": "7nmnp",
+        "component": "user.block.AdminDataGrid",
+        "slotName": "main",
+        "pageName": "core.admincp.app.uploaded",
+        "pageSize": "large",
+        "title": "Uploaded",
+        "dataGridProps": {
+          "appName": "core",
+          "resourceName": "module_admin",
+          "gridName": "uploaded"
+        },
+        "blockLayout": "Admin Table"
+      }
+    ]
+  }
+}

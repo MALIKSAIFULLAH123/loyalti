@@ -1,0 +1,39 @@
+{
+  "emptyPage": "core.block.no_content",
+  "emptyPageProps": {
+    "noHeader": true,
+    "title": "no_requests",
+    "contentStyle": {
+      "sx": {
+        "position": "relative",
+        "fontWeight": "700",
+        "fontSize": 18,
+        "padding": "16px"
+      }
+    }
+  },
+  "gridVariant": "listView",
+  "blockProps": {
+    "titleStyle": {
+      "component": "h2",
+      "sx": {
+        "typography": "subtitle1",
+        "color": "textPrimary"
+      }
+    },
+    "contentStyle": {
+      "variant": "contained"
+    },
+    "headerStyle": {},
+    "footerStyle": {
+      "dividerVariant": "0"
+    },
+    "blockStyle": {}
+  },
+  "noHeader": true,
+  "noFooter": false,
+  "info": {
+    "bundle": "web",
+    "name": "Friend Lists"
+  }
+}

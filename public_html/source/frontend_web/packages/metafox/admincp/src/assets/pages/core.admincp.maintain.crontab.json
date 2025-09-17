@@ -1,0 +1,45 @@
+{
+  "info": {
+    "title": "Admin/Maintain/ManageCronTab",
+    "bundle": "admincp",
+    "name": "core.admincp.maintain.crontab"
+  },
+  "large": {
+    "templateName": "admincp",
+    "blocks": [
+      {
+        "blockId": "vuf9b",
+        "component": "core.block.AdminManageCronTab",
+        "slotName": "main",
+        "pageSize": "large",
+        "title": "Manage CronTab",
+        "blockProps": {
+          "variant": "Admin Table",
+          "titleComponent": "h2",
+          "titleVariant": "secondary",
+          "titleColor": "text",
+          "noFooter": true,
+          "noHeader": false,
+          "blockStyle": {
+            "mb": 2
+          },
+          "contentStyle": {
+            "ml": 2,
+            "mt": 2,
+            "mr": 2,
+            "bgColor": "paper",
+            "borderRadius": "base"
+          },
+          "headerStyle": {
+            "pl": 2,
+            "pt": 3,
+            "pr": 2,
+            "pb": 1,
+            "dividerVariant": "0"
+          }
+        },
+        "freeze": false
+      }
+    ]
+  }
+}

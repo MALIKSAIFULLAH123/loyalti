@@ -1,0 +1,17 @@
+**/node_modules/**
+**/dist/**
+**/storybook-static/**
+**/coverage/**
+**/build/**
+**/.git/**
+**/public/**
+**/.docz/**
+!.eslintrc.js
+**/dist/**
+deprecated/
+packages/react-scripts
+*.d.ts
+packages/framework/metafox-scripts
+packages/framework/babel-plugin-bundle-config/**
+packages/framework/metafox-config-bundle/**
+**/scripts/*

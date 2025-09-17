@@ -1,0 +1,14 @@
+{
+  "itemProps": {
+    "variant": "contained",
+    "content": {
+      "dividerVariant": "",
+      "hoverVariant": "",
+      "selectedVariant": ""
+    }
+  },
+  "info": {
+    "bundle": "web",
+    "name": "Giphy - Cards"
+  }
+}

@@ -1,0 +1,92 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Loading <Loading /> 1`] = `
+<div
+  className="css-1mqnh9d-Loading-root"
+  data-testid="loadingIndicator"
+>
+  <div
+    style={
+      {
+        "height": "5rem",
+        "width": "5rem",
+      }
+    }
+  >
+    < />
+  </div>
+</div>
+`;
+
+exports[`Loading <Loading center/> 1`] = `
+<div
+  className="css-1mqnh9d-Loading-root"
+  data-testid="loadingIndicator"
+>
+  <div
+    style={
+      {
+        "height": "5rem",
+        "width": "5rem",
+      }
+    }
+  >
+    < />
+  </div>
+</div>
+`;
+
+exports[`Loading <Loading darkMode/> 1`] = `
+<div
+  className="css-1mqnh9d-Loading-root"
+  data-testid="loadingIndicator"
+>
+  <div
+    style={
+      {
+        "height": "5rem",
+        "width": "5rem",
+      }
+    }
+  >
+    < />
+  </div>
+</div>
+`;
+
+exports[`Loading <Loading related center/> 1`] = `
+<div
+  className="css-2ndnsb-Loading-root"
+  data-testid="loadingIndicator"
+  variant="relative"
+>
+  <div
+    style={
+      {
+        "height": "5rem",
+        "width": "5rem",
+      }
+    }
+  >
+    < />
+  </div>
+</div>
+`;
+
+exports[`Loading <Loading related/> 1`] = `
+<div
+  className="css-1mqnh9d-Loading-root"
+  data-testid="loadingIndicator"
+>
+  <div
+    style={
+      {
+        "height": "5rem",
+        "width": "5rem",
+      }
+    }
+  >
+    < />
+  </div>
+</div>
+`;

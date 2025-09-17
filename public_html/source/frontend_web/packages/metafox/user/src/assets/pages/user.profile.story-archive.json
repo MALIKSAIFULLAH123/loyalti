@@ -1,0 +1,89 @@
+{
+  "large": {
+    "templateName": "profile-tab",
+    "blocks": [
+      {
+        "component": "user.block.userProfileHeader",
+        "slotName": "top",
+        "title": "User Profile Header",
+        "blockProps": {
+          "marginBottom": 2,
+          "variant": "containted",
+          "noHeader": true,
+          "noFooter": true
+        },
+        "key": "arwc",
+        "blockId": "arwc"
+      },
+      {
+        "component": "story.block.storyArchiveListingBlock",
+        "slotName": "main",
+        "title": "story_archive",
+        "canLoadMore": true,
+        "key": "lj4h4",
+        "blockId": "lj4h4",
+        "contentType": "story",
+        "hasSearchBox": false,
+        "freeze": false,
+        "emptyPage": "core.block.no_item_with_icon",
+        "emptyPageProps": {
+          "description": "no_stories_found",
+          "image": "ico-user-circle-o"
+        },
+        "privacyEmptyPage": "core.block.no_content_with_description",
+        "blockLayout": "Profile - Contained",
+        "gridLayout": "User Story - Archive Card",
+        "itemLayout": "User Story - Archive Card",
+        "itemView": "story.itemView.storyArchiveCard"
+      }
+    ]
+  },
+  "small": {
+    "blocks": [
+      {
+        "component": "core.block.sidebarAppMobile",
+        "slotName": "top",
+        "blockId": "raegh"
+      },
+      {
+        "component": "user.block.userProfileHeader",
+        "slotName": "top",
+        "title": "User Profile Header",
+        "blockProps": {
+          "marginBottom": 2,
+          "variant": "containted",
+          "noHeader": true,
+          "noFooter": true
+        },
+        "key": "ayo5",
+        "blockId": "ayo5"
+      },
+      {
+        "component": "story.block.storyArchiveListingBlock",
+        "slotName": "main",
+        "title": "story_archive",
+        "canLoadMore": true,
+        "key": "lj4h4",
+        "blockId": "lj4h4",
+        "contentType": "story",
+        "hasSearchBox": false,
+        "freeze": false,
+        "emptyPage": "core.block.no_item_with_icon",
+        "emptyPageProps": {
+          "description": "no_stories_found",
+          "image": "ico-user-circle-o"
+        },
+        "privacyEmptyPage": "core.block.no_content_with_description",
+        "blockLayout": "Profile - Contained",
+        "gridLayout": "User Story - Archive Card",
+        "itemLayout": "User Story - Archive Card",
+        "itemView": "story.itemView.storyArchiveCard"
+      }
+    ],
+    "templateName": "mobile"
+  },
+  "info": {
+    "bundle": "web",
+    "name": "user.profile.story-archive"
+  }
+}

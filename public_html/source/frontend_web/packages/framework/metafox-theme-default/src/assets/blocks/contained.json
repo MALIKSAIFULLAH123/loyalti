@@ -1,0 +1,46 @@
+{
+  "blockProps": {
+    "titleStyle": {
+      "component": "h1",
+      "sx": {
+        "typography": "h1"
+      }
+    },
+    "contentStyle": {
+      "sx": {
+        "pl": 2,
+        "pr": 2,
+        "pt": 0,
+        "pb": 2
+      }
+    },
+    "headerStyle": {
+      "sx": {
+        "pl": 2,
+        "pr": 2,
+        "pt": 1,
+        "pb": 1
+      },
+      "dividerVariant": "0"
+    },
+    "footerStyle": {
+      "sx": {
+        "pl": 2,
+        "pr": 2,
+        "pt": 1,
+        "pb": 1
+      },
+      "dividerVariant": "0"
+    },
+    "blockStyle": {
+      "sx": {
+        "bgcolor": "0",
+        "borderRadius": "0"
+      }
+    }
+  },
+  "info": {
+    "bundle": "web",
+    "name": "Contained"
+  }
+}

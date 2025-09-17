@@ -1,0 +1,135 @@
+{
+  "name": "general",
+  "component": "Form",
+  "title": "General Information",
+  "testid": "generalInfoConfig",
+  "action": "install/?step=verify-general-info",
+  "method": "POST",
+  "value": {},
+  "validation": {
+    "type": "object",
+    "properties": {
+      "administrator": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "errors": {
+              "required": "${path} is a required field."
+            },
+            "required": true,
+            "label": "Username"
+          },
+          "password": {
+            "type": "string",
+            "errors": {
+              "required": "${path} is a required field."
+            },
+            "required": true,
+            "label": "Password",
+            "minLength": 6
+          },
+          "email": {
+            "type": "string",
+            "errors": {
+              "required": "${path} is a required field.",
+              "format": "Invalid email address"
+            },
+            "format": "email",
+            "required": true,
+            "label": "Email"
+          }
+        }
+      },
+      "general": {
+        "type": "object",
+        "properties": {
+          "site_name": {
+            "type": "string",
+            "errors": {
+              "required": "${path} is a required field."
+            },
+            "required": true,
+            "label": "Site name"
+          }
+        }
+      }
+    }
+  },
+  "elements": {
+    "basic": {
+      "component": "Container",
+      "name": "basic",
+      "testid": "field basic",
+      "elements": {
+        "site_name": {
+          "name": "general.site_name",
+          "maxLength": 255,
+          "fullWidth": true,
+          "variant": "outlined",
+          "margin": "normal",
+          "size": "medium",
+          "component": "Text",
+          "required": true,
+          "autoComplete": "off",
+          "label": "Site Name",
+          "testid": "field general.site_name"
+        },
+        "app_url": {
+          "name": "general.app_url",
+          "maxLength": 255,
+          "fullWidth": true,
+          "variant": "outlined",
+          "margin": "normal",
+          "size": "medium",
+          "component": "Text",
+          "required": true,
+          "autoComplete": "off",
+          "label": "Base Url",
+          "testid": "field general.app_url",
+          "showWhen": ["falsy", "general.app_url"]
+        },
+        "username": {
+          "name": "administrator.username",
+          "maxLength": 255,
+          "fullWidth": true,
+          "variant": "outlined",
+          "margin": "normal",
+          "size": "medium",
+          "component": "Text",
+          "required": true,
+          "autoComplete": "off",
+          "autoFocus": true,
+          "label": "Username",
+          "testid": "field administrator.username"
+        },
+        "email": {
+          "name": "administrator.email",
+          "maxLength": 255,
+          "fullWidth": true,
+          "required": true,
+          "variant": "outlined",
+          "margin": "normal",
+          "size": "medium",
+          "component": "Text",
+          "label": "Email",
+          "testid": "field administrator.email"
+        },
+        "password": {
+          "name": "administrator.password",
+          "maxLength": 255,
+          "minLength": 6,
+          "fullWidth": true,
+          "required": true,
+          "variant": "outlined",
+          "margin": "normal",
+          "size": "medium",
+          "component": "Password",
+          "label": "Password",
+          "autoComplete": "off",
+          "testid": "field administrator.password"
+        }
+      }
+    }
+  }
+}

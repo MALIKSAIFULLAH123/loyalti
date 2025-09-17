@@ -1,0 +1,14 @@
+{
+  "name": "@metafox/app",
+  "version": "5.0.1",
+  "description": "@metafox/app",
+  "main": "dist/index.js",
+  "author": "developer@phpfox.com",
+  "license": "MIT",
+  "private": false,
+  "publishConfig": {
+    "access": "public",
+    "directory": "dist"
+  },
+  "repository": {}
+}

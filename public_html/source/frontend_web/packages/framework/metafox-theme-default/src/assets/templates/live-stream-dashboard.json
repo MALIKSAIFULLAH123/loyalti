@@ -1,0 +1,72 @@
+{
+  "title": "03 columns and fixed side",
+  "blocks": [],
+  "header": {
+    "elements": {
+      "header": {
+        "disableGutters": true,
+        "elements": {
+          "header": {}
+        },
+        "rootStyle": {
+          "minHeight": "appbar"
+        }
+      }
+    }
+  },
+  "content": {
+    "elements": {
+      "main": {
+        "gridContainer": true,
+        "disableGutters": true,
+        "elements": {
+          "side": {
+            "xs": 3,
+            "component": "layout.liveFixedSlot",
+            "rootStyle": {
+              "maxWidth": "xs2",
+              "minWidth": "xs1",
+              "sx": {
+                "mr": 2
+              }
+            },
+            "contentStyle": {
+              "sx": {
+                "bgcolor": "background.paper"
+              }
+            },
+            "slotName": "side"
+          },
+          "main": {
+            "flexWeight": 1,
+            "slotName": "main",
+            "stageStyle": {
+              "sx": {
+                "pr": 2
+              }
+            }
+          },
+          "subside": {
+            "xs": 3,
+            "component": "layout.liveFixedSlot",
+            "disabledScroll": true,
+            "rootStyle": {
+              "maxWidth": "xs2",
+              "minWidth": "xs1"
+            },
+            "contentStyle": {
+              "sx": {
+                "bgcolor": "background.paper"
+              }
+            },
+            "slotName": "side"
+          }
+        }
+      }
+    }
+  },
+  "info": {
+    "bundle": "web",
+    "name": "live-stream-dashboard"
+  }
+}

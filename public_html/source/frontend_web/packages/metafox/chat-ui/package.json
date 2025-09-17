@@ -1,0 +1,17 @@
+{
+  "name": "@metafox/chat-ui",
+  "version": "5.0.1",
+  "description": "@metafox/chat-ui",
+  "main": "dist/index.js",
+  "author": "developer@phpfox.com",
+  "license": "MIT",
+  "private": false,
+  "publishConfig": {
+    "access": "public",
+    "directory": "dist"
+  },
+  "storeConfig": {
+    "productId": "metafox/chat-ui"
+  },
+  "repository": {}
+}

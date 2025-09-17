@@ -1,0 +1,71 @@
+{
+  "large": {
+    "templateName": "simple",
+    "blocks": [
+      {
+        "component": "notification.block.notificationListingBlock",
+        "slotName": "main",
+        "title": "notifications",
+        "canLoadMore": true,
+        "gridItemProps": {
+          "xs": 12,
+          "sm": 12,
+          "md": 12,
+          "lg": 12,
+          "xl": 12
+        },
+        "blockId": "5733",
+        "itemView": "notification.itemView.mainCard",
+        "contentType": "notification",
+        "dataSource": {
+          "apiUrl": "/notification"
+        },
+        "headerActions": [
+          {
+            "as": "notification.markAllAsRead"
+          },
+          {
+            "as": "notification.deleteAll"
+          },
+          {
+            "as": "notification.editNotificationSetting"
+          }
+        ],
+        "blockLayout": "Large Main Lists",
+        "gridLayout": "Notification - Small Lists",
+        "emptyPage": "core.block.no_content_with_icon",
+        "emptyPageProps": {
+          "noHeader": true,
+          "contentStyle": {
+            "bgColor": "0"
+          },
+          "noBlock": 1,
+          "title": "no_notifications",
+          "image": "ico-bell2-off-o"
+        },
+        "itemLayout": "Notification - Small Lists"
+      }
+    ],
+    "pageName": "notification.home"
+  },
+  "small": {
+    "blocks": [
+      {
+        "component": "notification.block.notificationListingBlockMobile",
+        "slotName": "main",
+        "blockId": "5733",
+        "blockProps": {
+          "contentStyle": {
+            "mt": 2
+          }
+        }
+      }
+    ],
+    "pageName": "notification.home",
+    "templateName": "mobile"
+  },
+  "info": {
+    "bundle": "web",
+    "name": "notification.home"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "total_friend": "{ value, plural, =0{No friends} =1{# friend} other{# friends} }",
+  "total_mutual": "{ value, plural, =1{# mutual friend} other{# mutual friends} }",
+  "no_friend_request": "No requests",
+  "no_profile_selected": "No profile selected",
+  "select_profile_to_review": "Select one user from the left to preview their profile",
+  "there_are_no_friend_list": "There are no friend lists",
+  "search_friend": "Search for friends",
+  "friend_list_title": "Friend List: <bold>{title}</bold>",
+  "search_for_friends": "Search for friends",
+  "no_friends_to_show": "No friends to show",
+  "no_friends_to_show_description": "When you become friends with people, they'll appear here.",
+  "all_requests": "All requests",
+  "friend_lists": "Friend Lists"
+}

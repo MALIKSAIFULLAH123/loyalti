@@ -1,0 +1,15 @@
+/**
+ * @type: route
+ * name: $$RESOURCE$$.browse
+ * path: /$$RESOURCE_PATH$$/:tab(friend|all|pending|feature|spam|draft)
+ * chunkName: pages.$$RESOURCE_PATH$$
+ * bundle: web
+ */
+import { createBrowseItemPage } from '@metafox/framework';
+
+export default createBrowseItemPage({
+  appName: '$$RESOURCE$$',
+  resourceName: '$$RESOURCE$$',
+  pageName: '$$RESOURCE$$.browse',
+  categoryName: '$$RESOURCE$$_category'
+});

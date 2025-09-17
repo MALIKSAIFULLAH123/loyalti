@@ -1,0 +1,193 @@
+{
+  "large": {
+    "templateName": "three-column-fixed",
+    "blocks": [
+      {
+        "component": "feed.block.statusComposer",
+        "slotName": "main",
+        "blockId": "15t1m",
+        "title": "Status Composer",
+        "variant": "default",
+        "headerActions": {
+          "ml": 0,
+          "mr": 0
+        },
+        "blockLayout": "Status Composer"
+      },
+      {
+        "component": "feed.block.reloadFeed",
+        "slotName": "main",
+        "title": "",
+        "blockProps": {
+          "blockStyle": {}
+        },
+        "dividerVariant": "middle",
+        "blockId": "15ma2",
+        "variant": "default"
+      },
+      {
+        "component": "feed.block.homeFeeds",
+        "slotName": "main",
+        "blockId": "mngh",
+        "title": "Activity Feed",
+        "itemView": "feed.itemView.mainCard",
+        "gridLayout": "Feed - Main Card",
+        "blockLayout": "Home Feed Main Listings",
+        "emptyPageProps": {
+          "noBlock": 1
+        },
+        "emptyPage": "core.block.no_content_with_description",
+        "itemLayout": "Feed - Main Card",
+        "contentType": "feed"
+      },
+      {
+        "component": "core.block.sidebarPrimaryMenu",
+        "slotName": "side",
+        "title": "",
+        "blockId": "8r659",
+        "itemProps": {
+          "mediaPlacement": "none"
+        },
+        "blockStyle": "Profile - Side Contained",
+        "blockLayout": "sidebar primary menu",
+        "variant": 8,
+        "displayLimit": 8,
+        "headerActions": {
+          "ml": 0,
+          "mr": 0
+        }
+      },
+      {
+        "component": "core.dividerBlock",
+        "slotName": "side",
+        "title": "",
+        "blockId": "qlfp",
+        "showWhen": ["truthy", "setting.chatplus.server"],
+        "dividerVariant": "middle",
+        "noHeader": true,
+        "blockLayout": "Block Divider"
+      },
+      {
+        "component": "core.block.sidebarShortcutMenu",
+        "slotName": "side",
+        "dividerVariant": "middle",
+        "blockLayout": "sidebar shortcut",
+        "blockId": "2c7hu",
+        "title": "shortcuts",
+        "itemView": "shortcut.itemView.smallCard",
+        "gridLayout": "Shortcut - Menu Items",
+        "canLoadMore": 0,
+        "collapsible": {
+          "limit": 5,
+          "as": "shortcut.ui.toggleButton"
+        },
+        "numberOfItemsPerPage": 20,
+        "dataSource": {
+          "apiUrl": "/user/shortcut"
+        },
+        "pagingId": "/user/shortcut",
+        "headerActions": [
+          {
+            "as": "user.ManageShortcutButton"
+          }
+        ],
+        "emptyPageProps": {
+          "noBlock": 1
+        },
+        "emptyPage": "hide",
+        "itemLayout": "Shortcut - Menu Items"
+      },
+      {
+        "component": "chatplus.block.contactsNewFeed",
+        "slotName": "subside",
+        "blockId": "2312ewqe",
+        "variant": "default",
+        "pagingId": "/feed",
+        "title": "online_friends",
+        "blockLayout": "Blocker Contacts ChatPlus",
+        "showWhen": ["truthy", "setting.chatplus.server"]
+      },
+      {
+        "component": "core.block.footer",
+        "slotName": "subside",
+        "dividerVariant": "middle",
+        "blockLayout": "footer",
+        "blockId": "footer0",
+        "blockOrder": 99
+      }
+    ]
+  },
+  "small": {
+    "templateName": "mobile",
+    "blocks": [
+      {
+        "component": "feed.block.statusComposer",
+        "slotName": "main",
+        "title": "Status Composer",
+        "blockId": "15t1m",
+        "variant": "default",
+        "blockLayout": "Blocker - Mobile"
+      },
+      {
+        "component": "feed.block.homeFeeds",
+        "slotName": "main",
+        "title": "Activity Feed",
+        "blockId": "mngh",
+        "canLoadMore": true,
+        "itemView": "feed.itemView.mainCard",
+        "canLoadSmooth": true,
+        "contentType": "feed",
+        "emptyPage": "core.block.no_content_with_description",
+        "blockLayout": "Home Feed Main Listings",
+        "gridLayout": "Feeds - Mobile",
+        "itemLayout": "Feeds - Mobile"
+      },
+      {
+        "component": "core.block.sidebarPrimaryMenu",
+        "slotName": "side",
+        "blockId": "8r659",
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "textPrimary",
+          "noFooter": true,
+          "noHeader": true,
+          "blockStyle": {
+            "pl": 2,
+            "pt": 2,
+            "pr": 2,
+            "pb": 2
+          }
+        },
+        "title": ""
+      },
+      {
+        "component": "core.block.sidebarShortcutMenu",
+        "slotName": "side",
+        "blockId": "2c7hu",
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle2",
+          "titleColor": "textPrimary",
+          "noFooter": true,
+          "noHeader": false,
+          "blockStyle": {
+            "pl": 2,
+            "pr": 2,
+            "pb": 4
+          },
+          "headerStyle": {
+            "pb": 2
+          }
+        },
+        "title": "shortcuts"
+      }
+    ]
+  },
+  "info": {
+    "bundle": "web",
+    "name": "home.member"
+  }
+}

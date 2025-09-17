@@ -1,0 +1,54 @@
+{
+    "name": "metafox/static-page",
+    "version": "5.0.17",
+    "description": "",
+    "authors": [
+        {
+            "name": "phpFox",
+            "email": "developer@phpfox.com",
+            "homepage": "https://www.phpfox.com"
+        }
+    ],
+    "extra": {
+        "metafox": {
+            "core": true,
+            "priority": 100,
+            "alias": "static-page",
+            "asset": "spa",
+            "path": "packages/metafox/static-page",
+            "title": "Static Page",
+            "namespace": "MetaFox\\StaticPage",
+            "internalAdminUrl": "/static-page/page/browse",
+            "providers": [
+                "MetaFox\\StaticPage\\Providers\\PackageServiceProvider"
+            ],
+            "frontend": {
+                "@metafox/static-page": "*"
+            },
+            "frontendPaths": [
+                "packages/metafox/static-page"
+            ],
+            "aliases": null,
+            "type": "app",
+            "mobile": [],
+            "store_id": 0,
+            "store_url": null,
+            "internalUrl": ""
+        },
+        "laravel": {
+            "providers": [],
+            "aliases": []
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "MetaFox\\StaticPage\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "MetaFox\\StaticPage\\Tests\\": "tests/"
+        }
+    },
+    "keyword": ""
+}

@@ -1,0 +1,89 @@
+{
+  "info": {
+    "title": "Admin/Apps/Uploaded",
+    "bundle": "admincp",
+    "name": "core.admincp.app.store"
+  },
+  "large": {
+    "templateName": "admincp",
+    "blocks": [
+      {
+        "blockId": "sba8a",
+        "component": "core.block.AdminBrowseSearchForm",
+        "slotName": "main",
+        "title": "Filter Form",
+        "blockLayout": "Admin Form",
+        "isRemote": true,
+        "moduleName": "app",
+        "resourceName": "app_store_product",
+        "actionName": "getSearchForm"
+      },
+      {
+        "blockId": "vuf9b",
+        "component": "core.block.AdminStoreApps",
+        "slotName": "main",
+        "pageName": "core.admincp.app.uploaded",
+        "pageSize": "large",
+        "moduleName": "app",
+        "resourceName": "app_store_product",
+        "actionName": "viewAll"
+      }
+    ]
+  },
+  "sMedium": {
+    "templateName": "admincp",
+    "blocks": [
+      {
+        "blockId": "sba8a",
+        "component": "core.block.AdminBrowseSearchForm",
+        "slotName": "main",
+        "title": "Filter Form",
+        "blockLayout": "Admin Form",
+        "isRemote": true,
+        "moduleName": "app",
+        "resourceName": "app_store_product",
+        "actionName": "getSearchForm"
+      },
+      {
+        "blockId": "vuf9b",
+        "component": "core.block.AdminStoreApps",
+        "slotName": "main",
+        "pageName": "core.admincp.app.uploaded",
+        "pageSize": "large",
+        "moduleName": "app",
+        "resourceName": "app_store_product",
+        "actionName": "viewAll",
+        "itemView": "app_store_product.itemView.mainCard",
+        "itemLayout": "App Store Product - Main Cards"
+      }
+    ]
+  },
+  "small": {
+    "templateName": "admincp",
+    "blocks": [
+      {
+        "blockId": "sba8a",
+        "component": "core.block.AdminBrowseSearchForm",
+        "slotName": "main",
+        "title": "Filter Form",
+        "blockLayout": "Admin Form",
+        "isRemote": true,
+        "moduleName": "app",
+        "resourceName": "app_store_product",
+        "actionName": "getSearchForm"
+      },
+      {
+        "blockId": "vuf9b",
+        "component": "core.block.AdminStoreApps",
+        "slotName": "main",
+        "pageName": "core.admincp.app.uploaded",
+        "pageSize": "large",
+        "moduleName": "app",
+        "resourceName": "app_store_product",
+        "actionName": "viewAll",
+        "itemView": "app_store_product.itemView.smallCard",
+        "itemLayout": "App Store Product - Main Cards - Small"
+      }
+    ]
+  }
+}

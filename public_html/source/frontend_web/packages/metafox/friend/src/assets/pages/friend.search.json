@@ -1,0 +1,96 @@
+{
+  "large": {
+    "pageName": "friend.search",
+    "templateName": "two-column-fixed",
+    "blocks": [
+      {
+        "blockId": "iqmbe",
+        "component": "core.block.mainListing",
+        "slotName": "main",
+        "pageName": "friend.search",
+        "pageSize": "large",
+        "title": "",
+        "emptyPage": "core.block.no_content_with_icon",
+        "canLoadMore": 1,
+        "emptyPageProps": {
+          "description": "no_friends_to_show_description",
+          "title": "no_friends_to_show",
+          "image": "ico-user-circle-o",
+          "noBlock": true
+        },
+        "itemView": "friend.itemView.mainCard",
+        "blockLayout": "App List",
+        "gridLayout": "Friend - Cards",
+        "itemLayout": "Friend - Cards"
+      },
+      {
+        "blockId": "ia",
+        "component": "core.block.sideAppHeader",
+        "slotName": "side",
+        "title": "friends",
+        "icon": "ico-user1-two",
+        "freeze": true
+      },
+      {
+        "blockId": "u5russ",
+        "component": "core.block.sidebarQuickFilter",
+        "slotName": "side",
+        "title": "Filters",
+        "blockLayout": "sidebar app filter",
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "textPrimary",
+          "noFooter": true,
+          "noHeader": false
+        }
+      }
+    ]
+  },
+  "small": {
+    "blocks": [
+      {
+        "component": "core.block.sidebarAppMobile",
+        "slotName": "main",
+        "title": "friends",
+        "blockProps": {
+          "variant": "plained",
+          "marginBottom": 2
+        },
+        "contents": [
+          {
+            "name": "core.block.sidebarQuickFilter"
+          }
+        ],
+        "blockId": "lcfv",
+        "pageName": "friend.search"
+      },
+      {
+        "blockId": "iqmbe",
+        "component": "core.block.mainListing",
+        "slotName": "main",
+        "pageName": "friend.search",
+        "pageSize": "large",
+        "title": "",
+        "emptyPage": "core.block.no_content_with_icon",
+        "canLoadMore": 1,
+        "emptyPageProps": {
+          "description": "no_friends_to_show_description",
+          "title": "no_friends_to_show",
+          "image": "ico-user-circle-o"
+        },
+        "itemView": "friend.itemView.mainCard",
+        "blockLayout": "App List - Mobile",
+        "gridLayout": "Friend - Cards",
+        "itemLayout": "Friend - Cards"
+      }
+    ],
+    "pageName": "friend.search",
+    "templateName": "mobile"
+  },
+  "info": {
+    "bundle": "web",
+    "name": "friend.search"
+  }
+}

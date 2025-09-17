@@ -1,0 +1,14 @@
+{
+  "gridContainerProps": {
+    "rowSpacing": 2,
+    "columnSpacing": 2
+  },
+  "gridItemProps": {
+    "xs": 12
+  },
+  "gridVariant": "listView",
+  "info": {
+    "bundle": "web",
+    "name": "Feed - Main Card"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "info": {
+    "bundle": "web",
+    "name": "core.error403"
+  },
+  "large": {
+    "templateName": "simple",
+    "blocks": [
+      {
+        "component": "core.block.error403",
+        "slotName": "main",
+        "blockId": "pdb"
+      }
+    ]
+  },
+  "small": {
+    "templateName": "mobile",
+    "blocks": [
+      {
+        "component": "core.block.error403",
+        "slotName": "main",
+        "blockId": "sqih"
+      }
+    ]
+  }
+}

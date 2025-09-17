@@ -1,0 +1,43 @@
+{
+  "info": {
+    "title": "Admin/Members/Permission",
+    "bundle": "admincp",
+    "name": "user.admincp.permission.manage"
+  },
+  "large": {
+    "templateName": "admincp",
+    "blocks": [
+      {
+        "blockId": "al519",
+        "key": "al519",
+        "component": "user.block.AdminForm",
+        "slotName": "main",
+        "pageName": "user.admincp.permission.manage",
+        "pageSize": "large",
+        "title": "Admin Form",
+        "isRemote": true,
+        "formName": "search",
+        "appName": "authorization",
+        "resourceName": "user_permission",
+        "blockLayout": "Admin Form",
+        "actionName": "searchForm",
+        "minHeight": "80px"
+      },
+      {
+        "key": "llh13",
+        "blockId": "llh13",
+        "component": "user.block.AdminForm",
+        "slotName": "main",
+        "pageName": "user.admincp.permission.manage",
+        "pageSize": "large",
+        "title": "Search",
+        "isRemote": 0,
+        "appName": "user",
+        "formName": "formName",
+        "blockLayout": "Admin Form",
+        "minHeight": "60vh",
+        "fixedFooter": true
+      }
+    ]
+  }
+}

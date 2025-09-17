@@ -1,0 +1,13 @@
+{
+  "blockProps": {
+    "contentStyle": {},
+    "headerStyle": {},
+    "footerStyle": {}
+  },
+  "noHeader": 1,
+  "noFooter": 1,
+  "info": {
+    "bundle": "web",
+    "name": "Clean - Body Only"
+  }
+}

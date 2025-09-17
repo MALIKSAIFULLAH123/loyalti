@@ -1,0 +1,40 @@
+{
+  "large": {
+    "templateName": "simple-md",
+    "blocks": [
+      {
+        "component": "core.breadcrumbBlock",
+        "slotName": "main",
+        "title": "breadcrumb",
+        "blockId": "i9pp",
+        "blockLayout": "form breadcrumb"
+      },
+      {
+        "component": "static.block.mainContent",
+        "slotName": "main",
+        "blockId": "ka24g"
+      }
+    ]
+  },
+  "small": {
+    "templateName": "mobile",
+    "blocks": [
+      {
+        "component": "core.breadcrumbBlock",
+        "slotName": "main",
+        "title": "breadcrumb",
+        "blockId": "i9pp",
+        "blockLayout": "form breadcrumb"
+      },
+      {
+        "component": "static.block.mainContent",
+        "slotName": "main",
+        "blockId": "8897h"
+      }
+    ]
+  },
+  "info": {
+    "bundle": "web",
+    "name": "static.page"
+  }
+}

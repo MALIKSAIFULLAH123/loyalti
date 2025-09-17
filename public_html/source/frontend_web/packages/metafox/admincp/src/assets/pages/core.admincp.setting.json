@@ -1,0 +1,35 @@
+{
+  "info": {
+    "title": "Admin/Setting",
+    "bundle": "admincp",
+    "name": "core.admincp.setting"
+  },
+  "large": {
+    "templateName": "admincp",
+    "blocks": [
+      {
+        "blockId": "acpsf",
+        "key": "acpsf",
+        "component": "admincp.block.searchSettingForm",
+        "slotName": "main",
+        "pageSize": "large",
+        "title": "Admin Search Setting Form",
+        "blockLayout": "Admin Form",
+        "actionName": "searchSettingForm",
+        "minHeight": "80px"
+      },
+      {
+        "blockId": "s5qwi",
+        "component": "user.block.AdminForm",
+        "slotName": "main",
+        "pageName": "core.admincp.setting",
+        "pageSize": "large",
+        "title": "EditSetting",
+        "isRemote": true,
+        "loadFrom": "pageParams",
+        "blockLayout": "Admin Form",
+        "fixedFooter": true
+      }
+    ]
+  }
+}

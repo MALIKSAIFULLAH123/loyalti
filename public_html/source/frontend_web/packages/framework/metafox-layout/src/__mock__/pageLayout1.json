@@ -1,0 +1,62 @@
+{
+  "blocks": [
+    {
+      "component": "user.block.userListingBlock",
+      "slotName": "side",
+      "title": "Featured Blocks",
+      "blockProps": {
+        "marginBottom": "2",
+        "variant": "contained"
+      },
+      "itemView": "user.itemView.smallCard",
+      "gridItemProps": {
+        "xs": 12,
+        "sm": 12,
+        "md": 12,
+        "lg": 12,
+        "xl": 12
+      }
+    },
+    {
+      "component": "user.block.userListingBlock",
+      "slotName": "main",
+      "title": "People You May Know",
+      "dataSource": {
+        "apiParams": "view=recommend&limit=4"
+      },
+      "gridItemProps": {
+        "xs": 6,
+        "sm": 6,
+        "md": 4,
+        "lg": 4,
+        "xl": 3
+      },
+      "itemView": "user.itemView.mainCard",
+      "blockProps": {
+        "marginBottom": "2",
+        "variant": "contained"
+      },
+      "gridContainerProps": {
+        "spacing": 2
+      }
+    },
+    {
+      "component": "user.block.userListingBlock",
+      "slotName": "main",
+      "title": "Recent Active",
+      "dataSource": {
+        "apiParams": "sort=active&limit=6"
+      },
+      "blockProps": {
+        "marginBottom": "2",
+        "variant": "contained"
+      },
+      "itemView": "user.itemView.mainCard",
+      "gridItemProps": {
+        "md": 6,
+        "xs": 12
+      }
+    }
+  ],
+  "pageName": "user.home"
+}

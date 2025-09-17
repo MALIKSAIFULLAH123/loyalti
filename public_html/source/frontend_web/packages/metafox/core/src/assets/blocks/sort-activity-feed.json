@@ -1,0 +1,19 @@
+{
+  "blockProps": {
+    "blockStyle": {
+      "blockShadow": 0,
+      "sx": {
+        "mt": 2,
+        "mb": 2,
+        "display": "flex",
+        "justifyContent": "flex-end"
+      }
+    }
+  },
+  "noHeader": true,
+  "noFooter": true,
+  "info": {
+    "bundle": "web",
+    "name": "Sort Activity Feed"
+  }
+}

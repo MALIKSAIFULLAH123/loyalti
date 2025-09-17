@@ -1,0 +1,25 @@
+/**
+ * @type: block
+ * name: $$RESOURCE$$.block.Profile$$RESOURCE_STUDLY$$
+ * title: Profile $$RESOURCE_STUDLY$$
+ * keywords: $$RESOURCE$$
+ * description: Display $$RESOURCE_STUDLY$$
+ * thumbnail:
+ */
+import { createBlock, ListViewBlockProps } from '@metafox/framework';
+
+const $$RESOURCE_STUDLY$$ListingBlock = createBlock<ListViewBlockProps>({
+  name: 'Profile$$RESOURCE_STUDLY$$',
+  extendBlock: 'core.block.listview',
+  defaults: {
+    contentType: '$$RESOURCE$$',
+    dataSource: {
+      apiUrl: '/$$RESOURCE_PATH$$'
+    },
+    title: '$$RESOURCE_STUDLY$$',
+    itemView: '$$RESOURCE$$.itemView.mainCard',
+    emptyPage: 'core.block.no_content'
+  }
+});
+
+export default $$RESOURCE_STUDLY$$ListingBlock;

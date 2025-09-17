@@ -1,0 +1,16 @@
+{
+  "large": {
+    "templateName": "simple",
+    "blocks": [
+      {
+        "component": "user.block.mfa",
+        "slotName": "main",
+        "blockId": "c7ire"
+      }
+    ]
+  },
+  "info": {
+    "bundle": "web",
+    "name": "user.mfa"
+  }
+}

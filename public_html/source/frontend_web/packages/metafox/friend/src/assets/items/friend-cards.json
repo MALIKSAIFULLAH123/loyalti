@@ -1,0 +1,53 @@
+{
+  "itemProps": {
+    "variant": "contained",
+    "content": {
+      "dividerVariant": "",
+      "hoverVariant": "",
+      "selectedVariant": "",
+      "sx": {
+        "alignItems": "center",
+        "justifyContent": "",
+        "bgcolor": "background.paper",
+        "borderRadius": 1,
+        "pt": 2,
+        "pr": 2,
+        "pb": 2,
+        "pl": 2
+      }
+    },
+    "title": {
+      "variant": "h4",
+      "lines": 1,
+      "sx": {
+        "mb": 1
+      }
+    },
+    "summary": {
+      "component": "div",
+      "variant": "body1",
+      "lines": 1,
+      "fixHeight": 1,
+      "sx": {
+        "mr": 0,
+        "color": "textSecondary"
+      }
+    },
+    "media": {
+      "placement": "start",
+      "aspectRatio": "11",
+      "width": "80"
+    },
+    "showActionMenu": 1,
+    "text": {
+      "sx": {
+        "pl": 2,
+        "pr": 2
+      }
+    }
+  },
+  "info": {
+    "bundle": "web",
+    "name": "Friend - Cards"
+  }
+}

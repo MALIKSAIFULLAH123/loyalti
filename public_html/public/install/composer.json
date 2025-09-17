@@ -1,0 +1,45 @@
+{
+    "name": "metafox/setup",
+    "version": "5.0.0",
+    "description": "Framework Setup Wizard",
+    "authors": [
+        {
+            "name": "phpFox",
+            "email": "developer@phpfox.com",
+            "homepage": "https://www.phpfox.com"
+        }
+    ],
+    "extra": {
+        "metafox": {
+            "core": false,
+            "priority": 1,
+            "path": "public/install",
+            "title": "Install Wizard",
+            "alias": "install",
+            "asset": "install",
+            "namespace": "MetaFox\\Install",
+            "internalAdminUrl": "/admincp",
+            "providers": [],
+            "frontend": [],
+            "aliases": null,
+            "type": "app"
+        },
+        "laravel": {
+            "providers": [],
+            "aliases": []
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "MetaFox\\Install\\": "src/"
+        },
+        "files": [
+            "src/helpers.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "MetaFox\\Install\\Tests\\": "tests/"
+        }
+    }
+}

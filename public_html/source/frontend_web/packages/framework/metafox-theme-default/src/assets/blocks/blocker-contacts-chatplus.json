@@ -1,0 +1,41 @@
+{
+  "blockProps": {
+    "titleStyle": {
+      "component": "h2",
+      "sx": {
+        "typography": "h4"
+      }
+    },
+    "contentStyle": {
+      "sx": {
+        "pb": 1,
+        "pl": 1,
+        "pr": 1
+      }
+    },
+    "headerStyle": {
+      "sx": {
+        "pl": 2,
+        "pr": 2,
+        "pt": 0,
+        "pb": 0,
+        "height": "48px"
+      },
+      "dividerVariant": "fullWidth"
+    },
+    "footerStyle": {},
+    "blockStyle": {
+      "sx": {
+        "bgcolor": "background.paper",
+        "borderRadius": 1,
+        "mt": 2,
+        "mb": 2
+      }
+    }
+  },
+  "noFooter": true,
+  "info": {
+    "bundle": "web",
+    "name": "Blocker Contacts ChatPlus"
+  }
+}

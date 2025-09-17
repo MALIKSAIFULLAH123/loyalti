@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunk_metafox_react=self.webpackChunk_metafox_react||[]).push([["home.contact"],{50405(e,t,a){a.r(t),a.d(t,{default:()=>o});var c=a(91557);let o=(0,c.EHr)({appName:"contact",resourceName:"contact",pageName:"home.contact",resourceAction:"getContactForm",loginRequired:!1})}}]);

@@ -1,0 +1,48 @@
+{
+  "itemProps": {
+    "variant": "containedCard",
+    "content": {
+      "dividerVariant": "divider",
+      "hoverVariant": "background",
+      "selectedVariant": "",
+      "sx": {
+        "alignItems": "center",
+        "justifyContent": "",
+        "bgcolor": "",
+        "borderRadius": "",
+        "pt": 2,
+        "pr": 2,
+        "pb": 2,
+        "pl": 2
+      }
+    },
+    "title": {
+      "variant": "h3",
+      "lines": 0,
+      "fixHeight": 0
+    },
+    "summary": {
+      "component": "div",
+      "variant": "body1",
+      "lines": 2,
+      "sx": {
+        "mb": 0.5,
+        "color": "textSecondary"
+      }
+    },
+    "media": {
+      "placement": "start",
+      "aspectRatio": "11",
+      "width": "auto"
+    },
+    "text": {
+      "sx": {
+        "pl": 2
+      }
+    }
+  },
+  "info": {
+    "bundle": "admincp",
+    "name": "Notification - Small Lists"
+  }
+}
