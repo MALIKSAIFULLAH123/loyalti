@@ -1,0 +1,265 @@
+{
+  "large": {
+    "blocks": [
+      {
+        "component": "core.block.sideAppHeader",
+        "slotName": "side",
+        "title": "marketplace",
+        "icon": "ico-compose-alt",
+        "blockId": "nr31",
+        "blockLayout": "sidebar app header",
+        "freeze": true
+      },
+      {
+        "component": "core.block.searchBox",
+        "slotName": "side",
+        "placeholder": "Search",
+        "blockId": "w1t9",
+        "title": "",
+        "blockLayout": "sidebar search box",
+        "freeze": true
+      },
+      {
+        "component": "core.block.sidebarAppMenu",
+        "slotName": "side",
+        "title": "marketplace",
+        "blockProps": {
+          "variant": "plained",
+          "noHeader": false,
+          "noFooter": false
+        },
+        "blockId": "mb8c",
+        "menuName": "sidebarMenu",
+        "blockLayout": "sidebar app menu"
+      },
+      {
+        "blockId": "b3ag",
+        "component": "core.dividerBlock",
+        "slotName": "side",
+        "title": "",
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "textPrimary",
+          "noFooter": true,
+          "noHeader": true
+        },
+        "dividerVariant": "middle"
+      },
+      {
+        "component": "core.categoryBlock",
+        "slotName": "side",
+        "title": "categories",
+        "blockId": "k4zz",
+        "blockLayout": "sidebar app category"
+      },
+      {
+        "blockId": "ma1a",
+        "parentBlockId": "ma1",
+        "component": "marketplace.block.listingBlock",
+        "slotName": "main",
+        "gridLayout": "Marketplace - Main Card",
+        "dataSource": {
+          "apiParams": "view=my",
+          "apiUrl": "/marketplace"
+        },
+        "itemView": "marketplace.itemView.mainCard",
+        "emptyPage": "core.block.no_content_with_icon",
+        "emptyPageProps": {
+          "title": "no_marketplace_found",
+          "image": "ico-shopbasket"
+        },
+        "contentType": "marketplace",
+        "gridVariant": "gridView",
+        "canLoadMore": true,
+        "canLoadSmooth": 1,
+        "hasSearchBox": false,
+        "freeze": false,
+        "blockLayout": "App List - Tab Content - No Title",
+        "itemLayout": "Marketplace - Main Card"
+      },
+      {
+        "blockId": "ma3a",
+        "parentBlockId": "ma3",
+        "component": "marketplace.block.listingBlock",
+        "slotName": "main",
+        "gridLayout": "Marketplace - Main Card",
+        "dataSource": {
+          "apiParams": "view=expire&user_id=:authId",
+          "apiUrl": "/marketplace"
+        },
+        "itemView": "marketplace.itemView.mainCard",
+        "emptyPage": "core.block.no_content_with_icon",
+        "emptyPageProps": {
+          "title": "no_marketplace_found",
+          "image": "ico-shopbasket"
+        },
+        "contentType": "marketplace",
+        "gridVariant": "gridView",
+        "canLoadMore": true,
+        "canLoadSmooth": 1,
+        "hasSearchBox": false,
+        "freeze": false,
+        "blockLayout": "App List - Tab Content - No Title",
+        "itemLayout": "Marketplace - Main Card"
+      },
+      {
+        "blockId": "ma1",
+        "parentBlockId": "mat1",
+        "component": "core.block.listContainer",
+        "slotName": "main",
+        "freeze": false,
+        "name": "listing"
+      },
+      {
+        "blockId": "ma3",
+        "parentBlockId": "mat1",
+        "component": "core.block.listContainer",
+        "slotName": "main",
+        "freeze": false,
+        "name": "expired"
+      },
+      {
+        "blockId": "mat1",
+        "component": "core.block.tabContainer",
+        "slotName": "main",
+        "blockLayout": "App List - Sub Tab",
+        "title": "my_listings",
+        "freeze": false,
+        "tabProps": {
+          "tabs": [
+            {
+              "id": 1,
+              "label": "listing",
+              "tab": "listing"
+            },
+            {
+              "id": 2,
+              "label": "expired",
+              "tab": "expired"
+            }
+          ]
+        }
+      }
+    ],
+    "containers": {},
+    "pageName": "marketplace.my",
+    "templateName": "two-column-fixed"
+  },
+  "small": {
+    "blocks": [
+      {
+        "component": "core.block.sidebarAppMobile",
+        "slotName": "main",
+        "contents": [
+          {
+            "name": "core.block.searchBox"
+          },
+          {
+            "name": "core.block.sidebarAppMenu"
+          },
+          {
+            "name": "core.categoryBlock"
+          }
+        ],
+        "blockId": "ge79n"
+      },
+      {
+        "blockId": "ma1a",
+        "parentBlockId": "ma1",
+        "component": "marketplace.block.listingBlock",
+        "slotName": "main",
+        "gridLayout": "Marketplace - Main Card",
+        "dataSource": {
+          "apiParams": "view=my",
+          "apiUrl": "/marketplace"
+        },
+        "itemView": "marketplace.itemView.mainCard",
+        "emptyPage": "core.block.no_content_with_icon",
+        "emptyPageProps": {
+          "title": "no_marketplace_found",
+          "image": "ico-shopbasket"
+        },
+        "contentType": "marketplace",
+        "gridVariant": "gridView",
+        "canLoadMore": true,
+        "canLoadSmooth": 1,
+        "hasSearchBox": false,
+        "freeze": false,
+        "blockLayout": "App List - Tab Content - No Title",
+        "itemLayout": "Marketplace - Main Card"
+      },
+      {
+        "blockId": "ma3a",
+        "parentBlockId": "ma3",
+        "component": "marketplace.block.listingBlock",
+        "slotName": "main",
+        "gridLayout": "Marketplace - Main Card",
+        "dataSource": {
+          "apiParams": "view=expire&user_id=:authId",
+          "apiUrl": "/marketplace"
+        },
+        "itemView": "marketplace.itemView.mainCard",
+        "emptyPage": "core.block.no_content_with_icon",
+        "emptyPageProps": {
+          "title": "no_marketplace_found",
+          "image": "ico-shopbasket"
+        },
+        "contentType": "marketplace",
+        "gridVariant": "gridView",
+        "canLoadMore": true,
+        "canLoadSmooth": 1,
+        "hasSearchBox": false,
+        "freeze": false,
+        "blockLayout": "App List - Tab Content - No Title",
+        "itemLayout": "Marketplace - Main Card"
+      },
+      {
+        "blockId": "ma1",
+        "parentBlockId": "mat1",
+        "component": "core.block.listContainer",
+        "slotName": "main",
+        "freeze": false,
+        "name": "listing"
+      },
+      {
+        "blockId": "ma3",
+        "parentBlockId": "mat1",
+        "component": "core.block.listContainer",
+        "slotName": "main",
+        "freeze": false,
+        "name": "expired"
+      },
+      {
+        "blockId": "mat1",
+        "component": "core.block.tabContainer",
+        "slotName": "main",
+        "blockLayout": "App List - Sub Tab - Mobile",
+        "title": "my_listings",
+        "freeze": false,
+        "tabProps": {
+          "tabs": [
+            {
+              "id": 1,
+              "label": "listing",
+              "tab": "listing"
+            },
+            {
+              "id": 2,
+              "label": "expired",
+              "tab": "expired"
+            }
+          ]
+        }
+      }
+    ],
+    "containers": {},
+    "pageName": "marketplace.my",
+    "templateName": "mobile"
+  },
+  "info": {
+    "bundle": "web",
+    "name": "marketplace.my"
+  }
+}

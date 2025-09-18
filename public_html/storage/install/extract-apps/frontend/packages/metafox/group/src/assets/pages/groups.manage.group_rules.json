@@ -1,0 +1,124 @@
+{
+  "large": {
+    "templateName": "two-column-fixed",
+    "blocks": [
+      {
+        "blockId": "pxfyc",
+        "component": "core.block.sideAppHeader",
+        "slotName": "side",
+        "pageName": "groups.manage.pending_posts",
+        "pageSize": "large",
+        "icon": "ico-compose-alt",
+        "sidebarHeaderName": "backToProfile"
+      },
+      {
+        "blockId": "n4e6",
+        "component": "core.block.sidebarAppMenu",
+        "slotName": "side",
+        "pageName": "groups.manage.pending_posts",
+        "pageSize": "large",
+        "title": "Manage Group",
+        "displayViewMore": false,
+        "blockLayout": "App List Tab",
+        "gridLayout": "Group - PendingPost - Main Card",
+        "contentType": "group",
+        "itemView": "group.itemView.pendingPost",
+        "itemLayout": "Group - PendingPost - Main Card",
+        "emptyPage": "core.block.no_content_with_icon",
+        "canLoadMore": true,
+        "emptyPageProps": {
+          "title": "no_pending_post",
+          "description": "there_are_no_pending_post",
+          "image": "ico-file-text-o"
+        },
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "text",
+          "noFooter": true
+        },
+        "menuName": "groupManagerMenu"
+      },
+      {
+        "blockId": "z9iu",
+        "component": "group.manage.ruleMode",
+        "slotName": "main",
+        "pageName": "groups.manage.group_rules",
+        "pageSize": "large",
+        "title": "group_rules",
+        "blockLayout": "App List Pending Posts",
+        "gridLayout": "Group - Rule - Main Card",
+        "itemLayout": "Group - Rule - Main Card",
+        "contentType": "group",
+        "showWhen": [
+          "truthy",
+          "profile.extra.can_update_rule_confirmation"
+        ]
+      },
+      {
+        "blockId": "0xf0h",
+        "component": "group.manage.ruleList",
+        "slotName": "main",
+        "pageName": "groups.manage.group_rules",
+        "pageSize": "large",
+        "title": "set_up_group_rules",
+        "moduleName": "group",
+        "resourceName": "group_rule",
+        "actionName": "viewAll",
+        "emptyPage": "core.block.no_content_with_icon",
+        "canLoadMore": true,
+        "itemView": "groupRule.itemView.mainCard",
+        "blockLayout": "App List Pending Posts",
+        "gridLayout": "Group - Rule - Main Card",
+        "itemLayout": "Group - Rule - Main Card",
+        "emptyPageProps": {
+          "title": "no_rules_set_up",
+          "description": "no_rules_set_up_description",
+          "image": "ico-note-paper-o"
+        },
+        "headerActions": [
+          {
+            "as": "group.addNewRuleButton"
+          }
+        ],
+        "authRequired": true
+      }
+    ]
+  },
+  "small": {
+    "templateName": "mobile",
+    "blocks": [
+      {
+        "component": "core.block.sidebarAppMobile",
+        "slotName": "main",
+        "title": "manage_group",
+        "blockProps": {
+          "variant": "plained",
+          "marginBottom": 2
+        },
+        "contents": [
+          {
+            "name": "core.block.sidebarAppMenu",
+            "props": {
+              "menuName": "groupManagerMenu",
+              "displayViewMore": false
+            }
+          }
+        ],
+        "blockId": "ksh9w"
+      },
+      {
+        "blockId": "rgmt",
+        "component": "core.block.mainBlock",
+        "slotName": "main",
+        "blockLayout": "App List - Mobile"
+      }
+    ]
+  },
+  "pageNameAlt": "groups.manage",
+  "info": {
+    "bundle": "web",
+    "name": "groups.manage.group_rules"
+  }
+}

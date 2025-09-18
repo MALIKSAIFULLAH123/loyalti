@@ -1,0 +1,26 @@
+{
+  "gridContainerProps": {
+    "spacing": 0,
+    "columnSpacing": 0,
+    "rowSpacing": 0
+  },
+  "gridItemProps": {
+    "xs": 12,
+    "sm": 12,
+    "md": 12,
+    "lg": 12,
+    "xl": 12,
+    "sx": {
+      "&:last-child": {
+        "& > div": {
+          "borderBottom": 0
+        }
+      }
+    }
+  },
+  "gridVariant": "listView",
+  "info": {
+    "bundle": "web",
+    "name": "Subscription - List"
+  }
+}

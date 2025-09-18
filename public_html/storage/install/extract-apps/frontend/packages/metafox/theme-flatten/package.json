@@ -1,0 +1,12 @@
+{
+  "name": "@metafox/theme-flatten",
+  "version": "5.0.1",
+  "main": "src/index.tsx",
+  "author": "developer@phpfox.com",
+  "license": "MIT",
+  "private": false,
+  "metafox": {
+    "theme": "flatten"
+  },
+  "repository": {}
+}

@@ -1,0 +1,60 @@
+{
+  "itemProps": {
+    "variant": "containedCard",
+    "showActionMenu": 1,
+    "media": {
+      "width": "auto",
+      "aspectRatio": "11",
+      "placement": "top"
+    },
+    "title": {
+      "lines": 2,
+      "variant": "h4",
+      "sx": {
+        "mb": 1
+      },
+      "fixHeight": 0
+    },
+    "summary": {
+      "lines": 1,
+      "component": "div",
+      "variant": "body2",
+      "sx": {
+        "mt": 1,
+        "ml": 0,
+        "mr": 0,
+        "pr": 2,
+        "color": "text.hint"
+      }
+    },
+    "content": {
+      "sx": {
+        "alignItems": "",
+        "justifyContent": "",
+        "bgcolor": "background.paper",
+        "borderRadius": 1,
+        "borderColor": "border.secondary",
+        "borderStyle": "solid",
+        "borderLeftWidth": 1,
+        "borderRightWidth": 1,
+        "borderTopWidth": 1,
+        "borderBottomWidth": 1
+      },
+      "selectedVariant": "",
+      "dividerVariant": "",
+      "hoverVariant": ""
+    },
+    "text": {
+      "sx": {
+        "pr": 2,
+        "pl": 2,
+        "pt": 2,
+        "pb": 2
+      }
+    }
+  },
+  "info": {
+    "bundle": "web",
+    "name": "Marketplace - Profile - Main Card"
+  }
+}

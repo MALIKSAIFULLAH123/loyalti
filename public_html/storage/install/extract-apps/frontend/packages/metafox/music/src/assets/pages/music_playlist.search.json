@@ -1,0 +1,108 @@
+{
+  "large": {
+    "blocks": [
+      {
+        "blockId": "jydvf",
+        "component": "core.block.mainListing",
+        "slotName": "main",
+        "title": "",
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "text",
+          "noFooter": true,
+          "noHeader": false
+        },
+        "itemView": "music_playlist.itemView.mainCard",
+        "canLoadMore": true,
+        "canLoadSmooth": true,
+        "itemProps": {
+          "showActionMenu": true
+        },
+        "gridItemProps": {
+          "xs": 12,
+          "sm": 12,
+          "md": 6,
+          "lg": 6,
+          "xl": 4
+        },
+        "gridVariant": "gridView",
+        "displayLimit": "12"
+      },
+      {
+        "component": "core.block.sideAppHeader",
+        "slotName": "side",
+        "title": "Music",
+        "blockId": "a3ud"
+      },
+      {
+        "blockId": "zwnrv",
+        "component": "core.block.sidebarQuickFilter",
+        "slotName": "side",
+        "title": "Filters",
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "textPrimary",
+          "noFooter": true,
+          "noHeader": false,
+          "testid": "sidebarQuickFilter"
+        }
+      }
+    ],
+    "containers": {},
+    "templateName": "two-column-fixed"
+  },
+  "small": {
+    "blocks": [
+      {
+        "blockId": "i83",
+        "component": "music.block.musicPlaylistListingBlock",
+        "slotName": "main",
+        "title": "Playlists",
+        "blockProps": {
+          "variant": "plained"
+        },
+        "itemView": "music_playlist.itemView.mainCard",
+        "gridContainerProps": {
+          "spacing": 2
+        },
+        "gridItemProps": {
+          "xs": 12,
+          "sm": 12,
+          "md": 12,
+          "lg": 12,
+          "xl": 12
+        }
+      },
+      {
+        "blockId": "i47",
+        "component": "music.block.musicPlaylistListingBlock",
+        "slotName": "subside",
+        "title": "Playlists",
+        "blockProps": {
+          "variant": "contained"
+        },
+        "itemView": "music_playlist.itemView.smallCard",
+        "gridContainerProps": {
+          "spacing": 2
+        },
+        "gridItemProps": {
+          "xs": 12,
+          "sm": 12,
+          "md": 12,
+          "lg": 12,
+          "xl": 12
+        }
+      }
+    ],
+    "containers": {},
+    "templateName": "mobile"
+  },
+  "info": {
+    "bundle": "web",
+    "name": "music_playlist.search"
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "itemProps": {
+    "variant": "containedCard",
+    "media": {
+      "aspectRatio": "169",
+      "width": "100%",
+      "placement": "top",
+      "sx": {
+        "mb": 2
+      }
+    },
+    "content": {
+      "sx": {
+        "borderRadius": 1,
+        "bgcolor": "background.paper",
+        "pt": 0,
+        "pb": 2
+      },
+      "dividerVariant": ""
+    },
+    "text": {
+      "sx": {
+        "pl": 2,
+        "pr": 2
+      }
+    },
+    "showActionMenu": 1,
+    "title": {
+      "variant": "h4",
+      "lines": 1,
+      "fixHeight": 1,
+      "sx": {
+        "display": "flex",
+        "alignItems": "center",
+        "mb": 0,
+        "mr": 2.875
+      }
+    }
+  },
+  "info": {
+    "bundle": "web",
+    "name": "Saved Lists - Mobile"
+  }
+}

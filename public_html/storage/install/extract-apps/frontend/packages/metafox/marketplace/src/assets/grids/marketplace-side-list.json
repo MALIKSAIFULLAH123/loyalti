@@ -1,0 +1,26 @@
+{
+  "gridContainerProps": {
+    "columnSpacing": 0,
+    "rowSpacing": 0
+  },
+  "gridItemProps": {
+    "xs": 12,
+    "sm": 12,
+    "md": 12,
+    "lg": 12,
+    "xl": 12,
+    "sx": {
+      "px": 2,
+      "&:last-child": {
+        "& > div": {
+          "borderBottom": 0
+        }
+      }
+    }
+  },
+  "gridVariant": "listView",
+  "info": {
+    "bundle": "web",
+    "name": "Marketplace - Side - List"
+  }
+}

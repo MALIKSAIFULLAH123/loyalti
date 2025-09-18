@@ -1,0 +1,135 @@
+{
+  "large": {
+    "templateName": "profile-tab",
+    "blocks": [
+      {
+        "component": "livestreaming.block.profileBlock",
+        "slotName": "main",
+        "props": {
+          "key": "",
+          "blockId": ""
+        },
+        "title": "live_videos",
+        "itemView": "live_video.itemView.mainCard",
+        "blockId": "i98",
+        "contentType": "livestreaming",
+        "dataSource": {
+          "apiUrl": "/live-video",
+          "apiParams": "user_id=:id&sort=recent&limit=12"
+        },
+        "gridLayout": "Live_video - Main Card",
+        "displayLimit": "3",
+        "itemLayout": "Live_video - Main Card",
+        "headerActionsResource": "livestreaming.live_video.headerItemActionOnGroupProfileMenu",
+        "headerActions": [
+          {
+            "label": "create_live_video",
+            "to": "/live-video/add?owner_id=:id",
+            "showWhen": ["or", ["truthy", "isAuthUser"]]
+          }
+        ],
+        "canLoadMore": true,
+        "key": "lj4h4",
+        "hasSearchBox": true,
+        "placeholderSearchBox": "search_live_videos",
+        "freeze": false,
+        "blockLayout": "Profile - Contained",
+        "emptyPage": "core.block.no_item_with_icon",
+        "emptyPageProps": {
+          "description": "no_live_videos_are_found",
+          "image": "ico ico-videocam-o"
+        }
+      },
+      {
+        "component": "group.block.groupProfileHeader",
+        "slotName": "top",
+        "title": "Group Profile Header",
+        "blockProps": {
+          "variant": "containted",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "textPrimary",
+          "noFooter": true,
+          "noHeader": true,
+          "contentStyle": {},
+          "headerStyle": {},
+          "footerStyle": {},
+          "marginBottom": 2
+        },
+        "key": "h12i",
+        "blockId": "h12i"
+      }
+    ]
+  },
+  "small": {
+    "blocks": [
+      {
+        "component": "core.block.sidebarAppMobile",
+        "slotName": "top",
+        "blockId": "raegh"
+      },
+      {
+        "component": "group.block.groupProfileHeader",
+        "slotName": "top",
+        "title": "Group Profile Header",
+        "blockProps": {
+          "variant": "containted",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "textPrimary",
+          "noFooter": true,
+          "noHeader": true,
+          "contentStyle": {},
+          "headerStyle": {},
+          "footerStyle": {},
+          "marginBottom": 2
+        },
+        "key": "h12i",
+        "blockId": "h12i"
+      },
+      {
+        "component": "livestreaming.block.profileBlock",
+        "slotName": "main",
+        "props": {
+          "key": "",
+          "blockId": ""
+        },
+        "title": "live_videos",
+        "itemView": "live_video.itemView.mainCard",
+        "blockId": "i98",
+        "contentType": "livestreaming",
+        "dataSource": {
+          "apiUrl": "/live-video",
+          "apiParams": "user_id=:id&sort=recent&limit=12"
+        },
+        "gridLayout": "Livestream - Flat View",
+        "displayLimit": "3",
+        "itemLayout": "Livestream - Flat View",
+        "headerActionsResource": "livestreaming.live_video.headerItemActionOnGroupProfileMenu",
+        "headerActions": [
+          {
+            "label": "create_live_video",
+            "to": "/live-video/add?owner_id=:id",
+            "showWhen": ["or", ["truthy", "isAuthUser"]]
+          }
+        ],
+        "canLoadMore": true,
+        "key": "lj4h4",
+        "hasSearchBox": true,
+        "placeholderSearchBox": "search_live_videos",
+        "freeze": false,
+        "blockLayout": "Profile - Contained",
+        "emptyPage": "core.block.no_item_with_icon",
+        "emptyPageProps": {
+          "description": "no_live_videos_are_found",
+          "image": "ico ico-videocam-o"
+        }
+      }
+    ],
+    "templateName": "mobile"
+  },
+  "info": {
+    "bundle": "web",
+    "name": "group.profile.live-video"
+  }
+}

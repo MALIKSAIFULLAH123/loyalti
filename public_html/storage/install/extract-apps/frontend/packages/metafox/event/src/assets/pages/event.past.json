@@ -1,0 +1,137 @@
+{
+  "large": {
+    "blocks": [
+      {
+        "component": "core.block.sideAppHeader",
+        "slotName": "side",
+        "title": "Events",
+        "icon": "ico-compose-alt",
+        "blockId": "nr31",
+        "blockLayout": "sidebar app header",
+        "freeze": true
+      },
+      {
+        "component": "core.block.searchBox",
+        "slotName": "side",
+        "placeholder": "Search",
+        "blockId": "w1t9",
+        "title": "",
+        "blockLayout": "sidebar search box",
+        "freeze": true
+      },
+      {
+        "component": "core.block.sidebarAppMenu",
+        "slotName": "side",
+        "title": "Events",
+        "blockProps": {
+          "variant": "plained",
+          "noHeader": false,
+          "noFooter": false
+        },
+        "blockId": "mb8c",
+        "menuName": "sidebarMenu",
+        "blockLayout": "sidebar app menu"
+      },
+      {
+        "blockId": "b3ag",
+        "component": "core.dividerBlock",
+        "slotName": "side",
+        "title": "",
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "textPrimary",
+          "noFooter": true,
+          "noHeader": true
+        },
+        "dividerVariant": "middle"
+      },
+      {
+        "component": "core.categoryBlock",
+        "slotName": "side",
+        "title": "categories",
+        "blockId": "k4zz",
+        "blockLayout": "sidebar app category"
+      },
+      {
+        "blockId": "noway21",
+        "component": "event.block.eventListingBlock",
+        "slotName": "main",
+        "title": "past_events",
+        "blockLayout": "App List",
+        "emptyPage": "core.block.no_content_with_icon",
+        "emptyPageProps": {
+          "title": "no_event_found",
+          "description": "no_events_that_have_attended"
+        },
+        "gridLayout": "Event - Main Card",
+        "dataSource": {
+          "apiParams": "sort=end_time&view=related&when=past",
+          "apiUrl": "/event"
+        },
+        "itemView": "event.itemView.mainCard",
+        "contentType": "event",
+        "canLoadMore": true,
+        "canLoadSmooth": 1,
+        "hasSearchBox": false,
+        "freeze": false,
+        "itemLayout": "Event - Main Card"
+      }
+    ],
+    "containers": {},
+    "pageName": "event.home",
+    "templateName": "two-column-fixed"
+  },
+  "small": {
+    "blocks": [
+      {
+        "component": "core.block.sidebarAppMobile",
+        "slotName": "main",
+        "contents": [
+          {
+            "name": "core.block.searchBox"
+          },
+          {
+            "name": "core.block.sidebarAppMenu"
+          },
+          {
+            "name": "core.categoryBlock"
+          }
+        ],
+        "blockId": "ge79n"
+      },
+      {
+        "blockId": "noway21",
+        "component": "event.block.eventListingBlock",
+        "slotName": "main",
+        "title": "past_events",
+        "blockLayout": "App List - Mobile",
+        "emptyPage": "core.block.no_content_with_icon",
+        "emptyPageProps": {
+          "title": "no_event_found",
+          "description": "no_events_that_have_attended"
+        },
+        "gridLayout": "Event - Main Card",
+        "dataSource": {
+          "apiParams": "sort=end_time&view=related&when=past",
+          "apiUrl": "/event"
+        },
+        "itemView": "event.itemView.mainCard",
+        "contentType": "event",
+        "canLoadMore": true,
+        "canLoadSmooth": 1,
+        "hasSearchBox": false,
+        "freeze": false,
+        "itemLayout": "Event - Main Card"
+      }
+    ],
+    "containers": {},
+    "pageName": "event.home",
+    "templateName": "mobile"
+  },
+  "info": {
+    "bundle": "web",
+    "name": "event.past"
+  }
+}

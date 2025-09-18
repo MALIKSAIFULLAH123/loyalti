@@ -1,0 +1,141 @@
+{
+  "large": {
+    "templateName": "live-stream-dashboard",
+    "blocks": [
+      {
+        "component": "livestreaming.block.livestreamView",
+        "slotName": "main",
+        "blockLayout": "Blocker",
+        "blockId": "7oo2t"
+      },
+      {
+        "component": "livestreaming.block.commentLive",
+        "slotName": "subside",
+        "title": "manage_chat",
+        "blockId": "i97q"
+      },
+      {
+        "component": "livestreaming.block.editLive",
+        "slotName": "main",
+        "blockId": "qasdw",
+        "title": "Live Edit"
+      },
+      {
+        "blockId": "4c6z9",
+        "component": "core.block.sideAppHeader",
+        "slotName": "side",
+        "title": "Livestream",
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "textPrimary",
+          "noFooter": true,
+          "noHeader": true
+        }
+      },
+      {
+        "blockId": "d9au",
+        "component": "core.block.searchBox",
+        "slotName": "side",
+        "title": "",
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "textPrimary",
+          "noFooter": true,
+          "noHeader": true
+        },
+        "placeholder": "Search"
+      },
+      {
+        "component": "core.block.sidebarAppMenu",
+        "slotName": "side",
+        "props": {
+          "key": "",
+          "blockId": ""
+        },
+        "title": "livestreams",
+        "blockProps": {
+          "variant": "plained",
+          "noHeader": true,
+          "noFooter": false
+        },
+        "blockId": "i96"
+      },
+      {
+        "blockId": "nxy1",
+        "component": "core.dividerBlock",
+        "slotName": "side",
+        "title": "",
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "text",
+          "noFooter": true,
+          "noHeader": true
+        },
+        "dividerVariant": "middle",
+        "titleComponent": "h2",
+        "titleVariant": "subtitle1",
+        "titleColor": "textPrimary",
+        "noFooter": true,
+        "noHeader": true,
+        "blockStyle": {
+          "mt": 4,
+          "mb": 1
+        }
+      },
+      {
+        "component": "core.categoryBlock",
+        "slotName": "side",
+        "props": {
+          "key": "",
+          "blockId": ""
+        },
+        "title": "categories",
+        "blockProps": {
+          "variant": "plained"
+        },
+        "blockId": "i97"
+      }
+    ]
+  },
+  "small": {
+    "blocks": [
+      {
+        "component": "livestreaming.block.livestreamView",
+        "slotName": "main",
+        "blockLayout": "Blocker Simple",
+        "blockProps": {
+          "blockStyle": {
+            "pt": 0,
+            "pb": 0,
+            "pl": 0,
+            "pr": 0
+          }
+        },
+        "blockId": "vnqq"
+      },
+      {
+        "component": "livestreaming.block.commentLive",
+        "slotName": "main",
+        "title": "manage_chat",
+        "blockId": "i97q"
+      },
+      {
+        "component": "livestreaming.block.editLive",
+        "slotName": "main",
+        "blockId": "qasdw",
+        "title": "Live Edit"
+      }
+    ],
+    "templateName": "mobile"
+  },
+  "info": {
+    "bundle": "web",
+    "name": "livestreaming.dashboard"
+  }
+}

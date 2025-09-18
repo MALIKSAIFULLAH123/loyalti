@@ -1,0 +1,214 @@
+{
+  "large": {
+    "blocks": [
+      {
+        "blockId": "6qj2r",
+        "component": "core.block.mainListing",
+        "slotName": "main",
+        "title": "",
+        "itemView": "quiz.itemView.mainCard",
+        "blockLayout": "App List",
+        "gridLayout": "Quiz - Main Card",
+        "canLoadMore": 1,
+        "canLoadSmooth": 1,
+        "emptyPage": "core.block.no_content_with_icon",
+        "emptyPageProps": {
+          "title": "no_quiz_found",
+          "description": "no_quiz_description",
+          "image": "ico-question-mark",
+          "noBlock": true
+        },
+        "itemLayout": "Quiz - Main Card"
+      },
+      {
+        "blockId": "g3p9c",
+        "component": "core.block.sideAppHeader",
+        "slotName": "side",
+        "title": "quizzes",
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "textPrimary",
+          "noFooter": true,
+          "noHeader": true,
+          "testid": "sidebarAppHeaderBlock"
+        },
+        "blockLayout": "sidebar app header"
+      },
+      {
+        "blockId": "qkb6c",
+        "component": "core.block.sidebarQuickFilter",
+        "slotName": "side",
+        "title": "Filters",
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "textPrimary",
+          "noFooter": true,
+          "noHeader": false,
+          "testid": "sidebarQuickFilter"
+        },
+        "blockLayout": "sidebar app filter"
+      }
+    ],
+    "containers": {},
+    "pageName": "quiz.home",
+    "templateName": "two-column-fixed"
+  },
+  "small": {
+    "blocks": [
+      {
+        "blockId": "fg5ci",
+        "component": "core.block.sidebarAppMobile",
+        "slotName": "main",
+        "pageName": "quiz.search",
+        "pageSize": "small",
+        "title": "",
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "text",
+          "noFooter": true,
+          "noHeader": true,
+          "padding": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0
+          },
+          "gutter": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0
+          },
+          "contentGutter": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0
+          },
+          "headerGutter": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0
+          },
+          "footerGutter": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0
+          },
+          "blockStyle": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0,
+            "bgColor": "0",
+            "borderStyle": "0",
+            "borderColor": "0"
+          },
+          "contentStyle": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0,
+            "bgColor": "0",
+            "borderStyle": "0",
+            "borderColor": "0"
+          },
+          "headerStyle": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0,
+            "bgColor": "0",
+            "borderStyle": "0",
+            "borderColor": "0"
+          },
+          "footerStyle": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0,
+            "bgColor": "0",
+            "borderStyle": "0",
+            "borderColor": "0"
+          },
+          "testid": "sidebarMenu",
+          "title": "App Menu Mobile"
+        },
+        "contents": [
+          {
+            "name": "core.block.sidebarQuickFilter"
+          }
+        ]
+      },
+      {
+        "blockId": "6qj2r",
+        "component": "core.block.mainListing",
+        "slotName": "main",
+        "title": "",
+        "itemView": "quiz.itemView.mainCard",
+        "blockLayout": "App List - Mobile",
+        "gridLayout": "Quiz - Main Card - Mobile",
+        "canLoadMore": 1,
+        "canLoadSmooth": 1,
+        "emptyPage": "core.block.no_content_with_icon",
+        "emptyPageProps": {
+          "title": "no_quiz_found",
+          "description": "no_quiz_description",
+          "image": "ico-question-mark"
+        },
+        "itemLayout": "Quiz - Main Card - Mobile"
+      }
+    ],
+    "containers": {},
+    "pageName": "quiz.home",
+    "templateName": "mobile"
+  },
+  "info": {
+    "bundle": "web",
+    "name": "quiz.search"
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "large": {
+    "blocks": [
+      {
+        "component": "blog.block.blogView",
+        "slotName": "main",
+        "blockId": "t3a3m",
+        "blockLayout": "Detail - Paper - Radius Bottom"
+      },
+      {
+        "blockId": "ia",
+        "component": "core.block.sideAppHeader",
+        "slotName": "side",
+        "title": "Blogs",
+        "icon": "ico-compose-alt",
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "textPrimary",
+          "noFooter": true,
+          "noHeader": true
+        },
+        "freeze": true
+      },
+      {
+        "blockId": "i5",
+        "component": "core.block.searchBox",
+        "slotName": "side",
+        "placeholder": "Search",
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "textPrimary",
+          "noFooter": true,
+          "noHeader": true
+        },
+        "title": "",
+        "freeze": true
+      },
+      {
+        "component": "core.block.sidebarAppMenu",
+        "slotName": "side",
+        "title": "Blogs",
+        "blockProps": {
+          "variant": "plained",
+          "noHeader": false,
+          "noFooter": false
+        },
+        "blockId": "i8"
+      },
+      {
+        "blockId": "v44br",
+        "component": "core.dividerBlock",
+        "slotName": "side",
+        "title": "",
+        "dividerVariant": "middle",
+        "blockLayout": "sidebar divider"
+      },
+      {
+        "component": "core.categoryBlock",
+        "slotName": "side",
+        "title": "categories",
+        "href": "/blog/category",
+        "blockId": "i9"
+      }
+    ],
+    "templateName": "two-column-fixed"
+  },
+  "small": {
+    "blocks": [
+      {
+        "component": "core.block.sidebarAppMobile",
+        "slotName": "main",
+        "blockId": "raegh"
+      },
+      {
+        "component": "blog.block.blogView",
+        "slotName": "main",
+        "blockProps": {},
+        "blockId": "u4mec"
+      }
+    ],
+    "templateName": "mobile"
+  },
+  "info": {
+    "bundle": "web",
+    "name": "blog.view"
+  }
+}

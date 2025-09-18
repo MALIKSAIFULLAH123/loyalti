@@ -1,0 +1,11 @@
+{
+  "gridContainerProps": {
+    "columnSpacing": 2,
+    "rowSpacing": 1
+  },
+  "gridVariant": "listView",
+  "info": {
+    "bundle": "web",
+    "name": "Group - MemberQuestion - Main Card"
+  }
+}

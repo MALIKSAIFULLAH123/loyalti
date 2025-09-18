@@ -1,0 +1,62 @@
+{
+  "itemProps": {
+    "variant": "containedCard",
+    "content": {
+      "sx": {
+        "alignItems": "center",
+        "justifyContent": "",
+        "bgcolor": "background.paper",
+        "borderRadius": 1,
+        "pt": 0,
+        "pr": 0,
+        "pb": 2,
+        "pl": 0,
+        "borderTopWidth": 1,
+        "borderRightWidth": 1,
+        "borderBottomWidth": 1,
+        "borderLeftWidth": 1,
+        "borderColor": "border.secondary",
+        "borderStyle": "solid"
+      }
+    },
+    "showActionMenu": 1,
+    "title": {
+      "variant": "h4",
+      "lines": 1,
+      "fixHeight": 1,
+      "sx": {
+        "mb": 1
+      }
+    },
+    "text": {
+      "sx": {
+        "pr": 2,
+        "pl": 2
+      }
+    },
+    "summary": {
+      "component": "span",
+      "variant": "body1",
+      "lines": 1,
+      "fixHeight": 1
+    },
+    "media": {
+      "placement": "top",
+      "aspectRatio": "169",
+      "width": "100%",
+      "sx": {
+        "borderTopWidth": 0,
+        "borderRightWidth": 0,
+        "borderBottomWidth": 1,
+        "borderLeftWidth": 0,
+        "borderColor": "border.secondary",
+        "borderStyle": "solid",
+        "mb": 2.5
+      }
+    }
+  },
+  "info": {
+    "bundle": "web",
+    "name": "Group - Profile - Main Card"
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "large": {
+    "templateName": "fixed-full",
+    "blocks": [
+      {
+        "blockId": "vpml",
+        "component": "video.block.videoView",
+        "slotName": "main-fixed"
+      }
+    ]
+  },
+  "small": {
+    "blocks": [
+      {
+        "component": "core.block.sidebarAppMobile",
+        "slotName": "main",
+        "blockId": "raegh"
+      },
+      {
+        "blockId": "vpmm",
+        "component": "video.block.videoViewMobile",
+        "slotName": "main",
+        "title": "",
+        "placeholder": "Search",
+        "blockLayout": "Blocker - Mobile"
+      }
+    ],
+    "templateName": "mobile"
+  },
+  "info": {
+    "bundle": "web",
+    "name": "video.view"
+  }
+}

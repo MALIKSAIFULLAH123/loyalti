@@ -1,0 +1,43 @@
+{
+  "blockProps": {
+    "blockStyle": {
+      "bgcolor": "background.paper",
+      "p": 3,
+      "sx": {
+        "borderRadius": 1,
+        "width": "100%",
+        "height": "100%"
+      }
+    },
+    "contentStyle": {
+      "sx": {
+        "mt": 2,
+        "border": "1px solid",
+        "borderColor": "border.secondary",
+        "borderRadius": 1,
+        "height": "calc(100% - 54px)",
+        "pt": 1.5,
+        "pb": 1.5,
+        "backgroundColor": "#000"
+      }
+    },
+    "headerStyle": {
+      "sx": {
+        "minHeight": "32px",
+        "height": "32px"
+      }
+    },
+    "titleStyle": {
+      "component": "h3",
+      "sx": {
+        "color": "text.primary"
+      }
+    }
+  },
+  "noHeader": 0,
+  "noFooter": true,
+  "info": {
+    "bundle": "web",
+    "name": "Review Story"
+  }
+}

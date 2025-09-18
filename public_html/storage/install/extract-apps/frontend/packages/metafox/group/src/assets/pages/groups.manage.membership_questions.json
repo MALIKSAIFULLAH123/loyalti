@@ -1,0 +1,120 @@
+{
+  "large": {
+    "templateName": "two-column-fixed",
+    "blocks": [
+      {
+        "blockId": "pxfyc",
+        "component": "core.block.sideAppHeader",
+        "slotName": "side",
+        "pageName": "groups.manage.membership_questions",
+        "pageSize": "large",
+        "title": "",
+        "emptyPage": "hide",
+        "authRequired": true,
+        "blockLayout": "sidebar app header",
+        "gridLayout": "Group - PendingPost - Main Card",
+        "contentType": "group",
+        "icon": "ico-compose-alt",
+        "sidebarHeaderName": "backToProfile"
+      },
+      {
+        "component": "core.block.sidebarAppMenu",
+        "slotName": "side",
+        "icon": "ico-compose-alt",
+        "blockId": "n4e",
+        "sidebarHeaderName": "backToProfile",
+        "title": "Manage Group",
+        "displayViewMore": false,
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "text",
+          "noFooter": true
+        },
+        "menuName": "groupManagerMenu"
+      },
+      {
+        "blockId": "0nn14",
+        "component": "group.manage.membershipQuestionMode",
+        "slotName": "main",
+        "title": "membership_question_mode",
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "text",
+          "noFooter": true
+        },
+        "menuName": "groupManagerMenu",
+        "pageName": "groups.manage.membership_questions",
+        "pageSize": "large",
+        "blockLayout": "App List Pending Posts",
+        "gridLayout": "Group - Rule - Main Card",
+        "itemLayout": "Group - Rule - Main Card",
+        "contentType": "group",
+        "showWhen": [
+          "truthy",
+          "profile.extra.can_manage_membership_question"
+        ]
+      },
+      {
+        "blockId": "v0qoa",
+        "component": "group.manage.membershipQuestionList",
+        "slotName": "main",
+        "pageName": "groups.manage.membership_questions",
+        "pageSize": "large",
+        "title": "set_up_membership_questions",
+        "blockLayout": "App List Pending Posts",
+        "gridLayout": "Group - MemberQuestion - Main Card",
+        "itemLayout": "Group - MemberQuestion - Main Card",
+        "itemView": "group.itemView.membershipQuestionCard",
+        "emptyPage": "core.block.no_content_with_icon",
+        "gridVariant": "listView",
+        "moduleName": "group",
+        "resourceName": "group_question",
+        "actionName": "viewAll",
+        "emptyPageProps": {
+          "title": "membership_questions",
+          "description": "ask_pending_members_question_when_they_request",
+          "image": "ico-note-paper-o"
+        }
+      }
+    ]
+  },
+  "small": {
+    "templateName": "mobile",
+    "blocks": [
+      {
+        "component": "core.block.sidebarAppMobile",
+        "slotName": "main",
+        "title": "manage_group",
+        "blockProps": {
+          "variant": "plained",
+          "marginBottom": 2
+        },
+        "contents": [
+          {
+            "name": "core.block.sidebarAppMenu",
+            "props": {
+              "menuName": "groupManagerMenu",
+              "displayViewMore": false
+            }
+          }
+        ],
+        "blockId": "ksh9w"
+      },
+      {
+        "blockId": "rgmt",
+        "component": "core.block.mainBlock",
+        "slotName": "main",
+        "blockLayout": "App List - Mobile"
+      }
+    ]
+  },
+  "pageNameAlt": "groups.manage",
+  "info": {
+    "bundle": "web",
+    "name": "groups.manage.membership_questions"
+  }
+}

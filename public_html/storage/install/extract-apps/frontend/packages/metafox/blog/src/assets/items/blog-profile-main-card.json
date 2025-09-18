@@ -1,0 +1,53 @@
+{
+  "itemProps": {
+    "variant": "containedCard",
+    "content": {
+      "dividerVariant": "",
+      "hoverVariant": "",
+      "selectedVariant": "",
+      "sx": {
+        "alignItems": "",
+        "justifyContent": "",
+        "bgcolor": "",
+        "borderRadius": 1,
+        "borderTopWidth": 1,
+        "borderRightWidth": 1,
+        "borderBottomWidth": 1,
+        "borderLeftWidth": 1,
+        "borderColor": "border.secondary",
+        "borderStyle": "solid"
+      }
+    },
+    "title": {
+      "variant": "h4",
+      "lines": 2,
+      "fixHeight": 1
+    },
+    "summary": {
+      "component": "div",
+      "variant": "span",
+      "lines": 1,
+      "sx": {
+        "color": "text.primary"
+      }
+    },
+    "media": {
+      "placement": "top",
+      "aspectRatio": "169",
+      "width": "auto"
+    },
+    "showActionMenu": 1,
+    "text": {
+      "sx": {
+        "pt": 2,
+        "pl": 2,
+        "pb": 2,
+        "pr": 2
+      }
+    }
+  },
+  "info": {
+    "bundle": "web",
+    "name": "Blog - Profile - Main Card"
+  }
+}

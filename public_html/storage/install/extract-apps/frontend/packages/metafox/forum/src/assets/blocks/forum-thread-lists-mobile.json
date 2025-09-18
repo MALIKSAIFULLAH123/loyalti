@@ -1,0 +1,41 @@
+{
+  "freeze": false,
+  "blockProps": {
+    "titleStyle": {
+      "component": "h2",
+      "sx": {
+        "mt": 0,
+        "mb": 0.5
+      }
+    },
+    "contentStyle": {
+      "sx": {
+        "bgcolor": "background.paper",
+        "borderRadius": 0,
+        "p": 0
+      },
+      "variant": "Blocker"
+    },
+    "headerStyle": {
+      "dividerVariant": "0",
+      "sx": {
+        "pt": 2,
+        "pb": 2,
+        "pl": 2,
+        "pr": 2
+      }
+    },
+    "blockStyle": {
+      "sx": {
+        "bgcolor": "0",
+        "borderRadius": "0"
+      }
+    }
+  },
+  "noHeader": 0,
+  "noFooter": true,
+  "info": {
+    "bundle": "web",
+    "name": "Forum Thread Lists - Mobile"
+  }
+}

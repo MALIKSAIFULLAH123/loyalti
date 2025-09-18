@@ -1,0 +1,98 @@
+{
+  "large": {
+    "blocks": [
+      {
+        "blockId": "d8225c",
+        "component": "core.block.mainListing",
+        "slotName": "main",
+        "title": "",
+        "itemView": "page.itemView.mainCard",
+        "canLoadMore": true,
+        "blockLayout": "App List",
+        "gridLayout": "Page - Main Card",
+        "emptyPage": "core.block.no_content_with_icon",
+        "canLoadSmooth": 1,
+        "emptyPageProps": {
+          "title": "no_pages_found",
+          "image": "ico-flag-waving-o",
+          "description": "no_pages_found_description",
+          "noBlock": true
+        },
+        "itemLayout": "Page - Main Card"
+      },
+      {
+        "blockId": "ar6xi",
+        "component": "core.block.sideAppHeader",
+        "slotName": "side",
+        "title": "Pages",
+        "blockLayout": "sidebar app header",
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "textPrimary",
+          "noFooter": true,
+          "noHeader": true
+        }
+      },
+      {
+        "blockId": "3kdw7",
+        "component": "core.block.sidebarQuickFilter",
+        "slotName": "side",
+        "title": "Filters",
+        "blockLayout": "sidebar app filter",
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "textPrimary",
+          "noFooter": true,
+          "noHeader": false
+        }
+      }
+    ],
+    "templateName": "two-column-fixed"
+  },
+  "small": {
+    "blocks": [
+      {
+        "component": "core.block.sidebarAppMobile",
+        "slotName": "main",
+        "blockProps": {
+          "variant": "plained",
+          "marginBottom": 2,
+          "searching": true
+        },
+        "contents": [
+          {
+            "name": "core.block.sidebarQuickFilter"
+          }
+        ],
+        "blockId": "lewru"
+      },
+      {
+        "blockId": "d8225c",
+        "component": "core.block.mainListing",
+        "slotName": "main",
+        "title": "",
+        "itemView": "page.itemView.mainCard",
+        "canLoadMore": true,
+        "blockLayout": "App List - Mobile",
+        "gridLayout": "Page - Main Card - Mobile",
+        "canLoadSmooth": 1,
+        "emptyPage": "core.block.no_content_with_icon",
+        "emptyPageProps": {
+          "title": "no_pages_found",
+          "description": "no_pages_found_description",
+          "image": "ico-flag-waving-o"
+        },
+        "itemLayout": "Page - Main Card - Mobile"
+      }
+    ],
+    "templateName": "mobile"
+  },
+  "info": {
+    "bundle": "web",
+    "name": "pages.search"
+  }
+}

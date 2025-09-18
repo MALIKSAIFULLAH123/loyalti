@@ -1,0 +1,289 @@
+{
+  "large": {
+    "blocks": [
+      {
+        "blockId": "yidnd",
+        "component": "core.categoryBlock",
+        "slotName": "side",
+        "pageName": "poll.search",
+        "pageSize": "large"
+      },
+      {
+        "blockId": "v2yj",
+        "parentBlockId": "zuih",
+        "component": "core.categoryBlock",
+        "slotName": "side",
+        "pageName": "poll.search",
+        "pageSize": "large"
+      },
+      {
+        "blockId": "6qj2r",
+        "component": "core.block.mainListing",
+        "slotName": "main",
+        "title": "",
+        "itemView": "poll.itemView.mainCard",
+        "blockLayout": "App List",
+        "gridLayout": "Poll - Main Card",
+        "emptyPageProps": {
+          "noBlock": true,
+          "description": "no_polls_found_description",
+          "title": "no_polls_found",
+          "image": "ico-barchart-o"
+        },
+        "emptyPage": "core.block.no_content_with_icon",
+        "canLoadMore": 1,
+        "canLoadSmooth": 1,
+        "itemLayout": "Poll - Main Card"
+      },
+      {
+        "component": "poll.block.pollListingBlock",
+        "slotName": "subside",
+        "props": {
+          "key": "",
+          "blockId": ""
+        },
+        "title": "Featured Polls",
+        "dataSource": {
+          "apiUrl": "/poll",
+          "apiParams": "view=feature&limit=6"
+        },
+        "blockProps": {
+          "variant": "contained"
+        },
+        "itemView": "poll.itemView.smallCard",
+        "gridContainerProps": {
+          "spacing": 2
+        },
+        "gridItemProps": {
+          "xs": 12,
+          "sm": 12,
+          "md": 12,
+          "lg": 12,
+          "xl": 12
+        },
+        "blockId": "xb5gs"
+      },
+      {
+        "blockId": "g3p9c",
+        "component": "core.block.sideAppHeader",
+        "slotName": "side",
+        "title": "polls",
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "textPrimary",
+          "noFooter": true,
+          "noHeader": true,
+          "testid": "sidebarAppHeaderBlock"
+        },
+        "blockLayout": "sidebar app header"
+      },
+      {
+        "blockId": "zuih",
+        "component": "core.block.sidebarQuickFilter",
+        "slotName": "side",
+        "title": "Filters",
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "textPrimary",
+          "noFooter": true,
+          "noHeader": false,
+          "testid": "sidebarQuickFilter"
+        },
+        "blockLayout": "sidebar app filter"
+      }
+    ],
+    "containers": {},
+    "pageName": "poll.home",
+    "templateName": "two-column-fixed"
+  },
+  "small": {
+    "blocks": [
+      {
+        "component": "poll.block.pollListingBlock",
+        "slotName": "subside",
+        "props": {
+          "key": "",
+          "blockId": ""
+        },
+        "title": "Featured Polls",
+        "dataSource": {
+          "apiUrl": "/poll",
+          "apiParams": "view=feature&limit=6"
+        },
+        "blockProps": {
+          "variant": "contained"
+        },
+        "itemView": "poll.itemView.smallCard",
+        "gridContainerProps": {
+          "spacing": 2
+        },
+        "gridItemProps": {
+          "xs": 12,
+          "sm": 12,
+          "md": 12,
+          "lg": 12,
+          "xl": 12
+        },
+        "gridLayout": "Poll - Main Card - Mobile",
+        "blockId": "g617",
+        "itemLayout": "Poll - Main Card - Mobile"
+      },
+      {
+        "blockId": "gls36",
+        "component": "core.block.sidebarAppMobile",
+        "slotName": "main",
+        "pageName": "poll.search",
+        "pageSize": "small",
+        "title": "polls",
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "text",
+          "noFooter": true,
+          "noHeader": true,
+          "padding": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0
+          },
+          "gutter": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0
+          },
+          "contentGutter": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0
+          },
+          "headerGutter": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0
+          },
+          "footerGutter": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0
+          },
+          "blockStyle": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0,
+            "bgColor": "0",
+            "borderStyle": "0",
+            "borderColor": "0"
+          },
+          "contentStyle": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0,
+            "bgColor": "0",
+            "borderStyle": "0",
+            "borderColor": "0"
+          },
+          "headerStyle": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0,
+            "bgColor": "0",
+            "borderStyle": "0",
+            "borderColor": "0"
+          },
+          "footerStyle": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0,
+            "bgColor": "0",
+            "borderStyle": "0",
+            "borderColor": "0"
+          },
+          "testid": "sidebarMenu",
+          "title": "App Menu Mobile"
+        },
+        "contents": [
+          {
+            "name": "core.block.sidebarQuickFilter"
+          }
+        ]
+      },
+      {
+        "blockId": "30gw7",
+        "component": "core.block.mainListing",
+        "slotName": "main",
+        "pageName": "poll.search",
+        "pageSize": "small",
+        "title": "",
+        "itemView": "poll.itemView.mainCard",
+        "blockLayout": "App List - Mobile",
+        "gridLayout": "Poll - Main Card - Mobile",
+        "canLoadMore": 1,
+        "canLoadSmooth": 1,
+        "emptyPage": "core.block.no_content_with_icon",
+        "emptyPageProps": {
+          "title": "no_polls_found",
+          "image": "ico-barchart-o",
+          "description": "no_polls_found_description"
+        },
+        "itemLayout": "Poll - Main Card - Mobile"
+      }
+    ],
+    "containers": {},
+    "pageName": "poll.home",
+    "templateName": "mobile"
+  },
+  "info": {
+    "bundle": "web",
+    "name": "poll.search"
+  }
+}

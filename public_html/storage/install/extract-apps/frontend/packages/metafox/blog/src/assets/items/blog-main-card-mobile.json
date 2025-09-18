@@ -1,0 +1,44 @@
+{
+  "itemProps": {
+    "variant": "flattedCard",
+    "content": {
+      "sx": {
+        "bgcolor": "background.paper",
+        "borderRadius": 1,
+        "height": "100%"
+      }
+    },
+    "media": {
+      "placement": "top",
+      "aspectRatio": "169",
+      "width": "100%"
+    },
+    "title": {
+      "variant": "h4",
+      "lines": 2
+    },
+    "summary": {
+      "component": "div",
+      "variant": "body2",
+      "color": "text.secondary",
+      "lines": 1,
+      "fixHeight": 1,
+      "sx": {
+        "my": 1
+      }
+    },
+    "showActionMenu": 1,
+    "text": {
+      "sx": {
+        "pt": 2,
+        "pb": 2,
+        "pr": 2,
+        "pl": 2
+      }
+    }
+  },
+  "info": {
+    "bundle": "web",
+    "name": "Blog - Main Card - Mobile"
+  }
+}

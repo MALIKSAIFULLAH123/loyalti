@@ -1,0 +1,155 @@
+{
+  "large": {
+    "blocks": [
+      {
+        "blockId": "ia",
+        "component": "core.block.sideAppHeader",
+        "slotName": "side",
+        "title": "Blogs",
+        "icon": "ico-compose-alt",
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "textPrimary",
+          "noFooter": true,
+          "noHeader": true
+        },
+        "freeze": true,
+        "blockLayout": "sidebar app header"
+      },
+      {
+        "blockId": "i5",
+        "component": "core.block.searchBox",
+        "slotName": "side",
+        "placeholder": "Search",
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "textPrimary",
+          "noFooter": true,
+          "noHeader": true
+        },
+        "title": "",
+        "freeze": true,
+        "blockLayout": "sidebar search box"
+      },
+      {
+        "component": "core.block.sidebarAppMenu",
+        "slotName": "side",
+        "title": "Blogs",
+        "blockProps": {
+          "variant": "plained",
+          "noHeader": false,
+          "noFooter": false
+        },
+        "blockId": "i8",
+        "menuName": "sidebarMenu",
+        "blockLayout": "sidebar app menu"
+      },
+      {
+        "blockId": "v44br",
+        "component": "core.dividerBlock",
+        "slotName": "side",
+        "title": "",
+        "dividerVariant": "middle",
+        "blockLayout": "sidebar divider"
+      },
+      {
+        "component": "core.categoryBlock",
+        "slotName": "side",
+        "title": "categories",
+        "href": "/blog/category",
+        "blockId": "i9"
+      },
+      {
+        "blockId": "ne9v",
+        "component": "blog.block.BrowseBlogs",
+        "slotName": "main",
+        "emptyPage": "core.block.no_content_with_icon",
+        "emptyPageProps": {
+          "contentStyle": {
+            "bgColor": "0"
+          }
+        },
+        "title": "my_blogs",
+        "itemView": "blog.itemView.mainCard",
+        "contentType": "blog",
+        "dataSource": {
+          "apiUrl": "/blog",
+          "apiParams": "view=my"
+        },
+        "canLoadMore": true,
+        "blockLayout": "App List",
+        "gridLayout": "Blog - Main Card",
+        "itemLayout": "Blog - Main Card"
+      }
+    ],
+    "containers": {},
+    "pageName": "blog.home",
+    "templateName": "two-column-fixed"
+  },
+  "small": {
+    "blocks": [
+      {
+        "component": "core.block.sidebarAppMobile",
+        "slotName": "main",
+        "blockProps": {
+          "variant": "plained",
+          "marginBottom": 2
+        },
+        "contents": [
+          {
+            "name": "core.block.searchBox"
+          },
+          {
+            "name": "core.block.sidebarAppMenu"
+          },
+          {
+            "name": "core.categoryBlock"
+          }
+        ],
+        "blockId": "hqnu"
+      },
+      {
+        "component": "blog.block.BrowseBlogs",
+        "slotName": "main",
+        "title": "my_blogs",
+        "dataSource": {
+          "apiUrl": "/blog",
+          "apiParams": "view=my"
+        },
+        "canLoadMore": true,
+        "canLoadSmooth": 1,
+        "blockView": "ui.block.default",
+        "itemView": "blog.itemView.mainCard",
+        "gridItemProps": {
+          "xs": 12,
+          "sm": 12,
+          "md": 12,
+          "lg": 12,
+          "xl": 12
+        },
+        "blockId": "0gkn",
+        "blockLayout": "App List - Mobile",
+        "gridLayout": "Blog - Main Card - Mobile",
+        "contentType": "blog",
+        "itemLayout": "Blog - Main Card - Mobile",
+        "emptyPage": "core.block.no_content_with_icon",
+        "emptyPageProps": {
+          "contentStyle": {
+            "bgColor": "0"
+          }
+        }
+      }
+    ],
+    "containers": {},
+    "pageName": "blog.home",
+    "templateName": "mobile"
+  },
+  "info": {
+    "bundle": "web",
+    "name": "blog.my"
+  }
+}

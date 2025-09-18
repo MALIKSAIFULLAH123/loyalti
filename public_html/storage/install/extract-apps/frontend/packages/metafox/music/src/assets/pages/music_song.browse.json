@@ -1,0 +1,238 @@
+{
+  "large": {
+    "blocks": [
+      {
+        "blockId": "i83",
+        "component": "core.block.mainListing",
+        "slotName": "main",
+        "itemView": "music_song.itemView.mainCard",
+        "canLoadMore": true,
+        "canLoadSmooth": true,
+        "title": "all_songs",
+        "gridVariant": "gridView",
+        "itemProps": {
+          "showActionMenu": true
+        },
+        "displayLimit": "8",
+        "blockLayout": "App List",
+        "gridLayout": "Music - Main Card",
+        "itemLayout": "Music_song - Main Card",
+        "emptyPage": "core.block.no_content_with_icon",
+        "emptyPageProps": {
+          "title": "no_songs_found"
+        }
+      },
+      {
+        "component": "core.block.sideAppHeader",
+        "slotName": "side",
+        "title": "Album",
+        "blockId": "cb9wj",
+        "blockLayout": "sidebar app header",
+        "freeze": true
+      },
+      {
+        "component": "core.block.searchBox",
+        "slotName": "side",
+        "placeholder": "Search",
+        "blockId": "asmj",
+        "title": "",
+        "blockLayout": "sidebar search box",
+        "freeze": true
+      },
+      {
+        "component": "core.block.sidebarAppMenu",
+        "slotName": "side",
+        "title": "Album",
+        "blockId": "282by",
+        "menuName": "sidebarMenu",
+        "blockLayout": "sidebar app menu"
+      },
+      {
+        "blockId": "b3ag",
+        "component": "core.dividerBlock",
+        "slotName": "side",
+        "title": "",
+        "dividerVariant": "middle",
+        "blockLayout": "sidebar divider"
+      },
+      {
+        "component": "music.block.playlistBlock",
+        "slotName": "side",
+        "title": "saved_playlists",
+        "blockId": "4f26w",
+        "canLoadMore": 1,
+        "canLoadSmooth": 1,
+        "authRequired": true,
+        "emptyPageProps": {
+          "title": null
+        },
+        "headerActions": [
+          {
+            "as": "music.AddPlaylistButton"
+          }
+        ]
+      },
+      {
+        "blockId": "b3ag",
+        "component": "core.dividerBlock",
+        "slotName": "side",
+        "title": "",
+        "dividerVariant": "middle",
+        "blockLayout": "sidebar divider",
+        "showWhen": ["truthy", "session.loggedIn"]
+      },
+      {
+        "component": "core.categoryBlock",
+        "slotName": "side",
+        "title": "categories",
+        "blockId": "4f26w"
+      }
+    ],
+    "containers": {},
+    "templateName": "two-column-fixed"
+  },
+  "sMedium": {
+    "blocks": [
+      {
+        "component": "core.block.sidebarAppMobile",
+        "slotName": "main",
+        "blockProps": {
+          "variant": "plained",
+          "marginBottom": 2
+        },
+        "contents": [
+          {
+            "name": "core.block.searchBox"
+          },
+          {
+            "name": "core.block.sidebarAppMenu"
+          },
+          {
+            "name": "core.dividerBlock"
+          },
+          {
+            "name": "music.block.playlistBlock",
+            "props": {
+              "title": "saved_playlists",
+              "canLoadMore": 1,
+              "canLoadSmooth": 1,
+              "authRequired": true,
+              "emptyPageProps": {
+                "title": null
+              },
+              "headerActions": [
+                {
+                  "as": "music.AddPlaylistButton"
+                }
+              ]
+            }
+          },
+          {
+            "name": "core.dividerBlock"
+          },
+          {
+            "name": "core.categoryBlock"
+          }
+        ],
+        "blockId": "ckbwe"
+      },
+      {
+        "blockId": "i83",
+        "component": "core.block.mainListing",
+        "slotName": "main",
+        "itemView": "music_song.itemView.mainCard",
+        "canLoadMore": true,
+        "canLoadSmooth": true,
+        "title": "all_songs",
+        "gridVariant": "gridView",
+        "itemProps": {
+          "showActionMenu": true
+        },
+        "displayLimit": "8",
+        "blockLayout": "App List - Mobile",
+        "gridLayout": "Music - Main Card",
+        "itemLayout": "Music_song - Main Card",
+        "emptyPage": "core.block.no_content_with_icon",
+        "emptyPageProps": {
+          "title": "no_songs_found"
+        }
+      }
+    ],
+    "containers": {},
+    "templateName": "mobile"
+  },
+  "small": {
+    "blocks": [
+      {
+        "component": "core.block.sidebarAppMobile",
+        "slotName": "main",
+        "blockProps": {
+          "variant": "plained",
+          "marginBottom": 2
+        },
+        "contents": [
+          {
+            "name": "core.block.searchBox"
+          },
+          {
+            "name": "core.block.sidebarAppMenu"
+          },
+          {
+            "name": "core.dividerBlock"
+          },
+          {
+            "name": "music.block.playlistBlock",
+            "props": {
+              "title": "saved_playlists",
+              "canLoadMore": 1,
+              "canLoadSmooth": 1,
+              "authRequired": true,
+              "emptyPageProps": {
+                "title": null
+              },
+              "headerActions": [
+                {
+                  "as": "music.AddPlaylistButton"
+                }
+              ]
+            }
+          },
+          {
+            "name": "core.dividerBlock"
+          },
+          {
+            "name": "core.categoryBlock"
+          }
+        ],
+        "blockId": "ckbwe"
+      },
+      {
+        "blockId": "i83",
+        "component": "core.block.mainListing",
+        "slotName": "main",
+        "itemView": "music_song.itemView.smallCard",
+        "canLoadMore": true,
+        "canLoadSmooth": true,
+        "title": "all_songs",
+        "gridVariant": "gridView",
+        "itemProps": {
+          "showActionMenu": true
+        },
+        "displayLimit": "8",
+        "blockLayout": "App List - Mobile",
+        "gridLayout": "Music - Main Card - Mobile",
+        "itemLayout": "Music_song - Main Card - Mobile",
+        "emptyPage": "core.block.no_content_with_icon",
+        "emptyPageProps": {
+          "title": "no_songs_found"
+        }
+      }
+    ],
+    "containers": {},
+    "templateName": "mobile"
+  },
+  "info": {
+    "bundle": "web",
+    "name": "music_song.browse"
+  }
+}

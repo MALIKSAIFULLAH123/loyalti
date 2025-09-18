@@ -1,0 +1,14 @@
+{
+  "gridContainerProps": {
+    "rowSpacing": 2,
+    "columnSpacing": 2
+  },
+  "gridItemProps": {
+    "sm": 12
+  },
+  "gridVariant": "gridView",
+  "info": {
+    "bundle": "web",
+    "name": "Group - Related Card"
+  }
+}

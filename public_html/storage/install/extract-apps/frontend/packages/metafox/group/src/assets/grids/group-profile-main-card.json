@@ -1,0 +1,18 @@
+{
+  "gridContainerProps": {
+    "columnSpacing": 2,
+    "rowSpacing": 2
+  },
+  "gridItemProps": {
+    "lg": 6,
+    "md": 6,
+    "sm": 6,
+    "xl": 6,
+    "xs": 12
+  },
+  "gridVariant": "gridView",
+  "info": {
+    "bundle": "web",
+    "name": "Group - Profile - Main Card"
+  }
+}

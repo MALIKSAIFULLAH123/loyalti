@@ -1,0 +1,44 @@
+{
+  "emptyPage": "hide",
+  "gridVariant": "gridView",
+  "blockProps": {
+    "titleStyle": {
+      "component": "h2",
+      "sx": {
+        "typography": "secondary",
+        "color": "text"
+      }
+    },
+    "headerStyle": {
+      "dividerVariant": "0",
+      "sx": {
+        "pt": 3,
+        "pb": 3,
+        "pr": 2,
+        "pl": 2,
+        "width": "100%"
+      }
+    },
+    "contentStyle": {
+      "sx": {
+        "pr": 2,
+        "pl": 2
+      }
+    },
+    "footerStyle": {},
+    "blockStyle": {
+      "sx": {
+        "bgcolor": "0",
+        "borderRadius": "0",
+        "display": "flex",
+        "flexDirection": "column"
+      }
+    }
+  },
+  "noHeader": 0,
+  "noFooter": 0,
+  "info": {
+    "bundle": "web",
+    "name": "App List Reviews Posts"
+  }
+}

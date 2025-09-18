@@ -1,0 +1,39 @@
+{
+  "large": {
+    "blocks": [
+      {
+        "component": "announcement.block.announcementListing",
+        "slotName": "subside",
+        "title": "announcements",
+        "blockId": "qea3s",
+        "variant": "default",
+        "blockStyle": "Profile - Side Contained",
+        "blockLayout": "Profile - Side Contained (no header divider)",
+        "blockOrder": -1,
+        "itemProps": {
+          "mediaPlacement": "none"
+        }
+      }
+    ]
+  },
+  "small": {
+    "blocks": [
+      {
+        "component": "announcement.block.announcementListing",
+        "slotName": "main",
+        "title": "announcements",
+        "blockId": "qea3s",
+        "variant": "default",
+        "blockLayout": "Profile - Side Contained - Mobile",
+        "blockOrder": -1,
+        "itemProps": {
+          "mediaPlacement": "none"
+        }
+      }
+    ]
+  },
+  "info": {
+    "bundle": "web",
+    "name": "home.member"
+  }
+}

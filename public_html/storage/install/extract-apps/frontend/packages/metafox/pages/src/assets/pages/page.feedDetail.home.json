@@ -1,0 +1,96 @@
+{
+  "large": {
+    "templateName": "profile-Subside",
+    "blocks": [
+      {
+        "component": "pages.block.pageProfileHeader",
+        "slotName": "top",
+        "title": "Page Profile Header",
+        "key": "2hsm9",
+        "blockId": "2hsm9"
+      },
+      {
+        "component": "pages.block.pageProfileAbout",
+        "slotName": "subside",
+        "title": "about",
+        "key": "t68l",
+        "blockId": "t68l",
+        "blockLayout": "Profile - Side Contained"
+      },
+      {
+        "component": "core.block.footer",
+        "slotName": "subside",
+        "dividerVariant": "middle",
+        "blockLayout": "footer",
+        "key": "qlfp",
+        "blockId": "qlfp"
+      },
+      {
+        "component": "feed.block.pageProfileFeeds",
+        "slotName": "main",
+        "key": "w3u3ca",
+        "blockId": "w3u3ca",
+        "itemView": "feed.itemView.mainCard",
+        "emptyPage": "core.block.no_content_with_description",
+        "blockLayout": "Main Listings",
+        "gridLayout": "Feed - Main Card",
+        "itemLayout": "Feed - Main Card",
+        "moduleName": "feed",
+        "resourceName": "feed",
+        "actionName": "viewOwnerItem",
+        "displayLimit": 1
+      }
+    ]
+  },
+  "small": {
+    "templateName": "mobile",
+    "blocks": [
+      {
+        "component": "pages.block.pageProfileHeader",
+        "slotName": "top",
+        "title": "User Profile Header",
+        "blockProps": {
+          "variant": "containted",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "textPrimary",
+          "noFooter": true,
+          "noHeader": true,
+          "blockStyle": {
+            "mb": 2
+          },
+          "contentStyle": {},
+          "headerStyle": {},
+          "footerStyle": {},
+          "marginBottom": 2
+        },
+        "blockId": "2hsm9"
+      },
+      {
+        "component": "feed.block.statusComposer",
+        "slotName": "main",
+        "title": "Status Composer",
+        "blockId": "srfte",
+        "blockLayout": "Blocker - Mobile"
+      },
+      {
+        "component": "feed.block.pageProfileFeeds",
+        "slotName": "main",
+        "key": "w3u3ca",
+        "blockId": "w3u3ca",
+        "itemView": "feed.itemView.mainCard",
+        "emptyPage": "core.block.no_content_with_description",
+        "blockLayout": "Main Listings",
+        "gridLayout": "Feed - Main Card",
+        "itemLayout": "Feed - Main Card",
+        "moduleName": "feed",
+        "resourceName": "feed",
+        "actionName": "viewOwnerItem"
+      }
+    ]
+  },
+  "info": {
+    "bundle": "web",
+    "name": "page.feedDetail.home"
+  }
+}

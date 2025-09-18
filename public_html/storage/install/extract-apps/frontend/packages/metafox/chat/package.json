@@ -1,0 +1,18 @@
+{
+  "name": "@metafox/chat",
+  "version": "5.0.1",
+  "description": "@metafox/chat",
+  "main": "dist/index.js",
+  "author": "developer@phpfox.com",
+  "license": "MIT",
+  "private": false,
+  "publishConfig": {
+    "access": "public",
+    "directory": "dist"
+  },
+  "dependencies": {},
+  "storeConfig": {
+    "productId": "metafox/chat"
+  },
+  "repository": {}
+}

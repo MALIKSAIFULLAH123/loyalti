@@ -1,0 +1,56 @@
+{
+  "large": {
+    "blocks": [
+      {
+        "component": "sevent.block.BrowseSevents",
+        "slotName": "main",
+        "title": "Sevents",
+        "blockLayout": "Detail - Paper - Radius Bottom"
+      },
+      {
+        "component": "sevent.block.sidebarMenu",
+        "slotName": "side",
+        "title": "Sevents",
+        "blockProps": {
+          "variant": "contained",
+          "blockStyle": {
+            "ml": 2,
+            "mt": 2,
+            "mr": 2,
+            "mb": 2,
+            "bgColor": "paper",
+            "borderRadius": "base"
+          }
+        }
+      }
+    ],
+    "containers": {},
+    "pageName": "sevent.browse",
+    "templateName": "two-column-fixed"
+  },
+  "small": {
+    "blocks": [
+      {
+        "component": "sevent.block.mobileMenu",
+        "slotName": "main",
+        "blockProps": {
+          "variant": "plained",
+          "marginBottom": 2
+        }
+      },
+      {
+        "component": "sevent.block.BrowseSevents",
+        "slotName": "main",
+        "title": "Sevents",
+        "blockLayout": "Detail - Paper - Radius Bottom"
+      }
+    ],
+    "containers": {},
+    "pageName": "sevent.browse",
+    "templateName": "mobile"
+  },
+  "info": {
+    "bundle": "web",
+    "name": "sevent.browse"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "gridContainerProps": {
+    "columnSpacing": 0,
+    "rowSpacing": 2
+  },
+  "gridItemProps": {
+    "xs": 12,
+    "sm": 12,
+    "md": 12
+  },
+  "gridVariant": "listView",
+  "info": {
+    "bundle": "web",
+    "name": "Blog - Main Card - Mobile"
+  }
+}

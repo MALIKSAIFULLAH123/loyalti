@@ -1,0 +1,51 @@
+{
+    "name": "metafox/twilio",
+    "version": "5.0.11",
+    "description": "Twilio SMS Gateway",
+    "keyword": "metafox/twilio",
+    "authors": [
+        {
+            "name": "phpFox",
+            "homepage": "https://www.phpfox.com"
+        }
+    ],
+    "extra": {
+        "metafox": {
+            "core": false,
+            "priority": 99,
+            "alias": "twilio",
+            "asset": "twilio",
+            "namespace": "MetaFox\\Twilio",
+            "path": "packages/metafox/twilio",
+            "title": "Twilio SMS Gateway",
+            "providers": [
+                "MetaFox\\Twilio\\Providers\\PackageServiceProvider"
+            ],
+            "require": {
+                "metafox/core": "5.1.18 - 5.1.19"
+            },
+            "aliases": {
+            },
+            "frontend": {
+                "@metafox/twilio": "*"
+            },
+            "frontendPaths": [
+            ],
+            "internalUrl": "",
+            "internalAdminUrl": "/sms/service/edit/twilio"
+        }
+    },
+    "require": {
+        "twilio/sdk": "^7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "MetaFox\\Twilio\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "MetaFox\\Twilio\\Tests\\": "tests/"
+        }
+    }
+}

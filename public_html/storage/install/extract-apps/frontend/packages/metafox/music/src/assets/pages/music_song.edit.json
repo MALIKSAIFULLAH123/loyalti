@@ -1,0 +1,41 @@
+{
+  "large": {
+    "blocks": [
+      {
+        "component": "core.breadcrumbBlock",
+        "slotName": "main",
+        "title": "breadcrumb",
+        "blockId": "i9p",
+        "blockLayout": "form breadcrumb"
+      },
+      {
+        "component": "core.block.mainForm",
+        "slotName": "main",
+        "blockId": "6epx",
+        "blockLayout": "Full Screen Form"
+      }
+    ],
+    "templateName": "simple"
+  },
+  "small": {
+    "templateName": "mobile",
+    "blocks": [
+      {
+        "component": "core.breadcrumbBlock",
+        "slotName": "main",
+        "title": "breadcrumb",
+        "blockId": "i9p",
+        "blockLayout": "form breadcrumb"
+      },
+      {
+        "component": "core.block.mainForm",
+        "slotName": "main",
+        "blockId": "6epx"
+      }
+    ]
+  },
+  "info": {
+    "bundle": "web",
+    "name": "music_song.edit"
+  }
+}

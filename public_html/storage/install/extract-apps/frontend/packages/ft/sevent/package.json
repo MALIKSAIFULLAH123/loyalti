@@ -1,0 +1,44 @@
+{
+  "name": "@ft/sevent",
+  "version": "5.0.4",
+  "description": "@ft/sevent",
+  "main": "dist/index.js",
+  "author": "biaprom@gmail.com",
+  "license": "MIT",
+  "private": false,
+  "publishConfig": {
+    "access": "public",
+    "directory": "dist"
+  },
+  "repository": {},
+  "storeConfig": {
+    "productId": "ft/sevent"
+  },
+  "dependencies": {
+    "react-share": "^5.0.3",
+    "@react-google-maps/api": "*",
+    "react-swipeable-views": "*"
+  },
+  "devDependencies": {
+    "react-share": "^5.0.3",
+    "@react-google-maps/api": "*",
+    "react-swipeable-views": "*"
+  },
+  "peerDependencies": {
+    "@metafox/framework": "*",
+    "@metafox/scripts": "*",
+    "eslint-config-metafox": "*"
+  },
+  "eslintConfig": {
+    "extends": [
+      "metafox"
+    ]
+  },
+  "scripts": {
+    "build": "metafox build-package && tsc -p tsconfig.build.json",
+    "test": "jest",
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx src --fix",
+    "eslint:config": "eslint --print-config package.json",
+    "unittest": "metafox jest-unittest"
+  }
+}

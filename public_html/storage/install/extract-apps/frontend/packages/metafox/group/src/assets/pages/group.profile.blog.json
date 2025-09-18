@@ -1,0 +1,148 @@
+{
+  "large": {
+    "templateName": "profile-tab",
+    "blocks": [
+      {
+        "component": "group.block.groupProfileHeader",
+        "slotName": "top",
+        "title": "Group Profile Header",
+        "blockProps": {
+          "variant": "containted",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "textPrimary",
+          "noFooter": true,
+          "noHeader": true,
+          "contentStyle": {},
+          "headerStyle": {},
+          "footerStyle": {},
+          "marginBottom": 2
+        },
+        "key": "qgca9",
+        "blockId": "qgca9"
+      },
+      {
+        "component": "blog.block.ProfileBlogs",
+        "slotName": "main",
+        "title": "blogs",
+        "canLoadMore": true,
+        "key": "6uyya",
+        "blockId": "6uyya",
+        "contentType": "blog",
+        "dataSource": {
+          "apiUrl": "/blog",
+          "apiParams": "user_id=:id&limit=6"
+        },
+        "itemView": "blog.itemView.mainCard",
+        "blockLayout": "Profile - Side Contained",
+        "gridLayout": "Blog User - Main Card",
+        "itemLayout": "Blog User - Main Card",
+        "hasSearchBox": 1,
+        "placeholderSearchBox": "search_blogs",
+        "emptyPage": "core.block.no_item_with_icon",
+        "emptyPageProps": {
+          "description": "no_blog_found",
+          "image": "ico-newspaper-alt-o"
+        },
+        "headerActionsResource": "blog.blog.headerItemActionOnGroupProfileMenu",
+        "headerActions": [
+          {
+            "label": "Add New Blog",
+            "to": "/blog/add?owner_id=:id",
+            "showWhen": [
+              "or",
+              [
+                "truthy",
+                "isAuthUser"
+              ],
+              [
+                "neq",
+                "pageParams.module_name",
+                "user"
+              ]
+            ]
+          }
+        ],
+        "itemLinkProps": {
+          "asModal": 1
+        }
+      }
+    ]
+  },
+  "small": {
+    "templateName": "mobile",
+    "blocks": [
+      {
+        "component": "core.block.sidebarAppMobile",
+        "slotName": "top",
+        "blockId": "raegh"
+      },
+      {
+        "component": "group.block.groupProfileHeader",
+        "slotName": "top",
+        "title": "Group Profile Header",
+        "blockProps": {
+          "variant": "containted",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "textPrimary",
+          "noFooter": true,
+          "noHeader": true,
+          "contentStyle": {},
+          "headerStyle": {},
+          "footerStyle": {},
+          "marginBottom": 2
+        }
+      },
+      {
+        "component": "blog.block.ProfileBlogs",
+        "slotName": "main",
+        "title": "blogs",
+        "canLoadMore": true,
+        "key": "6uyya",
+        "blockId": "6uyya",
+        "contentType": "blog",
+        "dataSource": {
+          "apiUrl": "/blog",
+          "apiParams": "user_id=:id&limit=6"
+        },
+        "itemView": "blog.itemView.mainCard",
+        "blockLayout": "Profile Mobile - Contained",
+        "gridLayout": "Blog - Profile - Main Card",
+        "itemLayout": "Blog - Profile - Main Card",
+        "emptyPage": "core.block.no_item_with_icon",
+        "emptyPageProps": {
+          "description": "no_blog_found",
+          "image": "ico-newspaper-alt-o"
+        },
+        "hasSearchBox": 1,
+        "headerActionsResource": "blog.blog.headerItemActionOnGroupProfileMenu",
+        "headerActions": [
+          {
+            "label": "Add New Blog",
+            "to": "/blog/add?owner_id=:id",
+            "showWhen": [
+              "or",
+              [
+                "truthy",
+                "isAuthUser"
+              ],
+              [
+                "neq",
+                "pageParams.module_name",
+                "user"
+              ]
+            ]
+          }
+        ],
+        "itemLinkProps": {
+          "asModal": 1
+        }
+      }
+    ]
+  },
+  "info": {
+    "bundle": "web",
+    "name": "group.profile.blog"
+  }
+}

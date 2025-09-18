@@ -1,0 +1,56 @@
+{
+  "itemProps": {
+    "variant": "flattedCard",
+    "content": {
+      "sx": {
+        "bgcolor": "background.paper",
+        "borderRadius": 1,
+        "height": "100%",
+        "borderTopWidth": 1,
+        "borderRightWidth": 1,
+        "borderBottomWidth": 1,
+        "borderLeftWidth": 1,
+        "borderColor": "border.secondary",
+        "borderStyle": "solid"
+      }
+    },
+    "media": {
+      "placement": "top",
+      "aspectRatio": "169",
+      "width": "100%",
+      "sx": {
+        "mb": 0
+      }
+    },
+    "title": {
+      "variant": "h4",
+      "lines": 2,
+      "sx": {
+        "mb": 1
+      }
+    },
+    "summary": {
+      "component": "div",
+      "variant": "body2",
+      "color": "textHint",
+      "lines": 1,
+      "fixHeight": 1,
+      "sx": {
+        "mt": 1
+      }
+    },
+    "showActionMenu": 1,
+    "text": {
+      "sx": {
+        "pt": 2,
+        "pb": 2,
+        "pr": 2,
+        "pl": 2
+      }
+    }
+  },
+  "info": {
+    "bundle": "web",
+    "name": "Poll - Profile - Main Card"
+  }
+}

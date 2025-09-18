@@ -1,0 +1,35 @@
+{
+  "blockProps": {
+    "blockStyle": {
+      "sx": {
+        "bgcolor": "",
+        "borderRadius": "",
+        "pr": 0,
+        "pl": 0
+      }
+    },
+    "contentStyle": {
+      "sx": {
+        "bgcolor": "transparent",
+        "pr": 2,
+        "pl": 2
+      }
+    },
+    "titleStyle": {
+      "component": "h2",
+      "sx": {
+        "color": "text.primary"
+      }
+    },
+    "headerStyle": {
+      "sx": {
+        "height": "50px",
+        "pl": 2
+      }
+    }
+  },
+  "info": {
+    "bundle": "web",
+    "name": "Forum Slider - Mobile"
+  }
+}

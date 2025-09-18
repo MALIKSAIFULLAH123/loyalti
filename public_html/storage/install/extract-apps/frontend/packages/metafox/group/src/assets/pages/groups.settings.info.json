@@ -1,0 +1,114 @@
+{
+  "large": {
+    "templateName": "two-column-fixed",
+    "blocks": [
+      {
+        "blockId": "xm5el",
+        "component": "core.block.sideAppHeader",
+        "slotName": "side",
+        "pageName": "groups.settings.info",
+        "pageSize": "large",
+        "title": "Group Settings",
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "textPrimary",
+          "noFooter": true,
+          "noHeader": true,
+          "blockStyle": {
+            "pl": 3,
+            "pr": 0,
+            "pt": 0,
+            "pb": 0
+          }
+        },
+        "menuName": "groupManagerSettings",
+        "sidebarHeaderName": "mangerHeader"
+      },
+      {
+        "blockId": "u0duz",
+        "component": "core.block.sidebarAppMenuSetting",
+        "slotName": "side",
+        "title": "",
+        "menuName": "groupManagerSettings",
+        "blockLayout": "sidebar app menu",
+        "sidebarHeaderName": "mangerHeader"
+      },
+      {
+        "component": "core.block.mainBlock",
+        "slotName": "main",
+        "title": "Manage Group",
+        "blockId": "3hhue"
+      }
+    ]
+  },
+  "small": {
+    "blocks": [
+      {
+        "component": "core.block.sideAppHeader",
+        "slotName": "side",
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "textPrimary",
+          "noFooter": true,
+          "blockStyle": {
+            "pl": 3,
+            "pr": 0,
+            "pt": 0,
+            "pb": 0
+          }
+        },
+        "sidebarHeaderName": "mangerHeader",
+        "blockId": "u0kpaf"
+      },
+      {
+        "component": "core.block.sidebarAppMobile",
+        "slotName": "main",
+        "title": "manage_group",
+        "blockProps": {
+          "variant": "plained",
+          "marginBottom": 2
+        },
+        "contents": [
+          {
+            "name": "core.block.sidebarAppMenuSetting",
+            "props": {
+              "menuName": "groupManagerSettings",
+              "displayViewMore": false
+            }
+          }
+        ],
+        "blockId": "ksh9w"
+      },
+      {
+        "component": "core.block.mainBlock",
+        "slotName": "main",
+        "title": "manage_group",
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle2",
+          "titleColor": "textPrimary",
+          "headerStyle": {
+            "pt": 1,
+            "pb": 1
+          },
+          "contentStyle": {
+            "pt": 1,
+            "pb": 1
+          }
+        },
+        "blockId": "ewf9i"
+      }
+    ],
+    "templateName": "mobile"
+  },
+  "pageNameAlt": "groups.settings",
+  "info": {
+    "bundle": "web",
+    "name": "groups.settings.info"
+  }
+}

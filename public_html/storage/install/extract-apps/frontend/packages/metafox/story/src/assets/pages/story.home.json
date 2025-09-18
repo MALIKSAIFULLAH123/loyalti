@@ -1,0 +1,30 @@
+{
+  "large": {
+    "blocks": [
+      {
+        "component": "story.block.storyView",
+        "slotName": "main",
+        "blockId": "i7"
+      }
+    ],
+    "containers": {},
+    "pageName": "story.home",
+    "templateName": "story-view"
+  },
+  "small": {
+    "blocks": [
+      {
+        "component": "story.block.storyViewMobile",
+        "slotName": "main",
+        "blockId": "i11"
+      }
+    ],
+    "containers": {},
+    "pageName": "story.home",
+    "templateName": "blank"
+  },
+  "info": {
+    "bundle": "web",
+    "name": "story.home"
+  }
+}

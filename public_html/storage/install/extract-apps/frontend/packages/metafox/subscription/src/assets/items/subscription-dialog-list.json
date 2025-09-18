@@ -1,0 +1,36 @@
+{
+  "itemProps": {
+    "showActionMenu": 1,
+    "variant": "containedCard",
+    "content": {
+      "sx": {
+        "p": 2,
+        "justifyContent": "",
+        "bgcolor": "background.paper",
+        "alignItems": "center",
+        "borderRadius": ""
+      },
+      "selectedVariant": "",
+      "dividerVariant": "bottom",
+      "hoverVariant": "",
+      "backgroundColor": "paper"
+    },
+    "media": {
+      "width": 100,
+      "aspectRatio": "11",
+      "placement": "start",
+      "sx": {
+        "mr": 2,
+        "borderRadius": 1
+      }
+    },
+    "title": {
+      "lines": 1,
+      "variant": "h4"
+    }
+  },
+  "info": {
+    "bundle": "web",
+    "name": "Subscription - Dialog - List"
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "itemProps": {
+    "variant": "containedCard",
+    "content": {
+      "dividerVariant": "bottom",
+      "sx": {
+        "alignItems": "center",
+        "justifyContent": "",
+        "bgcolor": "background.paper",
+        "borderRadius": "",
+        "pt": 2,
+        "pr": 1,
+        "pb": 2,
+        "pl": 1
+      }
+    },
+    "showActionMenu": 1,
+    "title": {
+      "variant": "h4",
+      "lines": 2,
+      "sx": {
+        "display": "flex",
+        "alignItems": "center"
+      }
+    },
+    "summary": {
+      "component": "div",
+      "variant": "body2",
+      "lines": 1,
+      "sx": {
+        "mt": 1
+      }
+    },
+    "media": {
+      "placement": "start",
+      "aspectRatio": "11",
+      "width": 120,
+      "sx": {
+        "mr": 2
+      }
+    }
+  },
+  "info": {
+    "bundle": "web",
+    "name": "Saved Lists"
+  }
+}

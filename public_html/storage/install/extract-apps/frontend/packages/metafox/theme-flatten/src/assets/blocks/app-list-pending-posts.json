@@ -1,0 +1,47 @@
+{
+  "blockProps": {
+    "titleStyle": {
+      "component": "h2",
+      "sx": {
+        "typography": "h3",
+        "mt": 2
+      }
+    },
+    "headerStyle": {
+      "dividerVariant": "0",
+      "sx": {
+        "pt": 1,
+        "pb": 2,
+        "width": "100%"
+      }
+    },
+    "contentStyle": {
+      "sx": {
+        "width": "100%"
+      }
+    },
+    "footerStyle": {
+      "dividerVariant": "0",
+      "sx": {
+        "mt": 2
+      }
+    },
+    "blockStyle": {
+      "sx": {
+        "mt": 2,
+        "mb": 2,
+        "bgcolor": "0",
+        "borderRadius": "0",
+        "display": "flex",
+        "margin": "0 auto",
+        "flexDirection": "column"
+      }
+    }
+  },
+  "noHeader": 0,
+  "noFooter": 0,
+  "info": {
+    "bundle": "web",
+    "name": "App List Pending Posts"
+  }
+}

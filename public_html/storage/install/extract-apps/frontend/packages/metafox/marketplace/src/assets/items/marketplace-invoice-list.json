@@ -1,0 +1,39 @@
+{
+  "itemProps": {
+    "showActionMenu": 1,
+    "variant": "containedCard",
+    "content": {
+      "sx": {
+        "pt": 3,
+        "ml": 2,
+        "pb": 3,
+        "mr": 2,
+        "alignItems": "center",
+        "justifyContent": "",
+        "bgcolor": "background.paper",
+        "borderRadius": ""
+      },
+      "selectedVariant": "",
+      "dividerVariant": "bottom",
+      "hoverVariant": "",
+      "backgroundColor": "paper"
+    },
+    "media": {
+      "width": 100,
+      "aspectRatio": "11",
+      "placement": "start",
+      "sx": {
+        "mr": 2,
+        "borderRadius": 1
+      }
+    },
+    "title": {
+      "lines": 1,
+      "variant": "h4"
+    }
+  },
+  "info": {
+    "bundle": "web",
+    "name": "Marketplace - Invoice - List"
+  }
+}

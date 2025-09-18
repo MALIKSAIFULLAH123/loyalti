@@ -1,0 +1,32 @@
+{
+  "itemProps": {
+    "variant": "containedCard",
+    "content": {
+      "dividerVariant": "",
+      "hoverVariant": "",
+      "selectedVariant": "",
+      "sx": {
+        "alignItems": "",
+        "justifyContent": "",
+        "bgcolor": "background.paper",
+        "borderRadius": 1,
+        "borderTopWidth": 1,
+        "borderRightWidth": 1,
+        "borderBottomWidth": 1,
+        "borderLeftWidth": 1,
+        "borderColor": "border.secondary",
+        "borderStyle": "solid",
+        "pt": 0,
+        "pr": 0,
+        "pb": 0,
+        "pl": 0,
+        "height": "100%"
+      }
+    },
+    "showActionMenu": 1
+  },
+  "info": {
+    "bundle": "web",
+    "name": "ActivityPoint - Packages"
+  }
+}

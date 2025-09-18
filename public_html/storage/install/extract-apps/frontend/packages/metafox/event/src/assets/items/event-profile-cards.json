@@ -1,0 +1,61 @@
+{
+  "itemProps": {
+    "variant": "containedCard",
+    "content": {
+      "dividerVariant": "",
+      "hoverVariant": "",
+      "selectedVariant": "",
+      "sx": {
+        "alignItems": "",
+        "justifyContent": "",
+        "bgcolor": "background.paper",
+        "borderRadius": 1,
+        "borderTopWidth": 1,
+        "borderRightWidth": 1,
+        "borderBottomWidth": 1,
+        "borderLeftWidth": 1,
+        "borderColor": "border.secondary",
+        "borderStyle": "solid",
+        "pt": 0,
+        "pr": 0,
+        "pb": 2,
+        "pl": 0
+      }
+    },
+    "title": {
+      "variant": "h4",
+      "lines": 2,
+      "sx": {
+        "mt": 1.5,
+        "mb": 1.5
+      }
+    },
+    "summary": {
+      "component": "span",
+      "variant": "body2",
+      "lines": 1,
+      "fixHeight": 1,
+      "sx": {
+        "mt": 1,
+        "mb": 1.5,
+        "color": "text.hint"
+      }
+    },
+    "media": {
+      "placement": "top",
+      "aspectRatio": "169",
+      "width": "100%"
+    },
+    "text": {
+      "sx": {
+        "pr": 2,
+        "pl": 2
+      }
+    },
+    "showActionMenu": 1
+  },
+  "info": {
+    "bundle": "web",
+    "name": "Event - Profile - Cards"
+  }
+}

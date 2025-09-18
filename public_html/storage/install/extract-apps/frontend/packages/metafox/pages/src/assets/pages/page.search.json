@@ -1,0 +1,65 @@
+{
+  "large": {
+    "blocks": [
+      {
+        "component": "search.block.SearchResultListings",
+        "slotName": "main",
+        "blockId": "x3m5d",
+        "searchAllAction": "viewSearchSectionsInPage",
+        "searchSectionAction": "viewSearchInPage",
+        "searchPreviewAction": "viewSearchSectionItemInPage"
+      },
+      {
+        "blockId": "ia",
+        "component": "core.block.sideAppHeader",
+        "slotName": "side",
+        "title": "Feeds",
+        "icon": "ico-compose-alt",
+        "freeze": true,
+        "titleProperty": "title",
+        "blockLayout": "sidebar app header"
+      },
+      {
+        "blockId": "hze8y",
+        "component": "core.block.sidebarQuickFilter",
+        "slotName": "side",
+        "title": "Filters",
+        "formName": "search_in",
+        "blockLayout": "sidebar app filter"
+      }
+    ],
+    "templateName": "two-column-fixed"
+  },
+  "small": {
+    "blocks": [
+      {
+        "component": "core.block.sidebarAppMobile",
+        "slotName": "main",
+        "title": "pages",
+        "contents": [
+          {
+            "name": "core.block.sidebarQuickFilter",
+            "props": {
+              "formName": "search_in"
+            }
+          }
+        ],
+        "blockId": "lcfv"
+      },
+      {
+        "component": "search.block.SearchResultListings",
+        "slotName": "main",
+        "blockId": "x3m5d",
+        "searchAllAction": "viewSearchSectionsInPage",
+        "searchSectionAction": "viewSearchInPage",
+        "searchPreviewAction": "viewSearchSectionItemInPage"
+      }
+    ],
+    "pageName": "page.search",
+    "templateName": "mobile"
+  },
+  "info": {
+    "bundle": "web",
+    "name": "page.search"
+  }
+}

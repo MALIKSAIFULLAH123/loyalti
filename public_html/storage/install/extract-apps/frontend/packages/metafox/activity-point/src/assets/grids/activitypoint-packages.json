@@ -1,0 +1,17 @@
+{
+  "gridContainerProps": {
+    "spacing": 2
+  },
+  "gridItemProps": {
+    "sm": 4,
+    "md": 4,
+    "lg": 4,
+    "xl": 4,
+    "xs": 12
+  },
+  "gridVariant": "gridView",
+  "info": {
+    "bundle": "web",
+    "name": "ActivityPoint - Packages"
+  }
+}

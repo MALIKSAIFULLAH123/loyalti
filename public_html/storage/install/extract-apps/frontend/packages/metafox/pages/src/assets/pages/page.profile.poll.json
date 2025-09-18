@@ -1,0 +1,101 @@
+{
+  "large": {
+    "templateName": "profile-tab",
+    "blocks": [
+      {
+        "component": "pages.block.pageProfileHeader",
+        "slotName": "top",
+        "title": "Profile Header",
+        "blockProps": {
+          "variant": "containted",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "textPrimary",
+          "noFooter": true,
+          "noHeader": true,
+          "contentStyle": {},
+          "headerStyle": {},
+          "footerStyle": {},
+          "marginBottom": 2
+        },
+        "key": "nphx",
+        "blockId": "nphx"
+      },
+      {
+        "component": "poll.view.profilePollListing",
+        "slotName": "main",
+        "title": "polls",
+        "canLoadMore": true,
+        "key": "3uk3k",
+        "blockId": "3uk3k",
+        "itemView": "poll.itemView.mainCard",
+        "dataSource": {
+          "apiUrl": "/poll",
+          "apiParams": "user_id=:id&limit=6"
+        },
+        "blockLayout": "Profile - Contained",
+        "gridLayout": "Poll - Main Card",
+        "emptyPage": "core.block.no_item_with_icon",
+        "emptyPageProps": {
+          "description": "no_poll_found",
+          "image": "ico-barchart-o"
+        },
+        "hasSearchBox": 1,
+        "placeholderSearchBox": "search_polls",
+        "contentType": "poll",
+        "itemLinkProps": {
+          "asModal": 1
+        },
+        "headerActionsResource": "poll.poll.headerItemActionOnPageProfileMenu",
+        "itemLayout": "Poll User - Main Card"
+      }
+    ]
+  },
+  "small": {
+    "templateName": "mobile",
+    "blocks": [
+      {
+        "component": "core.block.sidebarAppMobile",
+        "slotName": "top",
+        "blockId": "raegh"
+      },
+      {
+        "component": "pages.block.pageProfileHeader",
+        "slotName": "top",
+        "title": "Page Profile Header"
+      },
+      {
+        "component": "poll.view.profilePollListing",
+        "slotName": "main",
+        "title": "polls",
+        "canLoadMore": true,
+        "key": "3uk3k",
+        "blockId": "3uk3k",
+        "itemView": "poll.itemView.mainCard",
+        "dataSource": {
+          "apiUrl": "/poll",
+          "apiParams": "user_id=:id&limit=6"
+        },
+        "blockLayout": "Profile - Contained",
+        "gridLayout": "Poll - Main Card - Mobile",
+        "hasSearchBox": 1,
+        "placeholderSearchBox": "search_polls",
+        "emptyPage": "core.block.no_item_with_icon",
+        "emptyPageProps": {
+          "description": "no_poll_found",
+          "image": "ico-barchart-o"
+        },
+        "contentType": "poll",
+        "itemLinkProps": {
+          "asModal": 1
+        },
+        "headerActionsResource": "poll.poll.headerItemActionOnPageProfileMenu",
+        "itemLayout": "Poll - Profile - Main Card"
+      }
+    ]
+  },
+  "info": {
+    "bundle": "web",
+    "name": "page.profile.poll"
+  }
+}

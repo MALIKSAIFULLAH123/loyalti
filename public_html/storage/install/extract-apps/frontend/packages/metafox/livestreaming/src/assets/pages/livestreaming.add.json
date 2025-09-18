@@ -1,0 +1,47 @@
+{
+  "large": {
+    "blocks": [
+      {
+        "component": "core.breadcrumbBlock",
+        "slotName": "main",
+        "title": "breadcrumb",
+        "blockId": "i9p",
+        "blockLayout": "form breadcrumb"
+      },
+      {
+        "blockId": "eqc3g",
+        "component": "livestream.block.ShareLivestreamBlock",
+        "slotName": "main",
+        "pageName": "livestream.share",
+        "pageSize": "large",
+        "title": "create_live_video",
+        "blockLayout": "Main Form With Header",
+        "noHeader": false
+      }
+    ],
+    "templateName": "simple"
+  },
+  "small": {
+    "templateName": "mobile",
+    "blocks": [
+      {
+        "component": "core.breadcrumbBlock",
+        "slotName": "main",
+        "title": "breadcrumb",
+        "blockId": "i9p",
+        "blockLayout": "form breadcrumb"
+      },
+      {
+        "blockId": "eqc3g",
+        "component": "livestream.block.ShareLivestreamBlock",
+        "slotName": "main",
+        "title": "create_live_video",
+        "blockLayout": "Main Form With Header"
+      }
+    ]
+  },
+  "info": {
+    "bundle": "web",
+    "name": "livestreaming.add"
+  }
+}

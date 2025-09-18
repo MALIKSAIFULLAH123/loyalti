@@ -1,0 +1,43 @@
+{
+  "itemProps": {
+    "variant": "containedCard",
+    "showActionMenu": 1,
+    "content": {
+      "sx": {
+        "pt": 2,
+        "pl": 2,
+        "pb": 2,
+        "pr": 2,
+        "alignItems": "center",
+        "justifyContent": "",
+        "bgcolor": ""
+      },
+      "selectedVariant": "",
+      "dividerVariant": "top",
+      "hoverVariant": ""
+    },
+    "media": {
+      "width": "auto",
+      "aspectRatio": "11",
+      "placement": "start"
+    },
+    "title": {
+      "variant": "h4",
+      "lines": 1,
+      "fixHeight": 1,
+      "sx": {
+        "mb": 1
+      }
+    },
+    "text": {
+      "sx": {
+        "pl": 2,
+        "pr": 0
+      }
+    }
+  },
+  "info": {
+    "bundle": "web",
+    "name": "Page - Overview Card"
+  }
+}

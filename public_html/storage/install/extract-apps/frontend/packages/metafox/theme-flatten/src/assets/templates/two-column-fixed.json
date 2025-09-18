@@ -1,0 +1,87 @@
+{
+  "title": "02 columns and fixed side",
+  "blocks": [],
+  "header": {
+    "elements": {
+      "header": {
+        "disableGutters": true,
+        "elements": {},
+        "rootStyle": {
+          "minHeight": "appbar",
+          "maxWidth": "lg"
+        }
+      }
+    }
+  },
+  "content": {
+    "elements": {
+      "main": {
+        "gridContainer": true,
+        "disableGutters": true,
+        "rootStyle": {
+          "maxWidth": "none"
+        },
+        "elements": {
+          "side": {
+            "xs": 3,
+            "rootStyle": {
+              "minWidth": "xs1",
+              "maxWidth": "xs2",
+              "sx": {
+                "mr": 2
+              }
+            },
+            "contentStyle": {
+              "sx": {
+                "bgcolor": "none"
+              }
+            },
+            "component": "layout.liveFixedSlot",
+            "freeze": 2,
+            "disableGutters": false,
+            "slotName": "side",
+            "stageStyle": {
+              "sx": {
+                "margin": "0 auto"
+              }
+            }
+          },
+          "right": {
+            "component": "layout.layoutGrid",
+            "sx": { "flex": 1, "minWidth": 0 },
+            "elements": {
+              "top": {
+                "component": "layout.layoutGrid",
+                "xs": 12,
+                "rootStyle": { "sx": { "pr": 2 } },
+                "elements": {
+                  "headerShort": {
+                    "xs": 12,
+                    "slotName": "headerShort"
+                  }
+                }
+              },
+              "body": {
+                "component": "layout.layoutGrid",
+                "xs": 12,
+                "rootStyle": { "pr": 2 },
+                "elements": {
+                  "main": {
+                    "flexWeight": 1,
+                    "contentStyle": {},
+                    "slotName": "main",
+                    "stageStyle": {}
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "info": {
+    "bundle": "web",
+    "name": "two-column-fixed"
+  }
+}

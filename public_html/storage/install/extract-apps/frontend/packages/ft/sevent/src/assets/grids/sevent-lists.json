@@ -1,0 +1,19 @@
+{
+  "gridContainerProps": {
+    "spacing": 0,
+    "columnSpacing": 2,
+    "rowSpacing": 2
+  },
+  "gridItemProps": {
+    "xs": 12,
+    "sm": 12,
+    "md": 4,
+    "lg": 4,
+    "xl": 3
+  },
+  "gridVariant": "listView",
+  "info": {
+    "bundle": "web",
+    "name": "Sevent Lists"
+  }
+}

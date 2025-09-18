@@ -1,0 +1,101 @@
+{
+  "large": {
+    "templateName": "two-column-fixed",
+    "blocks": [
+      {
+        "blockId": "pxfyc",
+        "component": "core.block.sideAppHeader",
+        "slotName": "side",
+        "pageSize": "large",
+        "title": "",
+        "emptyPage": "hide",
+        "authRequired": true,
+        "blockLayout": "sidebar app header",
+        "gridLayout": "Group - PendingPost - Main Card",
+        "contentType": "group",
+        "icon": "ico-compose-alt",
+        "sidebarHeaderName": "backToProfile"
+      },
+      {
+        "component": "core.block.sidebarAppMenu",
+        "slotName": "side",
+        "icon": "ico-compose-alt",
+        "blockId": "n4e",
+        "sidebarHeaderName": "backToProfile",
+        "title": "Manage Group",
+        "displayViewMore": false,
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "text",
+          "noFooter": true
+        },
+        "menuName": "groupManagerMenu"
+      },
+      {
+        "blockId": "v0qoa",
+        "component": "group.manage.membershipAnswerList",
+        "slotName": "main",
+        "pageSize": "large",
+        "blockLayout": "Ewallet Main Block",
+        "emptyPage": "core.block.no_content_with_icon",
+        "gridVariant": "listView",
+        "moduleName": "group",
+        "resourceName": "group_answer",
+        "actionName": "viewApproveAnswer",
+        "emptyPageProps": {
+          "title": "membership_questions",
+          "description": "ask_pending_members_question_when_they_request",
+          "image": "ico-note-paper-o"
+        }
+      }
+    ]
+  },
+  "small": {
+    "templateName": "mobile",
+    "blocks": [
+      {
+        "component": "core.block.sidebarAppMobile",
+        "slotName": "main",
+        "title": "manage_group",
+        "blockProps": {
+          "variant": "plained",
+          "marginBottom": 2
+        },
+        "contents": [
+          {
+            "name": "core.block.sidebarAppMenu",
+            "props": {
+              "menuName": "groupManagerMenu",
+              "displayViewMore": false
+            }
+          }
+        ],
+        "blockId": "ksh9w"
+      },
+      {
+        "blockId": "v0qoa",
+        "component": "group.manage.membershipAnswerList",
+        "slotName": "main",
+        "pageSize": "large",
+        "blockLayout": "Ewallet Main Block",
+        "emptyPage": "core.block.no_content_with_icon",
+        "gridVariant": "listView",
+        "moduleName": "group",
+        "resourceName": "group_answer",
+        "actionName": "viewApproveAnswer",
+        "emptyPageProps": {
+          "title": "membership_questions",
+          "description": "ask_pending_members_question_when_they_request",
+          "image": "ico-note-paper-o"
+        }
+      }
+    ]
+  },
+  "pageNameAlt": "groups.manage",
+  "info": {
+    "bundle": "web",
+    "name": "groups.manage.membership_requests"
+  }
+}

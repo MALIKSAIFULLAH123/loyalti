@@ -1,0 +1,93 @@
+{
+  "large": {
+    "blocks": [
+      {
+        "blockId": "1srw",
+        "component": "activity-point.block.dashboard",
+        "slotName": "main",
+        "title": "activitypoint_statistics",
+        "blockLayout": "Large Main Lists"
+      },
+      {
+        "blockId": "iu11",
+        "component": "activity-point.block.getStarted",
+        "slotName": "main",
+        "blockLayout": "Blocker"
+      },
+      {
+        "blockId": "ia",
+        "component": "core.block.sideAppHeader",
+        "slotName": "side",
+        "title": "activity_points",
+        "icon": "ico-compose-alt",
+        "blockLayout": "sidebar app header",
+        "freeze": true
+      },
+      {
+        "component": "core.block.sidebarAppMenu",
+        "slotName": "side",
+        "title": "activity_points",
+        "blockId": "i8"
+      }
+    ],
+    "containers": {},
+    "pageName": "blog.home",
+    "templateName": "two-column-fixed"
+  },
+  "small": {
+    "blocks": [
+      {
+        "component": "core.block.sidebarAppMobile",
+        "slotName": "main",
+        "blockProps": {
+          "variant": "plained",
+          "marginBottom": 2
+        },
+        "contents": [
+          {
+            "name": "core.block.searchBox"
+          },
+          {
+            "name": "core.block.sidebarAppMenu"
+          },
+          {
+            "name": "core.categoryBlock"
+          }
+        ],
+        "blockId": "ks3wd"
+      },
+      {
+        "blockId": "1srw",
+        "component": "activity-point.block.dashboard",
+        "slotName": "main",
+        "title": "activitypoint_statistics",
+        "blockLayout": "Large Main Lists Mobile - Paper"
+      },
+      {
+        "blockId": "iu11",
+        "component": "activity-point.block.getStarted",
+        "slotName": "main",
+        "blockLayout": "Large Main Lists Mobile - Paper"
+      },
+      {
+        "blockId": "ia",
+        "component": "core.block.sideAppHeader",
+        "slotName": "side",
+        "title": "activity_points",
+        "icon": "ico-compose-alt"
+      },
+      {
+        "component": "core.block.sidebarAppMenu",
+        "slotName": "side",
+        "title": "activity_points",
+        "blockId": "i8"
+      }
+    ],
+    "containers": {},
+    "templateName": "mobile"
+  },
+  "info": {
+    "bundle": "web",
+    "name": "activity_point.home"
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "large": {
+    "blocks": [
+      {
+        "component": "core.breadcrumbBlock",
+        "slotName": "main",
+        "title": "breadcrumb",
+        "blockId": "i9b",
+        "blockLayout": "form breadcrumb"
+      },
+      {
+        "component": "core.block.mainForm",
+        "slotName": "main",
+        "blockId": "wnoh5",
+        "blockLayout": "Full Screen Form"
+      }
+    ],
+    "templateName": "simple"
+  },
+  "small": {
+    "templateName": "mobile",
+    "blocks": [
+      {
+        "component": "core.breadcrumbBlock",
+        "slotName": "main",
+        "title": "breadcrumb",
+        "blockId": "i9b",
+        "blockLayout": "form breadcrumb"
+      },
+      {
+        "component": "core.block.mainForm",
+        "slotName": "main",
+        "blockId": "ahpah",
+        "title": "Form",
+        "blockLayout": "Full Screen Form"
+      }
+    ]
+  },
+  "info": {
+    "bundle": "web",
+    "name": "pages.edit"
+  }
+}

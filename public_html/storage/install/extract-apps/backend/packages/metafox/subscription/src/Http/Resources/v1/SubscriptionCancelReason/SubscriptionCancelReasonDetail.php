@@ -1,0 +1,49 @@
+<?php
+
+namespace MetaFox\Subscription\Http\Resources\v1\SubscriptionCancelReason;
+
+use Illuminate\Http\Resources\Json\JsonResource;
+use MetaFox\Subscription\Models\SubscriptionCancelReason as Model;
+use MetaFox\Subscription\Support\Browse\Traits\SubscriptionCancelReason\ExtraTrait;
+use MetaFox\Subscription\Support\Browse\Traits\SubscriptionCancelReason\StatisticTrait;
+
+/*
+|--------------------------------------------------------------------------
+| Resource Pattern
+|--------------------------------------------------------------------------
+| stub: /packages/resources/detail.stub
+*/
+
+/**
+ * Class SubscriptionCancelReasonDetail.
+ * @property Model $resource
+ * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+ * @mixin Model
+ */
+class SubscriptionCancelReasonDetail extends JsonResource
+{
+    use ExtraTrait;
+    use StatisticTrait;
+
+    /**
+     * Transform the resource collection into an array.
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @return array<string, mixed>
+     */
+    public function toArray($request)
+    {
+        $resource = $this->resource;
+
+        return [
+            'id'            => $resource->entityId(),
+            'module_name'   => 'subscription',
+            'resource_name' => $resource->entityType(),
+            'title'         => $resource->toTitle(),
+            'is_active'     => $resource->is_active,
+            'is_default'    => $resource->is_default,
+            'statistic'     => $this->getStatistics(),
+            'extra'         => $this->getExtra(),
+        ];
+    }
+}

@@ -1,0 +1,47 @@
+{
+  "large": {
+    "blocks": [
+      {
+        "component": "core.breadcrumbBlock",
+        "slotName": "main",
+        "title": "breadcrumb",
+        "blockId": "i9p",
+        "blockLayout": "form breadcrumb"
+      },
+      {
+        "blockId": "eqc3g",
+        "component": "music.block.AddMusic",
+        "slotName": "main",
+        "pageName": "music.add",
+        "pageSize": "large",
+        "title": "add_new_music",
+        "blockLayout": "Share Video Block",
+        "noHeader": false
+      }
+    ],
+    "templateName": "simple"
+  },
+  "small": {
+    "templateName": "mobile",
+    "blocks": [
+      {
+        "component": "core.breadcrumbBlock",
+        "slotName": "main",
+        "title": "breadcrumb",
+        "blockId": "i9p",
+        "blockLayout": "form breadcrumb"
+      },
+      {
+        "blockId": "eqc3g",
+        "component": "music.block.AddMusic",
+        "slotName": "main",
+        "title": "add_new_music",
+        "blockLayout": "Share Video Block"
+      }
+    ]
+  },
+  "info": {
+    "bundle": "web",
+    "name": "music.add"
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "large": {
+    "blocks": [
+      {
+        "blockId": "1srw",
+        "component": "activity-point.block.howToEarn",
+        "slotName": "main",
+        "title": "how_to_earns",
+        "blockLayout": "Large Main Lists"
+      },
+      {
+        "blockId": "ia",
+        "component": "core.block.sideAppHeader",
+        "slotName": "side",
+        "title": "activity_points",
+        "icon": "ico-compose-alt",
+        "blockLayout": "sidebar app header",
+        "freeze": true
+      },
+      {
+        "component": "core.block.sidebarAppMenu",
+        "slotName": "side",
+        "title": "activity_points",
+        "blockId": "i8"
+      }
+    ],
+    "containers": {},
+    "pageName": "blog.home",
+    "templateName": "two-column-fixed"
+  },
+  "small": {
+    "blocks": [
+      {
+        "component": "core.block.sidebarAppMobile",
+        "slotName": "main",
+        "blockProps": {
+          "variant": "plained",
+          "marginBottom": 2
+        },
+        "contents": [
+          {
+            "name": "core.block.searchBox"
+          },
+          {
+            "name": "core.block.sidebarAppMenu"
+          },
+          {
+            "name": "core.categoryBlock"
+          }
+        ],
+        "blockId": "ks3wd"
+      },
+      {
+        "component": "core.block.sidebarAppMenu",
+        "slotName": "side",
+        "title": "activity_points",
+        "blockId": "i8"
+      },
+      {
+        "blockId": "1srw",
+        "component": "activity-point.block.howToEarnMobile",
+        "slotName": "main",
+        "title": "how_to_earns",
+        "blockLayout": "Activity Points Mobile"
+      }
+    ],
+    "containers": {},
+    "templateName": "mobile"
+  },
+  "info": {
+    "bundle": "web",
+    "name": "activity_point.how_to_earn"
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "itemProps": {
+    "variant": "flattedCard",
+    "showActionMenu": 1,
+    "media": {
+      "width": 160,
+      "aspectRatio": "11",
+      "placement": "start"
+    },
+    "title": {
+      "lines": 2,
+      "variant": "h4",
+      "sx": {
+        "mb": 1,
+        "mr": 2.875
+      }
+    },
+    "content": {
+      "sx": {
+        "alignItems": "",
+        "justifyContent": "",
+        "bgcolor": "background.paper",
+        "borderRadius": 1
+      },
+      "selectedVariant": "",
+      "dividerVariant": "",
+      "hoverVariant": "",
+      "minHeight": "160"
+    },
+    "summary": {
+      "component": "div",
+      "variant": "h3",
+      "lines": 0,
+      "sx": {
+        "color": "text.primary"
+      }
+    },
+    "text": {
+      "sx": {
+        "pt": 2,
+        "pb": 2,
+        "pl": 2,
+        "pr": 2
+      }
+    }
+  },
+  "info": {
+    "bundle": "web",
+    "name": "Poll - Main Card"
+  }
+}

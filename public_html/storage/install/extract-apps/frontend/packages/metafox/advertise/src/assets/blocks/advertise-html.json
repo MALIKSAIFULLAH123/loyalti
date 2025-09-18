@@ -1,0 +1,18 @@
+{
+  "blockProps": {
+    "blockStyle": {
+      "sx": {
+        "bgcolor": "background.paper",
+        "p": 2,
+        "mt": 0,
+        "borderRadius": 1
+      }
+    }
+  },
+  "noHeader": 0,
+  "noFooter": true,
+  "info": {
+    "bundle": "web",
+    "name": "Advertise Html"
+  }
+}

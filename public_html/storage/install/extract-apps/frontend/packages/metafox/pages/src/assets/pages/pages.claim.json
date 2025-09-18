@@ -1,0 +1,112 @@
+{
+  "large": {
+    "blocks": [
+      {
+        "blockId": "ar6xi",
+        "component": "core.block.sideAppHeader",
+        "slotName": "side",
+        "title": "pages",
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "textPrimary",
+          "noFooter": true,
+          "noHeader": true
+        },
+        "blockLayout": "sidebar app header",
+        "freeze": true
+      },
+      {
+        "blockId": "rj1jyj",
+        "component": "core.block.searchBox",
+        "slotName": "side",
+        "title": "Pages Search",
+        "placeholder": "Search",
+        "blockLayout": "sidebar search box",
+        "freeze": true
+      },
+      {
+        "component": "core.block.sidebarAppMenu",
+        "slotName": "side",
+        "title": "Pages Menu",
+        "blockId": "w0mmf",
+        "menuName": "sidebarMenu",
+        "blockLayout": "sidebar app menu"
+      },
+      {
+        "blockId": "f59xf",
+        "component": "core.dividerBlock",
+        "slotName": "side",
+        "title": "",
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "textPrimary",
+          "noFooter": true,
+          "noHeader": true,
+          "blockStyle": {
+            "mt": 4,
+            "mb": 1
+          }
+        },
+        "dividerVariant": "middle"
+      },
+      {
+        "component": "core.categoryBlock",
+        "slotName": "side",
+        "title": "categories",
+        "blockId": "yansf",
+        "blockLayout": "sidebar app category"
+      },
+      {
+        "blockId": "hz8y",
+        "component": "pages.block.pagesClaimsBlock",
+        "slotName": "main",
+        "title": "my_claim_requests",
+        "blockLayout": "Large Main Lists",
+        "blockOrigin": "page"
+      }
+    ],
+    "templateName": "two-column-fixed"
+  },
+  "small": {
+    "blocks": [
+      {
+        "component": "core.block.sidebarAppMobile",
+        "slotName": "main",
+        "title": "pages",
+        "blockProps": {
+          "variant": "plained",
+          "marginBottom": 2
+        },
+        "contents": [
+          {
+            "name": "core.block.searchBox"
+          },
+          {
+            "name": "core.block.sidebarAppMenu"
+          },
+          {
+            "name": "core.categoryBlock"
+          }
+        ],
+        "blockId": "umi0r"
+      },
+      {
+        "blockId": "hz8y",
+        "component": "pages.block.pagesClaimsBlock",
+        "slotName": "main",
+        "title": "my_claim_requests",
+        "blockLayout": "App List - Table - Mobile",
+        "blockOrigin": "page"
+      }
+    ],
+    "templateName": "mobile"
+  },
+  "info": {
+    "bundle": "web",
+    "name": "pages.claims"
+  }
+}

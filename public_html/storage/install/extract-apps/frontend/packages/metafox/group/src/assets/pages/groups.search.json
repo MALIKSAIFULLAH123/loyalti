@@ -1,0 +1,118 @@
+{
+  "large": {
+    "blocks": [
+      {
+        "blockId": "fevt9",
+        "component": "core.block.mainListing",
+        "slotName": "main",
+        "title": "",
+        "itemView": "group.itemView.mainCard",
+        "canLoadMore": true,
+        "blockLayout": "App List",
+        "gridLayout": "Group - Main Card",
+        "emptyPage": "core.block.no_content_with_icon",
+        "canLoadSmooth": 1,
+        "emptyPageProps": {
+          "title": "no_groups_found",
+          "image": "ico-user1-three-o",
+          "description": "no_groups_found_description",
+          "noBlock": true
+        },
+        "itemLayout": "Group - Main Card"
+      },
+      {
+        "blockId": "lyvw",
+        "component": "core.block.sideAppHeader",
+        "slotName": "side",
+        "title": "Groups",
+        "blockLayout": "sidebar app header",
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "textPrimary",
+          "noFooter": true,
+          "noHeader": true
+        }
+      },
+      {
+        "blockId": "u5rus",
+        "component": "core.block.sidebarQuickFilter",
+        "slotName": "side",
+        "title": "Filters",
+        "blockLayout": "sidebar app filter",
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "textPrimary",
+          "noFooter": true,
+          "noHeader": false
+        }
+      }
+    ],
+    "pageName": "groups.browse",
+    "templateName": "two-column-fixed"
+  },
+  "small": {
+    "blocks": [
+      {
+        "component": "core.block.sidebarAppMobile",
+        "slotName": "main",
+        "title": "groups",
+        "blockProps": {
+          "variant": "plained",
+          "marginBottom": 2
+        },
+        "contents": [
+          {
+            "name": "core.block.sidebarQuickFilter"
+          }
+        ],
+        "blockId": "lcfv"
+      },
+      {
+        "blockId": "fevt9",
+        "component": "core.block.mainListing",
+        "slotName": "main",
+        "title": "",
+        "itemView": "group.itemView.mainCard",
+        "canLoadMore": true,
+        "blockLayout": "App List - Mobile",
+        "gridLayout": "Group - Main Card",
+        "canLoadSmooth": 1,
+        "emptyPage": "core.block.no_content_with_icon",
+        "emptyPageProps": {
+          "title": "no_groups_found",
+          "image": "ico-user1-three-o",
+          "description": "no_groups_found_description"
+        },
+        "itemLayout": "Group - Main Card"
+      },
+      {
+        "component": "core.block.sidebarAppMenu",
+        "slotName": "side",
+        "title": "Groups",
+        "blockProps": {
+          "variant": "plained",
+          "noHeader": true,
+          "noFooter": true,
+          "marginBottom": 2
+        },
+        "blockId": "2ku0j"
+      },
+      {
+        "component": "core.categoryBlock",
+        "slotName": "side",
+        "title": "categories",
+        "blockId": "x03d4"
+      }
+    ],
+    "pageName": "groups.browse",
+    "templateName": "mobile"
+  },
+  "info": {
+    "bundle": "web",
+    "name": "groups.search"
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "itemProps": {
+    "showActionMenu": 1,
+    "variant": "flattedCard",
+    "media": {
+      "width": 160,
+      "aspectRatio": "11",
+      "placement": "start"
+    },
+    "title": {
+      "lines": 2,
+      "variant": "h4"
+    },
+    "content": {
+      "sx": {
+        "alignItems": "",
+        "justifyContent": "",
+        "bgcolor": "background.paper",
+        "borderRadius": 1
+      },
+      "selectedVariant": "",
+      "dividerVariant": "",
+      "hoverVariant": ""
+    },
+    "summary": {
+      "component": "div",
+      "variant": "body2",
+      "color": "text.secondary",
+      "lines": 1,
+      "fixHeight": 1,
+      "sx": {
+        "my": 1
+      }
+    },
+    "text": {
+      "sx": {
+        "pt": 2,
+        "pb": 2,
+        "pl": 2,
+        "pr": 2
+      }
+    }
+  },
+  "info": {
+    "bundle": "web",
+    "name": "Blog - Main Card"
+  }
+}

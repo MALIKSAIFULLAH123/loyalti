@@ -1,0 +1,68 @@
+{
+  "blocks": [],
+  "header": {
+    "elements": {
+      "header": {
+        "gridContainer": false,
+        "disableGutters": true,
+        "elements": {
+          "header": {}
+        }
+      }
+    }
+  },
+  "content": {
+    "elements": {
+      "main": {
+        "gridContainer": true,
+        "rootStyle": {
+          "maxWidth": "md"
+        },
+        "elements": {
+          "main": {
+            "gridContainer": true,
+            "rootStyle": {
+              "sx": {
+                "@media screen and (max-width: 1024px)": {
+                  "paddingLeft": "16px",
+                  "paddingRight": "16px"
+                }
+              }
+            },
+            "elements": {
+              "main": {
+                "xs": 12,
+                "slotName": "main",
+                "contentStyle": {
+                  "sx": {
+                    "alignContent": "center"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "footer": {
+    "elements": {
+      "main": {
+        "rootStyle": {
+          "maxWidth": "lg"
+        },
+        "elements": {
+          "bottom": {
+            "maxWidth": false
+          }
+        }
+      }
+    }
+  },
+  "title": "Simple - Layout has header and content",
+  "description": "",
+  "info": {
+    "bundle": "web",
+    "name": "simple"
+  }
+}

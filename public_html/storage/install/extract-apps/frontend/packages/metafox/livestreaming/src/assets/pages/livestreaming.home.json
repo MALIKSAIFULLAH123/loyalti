@@ -1,0 +1,212 @@
+{
+  "large": {
+    "blocks": [
+      {
+        "blockId": "4c6z9",
+        "component": "core.block.sideAppHeader",
+        "slotName": "side",
+        "title": "livestreaming",
+        "blockLayout": "sidebar app header"
+      },
+      {
+        "blockId": "d9au",
+        "component": "core.block.searchBox",
+        "slotName": "side",
+        "title": "",
+        "placeholder": "Search",
+        "blockLayout": "sidebar search box"
+      },
+      {
+        "component": "core.block.sidebarAppMenu",
+        "slotName": "side",
+        "props": {
+          "key": "",
+          "blockId": ""
+        },
+        "title": "livestreaming",
+        "blockId": "i96",
+        "menuName": "sidebarMenu",
+        "blockLayout": "sidebar app menu"
+      },
+      {
+        "blockId": "nxy1",
+        "component": "core.dividerBlock",
+        "slotName": "side",
+        "title": "",
+        "dividerVariant": "middle",
+        "titleComponent": "h2",
+        "titleVariant": "subtitle1",
+        "titleColor": "textPrimary",
+        "noFooter": true,
+        "noHeader": true,
+        "blockLayout": "sidebar divider"
+      },
+      {
+        "component": "core.categoryBlock",
+        "slotName": "side",
+        "props": {
+          "key": "",
+          "blockId": ""
+        },
+        "title": "categories",
+        "blockId": "i97",
+        "blockLayout": "sidebar app category"
+      },
+      {
+        "component": "core.block.mainListingSponsor",
+        "slotName": "main",
+        "title": "sponsored_videos",
+        "itemView": "live_video.itemView.mainCard",
+        "blockId": "lmpl",
+        "displayRowsLimit": 1,
+        "contentType": "livestreaming",
+        "emptyPage": "hide",
+        "blockLayout": "App List",
+        "gridLayout": "Live_video - Main Card",
+        "itemLayout": "Live_video - Main Card",
+        "canLoadMore": false,
+        "dataSource": {
+          "apiUrl": "/live-video",
+          "apiParams": "view=sponsor&limit=6"
+        }
+      },
+      {
+        "component": "livestreaming.block.listingBlock",
+        "slotName": "main",
+        "title": "featured_videos",
+        "itemView": "live_video.itemView.mainCard",
+        "blockId": "i98",
+        "contentType": "livestreaming",
+        "emptyPage": "hide",
+        "blockLayout": "App List",
+        "gridLayout": "Live_video - Main Card",
+        "itemLayout": "Live_video - Main Card",
+        "canLoadMore": false,
+        "displayRowsLimit": 1,
+        "dataSource": {
+          "apiUrl": "/live-video",
+          "apiParams": "view=feature&limit=6"
+        },
+        "headerActions": [
+          {
+            "label": "view_all",
+            "to": "/live-video/search?view=search&is_featured=1"
+          }
+        ]
+      },
+      {
+        "blockId": "9l2qs",
+        "component": "livestreaming.block.listingBlock",
+        "slotName": "main",
+        "title": "popular_videos",
+        "itemView": "live_video.itemView.mainCard",
+        "contentType": "livestreaming",
+        "dataSource": {
+          "apiUrl": "/live-video",
+          "apiParams": "sort=most_viewed"
+        },
+        "emptyPage": "core.block.no_content_with_icon",
+        "blockLayout": "App List",
+        "gridLayout": "Live_video - Main Card",
+        "emptyPageProps": {
+          "noHeader": true,
+          "noBlock": true,
+          "title": "no_live_videos_are_found",
+          "description": ""
+        },
+        "itemLayout": "Live_video - Main Card",
+        "canLoadMore": true,
+        "canLoadSmooth": 1,
+        "maxPageNumber": 2,
+        "numberOfItemsPerPage": 10
+      }
+    ],
+    "containers": {},
+    "pageName": "livestream.home",
+    "templateName": "two-column-fixed"
+  },
+  "small": {
+    "blocks": [
+      {
+        "blockId": "7nae",
+        "component": "core.block.sidebarAppMobile",
+        "slotName": "main"
+      },
+      {
+        "component": "core.block.mainListingSponsor",
+        "slotName": "main",
+        "title": "sponsored_videos",
+        "itemView": "live_video.itemView.mainCard",
+        "blockId": "lspm",
+        "displayRowsLimit": 1,
+        "contentType": "livestreaming",
+        "emptyPage": "hide",
+        "blockLayout": "App List - Mobile",
+        "gridLayout": "Live_video - Main Card",
+        "itemLayout": "Live_video - Main Card",
+        "canLoadMore": false,
+        "dataSource": {
+          "apiUrl": "/live-video",
+          "apiParams": "view=sponsor&limit=6"
+        }
+      },
+      {
+        "component": "livestreaming.block.listingBlock",
+        "slotName": "main",
+        "props": {
+          "key": "",
+          "blockId": ""
+        },
+        "title": "featured_videos",
+        "itemView": "live_video.itemView.mainCard",
+        "blockId": "i98",
+        "emptyPage": "hide",
+        "contentType": "livestreaming",
+        "displayRowsLimit": 1,
+        "dataSource": {
+          "apiUrl": "/live-video",
+          "apiParams": "view=feature&limit=6"
+        },
+        "headerActions": [
+          {
+            "label": "view_all",
+            "to": "/live-video/search?view=search&is_featured=1"
+          }
+        ],
+        "blockLayout": "App List - Mobile",
+        "gridLayout": "Live_video - Main Card",
+        "itemLayout": "Live_video - Main Card"
+      },
+      {
+        "blockId": "5i937",
+        "component": "livestreaming.block.listingBlock",
+        "slotName": "main",
+        "title": "popular_videos",
+        "itemView": "live_video.itemView.mainCard",
+        "emptyPage": "core.block.no_content_with_icon",
+        "contentType": "livestreaming",
+        "dataSource": {
+          "apiUrl": "/live-video",
+          "apiParams": "sort=most_viewed"
+        },
+        "blockLayout": "App List - Mobile",
+        "gridLayout": "Live_video - Main Card",
+        "emptyPageProps": {
+          "title": "no_live_videos_are_found"
+        },
+        "itemLayout": "Live_video - Main Card",
+        "canLoadMore": true,
+        "canLoadSmooth": 1,
+        "maxPageNumber": 2,
+        "numberOfItemsPerPage": 10
+      }
+    ],
+    "containers": {},
+    "pageName": "livestream.home",
+    "templateName": "mobile"
+  },
+  "info": {
+    "bundle": "web",
+    "name": "livestreaming.home"
+  }
+}

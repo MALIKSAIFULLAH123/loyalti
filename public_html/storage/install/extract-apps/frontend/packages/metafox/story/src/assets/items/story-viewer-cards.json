@@ -1,0 +1,47 @@
+{
+  "itemProps": {
+    "variant": "contained",
+    "content": {
+      "dividerVariant": "",
+      "hoverVariant": "",
+      "borderRadius": 0,
+      "selectedVariant": "",
+      "sx": {
+        "alignItems": "center",
+        "p": 0,
+        "m": 0
+      }
+    },
+    "title": {
+      "variant": "h5",
+      "lines": 1,
+      "sx": {}
+    },
+    "summary": {
+      "component": "div",
+      "variant": "body1",
+      "lines": 1,
+      "fixHeight": 1,
+      "sx": {
+        "mr": 0,
+        "color": "textSecondary"
+      }
+    },
+    "media": {
+      "placement": "start",
+      "aspectRatio": "11",
+      "width": "auto"
+    },
+    "showActionMenu": 1,
+    "text": {
+      "sx": {
+        "pl": 2,
+        "pr": 2
+      }
+    }
+  },
+  "info": {
+    "bundle": "web",
+    "name": "Story - Viewer"
+  }
+}

@@ -1,0 +1,115 @@
+{
+  "large": {
+    "blocks": [
+      {
+        "blockId": "i83",
+        "component": "core.block.mainListing",
+        "slotName": "main",
+        "blockProps": {
+          "variant": "blocker",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "text",
+          "noFooter": true,
+          "noHeader": true,
+          "blockStyle": {
+            "pt": 2,
+            "mb": 2
+          }
+        },
+        "itemView": "music_album.itemView.mainCard",
+        "gridContainerProps": {
+          "spacing": 2
+        },
+        "gridItemProps": {
+          "xs": 12,
+          "sm": 6,
+          "md": 6,
+          "lg": 6,
+          "xl": 6
+        },
+        "canLoadMore": true,
+        "canLoadSmooth": true,
+        "title": "",
+        "gridVariant": "gridView",
+        "itemProps": {
+          "showActionMenu": true
+        },
+        "displayLimit": "8"
+      },
+      {
+        "component": "core.block.sideAppHeader",
+        "slotName": "side",
+        "title": "Album",
+        "blockId": "cb9wj"
+      },
+      {
+        "blockId": "gibi",
+        "component": "core.block.sidebarQuickFilter",
+        "slotName": "side",
+        "title": "Filters",
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "textPrimary",
+          "noFooter": true,
+          "noHeader": false,
+          "testid": "sidebarQuickFilter"
+        }
+      }
+    ],
+    "containers": {},
+    "templateName": "two-column-fixed"
+  },
+  "small": {
+    "blocks": [
+      {
+        "blockId": "i83",
+        "component": "music.block.musicAlbumListingBlock",
+        "slotName": "main",
+        "title": "Albums",
+        "blockProps": {
+          "variant": "plained"
+        },
+        "itemView": "music_album.itemView.mainCard",
+        "gridContainerProps": {
+          "spacing": 2
+        },
+        "gridItemProps": {
+          "xs": 12,
+          "sm": 12,
+          "md": 12,
+          "lg": 12,
+          "xl": 12
+        }
+      },
+      {
+        "blockId": "i47",
+        "component": "music.block.musicAlbumListingBlock",
+        "slotName": "subside",
+        "title": "Albums",
+        "blockProps": {
+          "variant": "contained"
+        },
+        "itemView": "music_album.itemView.smallCard",
+        "gridContainerProps": {
+          "spacing": 2
+        },
+        "gridItemProps": {
+          "xs": 12,
+          "sm": 12,
+          "md": 12,
+          "lg": 12,
+          "xl": 12
+        }
+      }
+    ],
+    "containers": {},
+    "templateName": "mobile"
+  },
+  "info": {
+    "bundle": "web",
+    "name": "music_album.search"
+  }
+}

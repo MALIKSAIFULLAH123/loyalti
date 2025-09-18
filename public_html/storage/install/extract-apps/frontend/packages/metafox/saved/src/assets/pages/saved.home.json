@@ -1,0 +1,153 @@
+{
+  "large": {
+    "blocks": [
+      {
+        "blockId": "ia",
+        "component": "core.block.sideAppHeader",
+        "slotName": "side",
+        "title": "saved_items",
+        "icon": "ico-compose-alt",
+        "blockLayout": "sidebar app header",
+        "freeze": true
+      },
+      {
+        "component": "core.block.searchBox",
+        "slotName": "side",
+        "placeholder": "Search saved",
+        "blockId": "w1t9",
+        "title": "",
+        "blockLayout": "sidebar search box",
+        "freeze": true
+      },
+      {
+        "blockId": "i12",
+        "component": "core.dividerBlock",
+        "slotName": "side",
+        "dividerVariant": "middle",
+        "title": "",
+        "blockProps": {
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "textPrimary",
+          "noFooter": true,
+          "noHeader": true
+        }
+      },
+      {
+        "blockId": "xz2c3",
+        "component": "saved.block.savedListListingBlock",
+        "slotName": "side",
+        "title": "collections",
+        "blockLayout": "Collection List Side Block",
+        "gridLayout": "Saved Collection List - Small",
+        "emptyPage": "no_content",
+        "emptyPageProps": {
+          "variant": "side",
+          "title": "no_collections",
+          "color": "text.secondary",
+          "description": "no_friend_lists_found",
+          "noBlock": 1
+        },
+        "noContentLayout": "Side with description",
+        "itemLayout": "Collection List"
+      },
+      {
+        "blockId": "99ibn",
+        "component": "core.block.sidebarAppMenu",
+        "slotName": "side",
+        "pageSize": "large",
+        "title": "saved",
+        "menuName": "sidebarMenu",
+        "blockLayout": "sidebar app menu"
+      },
+      {
+        "blockId": "gtjxg",
+        "component": "saved.block.SavedItemBlock",
+        "slotName": "main",
+        "title": "all_items",
+        "itemView": "saved.itemView.mainCard",
+        "contentType": "saved",
+        "clearDataOnUnMount": true,
+        "canLoadMore": true,
+        "blockLayout": "SaveItem Main Lists",
+        "gridLayout": "Saved Lists",
+        "emptyPage": "core.block.no_content_with_icon",
+        "emptyPageProps": {
+          "title": "no_saved_items_found",
+          "description": "no_saved_items_found_description",
+          "image": "ico-bookmark-o",
+          "noBlock": 1
+        },
+        "itemLayout": "Saved Lists"
+      }
+    ],
+    "containers": {},
+    "templateName": "two-column-fixed"
+  },
+  "small": {
+    "blocks": [
+      {
+        "component": "core.block.sidebarAppMobile",
+        "slotName": "main",
+        "blockProps": {
+          "variant": "plained",
+          "marginBottom": 2
+        },
+        "contents": [
+          {
+            "name": "core.block.searchBox"
+          },
+          {
+            "name": "saved.block.savedListListingBlock",
+            "props": {
+              "component": "saved.block.savedListListingBlock",
+              "title": "collections",
+              "blockLayout": "Saved Collection List Side Block",
+              "gridLayout": "Saved Collection List - Small",
+              "canLoadMore": 1,
+              "emptyPage": "no_content",
+              "emptyPageProps": {
+                "variant": "side",
+                "title": "no_collections",
+                "color": "inherit",
+                "description": "no_friend_lists_found",
+                "noBlock": 1
+              },
+              "noContentLayout": "Side with description",
+              "itemLayout": "Collection List"
+            }
+          },
+          {
+            "name": "core.block.sidebarAppMenu"
+          }
+        ],
+        "blockId": "tggha"
+      },
+      {
+        "blockId": "gtjxg",
+        "component": "saved.block.SavedItemBlock",
+        "slotName": "main",
+        "title": "saved_items",
+        "contentType": "saved",
+        "canLoadMore": true,
+        "emptyPage": "core.block.no_content_with_icon",
+        "emptyPageProps": {
+          "title": "no_saved_items_found",
+          "description": "no_saved_items_found_description",
+          "image": "ico-bookmark-o",
+          "noBlock": 1
+        },
+        "itemView": "saved.itemView.mainCard",
+        "blockLayout": "App List - Mobile",
+        "gridLayout": "Saved Lists - Mobile",
+        "itemLayout": "Saved Lists - Mobile"
+      }
+    ],
+    "containers": {},
+    "templateName": "mobile"
+  },
+  "info": {
+    "bundle": "web",
+    "name": "saved.home"
+  }
+}

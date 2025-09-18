@@ -1,0 +1,105 @@
+{
+  "large": {
+    "templateName": "two-column-fixed",
+    "blocks": [
+      {
+        "component": "core.block.mainListing",
+        "slotName": "main",
+        "blockId": "pruo",
+        "title": "",
+        "itemView": "marketplace.itemView.mainCard",
+        "emptyPage": "core.block.no_content_with_icon",
+        "emptyPageProps": {
+          "noHeader": true,
+          "title": "no_marketplace_found"
+        },
+        "canLoadMore": true,
+        "canLoadSmooth": 1,
+        "blockLayout": "App List",
+        "gridLayout": "Marketplace - Main Card",
+        "itemLayout": "Marketplace - Main Card"
+      },
+      {
+        "blockId": "ia",
+        "component": "core.block.sideAppHeader",
+        "slotName": "side",
+        "title": "marketplace",
+        "icon": "ico-shopbasket",
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "textPrimary",
+          "noFooter": true,
+          "noHeader": true
+        },
+        "freeze": true,
+        "blockLayout": "sidebar app header"
+      },
+      {
+        "blockId": "i5",
+        "component": "core.block.searchBox",
+        "slotName": "side",
+        "placeholder": "Search",
+        "title": "",
+        "freeze": true,
+        "blockLayout": "sidebar search box"
+      },
+      {
+        "component": "core.block.sidebarAppMenu",
+        "slotName": "side",
+        "title": "marketplace",
+        "icon": "ico-home",
+        "searchBox": true,
+        "searchLabel": "Search Marketplace",
+        "blockId": "i6",
+        "menuName": "sidebarMenu",
+        "blockLayout": "sidebar app menu"
+      },
+      {
+        "blockId": "i12",
+        "component": "core.dividerBlock",
+        "slotName": "side",
+        "dividerVariant": "middle"
+      },
+      {
+        "component": "core.categoryBlock",
+        "slotName": "side",
+        "blockId": "i7",
+        "title": "categories",
+        "blockLayout": "sidebar app category"
+      }
+    ]
+  },
+  "small": {
+    "templateName": "mobile",
+    "blocks": [
+      {
+        "component": "core.block.sidebarAppMobile",
+        "slotName": "main",
+        "blockId": "wz8ln"
+      },
+      {
+        "component": "core.block.mainListing",
+        "slotName": "main",
+        "blockId": "pruo",
+        "title": "",
+        "itemView": "marketplace.itemView.mainCard",
+        "emptyPage": "core.block.no_content_with_icon",
+        "emptyPageProps": {
+          "noHeader": true,
+          "title": "no_marketplace_found"
+        },
+        "canLoadMore": true,
+        "canLoadSmooth": 1,
+        "blockLayout": "App List - Mobile",
+        "gridLayout": "Marketplace - MainCard - Mobile",
+        "itemLayout": "Marketplace - MainCard - Mobile"
+      }
+    ]
+  },
+  "info": {
+    "bundle": "web",
+    "name": "marketplace.browse"
+  }
+}

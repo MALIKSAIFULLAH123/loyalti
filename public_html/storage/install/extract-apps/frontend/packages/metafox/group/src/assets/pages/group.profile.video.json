@@ -1,0 +1,111 @@
+{
+  "large": {
+    "templateName": "profile-tab",
+    "blocks": [
+      {
+        "blockId": "ksad",
+        "component": "video.block.groupVideoListingBlock",
+        "slotName": "main",
+        "pageName": "group.profile.video",
+        "pageSize": "large",
+        "title": "videos",
+        "itemView": "video.itemView.mainCard",
+        "dataSource": {
+          "apiUrl": "/video",
+          "apiParams": "user_id=:id&limit=1"
+        },
+        "emptyPage": "core.block.no_item_with_icon",
+        "emptyPageProps": {
+          "description": "no_videos_found",
+          "image": "ico-video-player-o"
+        },
+        "headerActionsResource": "video.video.headerItemActionOnGroupProfileMenu",
+        "contentType": "video",
+        "blockLayout": "Profile - Contained",
+        "gridLayout": "Video - Main Card",
+        "itemLayout": "Video User - Main Card",
+        "canLoadMore": 1,
+        "canLoadSmooth": 1,
+        "hasSearchBox": 1,
+        "placeholderSearchBox": "search_videos"
+      },
+      {
+        "component": "group.block.groupProfileHeader",
+        "slotName": "top",
+        "title": "Group Profile Header",
+        "blockProps": {
+          "variant": "containted",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "textPrimary",
+          "noFooter": true,
+          "noHeader": true,
+          "contentStyle": {},
+          "headerStyle": {},
+          "footerStyle": {},
+          "marginBottom": 2
+        },
+        "key": "h12i",
+        "blockId": "h12i"
+      }
+    ]
+  },
+  "small": {
+    "blocks": [
+      {
+        "component": "core.block.sidebarAppMobile",
+        "slotName": "top",
+        "blockId": "raegh"
+      },
+      {
+        "component": "group.block.groupProfileHeader",
+        "slotName": "top",
+        "title": "Group Profile Header",
+        "blockProps": {
+          "variant": "containted",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "textPrimary",
+          "noFooter": true,
+          "noHeader": true,
+          "contentStyle": {},
+          "headerStyle": {},
+          "footerStyle": {},
+          "marginBottom": 2
+        },
+        "key": "h12i",
+        "blockId": "h12i"
+      },
+      {
+        "blockId": "h33h",
+        "component": "video.block.groupVideoListingBlock",
+        "slotName": "main",
+        "canLoadMore": true,
+        "hasSearchBox": 1,
+        "itemView": "video.itemView.mainCard",
+        "displayLimit": 1,
+        "contentType": "video",
+        "dataSource": {
+          "apiUrl": "/video",
+          "apiParams": "user_id=:id&limit=1"
+        },
+        "headerActionsResource": "video.video.headerItemActionOnGroupProfileMenu",
+        "freeze": false,
+        "title": "videos",
+        "itemLayout": "Video User - Main Card",
+        "gridLayout": "Video - Main Card",
+        "blockLayout": "Profile - Contained",
+        "emptyPage": "core.block.no_item_with_icon",
+        "emptyPageProps": {
+          "description": "no_videos_found",
+          "image": "ico-video-player-o"
+        }
+      }
+    ],
+    "templateName": "mobile"
+  },
+  "info": {
+    "bundle": "web",
+    "name": "group.profile.video"
+  }
+}

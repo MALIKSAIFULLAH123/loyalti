@@ -1,0 +1,18 @@
+{
+  "gridContainerProps": {
+    "columnSpacing": 0,
+    "rowSpacing": 0
+  },
+  "gridItemProps": {
+    "xs": 12,
+    "sm": 12,
+    "md": 12,
+    "lg": 12,
+    "xl": 12
+  },
+  "gridVariant": "gridView",
+  "info": {
+    "bundle": "web",
+    "name": "Video - Small Card - Profile"
+  }
+}

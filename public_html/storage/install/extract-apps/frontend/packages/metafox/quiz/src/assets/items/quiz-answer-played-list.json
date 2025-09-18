@@ -1,0 +1,30 @@
+{
+  "itemProps": {
+    "variant": "containedCard",
+    "content": {
+      "dividerVariant": "",
+      "selectedVariant": "",
+      "sx": {
+        "alignItems": "",
+        "justifyContent": "",
+        "bgcolor": "",
+        "borderRadius": "",
+        "p": 0,
+        "mt": 1.5,
+        "flexDirection": "column"
+      }
+    },
+    "title": {
+      "variant": "body1",
+      "lines": 1,
+      "sx": {
+        "mb": 0.5,
+        "color": "text.secondary"
+      }
+    }
+  },
+  "info": {
+    "bundle": "web",
+    "name": "Quiz - Answer Played List"
+  }
+}

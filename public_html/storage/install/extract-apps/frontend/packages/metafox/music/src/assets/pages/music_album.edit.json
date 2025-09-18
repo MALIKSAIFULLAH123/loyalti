@@ -1,0 +1,35 @@
+{
+  "large": {
+    "blocks": [
+      {
+        "component": "core.breadcrumbBlock",
+        "slotName": "main",
+        "title": "breadcrumb",
+        "blockId": "i9p",
+        "blockLayout": "form breadcrumb"
+      },
+      {
+        "component": "core.block.mainForm",
+        "slotName": "main",
+        "blockId": "nef8",
+        "blockLayout": "Full Screen Form"
+      }
+    ],
+    "templateName": "simple"
+  },
+  "small": {
+    "blocks": [
+      {
+        "component": "core.block.mainForm",
+        "slotName": "main",
+        "blockId": "a777f",
+        "blockLayout": "Full Screen Form"
+      }
+    ],
+    "templateName": "mobile"
+  },
+  "info": {
+    "bundle": "web",
+    "name": "music_album.edit"
+  }
+}

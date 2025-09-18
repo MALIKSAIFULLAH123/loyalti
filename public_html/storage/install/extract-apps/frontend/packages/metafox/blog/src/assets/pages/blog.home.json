@@ -1,0 +1,226 @@
+{
+  "large": {
+    "blocks": [
+      {
+        "blockId": "ia",
+        "component": "core.block.sideAppHeader",
+        "slotName": "side",
+        "title": "Blogs",
+        "icon": "ico-compose-alt",
+        "blockLayout": "sidebar app header",
+        "freeze": true
+      },
+      {
+        "blockId": "i5",
+        "component": "core.block.searchBox",
+        "slotName": "side",
+        "placeholder": "Search",
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "textPrimary",
+          "noFooter": true,
+          "noHeader": true
+        },
+        "title": "",
+        "blockLayout": "sidebar search box",
+        "freeze": true
+      },
+      {
+        "component": "core.block.sidebarAppMenu",
+        "slotName": "side",
+        "title": "Blogs",
+        "blockId": "i8",
+        "menuName": "sidebarMenu",
+        "blockLayout": "sidebar app menu"
+      },
+      {
+        "blockId": "v44br",
+        "component": "core.dividerBlock",
+        "slotName": "side",
+        "title": "",
+        "dividerVariant": "middle",
+        "blockLayout": "sidebar divider"
+      },
+      {
+        "component": "core.categoryBlock",
+        "slotName": "side",
+        "title": "categories",
+        "href": "/blog/category",
+        "blockId": "i9",
+        "blockLayout": "sidebar app category"
+      },
+      {
+        "component": "core.block.mainListingSponsor",
+        "slotName": "main",
+        "title": "sponsored_blogs",
+        "dataSource": {
+          "apiParams": "view=sponsor&limit=3",
+          "apiUrl": "/blog"
+        },
+        "blockLayout": "App List",
+        "blockId": "i11",
+        "itemView": "blog.itemView.mainCard",
+        "contentType": "blog",
+        "canLoadMore": false,
+        "displayLimit": "3",
+        "emptyPageProps": {
+          "variant": "default"
+        },
+        "gridLayout": "Blog - Main Card",
+        "emptyPage": "hide",
+        "itemLayout": "Blog - Main Card"
+      },
+      {
+        "component": "blog.block.BrowseBlogs",
+        "slotName": "main",
+        "title": "featured_blogs",
+        "dataSource": {
+          "apiParams": "view=feature&limit=3",
+          "apiUrl": "/blog"
+        },
+        "blockLayout": "App List",
+        "blockId": "i11",
+        "itemView": "blog.itemView.mainCard",
+        "contentType": "blog",
+        "canLoadMore": false,
+        "displayLimit": "3",
+        "emptyPageProps": {
+          "variant": "default"
+        },
+        "gridLayout": "Blog - Main Card",
+        "emptyPage": "hide",
+        "itemLayout": "Blog - Main Card",
+        "headerActions": [
+          {
+            "label": "view_all",
+            "to": "/blog/search?is_featured=1&view=search"
+          }
+        ]
+      },
+      {
+        "blockId": "ne9v",
+        "component": "blog.block.BrowseBlogs",
+        "slotName": "main",
+        "emptyPage": "core.block.no_content_with_icon",
+        "emptyPageProps": {
+          "noHeader": true,
+          "contentStyle": {
+            "bgColor": "0"
+          },
+          "noBlock": 1
+        },
+        "title": "popular_blogs",
+        "contentType": "blog",
+        "dataSource": {
+          "apiUrl": "/blog",
+          "apiParams": "sort=most_viewed"
+        },
+        "blockLayout": "App List",
+        "itemView": "blog.itemView.mainCard",
+        "gridLayout": "Blog - Main Card",
+        "itemLayout": "Blog - Main Card",
+        "canLoadMore": true,
+        "maxPageNumber": 2,
+        "numberOfItemsPerPage": 10
+      }
+    ],
+    "containers": {},
+    "pageName": "blog.home",
+    "templateName": "two-column-fixed"
+  },
+  "small": {
+    "blocks": [
+      {
+        "component": "core.block.sidebarAppMobile",
+        "slotName": "main",
+        "blockProps": {
+          "variant": "plained",
+          "marginBottom": 2
+        },
+        "blockId": "ckbwe"
+      },
+      {
+        "component": "core.block.mainListingSponsor",
+        "slotName": "main",
+        "title": "sponsored_blogs",
+        "dataSource": {
+          "apiParams": "view=sponsor&limit=3",
+          "apiUrl": "/blog"
+        },
+        "blockLayout": "App List - Mobile",
+        "blockId": "i11",
+        "itemView": "blog.itemView.mainCard",
+        "contentType": "blog",
+        "canLoadMore": false,
+        "displayLimit": "3",
+        "emptyPageProps": {
+          "variant": "default"
+        },
+        "gridLayout": "Blog - Main Card - Mobile",
+        "emptyPage": "hide",
+        "itemLayout": "Blog - Main Card - Mobile"
+      },
+      {
+        "component": "blog.block.BrowseBlogs",
+        "slotName": "main",
+        "title": "featured_blogs",
+        "dataSource": {
+          "apiParams": "view=feature&limit=3",
+          "apiUrl": "/blog"
+        },
+        "blockLayout": "App List - Mobile",
+        "blockId": "i11",
+        "itemView": "blog.itemView.mainCard",
+        "contentType": "blog",
+        "canLoadMore": false,
+        "displayLimit": "3",
+        "emptyPageProps": {
+          "variant": "default"
+        },
+        "gridLayout": "Blog - Main Card - Mobile",
+        "emptyPage": "hide",
+        "itemLayout": "Blog - Main Card - Mobile",
+        "headerActions": [
+          {
+            "label": "view_all",
+            "to": "/blog/search?is_featured=1&view=search"
+          }
+        ]
+      },
+      {
+        "blockId": "io87",
+        "component": "blog.block.BrowseBlogs",
+        "slotName": "main",
+        "emptyPage": "core.block.no_content_with_icon",
+        "emptyPageProps": {
+          "noHeader": true,
+          "contentStyle": {
+            "bgColor": "0"
+          },
+          "noBlock": 1
+        },
+        "title": "popular_blogs",
+        "contentType": "blog",
+        "dataSource": {
+          "apiUrl": "/blog",
+          "apiParams": "sort=most_viewed&limit=10"
+        },
+        "blockLayout": "App List - Mobile",
+        "canLoadMore": true,
+        "canLoadSmooth": true,
+        "itemView": "blog.itemView.mainCard",
+        "gridLayout": "Blog - Main Card - Mobile",
+        "itemLayout": "Blog - Main Card - Mobile"
+      }
+    ],
+    "containers": {},
+    "pageName": "blog.home",
+    "templateName": "mobile"
+  },
+  "info": {
+    "bundle": "web",
+    "name": "blog.home"
+  }
+}

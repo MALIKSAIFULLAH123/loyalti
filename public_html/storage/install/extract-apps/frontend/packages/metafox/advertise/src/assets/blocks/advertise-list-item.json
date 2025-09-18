@@ -1,0 +1,21 @@
+{
+  "blockProps": {
+    "contentStyle": {
+      "sx": {
+        "width": "100%"
+      }
+    },
+    "blockStyle": {
+      "sx": {
+        "m": 0,
+        "p": 0
+      }
+    }
+  },
+  "noHeader": 0,
+  "noFooter": 0,
+  "info": {
+    "bundle": "web",
+    "name": "Advertise List Item"
+  }
+}

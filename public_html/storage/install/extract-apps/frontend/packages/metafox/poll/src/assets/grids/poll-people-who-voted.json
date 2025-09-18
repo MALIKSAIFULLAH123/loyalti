@@ -1,0 +1,17 @@
+{
+  "gridContainerProps": {
+    "rowSpacing": 0,
+    "columnSpacing": 0
+  },
+  "gridItemProps": {
+    "sm": 12,
+    "md": 12,
+    "lg": 12,
+    "xl": 12,
+    "xs": 12
+  },
+  "info": {
+    "bundle": "web",
+    "name": "Poll - People Who Voted"
+  }
+}

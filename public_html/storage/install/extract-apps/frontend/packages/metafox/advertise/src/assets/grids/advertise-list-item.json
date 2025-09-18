@@ -1,0 +1,20 @@
+{
+  "gridContainerProps": {
+    "spacing": 0,
+    "sx": {
+      "flexDirection": "column"
+    }
+  },
+  "gridItemProps": {
+    "xs": 12,
+    "sm": 12,
+    "md": 12,
+    "lg": 12,
+    "xl": 12
+  },
+  "gridVariant": "gridView",
+  "info": {
+    "bundle": "web",
+    "name": "Advertise List Item"
+  }
+}

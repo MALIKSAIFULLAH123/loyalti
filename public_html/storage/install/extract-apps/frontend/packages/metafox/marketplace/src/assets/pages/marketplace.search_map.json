@@ -1,0 +1,150 @@
+{
+  "large": {
+    "blocks": [
+      {
+        "blockId": "iab2",
+        "component": "core.block.sideAppHeader",
+        "slotName": "side",
+        "title": "marketplace",
+        "icon": "ico-compose-alt",
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "textPrimary",
+          "noFooter": true,
+          "noHeader": true,
+          "blockStyle": {
+            "pl": 3,
+            "pt": 4,
+            "pr": 3,
+            "pb": 4
+          },
+          "testid": "sidebarAppHeaderBlock"
+        },
+        "freeze": true,
+        "blockLayout": "sidebar app header"
+      },
+      {
+        "blockId": "028tt",
+        "component": "core.block.sidebarQuickFilter",
+        "resourceNameAction": "viewItemsOnMap",
+        "formName": "search_map",
+        "slotName": "side",
+        "title": "Filters",
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "textPrimary",
+          "noFooter": true,
+          "noHeader": false
+        },
+        "blockLayout": "sidebar app filter"
+      },
+      {
+        "component": "core.block.mainListing",
+        "slotName": "side",
+        "gridLayout": "Marketplace - Side - List",
+        "blockLayout": "Search",
+        "emptyPage": "core.block.no_content_with_icon",
+        "emptyPageProps": {
+          "title": "no_marketplace_found",
+          "image": "ico-shopbasket"
+        },
+        "itemProps": {
+          "itemOnMap": true,
+          "showActionMenu": true
+        },
+        "blockId": "i10sa",
+        "itemView": "marketplace.itemView.mainCard",
+        "canLoadMore": false,
+        "itemLayout": "Marketplace - Side Card",
+        "title": "",
+        "displayLimit": 20
+      },
+      {
+        "component": "core.block.listingMap",
+        "slotName": "main",
+        "gridLayout": "Subscription - List",
+        "blockLayout": "Block Map",
+        "itemProps": {
+          "showActionMenu": true
+        },
+        "blockId": "i10sb",
+        "canLoadMore": false,
+        "title": ""
+      }
+    ],
+    "containers": {},
+    "pageName": "marketplace.search_map",
+    "templateName": "two-column-fixed"
+  },
+  "small": {
+    "blocks": [
+      {
+        "component": "core.block.sidebarAppMobile",
+        "slotName": "main",
+        "keepMounted": true,
+        "title": "marketplace",
+        "blockProps": {
+          "variant": "plained",
+          "marginBottom": 2
+        },
+        "contents": [
+          {
+            "name": "core.block.sidebarQuickFilter",
+            "props": {
+              "resourceNameAction": "viewItemsOnMap",
+              "formName": "search_map",
+              "slotName": "side"
+            }
+          },
+          {
+            "name": "core.block.mainListing",
+            "props": {
+              "gridLayout": "Marketplace - Side - List",
+              "blockLayout": "Search",
+              "emptyPage": "core.block.no_content_with_icon",
+              "emptyPageProps": {
+                "image": "ico-calendar-o",
+                "title": "no_marketplace_found",
+                "description": "no_marketplace_found_description"
+              },
+              "itemProps": {
+                "itemOnMap": true,
+                "showActionMenu": true
+              },
+              "blockId": "i10sa",
+              "itemView": "marketplace.itemView.mainCard",
+              "canLoadMore": false,
+              "itemLayout": "Marketplace - Side Card",
+              "title": "",
+              "displayLimit": 20
+            }
+          }
+        ],
+        "blockId": "lcfv"
+      },
+      {
+        "component": "core.block.listingMap",
+        "slotName": "main",
+        "gridLayout": "Subscription - List",
+        "blockLayout": "Block Full Main",
+        "itemProps": {
+          "showActionMenu": true
+        },
+        "blockId": "i10sb",
+        "canLoadMore": false,
+        "title": ""
+      }
+    ],
+    "containers": {},
+    "pageName": "marketplace.search_map",
+    "templateName": "mobile"
+  },
+  "info": {
+    "bundle": "web",
+    "name": "marketplace.search_map"
+  }
+}

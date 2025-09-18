@@ -1,0 +1,51 @@
+{
+	"name": "dereuromark/media-embed",
+	"type": "library",
+	"description": "A PHP library to deal with all those media services around, parsing their URLs and embedding their audio/video content in websites.",
+	"keywords": ["media", "embed", "PHP", "iframe", "video", "audio"],
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Mark Scherer",
+			"role": "Author",
+			"homepage": "https://www.dereuromark.de"
+		}
+	],
+	"require": {
+		"php": ">=7.4",
+		"jbroadway/urlify": "^1.0.0"
+	},
+	"require-dev":{
+		"sebastian/diff": "@stable",
+		"phpunit/phpunit": "^9.5",
+		"fig-r/psr2r-sniffer": "dev-master"
+	},
+	"autoload": {
+		"psr-4": {
+			"MediaEmbed\\": "src/"
+		}
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"MediaEmbed\\Test\\": "tests/"
+		}
+	},
+	"bin": [
+		"bin/generate-docs"
+	],
+	"scripts": {
+		"test": "phpunit",
+		"test-coverage": "phpunit --log-junit tmp/coverage/unitreport.xml --coverage-html tmp/coverage --coverage-clover tmp/coverage/coverage.xml",
+		"stan": "phpstan analyse",
+		"stan-setup": "cp composer.json composer.backup && composer require --dev phpstan/phpstan:^1.0.0 && mv composer.backup composer.json",
+		"lowest": "validate-prefer-lowest",
+		"lowest-setup": "composer update --prefer-lowest --prefer-stable --prefer-dist --no-interaction && cp composer.json composer.backup && composer require --dev dereuromark/composer-prefer-lowest && mv composer.backup composer.json",
+		"cs-check": "phpcs",
+		"cs-fix": "phpcbf"
+	},
+	"config": {
+		"allow-plugins": {
+			"dealerdirect/phpcodesniffer-composer-installer": true
+		}
+	}
+}

@@ -1,0 +1,20 @@
+{
+  "blockProps": {
+    "blockStyle": {
+      "sx": {
+        "mt": 0,
+        "mb": 0,
+        "borderRadius": 0,
+        "maxWidth": "md",
+        "marginLeft": "auto",
+        "marginRight": "auto"
+      }
+    }
+  },
+  "noHeader": 0,
+  "noFooter": true,
+  "info": {
+    "bundle": "web",
+    "name": "Advertise - Top - Profile Page"
+  }
+}

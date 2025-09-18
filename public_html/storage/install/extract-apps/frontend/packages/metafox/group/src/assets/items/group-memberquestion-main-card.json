@@ -1,0 +1,32 @@
+{
+  "itemProps": {
+    "variant": "containedCard",
+    "title": {
+      "variant": "h5",
+      "sx": {
+        "mb": 0.5,
+        "color": "textSecondary"
+      }
+    },
+    "content": {
+      "sx": {
+        "bgcolor": "background.paper",
+        "borderRadius": 1,
+        "borderTopWidth": 1,
+        "borderRightWidth": 1,
+        "borderBottomWidth": 1,
+        "borderLeftWidth": 1,
+        "borderColor": "border.secondary",
+        "borderStyle": "solid",
+        "pt": 2,
+        "pr": 2,
+        "pb": 0,
+        "pl": 2
+      }
+    }
+  },
+  "info": {
+    "bundle": "web",
+    "name": "Group - MemberQuestion - Main Card"
+  }
+}

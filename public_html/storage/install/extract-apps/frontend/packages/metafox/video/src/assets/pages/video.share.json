@@ -1,0 +1,47 @@
+{
+  "large": {
+    "blocks": [
+      {
+        "component": "core.breadcrumbBlock",
+        "slotName": "main",
+        "title": "breadcrumb",
+        "blockId": "i9p",
+        "blockLayout": "form breadcrumb"
+      },
+      {
+        "blockId": "eqc3g",
+        "component": "video.block.ShareVideoBlock",
+        "slotName": "main",
+        "pageName": "video.share",
+        "pageSize": "large",
+        "title": "add_new_video",
+        "blockLayout": "Share Video Block",
+        "noHeader": false
+      }
+    ],
+    "templateName": "simple"
+  },
+  "small": {
+    "templateName": "mobile",
+    "blocks": [
+      {
+        "component": "core.breadcrumbBlock",
+        "slotName": "main",
+        "title": "breadcrumb",
+        "blockId": "i9p",
+        "blockLayout": "form breadcrumb"
+      },
+      {
+        "blockId": "eqc3g",
+        "component": "video.block.ShareVideoBlock",
+        "slotName": "main",
+        "title": "add_new_video",
+        "blockLayout": "Share Video Block"
+      }
+    ]
+  },
+  "info": {
+    "bundle": "web",
+    "name": "video.share"
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "large": {
+    "blocks": [
+      {
+        "component": "subscription_invoice.block.detailView",
+        "slotName": "main",
+        "blockId": "bc2d"
+      },
+      {
+        "blockId": "ia9",
+        "component": "core.block.sideAppHeader",
+        "slotName": "side",
+        "title": "Subscriptions",
+        "icon": "ico-compose-alt",
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "textPrimary",
+          "noFooter": true,
+          "noHeader": true
+        },
+        "freeze": true
+      },
+      {
+        "component": "core.block.sidebarAppMenu",
+        "slotName": "side",
+        "title": "Subscriptions",
+        "blockProps": {
+          "variant": "plained",
+          "noHeader": false,
+          "noFooter": false
+        },
+        "blockId": "i89"
+      }
+    ],
+    "templateName": "two-column-fixed"
+  },
+  "small": {
+    "blocks": [
+      {
+        "component": "subscription_invoice.block.detailView",
+        "slotName": "main",
+        "blockProps": {},
+        "blockId": "sp6ef"
+      }
+    ],
+    "templateName": "mobile"
+  },
+  "info": {
+    "bundle": "web",
+    "name": "subscription_invoice.view"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "gridContainerProps": {
+    "rowSpacing": 2,
+    "columnSpacing": 2
+  },
+  "gridItemProps": {
+    "sm": 6,
+    "md": 6,
+    "lg": 6,
+    "xl": 6,
+    "xs": 12
+  },
+  "gridVariant": "gridView",
+  "info": {
+    "bundle": "web",
+    "name": "Poll - Main Card"
+  }
+}

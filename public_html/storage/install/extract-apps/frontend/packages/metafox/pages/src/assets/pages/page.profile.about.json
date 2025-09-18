@@ -1,0 +1,67 @@
+{
+  "large": {
+    "templateName": "profile-tab",
+    "blocks": [
+      {
+        "component": "pages.block.pageProfileHeader",
+        "slotName": "top",
+        "title": "Page Profile Header",
+        "blockProps": {
+          "variant": "containted",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "textPrimary",
+          "noFooter": true,
+          "noHeader": true,
+          "contentStyle": {},
+          "headerStyle": {},
+          "footerStyle": {},
+          "marginBottom": 2
+        },
+        "key": "2hsm9",
+        "blockId": "2hsm9"
+      },
+      {
+        "component": "page.block.detailsAbout",
+        "slotName": "main",
+        "title": "about_page",
+        "dataSource": {
+          "apiUrl": "/page-info/:id"
+        },
+        "key": "t68l",
+        "blockId": "t68l",
+        "blockLayout": "Profile - Contained"
+      }
+    ]
+  },
+  "small": {
+    "templateName": "mobile",
+    "blocks": [
+      {
+        "component": "core.block.sidebarAppMobile",
+        "slotName": "top",
+        "blockId": "raegh"
+      },
+      {
+        "component": "pages.block.pageProfileHeader",
+        "slotName": "top",
+        "title": "Page Profile Header",
+        "key": "2hsm9",
+        "blockId": "2hsm9"
+      },
+      {
+        "component": "page.block.detailsAbout",
+        "slotName": "main",
+        "title": "about_page",
+        "dataSource": {
+          "apiUrl": "/page-info/:id"
+        },
+        "blockLayout": "Profile Mobile - Contained"
+      }
+    ]
+  },
+  "info": {
+    "bundle": "web",
+    "name": "page.profile.about"
+  }
+}

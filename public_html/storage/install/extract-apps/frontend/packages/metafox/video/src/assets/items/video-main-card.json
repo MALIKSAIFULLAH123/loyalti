@@ -1,0 +1,52 @@
+{
+  "itemProps": {
+    "variant": "flattedCard",
+    "content": {
+      "sx": {
+        "bgcolor": "background.paper",
+        "borderRadius": 1,
+        "height": "100%"
+      },
+      "minHeight": "250"
+    },
+    "media": {
+      "placement": "top",
+      "aspectRatio": "169",
+      "width": "100%",
+      "sx": {
+        "mb": 0
+      }
+    },
+    "title": {
+      "variant": "h4",
+      "lines": 2,
+      "fixHeight": 0,
+      "sx": {
+        "mb": 1.5
+      }
+    },
+    "summary": {
+      "component": "span",
+      "variant": "body2",
+      "lines": 1,
+      "fixHeight": 1,
+      "sx": {
+        "mb": 1,
+        "color": "text.secondary"
+      }
+    },
+    "showActionMenu": 1,
+    "text": {
+      "sx": {
+        "pt": 2,
+        "pr": 2,
+        "pb": 2,
+        "pl": 2
+      }
+    }
+  },
+  "info": {
+    "bundle": "web",
+    "name": "Video - Main Card"
+  }
+}

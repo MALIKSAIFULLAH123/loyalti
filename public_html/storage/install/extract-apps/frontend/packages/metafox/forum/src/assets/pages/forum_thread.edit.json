@@ -1,0 +1,42 @@
+{
+  "large": {
+    "blocks": [
+      {
+        "component": "core.breadcrumbBlock",
+        "slotName": "main",
+        "title": "breadcrumb",
+        "blockId": "i9p",
+        "blockLayout": "form breadcrumb"
+      },
+      {
+        "component": "core.block.mainForm",
+        "slotName": "main",
+        "blockId": "puj28",
+        "blockLayout": "Full Screen Form"
+      }
+    ],
+    "templateName": "simple"
+  },
+  "small": {
+    "blocks": [
+      {
+        "component": "core.breadcrumbBlock",
+        "slotName": "main",
+        "title": "breadcrumb",
+        "blockId": "i9p",
+        "blockLayout": "form breadcrumb"
+      },
+      {
+        "component": "core.block.mainForm",
+        "slotName": "main",
+        "blockId": "n8i1",
+        "blockLayout": "Full Screen Form"
+      }
+    ],
+    "templateName": "mobile"
+  },
+  "info": {
+    "bundle": "web",
+    "name": "forum_thread.edit"
+  }
+}

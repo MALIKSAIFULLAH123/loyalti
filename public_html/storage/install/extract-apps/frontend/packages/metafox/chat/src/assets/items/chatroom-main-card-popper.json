@@ -1,0 +1,34 @@
+{
+  "itemProps": {
+    "showActionMenu": 1,
+    "type": "popper",
+    "variant": "flattedCard",
+    "title": {
+      "lines": 1,
+      "variant": "h5",
+      "ml": 1.5,
+      "color": "text.primary",
+      "margin": 0
+    },
+    "media": {
+      "width": 40,
+      "aspectRatio": "11",
+      "marginRight": 1
+    },
+    "content": {
+      "sx": {
+        "pl": 1.5,
+        "pr": 1.5,
+        "alignItems": "center",
+        "bgcolor": "",
+        "borderRadius": 1
+      },
+      "selectedVariant": "background",
+      "hoverVariant": "background"
+    }
+  },
+  "info": {
+    "bundle": "web",
+    "name": "ChatRoom - Main Card - Popper"
+  }
+}

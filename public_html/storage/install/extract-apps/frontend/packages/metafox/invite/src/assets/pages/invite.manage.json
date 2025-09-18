@@ -1,0 +1,59 @@
+{
+  "large": {
+    "blocks": [
+      {
+        "blockId": "ia",
+        "component": "core.block.sideAppHeader",
+        "slotName": "side",
+        "blockLayout": "sidebar app header",
+        "blockOrigin": "page"
+      },
+      {
+        "component": "core.block.sidebarAppMenu",
+        "slotName": "side",
+        "title": "invite",
+        "blockId": "i8",
+        "menuName": "sidebarMenu",
+        "blockLayout": "sidebar app menu",
+        "blockOrigin": "page"
+      },
+      {
+        "blockId": "hz8y",
+        "component": "invite.block.inviteListing",
+        "slotName": "main",
+        "title": "all_invitations",
+        "blockLayout": "Large Main Lists",
+        "blockOrigin": "page"
+      }
+    ],
+    "pageName": "invite.manage",
+    "templateName": "two-column-fixed"
+  },
+  "small": {
+    "templateName": "mobile",
+    "pageName": "invite.manage",
+    "blocks": [
+      {
+        "component": "core.block.sidebarAppMobile",
+        "slotName": "main",
+        "blockProps": {
+          "variant": "plained",
+          "marginBottom": 2
+        },
+        "blockId": "ckbwe"
+      },
+      {
+        "blockId": "hz8y",
+        "component": "invite.block.inviteListing",
+        "slotName": "main",
+        "title": "all_invitations",
+        "blockLayout": "App List - Mobile - Paper",
+        "blockOrigin": "page"
+      }
+    ]
+  },
+  "info": {
+    "bundle": "web",
+    "name": "invite.manage"
+  }
+}

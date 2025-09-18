@@ -1,0 +1,45 @@
+{
+  "itemProps": {
+    "showActionMenu": 1,
+    "variant": "flattedCard",
+    "media": {
+      "width": 160,
+      "aspectRatio": "11",
+      "placement": "start"
+    },
+    "title": {
+      "lines": 2,
+      "variant": "h4"
+    },
+    "content": {
+      "sx": {
+        "alignItems": "",
+        "justifyContent": "",
+        "bgcolor": "background.paper",
+        "borderRadius": 1,
+        "borderWidth": 1,
+        "borderColor": "border.secondary",
+        "borderStyle": "solid"
+      },
+      "selectedVariant": "",
+      "dividerVariant": "",
+      "hoverVariant": "",
+      "minHeight": "160"
+    },
+    "summary": {
+      "lines": 1
+    },
+    "text": {
+      "sx": {
+        "pt": 2,
+        "pb": 2,
+        "pl": 2,
+        "pr": 2
+      }
+    }
+  },
+  "info": {
+    "bundle": "web",
+    "name": "Blog User - Main Card"
+  }
+}

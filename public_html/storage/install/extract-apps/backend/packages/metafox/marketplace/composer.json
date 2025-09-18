@@ -1,0 +1,47 @@
+{
+    "name": "metafox/marketplace",
+    "description": "",
+    "version": "5.0.32",
+    "authors": [
+        {
+            "name": "phpFox",
+            "email": "developer@phpfox.com",
+            "homepage": "https://www.phpfox.com"
+        }
+    ],
+    "extra": {
+        "metafox": {
+            "core": false,
+            "alias": "marketplace",
+            "asset": "marketplace",
+            "path": "packages/metafox/marketplace",
+            "title": "Marketplace",
+            "namespace": "MetaFox\\Marketplace",
+            "internalAdminUrl": "/marketplace/setting",
+            "providers": [
+                "MetaFox\\Marketplace\\Providers\\PackageServiceProvider"
+            ],
+            "frontend": {
+                "@metafox/marketplace": "*"
+            },
+            "frontendPaths": [
+                "packages/metafox/marketplace"
+            ],
+            "require": {
+                "metafox/core": "5.1.18 - 5.1.19"
+            },
+            "aliases": {
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "MetaFox\\Marketplace\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "MetaFox\\Marketplace\\Tests\\": "tests/"
+        }
+    }
+}

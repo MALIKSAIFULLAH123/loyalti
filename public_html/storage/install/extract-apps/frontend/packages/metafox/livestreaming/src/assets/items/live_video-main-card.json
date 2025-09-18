@@ -1,0 +1,46 @@
+{
+  "itemProps": {
+    "variant": "flattedCard",
+    "content": {
+      "sx": {
+        "bgcolor": "background.paper",
+        "borderRadius": 1,
+        "height": "100%"
+      }
+    },
+    "media": {
+      "placement": "top",
+      "aspectRatio": "169",
+      "width": "100%",
+      "sx": {
+        "mb": 0
+      }
+    },
+    "title": {
+      "variant": "h4",
+      "lines": 2,
+      "sx": {
+        "mb": 0.5
+      }
+    },
+    "subInfo": {
+      "color": "text.hint",
+      "sx": {
+        "mb": 0.5
+      }
+    },
+    "showActionMenu": 1,
+    "text": {
+      "sx": {
+        "pt": 2,
+        "pr": 2,
+        "pb": 2,
+        "pl": 2
+      }
+    }
+  },
+  "info": {
+    "bundle": "web",
+    "name": "Live_video - Main Card"
+  }
+}

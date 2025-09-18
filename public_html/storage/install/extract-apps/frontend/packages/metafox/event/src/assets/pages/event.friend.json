@@ -1,0 +1,341 @@
+{
+  "large": {
+    "blocks": [
+      {
+        "component": "core.block.sideAppHeader",
+        "slotName": "side",
+        "title": "Events",
+        "icon": "ico-compose-alt",
+        "blockId": "nr31",
+        "blockLayout": "sidebar app header",
+        "freeze": true
+      },
+      {
+        "component": "core.block.searchBox",
+        "slotName": "side",
+        "placeholder": "Search",
+        "blockId": "w1t9",
+        "title": "",
+        "blockLayout": "sidebar search box",
+        "freeze": true
+      },
+      {
+        "component": "core.block.sidebarAppMenu",
+        "slotName": "side",
+        "title": "Events",
+        "blockProps": {
+          "variant": "plained",
+          "noHeader": false,
+          "noFooter": false
+        },
+        "blockId": "mb8c",
+        "menuName": "sidebarMenu",
+        "blockLayout": "sidebar app menu"
+      },
+      {
+        "blockId": "b3ag",
+        "component": "core.dividerBlock",
+        "slotName": "side",
+        "title": "",
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "textPrimary",
+          "noFooter": true,
+          "noHeader": true
+        },
+        "dividerVariant": "middle"
+      },
+      {
+        "component": "core.categoryBlock",
+        "slotName": "side",
+        "title": "categories",
+        "blockId": "k4zz",
+        "blockLayout": "sidebar app category"
+      },
+      {
+        "blockId": "ypwa5",
+        "parentBlockId": "kiy7g",
+        "component": "event.block.eventListingBlock",
+        "slotName": "main",
+        "gridLayout": "Event - Main Card",
+        "dataSource": {
+          "apiParams": "view=friend",
+          "apiUrl": "/event"
+        },
+        "itemView": "event.itemView.mainCard",
+        "emptyPage": "core.block.no_content_with_icon",
+        "emptyPageProps": {
+          "title": "no_event_found",
+          "description": "lets_create_a_new_event_to_connect_with_people",
+          "image": "ico-calendar-o"
+        },
+        "contentType": "event",
+        "gridVariant": "gridView",
+        "canLoadMore": true,
+        "hasSearchBox": false,
+        "freeze": false,
+        "blockLayout": "App List - Tab Content - No Title",
+        "itemLayout": "Event - Main Card"
+      },
+      {
+        "blockId": "noway21",
+        "parentBlockId": "ntt24",
+        "component": "event.block.eventListingBlock",
+        "slotName": "main",
+        "blockLayout": "App List - Tab Content - No Title",
+        "emptyPage": "core.block.no_content_with_icon",
+        "emptyPageProps": {
+          "title": "no_event_found",
+          "description": "lets_create_a_new_event_to_connect_with_people",
+          "image": "ico-calendar-o"
+        },
+        "gridLayout": "Event - Main Card",
+        "moduleName": "event",
+        "resourceName": "event",
+        "actionName": "viewFriendEventsUpcoming",
+        "itemView": "event.itemView.mainCard",
+        "contentType": "event",
+        "canLoadMore": true,
+        "hasSearchBox": false,
+        "freeze": false,
+        "itemLayout": "Event - Main Card"
+      },
+      {
+        "blockId": "cinnc",
+        "parentBlockId": "gre23",
+        "component": "event.block.eventListingBlock",
+        "slotName": "main",
+        "title": "past_events",
+        "blockLayout": "App List - Tab Content - No Title",
+        "emptyPage": "core.block.no_content_with_icon",
+        "emptyPageProps": {
+          "title": "no_event_found",
+          "description": "lets_create_a_new_event_to_connect_with_people",
+          "image": "ico-calendar-o"
+        },
+        "gridLayout": "Event - Main Card",
+        "moduleName": "event",
+        "resourceName": "event",
+        "actionName": "viewFriendEventsOnGoing",
+        "itemView": "event.itemView.mainCard",
+        "contentType": "event",
+        "canLoadMore": true,
+        "hasSearchBox": false,
+        "freeze": false,
+        "itemLayout": "Event - Main Card"
+      },
+      {
+        "blockId": "kiy7g",
+        "parentBlockId": "a5bo",
+        "component": "core.block.listContainer",
+        "slotName": "main",
+        "title": "Going",
+        "freeze": false,
+        "name": "all"
+      },
+      {
+        "blockId": "ntt24",
+        "parentBlockId": "a5bo",
+        "component": "core.block.listContainer",
+        "slotName": "main",
+        "title": "Ongoing",
+        "freeze": false,
+        "name": "upcoming"
+      },
+      {
+        "blockId": "gre23",
+        "parentBlockId": "a5bo",
+        "component": "core.block.listContainer",
+        "slotName": "main",
+        "title": "Going",
+        "freeze": false,
+        "name": "ongoing"
+      },
+      {
+        "blockId": "a5bo",
+        "component": "core.block.tabContainer",
+        "slotName": "main",
+        "blockLayout": "App List - Sub Tab",
+        "title": "friends_events",
+        "freeze": false,
+        "tabProps": {
+          "tabs": [
+            {
+              "id": 1,
+              "label": "all_friend_events",
+              "tab": "all"
+            },
+            {
+              "id": 2,
+              "label": "tab_event_upcoming",
+              "tab": "upcoming"
+            },
+            {
+              "id": 3,
+              "label": "tab_event_ongoing",
+              "tab": "ongoing"
+            }
+          ]
+        }
+      }
+    ],
+    "containers": {},
+    "pageName": "event.home",
+    "templateName": "two-column-fixed"
+  },
+  "small": {
+    "blocks": [
+      {
+        "component": "core.block.sidebarAppMobile",
+        "slotName": "main",
+        "contents": [
+          {
+            "name": "core.block.searchBox"
+          },
+          {
+            "name": "core.block.sidebarAppMenu"
+          },
+          {
+            "name": "core.categoryBlock"
+          }
+        ],
+        "blockId": "ge79n"
+      },
+      {
+        "blockId": "ypwa5",
+        "parentBlockId": "kiy7g",
+        "component": "event.block.eventListingBlock",
+        "slotName": "main",
+        "gridLayout": "Event - Main Card",
+        "dataSource": {
+          "apiParams": "view=friend",
+          "apiUrl": "/event"
+        },
+        "itemView": "event.itemView.mainCard",
+        "emptyPage": "core.block.no_content_with_icon",
+        "emptyPageProps": {
+          "title": "no_event_found",
+          "description": "lets_create_a_new_event_to_connect_with_people",
+          "image": "ico-calendar-o"
+        },
+        "contentType": "event",
+        "gridVariant": "gridView",
+        "canLoadMore": true,
+        "hasSearchBox": false,
+        "freeze": false,
+        "blockLayout": "App List - Tab Content - No Title",
+        "itemLayout": "Event - Main Card"
+      },
+      {
+        "blockId": "noway21",
+        "parentBlockId": "ntt24",
+        "component": "event.block.eventListingBlock",
+        "slotName": "main",
+        "blockLayout": "App List - Tab Content - No Title",
+        "emptyPage": "core.block.no_content_with_icon",
+        "emptyPageProps": {
+          "title": "no_event_found",
+          "description": "lets_create_a_new_event_to_connect_with_people",
+          "image": "ico-calendar-o"
+        },
+        "gridLayout": "Event - Main Card",
+        "moduleName": "event",
+        "resourceName": "event",
+        "actionName": "viewFriendEventsUpcoming",
+        "itemView": "event.itemView.mainCard",
+        "contentType": "event",
+        "canLoadMore": true,
+        "hasSearchBox": false,
+        "freeze": false,
+        "itemLayout": "Event - Main Card"
+      },
+      {
+        "blockId": "cinnc",
+        "parentBlockId": "gre23",
+        "component": "event.block.eventListingBlock",
+        "slotName": "main",
+        "title": "past_events",
+        "blockLayout": "App List - Tab Content - No Title",
+        "emptyPage": "core.block.no_content_with_icon",
+        "emptyPageProps": {
+          "title": "no_event_found",
+          "description": "lets_create_a_new_event_to_connect_with_people",
+          "image": "ico-calendar-o"
+        },
+        "gridLayout": "Event - Main Card",
+        "moduleName": "event",
+        "resourceName": "event",
+        "actionName": "viewFriendEventsOnGoing",
+        "itemView": "event.itemView.mainCard",
+        "contentType": "event",
+        "canLoadMore": true,
+        "hasSearchBox": false,
+        "freeze": false,
+        "itemLayout": "Event - Main Card"
+      },
+      {
+        "blockId": "kiy7g",
+        "parentBlockId": "a5bo",
+        "component": "core.block.listContainer",
+        "slotName": "main",
+        "title": "Going",
+        "freeze": false,
+        "name": "all"
+      },
+      {
+        "blockId": "ntt24",
+        "parentBlockId": "a5bo",
+        "component": "core.block.listContainer",
+        "slotName": "main",
+        "title": "Ongoing",
+        "freeze": false,
+        "name": "upcoming"
+      },
+      {
+        "blockId": "gre23",
+        "parentBlockId": "a5bo",
+        "component": "core.block.listContainer",
+        "slotName": "main",
+        "title": "Going",
+        "freeze": false,
+        "name": "ongoing"
+      },
+      {
+        "blockId": "a5bo",
+        "component": "core.block.tabContainer",
+        "slotName": "main",
+        "blockLayout": "App List - Sub Tab - Mobile",
+        "title": "my_hosting_events",
+        "freeze": false,
+        "tabProps": {
+          "tabs": [
+            {
+              "id": 1,
+              "label": "all_friend_events",
+              "tab": "all"
+            },
+            {
+              "id": 2,
+              "label": "tab_event_upcoming",
+              "tab": "upcoming"
+            },
+            {
+              "id": 3,
+              "label": "tab_event_ongoing",
+              "tab": "ongoing"
+            }
+          ]
+        }
+      }
+    ],
+    "containers": {},
+    "pageName": "event.home",
+    "templateName": "mobile"
+  },
+  "info": {
+    "bundle": "web",
+    "name": "event.friend"
+  }
+}

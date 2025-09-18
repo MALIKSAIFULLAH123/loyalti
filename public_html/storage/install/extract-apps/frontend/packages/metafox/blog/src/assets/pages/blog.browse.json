@@ -1,0 +1,152 @@
+{
+  "large": {
+    "blocks": [
+      {
+        "component": "core.block.mainListing",
+        "slotName": "main",
+        "title": "Blogs",
+        "emptyPageProps": {
+          "contentStyle": {
+            "bgColor": "0"
+          },
+          "variant": "default",
+          "title": "no_blog_found"
+        },
+        "dataSource": {
+          "apiParams": "sort=latest",
+          "apiUrl": "/blog"
+        },
+        "blockId": "i11",
+        "itemView": "blog.itemView.mainCard",
+        "contentType": "blog",
+        "canLoadMore": true,
+        "blockLayout": "App List",
+        "canLoadSmooth": 1,
+        "gridLayout": "Blog - Main Card",
+        "emptyPage": "core.block.no_content_with_icon",
+        "itemLayout": "Blog - Main Card"
+      },
+      {
+        "blockId": "ia",
+        "component": "core.block.sideAppHeader",
+        "slotName": "side",
+        "title": "Blogs",
+        "icon": "ico-compose-alt",
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "textPrimary",
+          "noFooter": true,
+          "noHeader": true
+        },
+        "freeze": true,
+        "blockLayout": "sidebar app header"
+      },
+      {
+        "blockId": "i5",
+        "component": "core.block.searchBox",
+        "slotName": "side",
+        "placeholder": "Search",
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "textPrimary",
+          "noFooter": true,
+          "noHeader": true
+        },
+        "title": "",
+        "freeze": true,
+        "blockLayout": "sidebar search box"
+      },
+      {
+        "component": "core.block.sidebarAppMenu",
+        "slotName": "side",
+        "title": "Blogs",
+        "blockId": "i8",
+        "menuName": "sidebarMenu",
+        "blockLayout": "sidebar app menu"
+      },
+      {
+        "blockId": "v44br",
+        "component": "core.dividerBlock",
+        "slotName": "side",
+        "title": "sidebar divider",
+        "dividerVariant": "middle",
+        "blockLayout": "sidebar divider"
+      },
+      {
+        "component": "core.categoryBlock",
+        "slotName": "side",
+        "title": "categories",
+        "href": "/blog/category",
+        "blockId": "i9",
+        "blockLayout": "sidebar app category"
+      }
+    ],
+    "containers": {},
+    "pageName": "blog.home",
+    "templateName": "two-column-fixed"
+  },
+  "small": {
+    "blocks": [
+      {
+        "component": "core.block.sidebarAppMobile",
+        "slotName": "main",
+        "blockProps": {
+          "variant": "plained",
+          "marginBottom": 2
+        },
+        "contents": [
+          {
+            "name": "core.block.searchBox"
+          },
+          {
+            "name": "core.block.sidebarAppMenu"
+          },
+          {
+            "name": "core.categoryBlock"
+          }
+        ],
+        "blockId": "tggha"
+      },
+      {
+        "component": "core.block.mainListing",
+        "slotName": "main",
+        "blockView": "ui.block.default",
+        "blockId": "i10",
+        "itemView": "blog.itemView.mainCard",
+        "gridItemProps": {
+          "xs": 12,
+          "sm": 6,
+          "md": 6,
+          "lg": 6,
+          "xl": 4
+        },
+        "canLoadMore": true,
+        "canLoadSmooth": 1,
+        "contentType": "blog",
+        "title": "",
+        "blockLayout": "App List - Mobile",
+        "gridLayout": "Blog - Main Card - Mobile",
+        "emptyPageProps": {
+          "contentStyle": {
+            "bgColor": "0"
+          },
+          "variant": "default",
+          "title": "no_blog_found"
+        },
+        "emptyPage": "core.block.no_content_with_icon",
+        "itemLayout": "Blog - Main Card - Mobile"
+      }
+    ],
+    "containers": {},
+    "pageName": "blog.home",
+    "templateName": "mobile"
+  },
+  "info": {
+    "bundle": "web",
+    "name": "blog.browse"
+  }
+}

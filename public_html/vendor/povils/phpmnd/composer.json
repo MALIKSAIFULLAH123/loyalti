@@ -1,0 +1,45 @@
+{
+    "name": "povils/phpmnd",
+    "type": "application",
+    "description": "A tool to detect Magic numbers in codebase",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Povilas Susinskas",
+            "email": "povilassusinskas@gmail.com"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/povils/phpmnd/issues"
+    },
+    "require": {
+        "php": "^7.4 || ^8.0",
+        "symfony/console": "^4.4 || ^5.0 || ^6.0",
+        "symfony/finder": "^4.4 || ^5.0 || ^6.0",
+        "nikic/php-parser": "^4.13",
+        "php-parallel-lint/php-console-highlighter": "^1.0",
+        "phpunit/php-timer": "^2.0||^3.0||^4.0||^5.0||^6.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5",
+        "squizlabs/php_codesniffer": "^2.8.1||^3.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Povils\\PHPMND\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Povils\\PHPMND\\Tests\\": "tests/"
+        }
+    },
+    "bin": [
+        "bin/phpmnd"
+    ],
+    "scripts": {
+        "test": "phpunit",
+        "cs-check": "phpcs -p --standard=PSR2 --runtime-set ignore_warnings_on_exit 1 src tests --ignore=tests/Fixtures/Files",
+        "cs-fix": "phpcbf -p --standard=PSR2 --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1 src tests --ignore=tests/Fixtures/Files"
+    }
+}

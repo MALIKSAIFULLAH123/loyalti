@@ -1,0 +1,149 @@
+{
+  "large": {
+    "blocks": [
+      {
+        "blockId": "4c6z9",
+        "component": "core.block.sideAppHeader",
+        "slotName": "side",
+        "title": "Video",
+        "blockLayout": "sidebar app header",
+        "freeze": true
+      },
+      {
+        "blockId": "d9au",
+        "component": "core.block.searchBox",
+        "slotName": "side",
+        "title": "",
+        "placeholder": "Search",
+        "blockLayout": "sidebar search box",
+        "freeze": true
+      },
+      {
+        "component": "core.block.sidebarAppMenu",
+        "slotName": "side",
+        "props": {
+          "key": "",
+          "blockId": ""
+        },
+        "title": "videos",
+        "blockId": "i96",
+        "menuName": "sidebarMenu",
+        "blockLayout": "sidebar app menu"
+      },
+      {
+        "blockId": "nxy1",
+        "component": "core.dividerBlock",
+        "slotName": "side",
+        "title": "",
+        "dividerVariant": "middle",
+        "titleComponent": "h2",
+        "titleVariant": "subtitle1",
+        "titleColor": "textPrimary",
+        "noFooter": true,
+        "noHeader": true,
+        "blockLayout": "sidebar divider"
+      },
+      {
+        "component": "core.categoryBlock",
+        "slotName": "side",
+        "props": {
+          "key": "",
+          "blockId": ""
+        },
+        "title": "categories",
+        "blockId": "i97",
+        "blockLayout": "sidebar app category"
+      },
+      {
+        "blockId": "ne9v",
+        "component": "video.block.BrowseVideos",
+        "slotName": "main",
+        "emptyPage": "core.block.no_content_with_icon",
+        "emptyPageProps": {
+          "title": "no_videos_found",
+          "contentStyle": {
+            "bgColor": "0"
+          }
+        },
+        "title": "my_videos",
+        "itemView": "video.itemView.mainCard",
+        "contentType": "video",
+        "dataSource": {
+          "apiUrl": "/video",
+          "apiParams": "view=my"
+        },
+        "canLoadMore": true,
+        "canLoadSmooth": true,
+        "blockLayout": "App List",
+        "gridLayout": "Video - Main Card",
+        "itemLayout": "Video - Main Card"
+      }
+    ],
+    "containers": {},
+    "pageName": "video.home",
+    "templateName": "two-column-fixed"
+  },
+  "small": {
+    "blocks": [
+      {
+        "component": "core.block.sidebarAppMobile",
+        "slotName": "main",
+        "blockProps": {
+          "variant": "plained",
+          "marginBottom": 2
+        },
+        "contents": [
+          {
+            "name": "core.block.searchBox"
+          },
+          {
+            "name": "core.block.sidebarAppMenu"
+          },
+          {
+            "name": "core.categoryBlock"
+          }
+        ],
+        "blockId": "hqnu"
+      },
+      {
+        "component": "video.block.BrowseVideos",
+        "slotName": "main",
+        "title": "my_videos",
+        "dataSource": {
+          "apiUrl": "/video",
+          "apiParams": "view=my"
+        },
+        "emptyPage": "core.block.no_content_with_icon",
+        "emptyPageProps": {
+          "title": "no_videos_found",
+          "contentStyle": {
+            "bgColor": "0"
+          }
+        },
+        "canLoadMore": true,
+        "canLoadSmooth": true,
+        "blockView": "ui.block.default",
+        "itemView": "video.itemView.mainCard",
+        "gridItemProps": {
+          "xs": 12,
+          "sm": 12,
+          "md": 12,
+          "lg": 12,
+          "xl": 12
+        },
+        "blockId": "0gkn",
+        "blockLayout": "App List - Mobile",
+        "gridLayout": "Video - Flat View",
+        "contentType": "video",
+        "itemLayout": "Video - Main Card"
+      }
+    ],
+    "containers": {},
+    "pageName": "video.home",
+    "templateName": "mobile"
+  },
+  "info": {
+    "bundle": "web",
+    "name": "video.my"
+  }
+}

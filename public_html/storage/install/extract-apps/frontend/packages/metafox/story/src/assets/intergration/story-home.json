@@ -1,0 +1,27 @@
+{
+  "large": {
+    "blocks": [
+      {
+        "component": "story.block.listingBlock",
+        "slotName": "main",
+        "blockId": "i6esf",
+        "blockOrder": -1
+      }
+    ]
+  },
+  "small": {
+    "blocks": [
+      {
+        "component": "story.block.listingBlock",
+        "slotName": "main",
+        "blockLayout": "Story - Listing - Feed - Mobile",
+        "blockId": "i6esf",
+        "blockOrder": -1
+      }
+    ]
+  },
+  "info": {
+    "bundle": "web",
+    "name": "home.member"
+  }
+}

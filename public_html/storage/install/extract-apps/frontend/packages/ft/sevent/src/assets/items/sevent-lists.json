@@ -1,0 +1,53 @@
+{
+  "itemProps": {
+    "showActionMenu": 1,
+    "variant": "containedCard",
+    "content": {
+      "sx": {
+        "pt": 2,
+        "pl": 2,
+        "pb": 2,
+        "pr": 2,
+        "alignItems": "center",
+        "justifyContent": "",
+        "ml": 0,
+        "bgcolor": "background.paper",
+        "borderRadius": ""
+      },
+      "selectedVariant": "",
+      "dividerVariant": "bottom",
+      "hoverVariant": "",
+      "backgroundColor": "paper"
+    },
+    "media": {
+      "width": "200",
+      "aspectRatio": "169",
+      "placement": "start",
+      "sx": {
+        "mr": 2
+      }
+    },
+    "title": {
+      "lines": 1,
+      "variant": "h4"
+    },
+    "summary": {
+      "lines": 1,
+      "component": "div",
+      "variant": "body2",
+      "sx": {
+        "mt": 1,
+        "color": "text.primary"
+      }
+    },
+    "text": {
+      "sx": {
+        "pl": 0
+      }
+    }
+  },
+  "info": {
+    "bundle": "web",
+    "name": "Sevent Lists"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "blockProps": {
+    "blockStyle": {
+      "pl": 0,
+      "pt": 0,
+      "pr": 0,
+      "pb": 0,
+      "mb": 2,
+      "sx": {
+        "borderBottomLeftRadius": 1,
+        "borderBottomRightRadius": 1
+      }
+    }
+  },
+  "noHeader": true,
+  "noFooter": true,
+  "info": {
+    "bundle": "web",
+    "name": "Detail - Transparent"
+  }
+}

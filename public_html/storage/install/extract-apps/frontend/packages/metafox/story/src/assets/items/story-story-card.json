@@ -1,0 +1,53 @@
+{
+  "itemProps": {
+    "variant": "contained",
+    "content": {
+      "dividerVariant": "",
+      "hoverVariant": "background",
+      "borderRadius": 1,
+      "selectedVariant": "",
+      "sx": {
+        "alignItems": "center",
+        "pt": 1.5,
+        "pb": 1.5,
+        "pl": 1,
+        "pr": 1,
+        "mt": 0,
+        "mb": 0,
+        "ml": 1,
+        "mr": 1
+      }
+    },
+    "title": {
+      "variant": "h4",
+      "lines": 0,
+      "sx": {}
+    },
+    "summary": {
+      "component": "div",
+      "variant": "body1",
+      "lines": 1,
+      "fixHeight": 1,
+      "sx": {
+        "mr": 0,
+        "color": "textSecondary"
+      }
+    },
+    "media": {
+      "placement": "start",
+      "aspectRatio": "11",
+      "width": "auto"
+    },
+    "showActionMenu": 1,
+    "text": {
+      "sx": {
+        "pl": 2,
+        "pr": 2
+      }
+    }
+  },
+  "info": {
+    "bundle": "web",
+    "name": "Story - Story Card"
+  }
+}

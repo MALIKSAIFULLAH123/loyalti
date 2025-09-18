@@ -1,0 +1,184 @@
+{
+  "large": {
+    "templateName": "two-column-fixed",
+    "blocks": [
+      {
+        "component": "core.block.sideAppHeader",
+        "slotName": "side",
+        "title": "events",
+        "icon": "ico-compose-alt",
+        "blockId": "pxfyc",
+        "sidebarHeaderName": "backToProfile",
+        "blockLayout": "sidebar app header"
+      },
+      {
+        "blockId": "n4e",
+        "component": "core.block.sidebarAppMenu",
+        "slotName": "side",
+        "displayViewMore": false,
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "text",
+          "noFooter": true
+        },
+        "menuName": "creatorContentMenu",
+        "title": "",
+        "blockLayout": "sidebar app menu"
+      },
+      {
+        "blockId": "rgmt",
+        "component": "core.block.mainBlock",
+        "slotName": "main",
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "text",
+          "headerStyle": {
+            "pt": 0,
+            "pb": 0,
+            "pl": 0,
+            "pr": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0,
+            "bgColor": "0",
+            "borderStyle": "0",
+            "borderColor": "0"
+          },
+          "contentStyle": {
+            "pt": 0,
+            "pb": 0,
+            "pl": 0,
+            "pr": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0,
+            "bgColor": "0",
+            "borderStyle": "0",
+            "borderColor": "0"
+          },
+          "noFooter": true,
+          "noHeader": true,
+          "padding": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0
+          },
+          "gutter": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0
+          },
+          "contentGutter": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0
+          },
+          "headerGutter": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0
+          },
+          "footerGutter": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0
+          },
+          "blockStyle": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0,
+            "bgColor": "0",
+            "borderStyle": "0",
+            "borderColor": "0"
+          },
+          "footerStyle": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0,
+            "bgColor": "0",
+            "borderStyle": "0",
+            "borderColor": "0"
+          }
+        },
+        "title": "",
+        "blockLayout": null
+      }
+    ]
+  },
+  "small": {
+    "templateName": "mobile",
+    "blocks": [
+      {
+        "component": "core.block.sidebarAppMobile",
+        "slotName": "main",
+        "blockProps": {
+          "variant": "plained",
+          "marginBottom": 2
+        },
+        "title": "",
+        "contents": [
+          {
+            "name": "core.block.sidebarAppMenu",
+            "props": {
+              "menuName": "creatorContentMenu",
+              "displayViewMore": false
+            }
+          }
+        ],
+        "blockId": "z8yi"
+      },
+      {
+        "blockId": "rgmt",
+        "component": "core.block.mainBlock",
+        "slotName": "main",
+        "title": "",
+        "blockLayout": "App List - Mobile"
+      }
+    ]
+  },
+  "info": {
+    "bundle": "web",
+    "name": "groups.manageMyContent"
+  }
+}

@@ -1,0 +1,51 @@
+{
+    "name": "metafox/livestreaming",
+    "version": "5.1.1",
+    "description": "",
+    "authors": [
+        {
+            "name": "phpFox",
+            "homepage": "https://www.phpfox.com"
+        }
+    ],
+    "extra": {
+        "metafox": {
+            "core": false,
+            "priority": 99,
+            "alias": "livestreaming",
+            "asset": "livestreaming",
+            "namespace": "MetaFox\\LiveStreaming",
+            "internalAdminUrl": "/livestreaming/setting",
+            "path": "packages/metafox/livestreaming",
+            "title": "Live Video",
+            "providers": [
+                "MetaFox\\LiveStreaming\\Providers\\PackageServiceProvider"
+            ],
+            "require": {
+                "metafox/core": "5.1.18 - 5.1.19"
+            },
+            "aliases": {
+            },
+            "frontend": {
+                "@metafox/livestreaming": "*"
+            },
+            "frontendPaths": [
+                "packages/metafox/livestreaming"
+            ],
+            "internalUrl": "/"
+        }
+    },
+    "require": {
+        "ahsankhatri/firestore-php": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "MetaFox\\LiveStreaming\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "MetaFox\\LiveStreaming\\Tests\\": "tests/"
+        }
+    }
+}

@@ -1,0 +1,15 @@
+[
+    {
+        "title": "Pepe The Frog",
+        "is_default": 1,
+        "dir": "s3"
+    },
+    {
+        "title": "Cute Deer & Bear",
+        "dir": "s1"
+    },
+    {
+        "title": "Meme Sticker",
+        "dir": "s2"
+    }
+]

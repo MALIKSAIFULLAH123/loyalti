@@ -1,0 +1,144 @@
+{
+  "large": {
+    "templateName": "two-column-fixed",
+    "blocks": [
+      {
+        "component": "music_playlist.block.playlistView",
+        "slotName": "main",
+        "blockProps": {},
+        "blockId": "naog",
+        "isAlbum": false,
+        "blockLayout": "Detail - Transparent"
+      },
+      {
+        "component": "core.block.sideAppHeader",
+        "slotName": "side",
+        "title": "Music",
+        "blockId": "329dg"
+      },
+      {
+        "component": "core.block.searchBox",
+        "slotName": "side",
+        "placeholder": "Search",
+        "blockId": "cvmm9"
+      },
+      {
+        "component": "core.block.sidebarAppMenu",
+        "slotName": "side",
+        "title": "Music",
+        "blockProps": {
+          "variant": "plained",
+          "noHeader": false,
+          "noFooter": false
+        },
+        "blockId": "cuwqq"
+      },
+      {
+        "blockId": "b3ag",
+        "component": "core.dividerBlock",
+        "slotName": "side",
+        "title": "",
+        "dividerVariant": "middle",
+        "blockLayout": "sidebar divider"
+      },
+      {
+        "component": "music.block.playlistBlock",
+        "slotName": "side",
+        "title": "saved_playlists",
+        "blockId": "4f26w",
+        "canLoadMore": 1,
+        "canLoadSmooth": 1,
+        "authRequired": true,
+        "emptyPageProps": {
+          "title": null
+        },
+        "headerActions": [
+          {
+            "as": "music.AddPlaylistButton"
+          }
+        ]
+      },
+      {
+        "blockId": "b3ag",
+        "component": "core.dividerBlock",
+        "slotName": "side",
+        "title": "",
+        "dividerVariant": "middle",
+        "blockLayout": "sidebar divider",
+        "showWhen": ["truthy", "session.loggedIn"]
+      },
+      {
+        "component": "core.categoryBlock",
+        "slotName": "side",
+        "title": "categories",
+        "blockId": "4f26w"
+      }
+    ]
+  },
+  "small": {
+    "blocks": [
+      {
+        "component": "core.block.sidebarAppMobile",
+        "slotName": "main",
+        "blockProps": {
+          "variant": "plained",
+          "marginBottom": 2
+        },
+        "blockId": "ckbwe",
+        "contents": [
+          {
+            "name": "core.block.searchBox"
+          },
+          {
+            "name": "core.block.sidebarAppMenu"
+          },
+          {
+            "name": "core.dividerBlock"
+          },
+          {
+            "name": "music.block.playlistBlock",
+            "props": {
+              "title": "saved_playlists",
+              "canLoadMore": 1,
+              "canLoadSmooth": 1,
+              "authRequired": true,
+              "emptyPageProps": {
+                "title": null
+              },
+              "headerActions": [
+                {
+                  "as": "music.AddPlaylistButton"
+                }
+              ]
+            }
+          },
+          {
+            "name": "core.dividerBlock"
+          },
+          {
+            "name": "core.categoryBlock"
+          }
+        ]
+      },
+      {
+        "component": "music_playlist.block.playlistViewMobile",
+        "slotName": "main",
+        "blockProps": {
+          "blockStyle": {
+            "pt": 0,
+            "pb": 0,
+            "pl": 0,
+            "pr": 0
+          }
+        },
+        "blockId": "yrsyd",
+        "isAlbum": false
+      }
+    ],
+    "templateName": "mobile"
+  },
+  "info": {
+    "bundle": "web",
+    "name": "music_playlist.view"
+  }
+}

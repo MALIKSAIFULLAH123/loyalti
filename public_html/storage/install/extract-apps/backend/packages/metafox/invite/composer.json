@@ -1,0 +1,50 @@
+{
+    "name": "metafox/invite",
+    "version": "5.0.18",
+    "description": "metafox/invite",
+    "keyword": "metafox/invite",
+    "authors": [
+        {
+            "name": "phpFox",
+            "email": "developer@phpfox.com",
+            "homepage": "https://www.phpfox.com"
+        }
+    ],
+    "extra": {
+        "metafox": {
+            "core": false,
+            "priority": 99,
+            "alias": "invite",
+            "asset": "invite",
+            "namespace": "MetaFox\\Invite",
+            "path": "packages/metafox/invite",
+            "title": "Invitations",
+            "providers": [
+                "MetaFox\\Invite\\Providers\\PackageServiceProvider"
+            ],
+            "aliases": {
+            },
+            "frontend": {
+                "@metafox/invite": "*"
+            },
+            "frontendPaths": [
+                "packages/metafox/invite"
+            ],
+            "require": {
+                "metafox/core": "5.1.18 - 5.1.19"
+            },
+            "internalUrl": "/invite",
+            "internalAdminUrl": "/invite/setting"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "MetaFox\\Invite\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "MetaFox\\Invite\\Tests\\": "tests/"
+        }
+    }
+}

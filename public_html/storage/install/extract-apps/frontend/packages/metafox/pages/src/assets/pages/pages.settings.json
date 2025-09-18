@@ -1,0 +1,64 @@
+{
+  "large": {
+    "templateName": "two-column-fixed",
+    "blocks": [
+      {
+        "component": "core.block.sideAppHeader",
+        "slotName": "side",
+        "icon": "ico-compose-alt",
+        "blockId": "pxfyc",
+        "sidebarHeaderName": "backToProfile",
+        "title": "App Header",
+        "blockLayout": "sidebar app header"
+      },
+      {
+        "blockId": "ne34",
+        "component": "core.block.sidebarAppMenuSetting",
+        "slotName": "side",
+        "title": "",
+        "menuName": "pageSettingsMenu",
+        "blockLayout": "sidebar app menu"
+      },
+      {
+        "blockId": "rgmt",
+        "component": "core.block.mainBlock",
+        "slotName": "main"
+      }
+    ]
+  },
+  "small": {
+    "blocks": [
+      {
+        "component": "core.block.sidebarAppMobile",
+        "slotName": "main",
+        "title": "page_settings",
+        "blockProps": {
+          "variant": "plained",
+          "marginBottom": 2
+        },
+        "contents": [
+          {
+            "name": "core.block.sidebarAppMenuSetting",
+            "props": {
+              "menuName": "pageSettingsMenu",
+              "displayViewMore": false
+            }
+          }
+        ],
+        "blockId": "tggha"
+      },
+      {
+        "blockId": "rgmt",
+        "component": "core.block.mainBlock",
+        "slotName": "main",
+        "blockLayout": "Contained"
+      }
+    ],
+    "containers": {},
+    "templateName": "mobile"
+  },
+  "info": {
+    "bundle": "web",
+    "name": "pages.settings"
+  }
+}

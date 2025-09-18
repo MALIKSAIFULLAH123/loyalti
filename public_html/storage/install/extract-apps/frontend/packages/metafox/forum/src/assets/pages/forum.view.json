@@ -1,0 +1,415 @@
+{
+  "large": {
+    "blocks": [
+      {
+        "component": "core.breadcrumbBlock",
+        "slotName": "main",
+        "title": "breadcrumb",
+        "blockId": "i9",
+        "blockLayout": "main breadcrumb"
+      },
+      {
+        "blockId": "i11562",
+        "component": "forum.block.threadListingBlock",
+        "slotName": "main",
+        "pageName": "forum.view",
+        "titleBackend": true,
+        "loadMoreType": "pagination",
+        "numberOfItemsPerPage": 10,
+        "itemView": "forum_thread.itemView.mainCard",
+        "contentType": "forum_thread",
+        "canLoadMore": true,
+        "hasSort": true,
+        "blockLayout": "Forum Thread Lists",
+        "canLoadSmooth": 1,
+        "gridLayout": "Forum_thread - Main Card",
+        "pageParamsDefault": {
+          "sort": "discussed",
+          "sort_type": "desc"
+        },
+        "emptyPage": "core.block.no_item_with_icon",
+        "emptyPageProps": {
+          "image": "ico-comments-o",
+          "noHeader": false,
+          "contentStyle": {
+            "bgColor": "0"
+          },
+          "variant": "default",
+          "title": "no_threads_found"
+        },
+        "itemLayout": "Forum_thread - Main Card",
+        "moduleName": "forum",
+        "resourceName": "forum_thread",
+        "actionName": "viewAll",
+        "actionSortName": "search",
+        "headerActionsResource": "forum.forum.headerActionOnDetailForumMenu"
+      },
+      {
+        "blockId": "ia",
+        "component": "core.block.sideAppHeader",
+        "slotName": "side",
+        "title": "",
+        "icon": "ico-compose-alt",
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "textPrimary",
+          "noFooter": true,
+          "noHeader": true
+        },
+        "freeze": true,
+        "blockLayout": "sidebar app header"
+      },
+      {
+        "blockId": "i5",
+        "component": "core.block.searchBox",
+        "slotName": "side",
+        "placeholder": "Search",
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "textPrimary",
+          "noFooter": true,
+          "noHeader": true
+        },
+        "title": "",
+        "freeze": true,
+        "blockLayout": "sidebar search box"
+      },
+      {
+        "component": "core.block.sidebarAppMenu",
+        "slotName": "side",
+        "title": "",
+        "blockProps": {
+          "variant": "plained",
+          "noHeader": false,
+          "noFooter": false
+        },
+        "blockId": "i8",
+        "menuName": "sidebarMenu",
+        "blockLayout": "sidebar app menu"
+      },
+      {
+        "blockId": "v44br",
+        "component": "core.dividerBlock",
+        "slotName": "side",
+        "title": "",
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "textPrimary",
+          "noFooter": true,
+          "noHeader": true,
+          "blockStyle": {
+            "mt": 4,
+            "mb": 1
+          }
+        },
+        "dividerVariant": "middle",
+        "blockLayout": "sidebar divider"
+      },
+      {
+        "component": "core.categoryBlock",
+        "slotName": "side",
+        "title": "categories",
+        "href": "/forum/category",
+        "blockId": "i9",
+        "blockLayout": "sidebar app category"
+      },
+      {
+        "component": "forum.block.threadListingBlock",
+        "slotName": "subside",
+        "title": "latest_posts",
+        "blockId": "qeqs",
+        "variant": "default",
+        "blockLayout": "Subside Lists",
+        "gridLayout": "Forum Post Lists",
+        "itemLayout": "Forum Thread Recent Posts",
+        "moduleName": "forum",
+        "resourceName": "forum_thread",
+        "actionName": "viewLatestPosts",
+        "itemView": "forum_thread.itemView.smallCardPost",
+        "noFooter": false,
+        "emptyPage": "hide",
+        "headerActions": [
+          {
+            "label": "read_more",
+            "to": "/forum/search?view=search&sort=last_replies&item_type=forum_thread&forum_id=:id",
+            "sx": {
+              "height": "16px"
+            }
+          }
+        ]
+      },
+      {
+        "component": "core.block.footer",
+        "emptyPage": "core.block.no_content_with_description",
+        "slotName": "subside",
+        "blockId": "footer0",
+        "contentType": "feed",
+        "dividerVariant": "middle",
+        "blockLayout": "footer"
+      }
+    ],
+    "containers": {},
+    "templateName": "three-column-fixed-dynamic-main"
+  },
+  "small": {
+    "templateName": "mobile",
+    "blocks": [
+      {
+        "blockId": "5hkgh",
+        "component": "core.block.sidebarAppMobile",
+        "slotName": "main",
+        "pageName": "forum.view",
+        "pageSize": "small",
+        "title": "",
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "text",
+          "noFooter": true,
+          "noHeader": true,
+          "padding": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0
+          },
+          "gutter": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0
+          },
+          "contentGutter": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0
+          },
+          "headerGutter": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0
+          },
+          "footerGutter": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0
+          },
+          "blockStyle": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0,
+            "bgColor": "0",
+            "borderStyle": "0",
+            "borderColor": "0"
+          },
+          "contentStyle": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0,
+            "bgColor": "0",
+            "borderStyle": "0",
+            "borderColor": "0"
+          },
+          "headerStyle": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0,
+            "bgColor": "0",
+            "borderStyle": "0",
+            "borderColor": "0"
+          },
+          "footerStyle": {
+            "pl": 0,
+            "pt": 0,
+            "pr": 0,
+            "pb": 0,
+            "ml": 0,
+            "mt": 0,
+            "mr": 0,
+            "mb": 0,
+            "bgColor": "0",
+            "borderStyle": "0",
+            "borderColor": "0"
+          },
+          "testid": "sidebarMenu",
+          "title": "App Menu Mobile"
+        },
+        "contents": [
+          {
+            "name": "core.block.searchBox"
+          },
+          {
+            "name": "core.block.sidebarAppMenu"
+          },
+          {
+            "name": "core.dividerBlock"
+          },
+          {
+            "name": "core.categoryBlock"
+          }
+        ]
+      },
+      {
+        "component": "core.breadcrumbBlock",
+        "slotName": "main",
+        "title": "breadcrumb",
+        "blockId": "i9",
+        "blockLayout": "main breadcrumb mobile"
+      },
+      {
+        "blockId": "i11562",
+        "component": "forum.block.threadListingBlock",
+        "slotName": "main",
+        "pageName": "forum.view",
+        "titleBackend": true,
+        "loadMoreType": "pagination",
+        "numberOfItemsPerPage": 10,
+        "itemView": "forum_thread.itemView.smallCard",
+        "contentType": "forum_thread",
+        "canLoadMore": true,
+        "hasSort": true,
+        "blockLayout": "Forum Thread Lists - Mobile",
+        "canLoadSmooth": 1,
+        "gridLayout": "Forum_thread - Main Card",
+        "emptyPage": "core.block.no_item_with_icon",
+        "emptyPageProps": {
+          "image": "ico-comments-o",
+          "noHeader": false,
+          "contentStyle": {
+            "bgColor": "0"
+          },
+          "variant": "default",
+          "title": "no_threads_found"
+        },
+        "pageParamsDefault": {
+          "sort": "discussed",
+          "sort_type": "desc"
+        },
+        "itemLayout": "Forum_thread - Main Card",
+        "moduleName": "forum",
+        "resourceName": "forum_thread",
+        "actionName": "viewAll",
+        "actionSortName": "search",
+        "headerActionsResource": "forum.forum.headerActionOnDetailForumMenu"
+      },
+      {
+        "blockId": "ia",
+        "component": "core.block.sideAppHeader",
+        "slotName": "side",
+        "title": "",
+        "icon": "ico-compose-alt",
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "textPrimary",
+          "noFooter": true,
+          "noHeader": true
+        },
+        "freeze": true
+      },
+      {
+        "blockId": "i5",
+        "component": "core.block.searchBox",
+        "slotName": "side",
+        "placeholder": "Search",
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "textPrimary",
+          "noFooter": true,
+          "noHeader": true
+        },
+        "title": "",
+        "freeze": true
+      },
+      {
+        "component": "core.block.sidebarAppMenu",
+        "slotName": "side",
+        "title": "",
+        "blockProps": {
+          "variant": "plained",
+          "noHeader": false,
+          "noFooter": false
+        },
+        "blockId": "i8"
+      },
+      {
+        "blockId": "v44br",
+        "component": "core.dividerBlock",
+        "slotName": "side",
+        "title": "",
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "textPrimary",
+          "noFooter": true,
+          "noHeader": true,
+          "blockStyle": {
+            "mt": 4,
+            "mb": 1
+          }
+        },
+        "dividerVariant": "middle"
+      },
+      {
+        "component": "core.categoryBlock",
+        "slotName": "side",
+        "title": "categories",
+        "href": "/forum/category",
+        "blockId": "i9"
+      }
+    ]
+  },
+  "info": {
+    "bundle": "web",
+    "name": "forum.view"
+  }
+}

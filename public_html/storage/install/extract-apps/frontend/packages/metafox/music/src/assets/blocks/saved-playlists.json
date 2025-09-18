@@ -1,0 +1,32 @@
+{
+  "blockProps": {
+    "titleStyle": {
+      "sx": {
+        "typography": "h4"
+      }
+    },
+    "contentStyle": {
+      "sx": {
+        "pt": 0
+      }
+    },
+    "headerStyle": {
+      "sx": {
+        "pb": 1,
+        "pt": 1
+      }
+    },
+    "blockStyle": {
+      "sx": {
+        "pr": 2,
+        "pl": 2
+      }
+    }
+  },
+  "noHeader": 0,
+  "noFooter": 0,
+  "info": {
+    "bundle": "web",
+    "name": "Music Saved Playlists"
+  }
+}

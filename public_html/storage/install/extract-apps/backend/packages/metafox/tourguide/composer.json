@@ -1,0 +1,51 @@
+{
+  "name": "metafox/tourguide",
+  "version": "5.0.1",
+  "description": "metafox/tourguide",
+  "keyword": "Tour Guide",
+  "authors": [
+    {
+      "name": "phpFox",
+      "email": "developer@phpfox.com",
+      "homepage": "https://www.phpfox.com"
+    }
+  ],
+  "extra": {
+    "metafox": {
+      "core": false,
+      "priority": 99,
+      "alias": "tourguide",
+      "asset": "tourguide",
+      "namespace": "MetaFox\\TourGuide",
+      "path": "packages/metafox/tourguide",
+      "title": "Tour Guide",
+      "type": "app",
+      "providers": [
+        "MetaFox\\TourGuide\\Providers\\PackageServiceProvider"
+      ],
+      "aliases": {
+      },
+      "require": {
+          "metafox/core": "5.1.18 - 5.1.19"
+      },
+      "frontend": {
+        "@metafox/tourguide": "*"
+      },
+      "frontendPaths": [
+          "packages/metafox/tourguide"
+      ],
+      "internalUrl": "/tourguide",
+      "internalAdminUrl": "/tourguide/permission"
+    }
+  },
+  "autoload": {
+    "psr-4": {
+      "MetaFox\\TourGuide\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "MetaFox\\TourGuide\\Tests\\": "tests/"
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "itemProps": {
+    "showActionMenu": 0,
+    "title": {
+      "variant": "h4",
+      "lines": 2,
+      "fixHeight": 0,
+      "sx": {
+        "mb": 1
+      }
+    },
+    "content": {
+      "sx": {
+        "pt": 0,
+        "pr": 0,
+        "borderRadius": ""
+      }
+    },
+    "media": {
+      "placement": "top",
+      "aspectRatio": "169",
+      "width": "100%"
+    },
+    "variant": "flattedCard",
+    "text": {
+      "sx": {
+        "pt": 2,
+        "pr": 2,
+        "pb": 2,
+        "pl": 2
+      }
+    },
+    "summary": {}
+  },
+  "info": {
+    "bundle": "web",
+    "name": "Video - Small Card - Profile"
+  }
+}

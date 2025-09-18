@@ -1,0 +1,43 @@
+{
+  "large": {
+    "blocks": [
+      {
+        "component": "core.breadcrumbBlock",
+        "slotName": "main",
+        "title": "breadcrumb",
+        "blockId": "i9b",
+        "blockLayout": "form breadcrumb"
+      },
+      {
+        "component": "core.block.mainForm",
+        "slotName": "main",
+        "blockId": "ahpah",
+        "title": "Form",
+        "blockLayout": "Full Screen Form"
+      }
+    ],
+    "templateName": "simple"
+  },
+  "small": {
+    "blocks": [
+      {
+        "component": "core.breadcrumbBlock",
+        "slotName": "main",
+        "title": "breadcrumb",
+        "blockId": "i9b",
+        "blockLayout": "form breadcrumb"
+      },
+      {
+        "component": "core.block.mainForm",
+        "slotName": "main",
+        "blockId": "a777f",
+        "blockLayout": "Full Screen Form"
+      }
+    ],
+    "templateName": "mobile"
+  },
+  "info": {
+    "bundle": "web",
+    "name": "blog.edit"
+  }
+}

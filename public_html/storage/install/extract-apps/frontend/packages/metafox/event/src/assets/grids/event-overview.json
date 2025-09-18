@@ -1,0 +1,12 @@
+{
+  "gridContainerProps": {
+    "columnSpacing": 2,
+    "rowSpacing": 2
+  },
+  "gridItemProps": {},
+  "gridVariant": "gridView",
+  "info": {
+    "bundle": "web",
+    "name": "Event - Overview"
+  }
+}

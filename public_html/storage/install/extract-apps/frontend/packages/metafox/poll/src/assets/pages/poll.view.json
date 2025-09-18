@@ -1,0 +1,79 @@
+{
+  "large": {
+    "templateName": "two-column-fixed",
+    "blocks": [
+      {
+        "component": "poll.block.pollView",
+        "slotName": "main",
+        "blockLayout": "Detail - Paper - Radius Bottom",
+        "blockId": "sty5a"
+      },
+      {
+        "blockId": "zoch",
+        "component": "core.block.sideAppHeader",
+        "slotName": "side",
+        "title": "name_type_poll",
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "textPrimary",
+          "noFooter": true,
+          "noHeader": true
+        },
+        "freeze": true
+      },
+      {
+        "blockId": "5ihk",
+        "component": "core.block.searchBox",
+        "slotName": "side",
+        "placeholder": "Search",
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "textPrimary",
+          "noFooter": true,
+          "noHeader": true
+        },
+        "title": "",
+        "freeze": true
+      },
+      {
+        "blockId": "6blk",
+        "component": "core.block.sidebarAppMenu",
+        "slotName": "side",
+        "title": "",
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "text",
+          "noFooter": true,
+          "noHeader": true
+        },
+        "menuName": "sidebarMenu"
+      }
+    ]
+  },
+  "small": {
+    "blocks": [
+      {
+        "component": "core.block.sidebarAppMobile",
+        "slotName": "top",
+        "blockId": "raegh"
+      },
+      {
+        "component": "poll.block.pollView",
+        "slotName": "main",
+        "blockProps": {},
+        "blockId": "s99y"
+      }
+    ],
+    "templateName": "mobile"
+  },
+  "info": {
+    "bundle": "web",
+    "name": "poll.view"
+  }
+}

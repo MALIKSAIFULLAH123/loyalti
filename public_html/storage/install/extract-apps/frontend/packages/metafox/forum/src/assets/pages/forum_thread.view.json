@@ -1,0 +1,42 @@
+{
+  "large": {
+    "blocks": [
+      {
+        "component": "core.breadcrumbBlock",
+        "slotName": "main",
+        "title": "breadcrumb",
+        "blockId": "i9",
+        "blockLayout": "main breadcrumb"
+      },
+      {
+        "component": "forum_thread.block.threadView",
+        "slotName": "main",
+        "blockId": "nwoh"
+      }
+    ],
+    "containers": {},
+    "templateName": "profile-tab"
+  },
+  "small": {
+    "blocks": [
+      {
+        "component": "core.breadcrumbBlock",
+        "slotName": "main",
+        "title": "breadcrumb",
+        "blockId": "i9",
+        "blockLayout": "main breadcrumb mobile"
+      },
+      {
+        "component": "forum_thread.block.threadView",
+        "slotName": "main",
+        "blockId": "zq3a5"
+      }
+    ],
+    "containers": {},
+    "templateName": "mobile"
+  },
+  "info": {
+    "bundle": "web",
+    "name": "forum_thread.view"
+  }
+}

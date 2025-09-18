@@ -1,0 +1,18 @@
+{
+  "gridContainerProps": {
+    "columnSpacing": 2,
+    "rowSpacing": 2
+  },
+  "gridItemProps": {
+    "xl": 2,
+    "lg": 3,
+    "md": 3,
+    "sm": 4,
+    "xs": 12
+  },
+  "gridVariant": "gridView",
+  "info": {
+    "bundle": "web",
+    "name": "Video - Flat View"
+  }
+}

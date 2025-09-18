@@ -1,0 +1,13 @@
+{
+  "press_esc_to_cancel": "Press ESC to <button>cancel</button>",
+  "post_a_sticker": "Post a sticker",
+  "insert_an_emoji": "Insert an emoji",
+  "attach_a_photo": "Attach a photo",
+  "view_more_reply": "View { value, plural, =1{# more reply} other{# more replies} }",
+  "number_reply": "{ value, plural, =1{# reply} other{# replies} }",
+  "view_more_comment": "View { value, plural, =1{# more comment} other{# more comments} }",
+  "view_previous_comment": "View { value, plural, =1{# previous comment} other{# previous comments} }",
+  "sort_comment": "Sort",
+  "edit_history": "Edit History",
+  "show_edit_history": "Show edit history"
+}

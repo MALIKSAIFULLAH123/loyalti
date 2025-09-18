@@ -1,0 +1,96 @@
+{
+  "large": {
+    "templateName": "two-column-fixed",
+    "blocks": [
+      {
+        "component": "core.block.mainListing",
+        "slotName": "main",
+        "blockId": "pruo",
+        "title": "Search Results",
+        "itemView": "live_video.itemView.mainCard",
+        "canLoadMore": true,
+        "blockLayout": "App List",
+        "gridLayout": "Live_video - Main Card",
+        "canLoadSmooth": 1,
+        "emptyPage": "core.block.no_content_with_icon",
+        "emptyPageProps": {
+          "image": "ico-video",
+          "title": "no_live_videos_are_found",
+          "description": "no_live_videos_description",
+          "noBlock": true
+        },
+        "itemLayout": "Live_video - Main Card"
+      },
+      {
+        "blockId": "ia",
+        "component": "core.block.sideAppHeader",
+        "slotName": "side",
+        "title": "",
+        "icon": "ico-shopbasket",
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "textPrimary",
+          "noFooter": true,
+          "noHeader": true
+        },
+        "freeze": true,
+        "blockLayout": "sidebar app header"
+      },
+      {
+        "blockId": "q5ce",
+        "component": "core.block.sidebarQuickFilter",
+        "slotName": "side",
+        "title": "Filters",
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "textPrimary",
+          "noFooter": true,
+          "noHeader": false
+        },
+        "blockLayout": "sidebar app filter"
+      }
+    ]
+  },
+  "small": {
+    "blocks": [
+      {
+        "component": "core.block.sidebarAppMobile",
+        "slotName": "main",
+        "blockId": "zxcsq",
+        "contents": [
+          {
+            "name": "core.block.sidebarQuickFilter"
+          }
+        ]
+      },
+      {
+        "component": "core.block.mainListing",
+        "slotName": "main",
+        "blockId": "pruo",
+        "title": "Search Results",
+        "itemView": "live_video.itemView.mainCard",
+        "canLoadMore": true,
+        "blockLayout": "App List - Mobile",
+        "gridLayout": "Livestream - Flat View",
+        "canLoadSmooth": 1,
+        "emptyPage": "core.block.no_content_with_icon",
+        "emptyPageProps": {
+          "image": "ico-video",
+          "title": "no_live_videos_are_found",
+          "description": "no_livestreams_found_description"
+        },
+        "itemLayout": "Livestream - Flat View"
+      }
+    ],
+    "containers": {},
+    "templateName": "mobile"
+  },
+  "info": {
+    "bundle": "web",
+    "name": "livestreaming.search"
+  }
+}

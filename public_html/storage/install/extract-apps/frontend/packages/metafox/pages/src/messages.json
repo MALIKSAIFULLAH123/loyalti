@@ -1,0 +1,21 @@
+{
+  "search_page": "Search for pages",
+  "select_page_to_share": "Select Page to Share",
+  "choose_pages": "Choose Pages",
+  "people_liked_this_page": "{value} people liked this page",
+  "like_page": "Like Page",
+  "search_this_page": "Search this Page",
+  "page_info": "Page Info",
+  "about_page": "About Page",
+  "vanity_url": "Vanity URL",
+  "invite_friends_to_this_page": "Invite Friends to this page",
+  "name_type_page": "Page",
+  "you_are_the_last_admin_invite_or_select_new_admin_maintain_page": "You are the last admin of {page_name}. Invite or select new admins to maintain this page",
+  "your_page_is_being_reviewed": "Your page is being reviewed and will be publicly visible soon.",
+  "this_page_needs_to_be_reviewed": "This page needs to be reviewed before going public.",
+  "people_also_like": "People also like",
+  "no_pages_found_description": "Create a new page to promote your brand, organisation.",
+  "published_on_time": "Published on {time}",
+  "this_page_is_pending_state": "This page is in pending state",
+  "contents_from_this_page_will_be_public_visible_after_admins_approve_it": "Contents from this page will be public visible after admins approve it."
+}

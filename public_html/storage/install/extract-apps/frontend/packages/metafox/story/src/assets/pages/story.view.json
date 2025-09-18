@@ -1,0 +1,26 @@
+{
+  "large": {
+    "templateName": "story-view",
+    "blocks": [
+      {
+        "component": "story.block.storyDetailView",
+        "slotName": "main",
+        "blockId": "7oo2t"
+      }
+    ]
+  },
+  "small": {
+    "blocks": [
+      {
+        "component": "story.block.storyDetailMobileView",
+        "slotName": "main",
+        "blockId": "vnqq"
+      }
+    ],
+    "templateName": "blank"
+  },
+  "info": {
+    "bundle": "web",
+    "name": "story.view"
+  }
+}

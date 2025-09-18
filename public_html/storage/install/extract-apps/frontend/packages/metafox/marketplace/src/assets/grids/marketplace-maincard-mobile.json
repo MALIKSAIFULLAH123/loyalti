@@ -1,0 +1,11 @@
+{
+  "gridContainerProps": {
+    "columnSpacing": 0,
+    "rowSpacing": 2
+  },
+  "gridVariant": "listView",
+  "info": {
+    "bundle": "web",
+    "name": "Marketplace - MainCard - Mobile"
+  }
+}

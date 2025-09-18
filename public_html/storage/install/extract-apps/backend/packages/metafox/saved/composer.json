@@ -1,0 +1,52 @@
+{
+    "name": "metafox/saved",
+    "version": "5.0.23",
+    "description": "",
+    "authors": [
+        {
+            "name": "phpFox",
+            "email": "developer@phpfox.com",
+            "homepage": "https://www.phpfox.com"
+        }
+    ],
+    "extra": {
+        "metafox": {
+            "core": false,
+            "alias": "saved",
+            "asset": "saved",
+            "path": "packages/metafox/saved",
+            "title": "Saved",
+            "namespace": "MetaFox\\Saved",
+            "internalAdminUrl": "/saved/setting",
+            "providers": [
+                "MetaFox\\Saved\\Providers\\PackageServiceProvider"
+            ],
+            "frontend": {
+                "@metafox/saved": "*"
+            },
+            "frontendPaths": [
+                "packages/metafox/saved"
+            ],
+            "require": {
+                "metafox/core": "5.1.18 - 5.1.19"
+            },
+            "aliases": {
+            }
+        },
+        "laravel": {
+            "providers": [],
+            "aliases": {
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "MetaFox\\Saved\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "MetaFox\\Saved\\Tests\\": "tests/"
+        }
+    }
+}

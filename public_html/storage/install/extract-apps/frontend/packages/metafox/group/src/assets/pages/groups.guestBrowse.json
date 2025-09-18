@@ -1,0 +1,194 @@
+{
+  "large": {
+    "blocks": [
+      {
+        "blockId": "fevt9",
+        "component": "core.block.mainListing",
+        "slotName": "main",
+        "emptyPage": "core.block.no_content_with_icon",
+        "emptyPageProps": {
+          "noHeader": true
+        },
+        "title": "",
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "textPrimary",
+          "noFooter": false,
+          "noHeader": false,
+          "contentStyle": {
+            "pt": 1,
+            "pb": 1
+          },
+          "headerStyle": {
+            "pt": 2,
+            "pb": 1
+          }
+        },
+        "itemView": "group.itemView.mainCard",
+        "itemProps": {
+          "showActionMenu": true
+        },
+        "canLoadMore": false,
+        "gridContainerProps": {
+          "spacing": 2
+        },
+        "gridVariant": "gridView",
+        "gridItemProps": {
+          "xs": 6,
+          "sm": 6,
+          "md": 6,
+          "lg": 6,
+          "xl": 4
+        },
+        "freeze": false
+      },
+      {
+        "blockId": "lyvw",
+        "component": "core.block.sideAppHeader",
+        "slotName": "side",
+        "title": "Groups",
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "textPrimary",
+          "noFooter": true,
+          "noHeader": true
+        }
+      },
+      {
+        "blockId": "cjaan",
+        "component": "core.block.searchBox",
+        "slotName": "side",
+        "title": "Groups Search",
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "textPrimary",
+          "noFooter": true,
+          "noHeader": true
+        },
+        "placeholder": "Search"
+      },
+      {
+        "component": "core.block.sidebarAppMenu",
+        "slotName": "side",
+        "title": "Groups",
+        "blockProps": {
+          "variant": "plained",
+          "noHeader": true,
+          "noFooter": true,
+          "marginBottom": 2
+        },
+        "blockId": "xv9ya"
+      },
+      {
+        "blockId": "ichmc",
+        "component": "core.dividerBlock",
+        "slotName": "side",
+        "title": "",
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "textPrimary",
+          "noFooter": true,
+          "noHeader": true,
+          "blockStyle": {
+            "mt": 4,
+            "mb": 1
+          }
+        },
+        "dividerVariant": "middle"
+      },
+      {
+        "component": "core.categoryBlock",
+        "slotName": "side",
+        "title": "categories",
+        "blockId": "602rw",
+        "blockLayout": "sidebar app category"
+      }
+    ],
+    "pageName": "groups.guestBrowse",
+    "templateName": "two-column-fixed"
+  },
+  "small": {
+    "blocks": [
+      {
+        "component": "core.block.sidebarAppMobile",
+        "slotName": "main",
+        "blockProps": {
+          "variant": "plained",
+          "noHeader": true,
+          "noFooter": true,
+          "marginBottom": 2
+        },
+        "contents": [
+          {
+            "name": "core.block.searchBox"
+          },
+          {
+            "name": "core.block.sidebarAppMenu"
+          },
+          {
+            "name": "core.categoryBlock"
+          }
+        ],
+        "blockId": "dq7y2"
+      },
+      {
+        "blockId": "fevt9",
+        "component": "core.block.mainListing",
+        "slotName": "main",
+        "emptyPage": "core.block.noContentWithIcon",
+        "emptyPageProps": {
+          "noHeader": true
+        },
+        "title": "",
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "textPrimary",
+          "noFooter": false,
+          "noHeader": false,
+          "contentStyle": {
+            "pb": 1
+          },
+          "headerStyle": {
+            "pt": 2,
+            "pb": 2,
+            "pl": 2,
+            "pr": 2
+          }
+        },
+        "itemView": "group.itemView.mainCard",
+        "itemProps": {
+          "showActionMenu": true
+        },
+        "canLoadMore": false,
+        "gridContainerProps": {
+          "spacing": 2
+        },
+        "gridVariant": "gridView",
+        "gridItemProps": {
+          "xs": 12,
+          "sm": 12,
+          "md": 6,
+          "lg": 6,
+          "xl": 4
+        },
+        "freeze": false
+      }
+    ],
+    "pageName": "groups.guestBrowse",
+    "templateName": "mobile"
+  },
+  "info": {
+    "bundle": "web",
+    "name": "groups.guestBrowse"
+  }
+}

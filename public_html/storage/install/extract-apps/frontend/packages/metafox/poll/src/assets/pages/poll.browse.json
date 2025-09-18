@@ -1,0 +1,90 @@
+{
+  "large": {
+    "blocks": [
+      {
+        "blockId": "6qj2r",
+        "component": "core.block.mainListing",
+        "slotName": "main",
+        "title": "",
+        "emptyPage": "core.block.no_content_with_icon",
+        "emptyPageProps": {
+          "noHeader": true
+        },
+        "itemView": "poll.itemView.mainCard",
+        "blockLayout": "App List",
+        "gridLayout": "Poll - Main Card",
+        "itemLayout": "Poll - Main Card",
+        "canLoadMore": true,
+        "canLoadSmooth": 1
+      },
+      {
+        "blockId": "g3p9c",
+        "component": "core.block.sideAppHeader",
+        "slotName": "side",
+        "title": "polls",
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "textPrimary",
+          "noFooter": true,
+          "noHeader": true,
+          "testid": "sidebarAppHeaderBlock"
+        },
+        "blockLayout": "sidebar app header",
+        "freeze": true
+      },
+      {
+        "blockId": "10jeo",
+        "component": "core.block.searchBox",
+        "slotName": "side",
+        "title": "",
+        "placeholder": "Search",
+        "blockLayout": "sidebar search box",
+        "freeze": true
+      },
+      {
+        "blockId": "lpt3r",
+        "component": "core.block.sidebarAppMenu",
+        "slotName": "side",
+        "title": "Quiz",
+        "menuName": "sidebarMenu",
+        "blockLayout": "sidebar app menu"
+      }
+    ],
+    "containers": {},
+    "pageName": "poll.home",
+    "templateName": "two-column-fixed"
+  },
+  "small": {
+    "blocks": [
+      {
+        "component": "core.block.sidebarAppMobile",
+        "slotName": "main",
+        "blockId": "5ufrw"
+      },
+      {
+        "blockId": "6qj2r",
+        "component": "core.block.mainListing",
+        "slotName": "main",
+        "title": "",
+        "emptyPage": "core.block.no_content_with_icon",
+        "canLoadMore": true,
+        "canLoadSmooth": 1,
+        "emptyPageProps": {
+          "noHeader": true
+        },
+        "itemView": "poll.itemView.mainCard",
+        "blockLayout": "App List - Mobile",
+        "gridLayout": "Poll - Main Card - Mobile",
+        "itemLayout": "Poll - Main Card - Mobile"
+      }
+    ],
+    "pageName": "poll.home",
+    "templateName": "mobile"
+  },
+  "info": {
+    "bundle": "web",
+    "name": "poll.browse"
+  }
+}

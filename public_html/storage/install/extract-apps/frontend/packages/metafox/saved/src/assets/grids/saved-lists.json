@@ -1,0 +1,25 @@
+{
+  "gridContainerProps": {
+    "columnSpacing": 0,
+    "rowSpacing": 0
+  },
+  "gridItemProps": {
+    "sx": {
+      "&:first-of-type": {
+        "& > div": {
+          "paddingTop": 1
+        }
+      },
+      "&:last-child": {
+        "& > div": {
+          "paddingTop": 1
+        }
+      }
+    }
+  },
+  "gridVariant": "listView",
+  "info": {
+    "bundle": "web",
+    "name": "Saved Lists"
+  }
+}

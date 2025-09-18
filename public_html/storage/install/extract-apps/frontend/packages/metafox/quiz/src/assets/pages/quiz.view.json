@@ -1,0 +1,80 @@
+{
+  "large": {
+    "templateName": "two-column-fixed",
+    "blocks": [
+      {
+        "component": "quiz.block.quizView",
+        "slotName": "main",
+        "blockId": "xpwnv",
+        "blockLayout": "Detail - Paper - Radius Bottom"
+      },
+      {
+        "blockId": "g3p9c",
+        "component": "core.block.sideAppHeader",
+        "slotName": "side",
+        "title": "quizzes",
+        "blockProps": {
+          "variant": "contained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "textPrimary",
+          "noFooter": true,
+          "noHeader": true,
+          "testid": "sidebarAppHeaderBlock"
+        }
+      },
+      {
+        "blockId": "10jeo",
+        "component": "core.block.searchBox",
+        "slotName": "side",
+        "title": "",
+        "blockProps": {
+          "variant": "contained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "textPrimary",
+          "noFooter": true,
+          "noHeader": true,
+          "testid": "sidebarSearchBlock"
+        },
+        "placeholder": "Search"
+      },
+      {
+        "blockId": "lpt3r",
+        "component": "core.block.sidebarAppMenu",
+        "slotName": "side",
+        "title": "Quiz",
+        "blockProps": {
+          "variant": "contained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "text",
+          "noFooter": true,
+          "noHeader": true,
+          "testid": "sidebarMenu"
+        },
+        "menuName": "sidebarMenu"
+      }
+    ]
+  },
+  "small": {
+    "blocks": [
+      {
+        "component": "core.block.sidebarAppMobile",
+        "slotName": "top",
+        "blockId": "raegh"
+      },
+      {
+        "component": "quiz.block.quizView",
+        "slotName": "main",
+        "blockProps": {},
+        "blockId": "8tuuq"
+      }
+    ],
+    "templateName": "mobile"
+  },
+  "info": {
+    "bundle": "web",
+    "name": "quiz.view"
+  }
+}

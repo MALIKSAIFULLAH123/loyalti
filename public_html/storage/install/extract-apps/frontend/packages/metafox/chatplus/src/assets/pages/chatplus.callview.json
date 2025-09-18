@@ -1,0 +1,26 @@
+{
+  "large": {
+    "templateName": "blank",
+    "blocks": [
+      {
+        "component": "chatplus.block.callview",
+        "slotName": "main",
+        "blockId": "mqqe"
+      }
+    ]
+  },
+  "small": {
+    "templateName": "blank",
+    "blocks": [
+      {
+        "component": "chatplus.block.callview",
+        "slotName": "main",
+        "blockId": "6zolh"
+      }
+    ]
+  },
+  "info": {
+    "bundle": "web",
+    "name": "chatplus.callview"
+  }
+}

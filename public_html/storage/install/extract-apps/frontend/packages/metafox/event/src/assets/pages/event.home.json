@@ -1,0 +1,571 @@
+{
+  "large": {
+    "blocks": [
+      {
+        "blockId": "fjfea",
+        "parentBlockId": "o4r8d",
+        "component": "event.block.eventUpcomingBlock",
+        "slotName": "main",
+        "title": "Going Events",
+        "blockLayout": "App List - Tab Content - No Title",
+        "gridLayout": "Event - Main Card",
+        "dataSource": {
+          "apiParams": "sort=recent&view=going",
+          "apiUrl": "/event"
+        },
+        "emptyPage": "core.block.no_content_with_icon",
+        "emptyPageProps": {
+          "title": "no_event_found",
+          "description": "events_you_are_going",
+          "image": "ico-calendar-o"
+        },
+        "itemView": "event.itemView.mainCard",
+        "displayLimit": 1,
+        "contentType": "event",
+        "gridVariant": "gridView",
+        "canLoadMore": true,
+        "canLoadSmooth": 1,
+        "hasSearchBox": false,
+        "freeze": false,
+        "itemLayout": "Event - Main Card"
+      },
+      {
+        "blockId": "6xp17",
+        "parentBlockId": "gowz",
+        "component": "event.block.eventListingBlock",
+        "slotName": "main",
+        "title": "Interested Events",
+        "blockLayout": "App List - Tab Content - No Title",
+        "gridLayout": "Event - Main Card",
+        "dataSource": {
+          "apiParams": "sort=recent&view=interested",
+          "apiUrl": "/event"
+        },
+        "emptyPage": "core.block.no_content_with_icon",
+        "emptyPageProps": {
+          "title": "no_event_found",
+          "description": "events_you_marked_yourself_as_interest",
+          "image": "ico-calendar-o"
+        },
+        "itemView": "event.itemView.mainCard",
+        "displayLimit": 3,
+        "contentType": "event",
+        "gridVariant": "gridView",
+        "canLoadMore": true,
+        "canLoadSmooth": 1,
+        "hasSearchBox": false,
+        "freeze": false,
+        "itemLayout": "Event - Main Card"
+      },
+      {
+        "component": "core.block.sideAppHeader",
+        "slotName": "side",
+        "title": "Events",
+        "icon": "ico-compose-alt",
+        "blockId": "pxfyc",
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "textPrimary",
+          "noFooter": false,
+          "noHeader": false,
+          "blockStyle": {
+            "pl": 3,
+            "pt": 4,
+            "pr": 3,
+            "pb": 4
+          },
+          "testid": "sidebarAppHeaderBlock"
+        },
+        "freeze": true,
+        "blockLayout": "sidebar app header"
+      },
+      {
+        "component": "core.block.searchBox",
+        "slotName": "side",
+        "placeholder": "Search",
+        "blockId": "w1t9",
+        "title": "",
+        "blockLayout": "sidebar search box",
+        "icon": "ico-map-o",
+        "action": "event/search-map",
+        "titleIcon": "view_on_map",
+        "freeze": true
+      },
+      {
+        "component": "core.block.sidebarAppMenu",
+        "slotName": "side",
+        "title": "Events",
+        "blockId": "mb8c",
+        "menuName": "sidebarMenu",
+        "blockLayout": "sidebar app menu"
+      },
+      {
+        "blockId": "b3ag",
+        "component": "core.dividerBlock",
+        "slotName": "side",
+        "title": "",
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "textPrimary",
+          "noFooter": true,
+          "noHeader": true
+        },
+        "dividerVariant": "middle"
+      },
+      {
+        "component": "core.categoryBlock",
+        "slotName": "side",
+        "title": "categories",
+        "href": "/event/category",
+        "blockId": "k4zz",
+        "blockLayout": "sidebar app category"
+      },
+      {
+        "blockId": "ja0bm",
+        "parentBlockId": "4y50g",
+        "component": "core.block.listContainer",
+        "slotName": "main",
+        "title": "Top",
+        "freeze": false,
+        "name": "popular",
+        "hasSearchBox": false
+      },
+      {
+        "blockId": "spev",
+        "parentBlockId": "4y50g",
+        "component": "core.block.listContainer",
+        "slotName": "main",
+        "title": "Sponsored",
+        "freeze": false,
+        "name": "sponsored",
+        "hasSearchBox": false
+      },
+      {
+        "blockId": "taint",
+        "parentBlockId": "4y50g",
+        "component": "core.block.listContainer",
+        "slotName": "main",
+        "title": "Featured",
+        "freeze": false,
+        "name": "featured",
+        "hasSearchBox": false
+      },
+      {
+        "blockId": "gowz",
+        "parentBlockId": "4y50g",
+        "component": "core.block.listContainer",
+        "slotName": "main",
+        "title": "Interested",
+        "freeze": false,
+        "name": "interested",
+        "hasSearchBox": false
+      },
+      {
+        "blockId": "o4r8d",
+        "parentBlockId": "4y50g",
+        "component": "core.block.listContainer",
+        "slotName": "main",
+        "title": "Going",
+        "freeze": false,
+        "name": "going",
+        "hasSearchBox": false
+      },
+      {
+        "blockId": "zdnpm",
+        "parentBlockId": "taint",
+        "component": "event.block.eventListingBlock",
+        "slotName": "main",
+        "blockLayout": "App List - Tab Content - No Title",
+        "gridLayout": "Event - Main Card",
+        "dataSource": {
+          "apiParams": "view=feature&limit=6",
+          "apiUrl": "/event"
+        },
+        "emptyPage": "core.block.no_content_with_icon",
+        "emptyPageProps": {
+          "title": "no_event_found",
+          "description": "featured_events_will_appear_here",
+          "image": "ico-calendar-o"
+        },
+        "itemView": "event.itemView.mainCard",
+        "contentType": "event",
+        "gridVariant": "gridView",
+        "canLoadMore": true,
+        "canLoadSmooth": 1,
+        "freeze": false,
+        "hasSearchBox": false,
+        "itemLayout": "Event - Main Card"
+      },
+      {
+        "blockId": "spevc",
+        "parentBlockId": "spev",
+        "component": "core.block.mainListingSponsor",
+        "slotName": "main",
+        "blockLayout": "App List - Tab Content - No Title",
+        "gridLayout": "Event - Main Card",
+        "dataSource": {
+          "apiParams": "view=sponsor&limit=6",
+          "apiUrl": "/event"
+        },
+        "emptyPage": "core.block.no_content_with_icon",
+        "emptyPageProps": {
+          "title": "no_event_found",
+          "description": "sponsored_events_will_appear_here",
+          "image": "ico-calendar-o"
+        },
+        "itemView": "event.itemView.mainCard",
+        "contentType": "event",
+        "gridVariant": "gridView",
+        "canLoadMore": true,
+        "canLoadSmooth": 1,
+        "freeze": false,
+        "hasSearchBox": false,
+        "itemLayout": "Event - Main Card"
+      },
+      {
+        "blockId": "3mooi",
+        "parentBlockId": "ja0bm",
+        "component": "event.block.eventListingBlock",
+        "slotName": "main",
+        "title": "",
+        "blockLayout": "App List - Tab Content - No Title",
+        "gridLayout": "Event - Main Card",
+        "emptyPage": "core.block.no_content_with_icon",
+        "emptyPageProps": {
+          "title": "no_event_found",
+          "description": "lets_create_a_new_event_to_connect_with_people",
+          "image": "ico-calendar-o"
+        },
+        "dataSource": {
+          "apiParams": "sort=most_interested",
+          "apiUrl": "/event"
+        },
+        "itemView": "event.itemView.mainCard",
+        "contentType": "event",
+        "gridVariant": "gridView",
+        "hasSearchBox": false,
+        "freeze": false,
+        "itemLayout": "Event - Main Card",
+        "canLoadMore": true,
+        "canLoadSmooth": 1,
+        "maxPageNumber": 2,
+        "numberOfItemsPerPage": 10
+      },
+      {
+        "blockId": "4y50g",
+        "component": "core.block.tabContainer",
+        "blockLayout": "App List - Sub Tab",
+        "slotName": "main",
+        "title": "discover_events",
+        "freeze": false,
+        "hasSearchBox": false,
+        "tabProps": {
+          "tabs": [
+            {
+              "id": 1,
+              "label": "tab_event_popular",
+              "tab": "popular"
+            },
+            {
+              "id": 2,
+              "label": "tab_event_sponsored",
+              "tab": "sponsored",
+              "showWhen": ["truthy", "acl.advertise.advertise_sponsor.view"]
+            },
+            {
+              "id": 3,
+              "label": "tab_event_featured",
+              "tab": "featured"
+            },
+            {
+              "id": 4,
+              "label": "tab_event_interested",
+              "tab": "interested",
+              "showWhen": ["truthy", "session.loggedIn"]
+            },
+            {
+              "id": 5,
+              "label": "tab_event_going",
+              "tab": "going",
+              "showWhen": ["truthy", "session.loggedIn"]
+            }
+          ]
+        }
+      }
+    ],
+    "containers": {},
+    "pageName": "event.home",
+    "templateName": "two-column-fixed"
+  },
+  "small": {
+    "blocks": [
+      {
+        "component": "core.block.sidebarAppMobile",
+        "slotName": "main",
+        "contents": [
+          {
+            "name": "core.block.searchBox",
+            "props": {
+              "icon": "ico-map-o",
+              "action": "event/search-map",
+              "titleIcon": "view_on_map"
+            }
+          },
+          {
+            "name": "core.block.sidebarAppMenu"
+          },
+          {
+            "name": "core.categoryBlock"
+          }
+        ],
+        "blockId": "ge79n"
+      },
+      {
+        "blockId": "fjfea",
+        "parentBlockId": "o4r8d",
+        "component": "event.block.eventUpcomingBlock",
+        "slotName": "main",
+        "title": "Going Events",
+        "blockLayout": "App List - Tab Content - No Title",
+        "gridLayout": "Event - Main Card",
+        "dataSource": {
+          "apiParams": "sort=recent&view=going",
+          "apiUrl": "/event"
+        },
+        "emptyPage": "core.block.no_content_with_icon",
+        "emptyPageProps": {
+          "title": "no_event_found",
+          "description": "events_you_are_going",
+          "image": "ico-calendar-o"
+        },
+        "itemView": "event.itemView.mainCard",
+        "displayLimit": 1,
+        "contentType": "event",
+        "gridVariant": "gridView",
+        "canLoadMore": true,
+        "canLoadSmooth": 1,
+        "hasSearchBox": false,
+        "freeze": false,
+        "itemLayout": "Event - Main Card"
+      },
+      {
+        "blockId": "6xp17",
+        "parentBlockId": "gowz",
+        "component": "event.block.eventListingBlock",
+        "slotName": "main",
+        "title": "Interested Events",
+        "blockLayout": "App List - Tab Content - No Title",
+        "gridLayout": "Event - Main Card",
+        "dataSource": {
+          "apiParams": "sort=recent&view=interested",
+          "apiUrl": "/event"
+        },
+        "emptyPage": "core.block.no_content_with_icon",
+        "emptyPageProps": {
+          "title": "no_event_found",
+          "description": "events_you_marked_yourself_as_interest",
+          "image": "ico-calendar-o"
+        },
+        "itemView": "event.itemView.mainCard",
+        "displayLimit": 3,
+        "contentType": "event",
+        "gridVariant": "gridView",
+        "canLoadMore": true,
+        "canLoadSmooth": 1,
+        "hasSearchBox": false,
+        "freeze": false,
+        "itemLayout": "Event - Main Card"
+      },
+      {
+        "component": "core.categoryBlock",
+        "slotName": "side",
+        "title": "categories",
+        "href": "/event/category",
+        "blockId": "k4zz",
+        "blockLayout": "sidebar app category"
+      },
+      {
+        "blockId": "ja0bm",
+        "parentBlockId": "4y50g",
+        "component": "core.block.listContainer",
+        "slotName": "main",
+        "title": "Top",
+        "freeze": false,
+        "name": "popular",
+        "hasSearchBox": false
+      },
+      {
+        "blockId": "taint",
+        "parentBlockId": "4y50g",
+        "component": "core.block.listContainer",
+        "slotName": "main",
+        "title": "Featured",
+        "freeze": false,
+        "name": "featured",
+        "hasSearchBox": false
+      },
+      {
+        "blockId": "spevm",
+        "parentBlockId": "4y50g",
+        "component": "core.block.listContainer",
+        "slotName": "main",
+        "title": "Sponsored",
+        "freeze": false,
+        "name": "sponsored",
+        "hasSearchBox": false
+      },
+      {
+        "blockId": "gowz",
+        "parentBlockId": "4y50g",
+        "component": "core.block.listContainer",
+        "slotName": "main",
+        "title": "Interested",
+        "freeze": false,
+        "name": "interested",
+        "hasSearchBox": false
+      },
+      {
+        "blockId": "o4r8d",
+        "parentBlockId": "4y50g",
+        "component": "core.block.listContainer",
+        "slotName": "main",
+        "title": "Going",
+        "freeze": false,
+        "name": "going",
+        "hasSearchBox": false
+      },
+      {
+        "blockId": "zdnpm",
+        "parentBlockId": "taint",
+        "component": "event.block.eventListingBlock",
+        "slotName": "main",
+        "blockLayout": "App List - Tab Content - No Title",
+        "gridLayout": "Event - Main Card",
+        "dataSource": {
+          "apiParams": "view=feature&limit=6",
+          "apiUrl": "/event"
+        },
+        "emptyPage": "core.block.no_content_with_icon",
+        "emptyPageProps": {
+          "title": "no_event_found",
+          "description": "featured_events_will_appear_here",
+          "image": "ico-calendar-o"
+        },
+        "itemView": "event.itemView.mainCard",
+        "contentType": "event",
+        "gridVariant": "gridView",
+        "canLoadMore": true,
+        "canLoadSmooth": 1,
+        "freeze": false,
+        "hasSearchBox": false,
+        "itemLayout": "Event - Main Card"
+      },
+      {
+        "blockId": "spevcm",
+        "parentBlockId": "spevm",
+        "component": "core.block.mainListingSponsor",
+        "slotName": "main",
+        "blockLayout": "App List - Tab Content - No Title",
+        "gridLayout": "Event - Main Card",
+        "dataSource": {
+          "apiParams": "view=sponsor&limit=6",
+          "apiUrl": "/event"
+        },
+        "emptyPage": "core.block.no_content_with_icon",
+        "emptyPageProps": {
+          "title": "no_event_found",
+          "description": "featured_events_will_appear_here",
+          "image": "ico-calendar-o"
+        },
+        "itemView": "event.itemView.mainCard",
+        "contentType": "event",
+        "gridVariant": "gridView",
+        "canLoadMore": true,
+        "canLoadSmooth": 1,
+        "freeze": false,
+        "hasSearchBox": false,
+        "itemLayout": "Event - Main Card"
+      },
+      {
+        "blockId": "3mooi",
+        "parentBlockId": "ja0bm",
+        "component": "event.block.eventListingBlock",
+        "slotName": "main",
+        "title": "Popular Events",
+        "blockLayout": "App List - Tab Content - No Title",
+        "gridLayout": "Event - Main Card",
+        "emptyPage": "core.block.no_content_with_icon",
+        "emptyPageProps": {
+          "title": "no_event_found",
+          "description": "lets_create_a_new_event_to_connect_with_people",
+          "image": "ico-calendar-o"
+        },
+        "dataSource": {
+          "apiParams": "sort=most_interested&limit=20",
+          "apiUrl": "/event"
+        },
+        "itemView": "event.itemView.mainCard",
+        "contentType": "event",
+        "gridVariant": "gridView",
+        "canLoadMore": true,
+        "canLoadSmooth": 1,
+        "hasSearchBox": false,
+        "freeze": false,
+        "displayLimit": "50",
+        "itemLayout": "Event - Main Card"
+      },
+      {
+        "blockId": "4y50g",
+        "component": "core.block.tabContainer",
+        "blockLayout": "App List - Sub Tab - Mobile",
+        "slotName": "main",
+        "title": "discover_events",
+        "freeze": false,
+        "hasSearchBox": false,
+        "tabProps": {
+          "tabs": [
+            {
+              "id": 1,
+              "label": "tab_event_popular",
+              "tab": "popular"
+            },
+            {
+              "id": 2,
+              "label": "tab_event_sponsored",
+              "tab": "sponsored",
+              "showWhen": ["truthy", "acl.advertise.advertise_sponsor.view"]
+            },
+            {
+              "id": 3,
+              "label": "tab_event_featured",
+              "tab": "featured"
+            },
+            {
+              "id": 4,
+              "label": "tab_event_interested",
+              "tab": "interested",
+              "showWhen": ["truthy", "session.loggedIn"]
+            },
+            {
+              "id": 5,
+              "label": "tab_event_going",
+              "tab": "going",
+              "showWhen": ["truthy", "session.loggedIn"]
+            }
+          ]
+        }
+      }
+    ],
+    "containers": {},
+    "pageName": "event.home",
+    "templateName": "mobile"
+  },
+  "info": {
+    "bundle": "web",
+    "name": "event.home"
+  }
+}

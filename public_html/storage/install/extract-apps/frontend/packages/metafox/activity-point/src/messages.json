@@ -1,0 +1,20 @@
+{
+  "view_all_transactions": "View All Transactions",
+  "getting_started": "Getting Started",
+  "getting_started_description": "You know that tingly feeling you get on the back of your neck sometimes? I just got that feeling when talking with her. You know I don't believe in sixth senses, but there is something not right with her. I don't know how I know, but I just do.",
+  "view_all_packages": "View All Packages",
+  "earn_more_points": "Earn More Points",
+  "points": "points",
+  "earned_points": "Earned Points",
+  "max_earned_points": "Max Earned Points",
+  "period_day": "Period (days)",
+  "app": "App",
+  "point": "Points",
+  "action": "Action",
+  "type": "Type",
+  "id": "ID",
+  "date": "Date",
+  "no_package_found": "No Packages Found",
+  "there_are_no_ready_package": "There are no ready-made packages you can buy. Please come back later.",
+  "can_not_earn_points_at_this_time": "Can not earn points at this time."
+}

@@ -1,0 +1,498 @@
+{
+  "large": {
+    "templateName": "profile-tab",
+    "blocks": [
+      {
+        "parentBlockId": "ac21",
+        "component": "user.block.groupMembersListingBlock",
+        "slotName": "main",
+        "title": "Admins",
+        "itemView": "page_member.itemView.mainCard",
+        "canLoadMore": true,
+        "acceptQuerySearch": true,
+        "key": "noma12",
+        "blockId": "noma12",
+        "emptyPage": "core.block.no_item_with_icon",
+        "emptyPageProps": {
+          "description": "no_admins_to_show",
+          "image": "ico-user3-three"
+        },
+        "dataSource": {
+          "apiUrl": "/page-member",
+          "apiParams": "page_id=:id&view=admin"
+        },
+        "blockLayout": "Profile - Sub Tab Contained No Title",
+        "gridLayout": "Friend - Profile - Cards",
+        "itemLayout": "Page Member - Cards",
+        "headerActions": [
+          {
+            "as": "page.ui.buttonActionHeaderProfile",
+            "value": "page/addNewAdmin",
+            "label": "add_new_admin",
+            "showWhen": ["truthy", "item.extra.can_add_new_admin"]
+          }
+        ]
+      },
+      {
+        "parentBlockId": "ab23",
+        "component": "user.block.groupMembersListingBlock",
+        "slotName": "main",
+        "title": "Blocked",
+        "itemView": "page_member.itemView.mainCard",
+        "canLoadMore": true,
+        "hasSearchBox": true,
+        "key": "nome3",
+        "blockId": "nome3",
+        "dataSource": {
+          "apiUrl": "/page-block",
+          "apiParams": "page_id=:id"
+        },
+        "emptyPage": "core.block.no_item_with_icon",
+        "emptyPageProps": {
+          "description": "no_members_blocked",
+          "image": "ico-user3-three"
+        },
+        "blockLayout": "Profile - Clean Body Only No Default Empty Page",
+        "itemLayout": "Page Member - Cards",
+        "gridLayout": "Friend - Profile - Cards"
+      },
+      {
+        "parentBlockId": "hu43",
+        "component": "user.block.groupMembersListingBlock",
+        "slotName": "main",
+        "itemView": "page_member.itemView.mainCard",
+        "canLoadMore": true,
+        "hasSearchBox": true,
+        "key": "jwtb",
+        "blockId": "jwtb",
+        "dataSource": {
+          "apiUrl": "/page-member",
+          "apiParams": "page_id=:id&view=all"
+        },
+        "contentType": "group_member",
+        "emptyPage": "core.block.no_item_with_icon",
+        "emptyPageProps": {
+          "description": "no_members_to_show",
+          "image": "ico-user3-three"
+        },
+        "blockLayout": "Profile - Clean Body Only No Default Empty Page",
+        "itemLayout": "Page Member - Cards",
+        "gridLayout": "Friend - Profile - Cards"
+      },
+      {
+        "parentBlockId": "ad22",
+        "component": "user.block.groupMembersListingBlock",
+        "slotName": "main",
+        "title": "Friends",
+        "itemView": "page_member.itemView.mainCard",
+        "canLoadMore": true,
+        "hasSearchBox": true,
+        "key": "name34",
+        "blockId": "name34",
+        "dataSource": {
+          "apiUrl": "/page-member",
+          "apiParams": "page_id=:id&view=friend"
+        },
+        "emptyPage": "core.block.no_item_with_icon",
+        "emptyPageProps": {
+          "description": "no_friends_found",
+          "image": "ico-user-circle-o"
+        },
+        "blockLayout": "Profile - Clean Body Only No Default Empty Page",
+        "itemLayout": "Page Member - Cards",
+        "gridLayout": "Friend - Profile - Cards"
+      },
+      {
+        "parentBlockId": "ae35",
+        "component": "user.block.groupMembersListingBlock",
+        "slotName": "main",
+        "title": "Invited",
+        "hasSearchBox": true,
+        "itemView": "page_member.itemView.invitation",
+        "canLoadMore": true,
+        "key": "neva21",
+        "blockId": "neva21",
+        "dataSource": {
+          "apiUrl": "/page-invite",
+          "apiParams": "page_id=:id"
+        },
+        "emptyPage": "core.block.no_item_with_icon",
+        "emptyPageProps": {
+          "description": "no_invites_members_for_pages",
+          "image": "ico-user3-three"
+        },
+        "blockLayout": "Profile - Clean Body Only No Default Empty Page",
+        "itemLayout": "Page Member - Cards",
+        "gridLayout": "Friend - Profile - Cards"
+      },
+      {
+        "blockId": "ae35",
+        "parentBlockId": "nut54",
+        "component": "core.block.listContainer",
+        "slotName": "main",
+        "pageName": "page.profile.member",
+        "name": "invited",
+        "pageSize": "large",
+        "freeze": false
+      },
+      {
+        "blockId": "ad22",
+        "parentBlockId": "nut54",
+        "component": "core.block.listContainer",
+        "slotName": "main",
+        "pageName": "page.profile.member",
+        "name": "friends",
+        "pageSize": "large",
+        "freeze": false
+      },
+      {
+        "blockId": "ac21",
+        "parentBlockId": "nut54",
+        "component": "core.block.listContainer",
+        "slotName": "main",
+        "pageName": "page.profile.member",
+        "name": "admins",
+        "pageSize": "large",
+        "freeze": false
+      },
+      {
+        "blockId": "ab23",
+        "parentBlockId": "nut54",
+        "component": "core.block.listContainer",
+        "slotName": "main",
+        "pageName": "page.profile.member",
+        "name": "blocked",
+        "pageSize": "large",
+        "freeze": false
+      },
+      {
+        "blockId": "hu43",
+        "parentBlockId": "nut54",
+        "component": "core.block.listContainer",
+        "slotName": "main",
+        "pageName": "page.profile.member",
+        "name": "all_members",
+        "pageSize": "large",
+        "freeze": false
+      },
+      {
+        "blockId": "nut54",
+        "component": "pages.member.tabContainer",
+        "slotName": "main",
+        "pageName": "page.profile.member",
+        "pageSize": "large",
+        "title": "members",
+        "hasSearchBox": 1,
+        "tabProps": {
+          "activeTab": "all_members",
+          "tabs": [
+            {
+              "id": 1,
+              "label": "tab_page_admins",
+              "tab": "admins",
+              "showWhen": ["truthy", "item.profile_settings.core_view_admins"]
+            },
+            {
+              "id": 2,
+              "label": "tab_page_all_members",
+              "tab": "all_members"
+            },
+            {
+              "id": 3,
+              "label": "tab_page_friends",
+              "tab": "friends",
+              "showWhen": ["truthy", "session.loggedIn"]
+            },
+            {
+              "id": 4,
+              "label": "tab_page_invited",
+              "tab": "invited",
+              "showWhen": [
+                "or",
+                ["truthy", "item.extra.can_moderate"],
+                ["truthy", "item.is_admin"]
+              ]
+            },
+            {
+              "id": 5,
+              "label": "tab_page_blocked",
+              "tab": "blocked",
+              "showWhen": [
+                "or",
+                ["truthy", "item.extra.can_moderate"],
+                ["truthy", "item.is_admin"]
+              ]
+            }
+          ],
+          "placeholderSearch": "search_members"
+        },
+        "blockLayout": "Profile - Tab Contained"
+      },
+      {
+        "component": "pages.block.pageProfileHeader",
+        "slotName": "top",
+        "title": "Page Profile Header",
+        "blockProps": {
+          "variant": "containted",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "textPrimary",
+          "noFooter": true,
+          "noHeader": true,
+          "contentStyle": {},
+          "headerStyle": {},
+          "footerStyle": {},
+          "marginBottom": 2
+        },
+        "key": "qnjj",
+        "blockId": "qnjj"
+      }
+    ]
+  },
+  "small": {
+    "templateName": "mobile",
+    "blocks": [
+      {
+        "component": "core.block.sidebarAppMobile",
+        "slotName": "top",
+        "blockId": "raegh"
+      },
+      {
+        "parentBlockId": "ac21",
+        "component": "user.block.groupMembersListingBlock",
+        "slotName": "main",
+        "title": "Admins",
+        "itemView": "page_member.itemView.mainCard",
+        "canLoadMore": true,
+        "acceptQuerySearch": true,
+        "key": "noma12",
+        "blockId": "noma12",
+        "emptyPage": "core.block.no_item_with_icon",
+        "emptyPageProps": {
+          "description": "no_admins_to_show",
+          "image": "ico-user3-three"
+        },
+        "dataSource": {
+          "apiUrl": "/page-member",
+          "apiParams": "page_id=:id&view=admin"
+        },
+        "blockLayout": "Profile - Sub Tab Contained No Title",
+        "itemLayout": "Page Member - Cards",
+        "gridLayout": "Friend - Profile - Cards",
+        "headerActions": [
+          {
+            "as": "page.ui.buttonActionHeaderProfile",
+            "value": "page/addNewAdmin",
+            "label": "add_new_admin",
+            "showWhen": ["truthy", "item.extra.can_add_new_admin"]
+          }
+        ]
+      },
+      {
+        "parentBlockId": "ab23",
+        "component": "user.block.groupMembersListingBlock",
+        "slotName": "main",
+        "title": "Blocked",
+        "itemView": "page_member.itemView.mainCard",
+        "canLoadMore": true,
+        "hasSearchBox": true,
+        "key": "nome3",
+        "blockId": "nome3",
+        "dataSource": {
+          "apiUrl": "/page-block",
+          "apiParams": "page_id=:id"
+        },
+        "emptyPage": "core.block.no_item_with_icon",
+        "emptyPageProps": {
+          "description": "no_members_blocked",
+          "image": "ico-user3-three"
+        },
+        "blockLayout": "Profile - Clean Body Only No Default Empty Page",
+        "itemLayout": "Page Member - Cards",
+        "gridLayout": "Friend - Profile - Cards"
+      },
+      {
+        "parentBlockId": "hu43",
+        "component": "user.block.groupMembersListingBlock",
+        "slotName": "main",
+        "itemView": "page_member.itemView.mainCard",
+        "canLoadMore": true,
+        "hasSearchBox": true,
+        "key": "jwtb",
+        "blockId": "jwtb",
+        "dataSource": {
+          "apiUrl": "/page-member",
+          "apiParams": "page_id=:id&view=all"
+        },
+        "contentType": "group_member",
+        "emptyPage": "core.block.no_item_with_icon",
+        "emptyPageProps": {
+          "description": "no_members_to_show",
+          "image": "ico-user3-three"
+        },
+        "blockLayout": "Profile - Clean Body Only No Default Empty Page",
+        "itemLayout": "Page Member - Cards",
+        "gridLayout": "Friend - Profile - Cards"
+      },
+      {
+        "parentBlockId": "ad22",
+        "component": "user.block.groupMembersListingBlock",
+        "slotName": "main",
+        "title": "Friends",
+        "itemView": "page_member.itemView.mainCard",
+        "canLoadMore": true,
+        "hasSearchBox": true,
+        "key": "name34",
+        "blockId": "name34",
+        "dataSource": {
+          "apiUrl": "/page-member",
+          "apiParams": "page_id=:id&view=friend"
+        },
+        "emptyPage": "core.block.no_item_with_icon",
+        "emptyPageProps": {
+          "description": "no_friends_found",
+          "image": "ico-user-circle-o"
+        },
+        "blockLayout": "Profile - Clean Body Only No Default Empty Page",
+        "itemLayout": "Page Member - Cards",
+        "gridLayout": "Friend - Profile - Cards"
+      },
+      {
+        "parentBlockId": "ae35",
+        "component": "user.block.groupMembersListingBlock",
+        "slotName": "main",
+        "title": "Invited",
+        "itemView": "page_member.itemView.invitation",
+        "canLoadMore": true,
+        "hasSearchBox": true,
+        "key": "neva21",
+        "blockId": "neva21",
+        "dataSource": {
+          "apiUrl": "/page-invite",
+          "apiParams": "page_id=:id"
+        },
+        "emptyPage": "core.block.no_item_with_icon",
+        "emptyPageProps": {
+          "description": "no_invites_members_for_pages",
+          "image": "ico-user3-three"
+        },
+        "blockLayout": "Profile - Clean Body Only No Default Empty Page",
+        "itemLayout": "Page Member - Cards",
+        "gridLayout": "Friend - Profile - Cards"
+      },
+      {
+        "blockId": "ae35",
+        "parentBlockId": "nut54",
+        "component": "core.block.listContainer",
+        "slotName": "main",
+        "pageName": "page.profile.member",
+        "name": "invited",
+        "pageSize": "large",
+        "freeze": false
+      },
+      {
+        "blockId": "ad22",
+        "parentBlockId": "nut54",
+        "component": "core.block.listContainer",
+        "slotName": "main",
+        "pageName": "page.profile.member",
+        "name": "friends",
+        "pageSize": "large",
+        "freeze": false
+      },
+      {
+        "blockId": "ac21",
+        "parentBlockId": "nut54",
+        "component": "core.block.listContainer",
+        "slotName": "main",
+        "pageName": "page.profile.member",
+        "name": "admins",
+        "pageSize": "large",
+        "freeze": false
+      },
+      {
+        "blockId": "hu43",
+        "parentBlockId": "nut54",
+        "component": "core.block.listContainer",
+        "slotName": "main",
+        "pageName": "page.profile.member",
+        "name": "all_members",
+        "pageSize": "large",
+        "freeze": false
+      },
+      {
+        "blockId": "ab23",
+        "parentBlockId": "nut54",
+        "component": "core.block.listContainer",
+        "slotName": "main",
+        "pageName": "page.profile.member",
+        "name": "blocked",
+        "pageSize": "large",
+        "freeze": false
+      },
+      {
+        "blockId": "nut54",
+        "component": "pages.member.tabContainer",
+        "slotName": "main",
+        "pageName": "page.profile.member",
+        "pageSize": "large",
+        "title": "members",
+        "hasSearchBox": 1,
+        "tabProps": {
+          "tabs": [
+            {
+              "id": 1,
+              "label": "tab_page_admins",
+              "tab": "admins",
+              "showWhen": ["truthy", "item.profile_settings.core_view_admins"]
+            },
+            {
+              "id": 2,
+              "label": "tab_page_all_members",
+              "tab": "all_members"
+            },
+            {
+              "id": 3,
+              "label": "tab_page_friends",
+              "tab": "friends",
+              "showWhen": ["truthy", "session.loggedIn"]
+            },
+            {
+              "id": 4,
+              "label": "tab_page_invited",
+              "tab": "invited",
+              "showWhen": [
+                "or",
+                ["truthy", "item.extra.can_moderate"],
+                ["truthy", "item.is_admin"]
+              ]
+            },
+            {
+              "id": 5,
+              "label": "tab_page_blocked",
+              "tab": "blocked",
+              "showWhen": [
+                "or",
+                ["truthy", "item.extra.can_moderate"],
+                ["truthy", "item.is_admin"]
+              ]
+            }
+          ],
+          "activeTab": "all_members",
+          "tabsNoSearchBox": ["admins,friends,invited,blocked"],
+          "placeholderSearch": "search_members"
+        },
+        "blockLayout": "Profile - Tab Contained"
+      },
+      {
+        "component": "pages.block.pageProfileHeader",
+        "slotName": "top",
+        "title": "Page Profile Header"
+      }
+    ]
+  },
+  "info": {
+    "bundle": "web",
+    "name": "page.profile.member"
+  }
+}

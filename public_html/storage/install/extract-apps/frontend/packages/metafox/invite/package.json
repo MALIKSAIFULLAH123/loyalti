@@ -1,0 +1,31 @@
+{
+  "name": "@metafox/invite",
+  "version": "5.0.1",
+  "description": "@metafox/invite",
+  "main": "dist/index.js",
+  "author": "developer@phpfox.com",
+  "license": "MIT",
+  "private": false,
+  "publishConfig": {
+    "access": "public",
+    "directory": "dist"
+  },
+  "repository": {},
+  "peerDependencies": {
+    "@metafox/framework": "*",
+    "@metafox/scripts": "*",
+    "eslint-config-metafox": "*"
+  },
+  "eslintConfig": {
+    "extends": [
+      "metafox"
+    ]
+  },
+  "scripts": {
+    "build": "metafox build-package && tsc -p tsconfig.build.json",
+    "test": "jest",
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx src --fix",
+    "eslint:config": "eslint --print-config package.json",
+    "unittest": "metafox jest-unittest"
+  }
+}

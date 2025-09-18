@@ -1,0 +1,30 @@
+{
+  "large": {
+    "blocks": [
+      {
+        "component": "core.block.mainForm",
+        "slotName": "main",
+        "blockId": "mxus4",
+        "blockLayout": "Full Screen Form"
+      }
+    ],
+    "pageName": "invite.home",
+    "templateName": "profile-tab"
+  },
+  "small": {
+    "templateName": "mobile",
+    "pageName": "invite.home",
+    "blocks": [
+      {
+        "component": "core.block.mainForm",
+        "slotName": "main",
+        "blockId": "w5xl5",
+        "blockLayout": "Full Screen Form"
+      }
+    ]
+  },
+  "info": {
+    "bundle": "web",
+    "name": "invite.home"
+  }
+}

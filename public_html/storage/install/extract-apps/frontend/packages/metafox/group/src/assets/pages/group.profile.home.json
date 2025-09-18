@@ -1,0 +1,237 @@
+{
+  "large": {
+    "templateName": "profile-Subside",
+    "blocks": [
+      {
+        "component": "group.block.groupProfileHeader",
+        "slotName": "top",
+        "title": "Group Profile Header",
+        "blockProps": {
+          "variant": "containted",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "textPrimary",
+          "noFooter": true,
+          "noHeader": true,
+          "contentStyle": {},
+          "headerStyle": {},
+          "footerStyle": {},
+          "marginBottom": 2
+        },
+        "key": "2hsm9",
+        "blockId": "2hsm9"
+      },
+      {
+        "component": "group.block.announcement",
+        "slotName": "subside",
+        "title": "announcements",
+        "blockId": "qea3s",
+        "variant": "default",
+        "blockStyle": "Profile - Side Contained",
+        "blockLayout": "Profile - Side Contained",
+        "itemProps": {
+          "mediaPlacement": "none"
+        }
+      },
+      {
+        "component": "group.block.groupProfileAbout",
+        "slotName": "subside",
+        "title": "about",
+        "key": "t68l",
+        "blockId": "t68l",
+        "blockLayout": "Profile - Side Contained"
+      },
+      {
+        "component": "photo.block.groupProfilePhotoOverview",
+        "slotName": "subside",
+        "title": "photos",
+        "key": "y545p",
+        "blockId": "y545p",
+        "itemView": "photo.itemView.smallCard",
+        "emptyPage": "hide",
+        "errorPage": "hide",
+        "dataSource": {
+          "apiUrl": "/photo",
+          "apiParams": "user_id=:id&limit=6"
+        },
+        "headerActions": [
+          {
+            "label": "all",
+            "to": "/group/:id/photo"
+          }
+        ],
+        "contentType": "photo",
+        "blockLayout": "Profile - Side Contained (no header divider)",
+        "gridLayout": "Photo - Profile - Small Card",
+        "itemLayout": "Photo - Profile - Small Card",
+        "displayLimit": 6
+      },
+      {
+        "component": "video.block.groupVideoOverviewBlock",
+        "slotName": "subside",
+        "blockLayout": "Profile - Side Contained (no gutter)",
+        "gridLayout": "Video - Small Card - Profile",
+        "itemLayout": "Video - Small Card - Profile",
+        "key": "j57v",
+        "blockId": "j57v",
+        "title": "videos",
+        "itemView": "video.itemView.mainCard",
+        "displayLimit": 1,
+        "dataSource": {
+          "apiUrl": "/video",
+          "apiParams": "user_id=:id&limit=1"
+        },
+        "headerActions": [
+          {
+            "label": "all",
+            "to": "/group/:id/video"
+          }
+        ],
+        "contentType": "video",
+        "emptyPage": "hide",
+        "showWhen": ["truthy", "acl.video.video.view"]
+      },
+      {
+        "component": "event.block.groupEventOverviewBlock",
+        "slotName": "subside",
+        "moduleName": "event",
+        "resourceName": "event",
+        "actionName": "viewUpcoming",
+        "title": "upcoming_event",
+        "gridLayout": "Video - Small Card - Profile",
+        "blockLayout": "Profile - Side Contained (no gutter)",
+        "key": "xh8vo",
+        "blockId": "xh8vo",
+        "itemView": "event.itemView.upcomingCard",
+        "displayLimit": 1,
+        "itemLayout": "Video - Small Card - Profile",
+        "emptyPage": "hide",
+        "headerActions": [
+          {
+            "label": "all",
+            "to": "/group/:id/event?stab=upcoming"
+          }
+        ],
+        "showWhen": ["truthy", "acl.event.event.view"]
+      },
+      {
+        "component": "group.block.relatedGroup",
+        "itemView": "group.itemView.mainCard",
+        "slotName": "subside",
+        "title": "related_groups",
+        "key": "hihi21",
+        "blockId": "hihi21",
+        "blockLayout": "Profile - Side Contained (no gutter)",
+        "gridLayout": "Group - Related Card",
+        "itemLayout": "Group - Main Card",
+        "emptyPage": "hide",
+        "moduleName": "group",
+        "resourceName": "group",
+        "actionName": "viewSimilar",
+        "displayLimit": 3,
+        "errorPage": "hide"
+      },
+      {
+        "component": "core.block.footer",
+        "slotName": "subside",
+        "dividerVariant": "middle",
+        "blockLayout": "footer",
+        "key": "qlfp",
+        "blockId": "qlfp"
+      },
+      {
+        "component": "group.block.composer",
+        "slotName": "main",
+        "title": "Status Composer",
+        "key": "srfte",
+        "blockId": "srfte",
+        "variant": "default",
+        "blockLayout": "Blocker"
+      },
+      {
+        "component": "feed.block.groupProfileFeeds",
+        "slotName": "main",
+        "key": "d90ip",
+        "blockId": "d90ip",
+        "title": "Activities",
+        "itemView": "feed.itemView.mainCard",
+        "canLoadMore": true,
+        "canLoadSmooth": true,
+        "emptyPage": "core.block.no_content_with_description",
+        "blockLayout": "Main Listings",
+        "gridLayout": "Feed - Main Card",
+        "itemLayout": "Feed - Main Card"
+      }
+    ]
+  },
+  "small": {
+    "templateName": "mobile",
+    "blocks": [
+      {
+        "component": "core.block.sidebarAppMobile",
+        "slotName": "top",
+        "blockId": "raegh"
+      },
+      {
+        "component": "group.block.groupProfileHeader",
+        "slotName": "top",
+        "title": "User Profile Header",
+        "blockProps": {
+          "variant": "containted",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "textPrimary",
+          "noFooter": true,
+          "noHeader": true,
+          "blockStyle": {
+            "mb": 2
+          },
+          "contentStyle": {},
+          "headerStyle": {},
+          "footerStyle": {},
+          "marginBottom": 2
+        },
+        "key": "2hsm9",
+        "blockId": "2hsm9"
+      },
+      {
+        "component": "group.block.announcement",
+        "slotName": "main",
+        "title": "announcements",
+        "blockId": "qea3s",
+        "variant": "default",
+        "blockStyle": "Profile - Side Contained",
+        "blockLayout": "Profile - Side Contained",
+        "itemProps": {
+          "mediaPlacement": "none"
+        }
+      },
+      {
+        "component": "group.block.composer",
+        "slotName": "main",
+        "title": "Status Composer",
+        "key": "srfte",
+        "blockId": "srfte",
+        "blockLayout": "Status Composer"
+      },
+      {
+        "component": "feed.block.groupProfileFeeds",
+        "slotName": "main",
+        "title": "Activities",
+        "key": "ymm1q",
+        "blockId": "ymm1q",
+        "itemView": "feed.itemView.mainCard",
+        "emptyPage": "core.block.no_content_with_description",
+        "blockLayout": "Main Listings",
+        "gridLayout": "Feeds - Mobile",
+        "itemLayout": "Feeds - Mobile",
+        "canLoadMore": true,
+        "canLoadSmooth": true
+      }
+    ]
+  },
+  "info": {
+    "bundle": "web",
+    "name": "group.profile.home"
+  }
+}

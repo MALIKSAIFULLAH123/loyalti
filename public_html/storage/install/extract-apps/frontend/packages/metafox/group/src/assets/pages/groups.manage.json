@@ -1,0 +1,98 @@
+{
+  "large": {
+    "templateName": "two-column-fixed",
+    "blocks": [
+      {
+        "component": "core.block.sideAppHeader",
+        "slotName": "side",
+        "icon": "ico-compose-alt",
+        "blockId": "pxfyc",
+        "sidebarHeaderName": "backToProfile",
+        "title": "App Header",
+        "blockLayout": "sidebar app header"
+      },
+      {
+        "blockId": "n4e",
+        "component": "core.block.sidebarAppMenu",
+        "slotName": "side",
+        "title": "Manage Group",
+        "displayViewMore": false,
+        "menuName": "groupManagerMenu",
+        "blockLayout": "sidebar app menu",
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "text",
+          "noFooter": true
+        }
+      },
+      {
+        "blockId": "rgmt",
+        "component": "core.block.mainBlock",
+        "slotName": "main",
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle2",
+          "titleColor": "textPrimary",
+          "headerStyle": {
+            "pt": 1,
+            "pb": 1
+          },
+          "contentStyle": {
+            "pt": 1,
+            "pb": 1
+          }
+        }
+      }
+    ]
+  },
+  "small": {
+    "templateName": "mobile",
+    "blocks": [
+      {
+        "component": "core.block.sidebarAppMobile",
+        "slotName": "main",
+        "title": "manage_group",
+        "blockProps": {
+          "variant": "plained",
+          "marginBottom": 2
+        },
+        "contents": [
+          {
+            "name": "core.block.sidebarAppMenu",
+            "props": {
+              "menuName": "groupManagerMenu",
+              "displayViewMore": false
+            }
+          }
+        ],
+        "blockId": "ksh9w"
+      },
+      {
+        "blockId": "rgmt",
+        "component": "core.block.mainBlock",
+        "slotName": "main",
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle2",
+          "titleColor": "textPrimary",
+          "headerStyle": {
+            "pt": 1,
+            "pb": 1
+          },
+          "contentStyle": {
+            "pt": 1,
+            "pb": 1
+          }
+        }
+      }
+    ]
+  },
+  "info": {
+    "bundle": "web",
+    "name": "groups.manage"
+  }
+}

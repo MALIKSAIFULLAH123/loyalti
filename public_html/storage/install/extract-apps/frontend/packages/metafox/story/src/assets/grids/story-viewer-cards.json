@@ -1,0 +1,14 @@
+{
+  "gridContainerProps": {
+    "columnSpacing": 2,
+    "rowSpacing": 2
+  },
+  "gridItemProps": {
+    "xs": 12
+  },
+  "gridVariant": "gridView",
+  "info": {
+    "bundle": "web",
+    "name": "Story - Viewer"
+  }
+}

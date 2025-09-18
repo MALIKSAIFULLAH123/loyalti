@@ -1,0 +1,38 @@
+{
+  "info": {
+    "title": "Admin/Members/Permission",
+    "bundle": "admincp",
+    "name": "advertise.sponsor.admincp.setting"
+  },
+  "large": {
+    "templateName": "admincp",
+    "blocks": [
+      {
+        "blockId": "al219",
+        "key": "al219",
+        "component": "user.block.AdminForm",
+        "slotName": "main",
+        "pageSize": "large",
+        "title": "Admin Form",
+        "isRemote": true,
+        "formName": "search",
+        "appName": "advertise",
+        "resourceName": "sponsor",
+        "blockLayout": "Admin Form",
+        "actionName": "editSearchSettingForm",
+        "minHeight": "80px"
+      },
+      {
+        "key": "ll313",
+        "blockId": "ll313",
+        "component": "user.block.AdminForm",
+        "slotName": "main",
+        "pageSize": "large",
+        "title": "Search",
+        "isRemote": 0,
+        "blockLayout": "Admin Form",
+        "minHeight": "60vh"
+      }
+    ]
+  }
+}

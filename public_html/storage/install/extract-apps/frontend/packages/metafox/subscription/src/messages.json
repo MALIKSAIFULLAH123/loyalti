@@ -1,0 +1,18 @@
+{
+  "already_owned": "Already Owned",
+  "choose_Package": "Choose Package",
+  "packages_detail": "Packages Detail",
+  "turn_on_auto_renew": "Turn On Auto-Renew",
+  "name_type_music_song": "Music Song",
+  "name_type_music_album": "Music Album",
+  "name_type_music_playlist": "Playlist",
+  "hosting": "Hosting",
+  "features": "Features",
+  "acquired_membership": "Acquired Membership",
+  "packages_comparison": "Packages Comparison",
+  "back_to_all_subscriptions": "Back to all subscriptions",
+  "activation_date_time": "Activation Date: {time}",
+  "compare_packages": "Compare Packages",
+  "subscription_packages": "Subscription Packages",
+  "no_subscription_packages_found": "No packages found"
+}

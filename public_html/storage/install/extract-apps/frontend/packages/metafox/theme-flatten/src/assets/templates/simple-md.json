@@ -1,0 +1,59 @@
+{
+  "blocks": [],
+  "header": {
+    "elements": {
+      "header": {
+        "gridContainer": false,
+        "disableGutters": true,
+        "elements": {
+          "header": {}
+        }
+      }
+    }
+  },
+  "content": {
+    "elements": {
+      "main": {
+        "gridContainer": true,
+        "maxWidth": "md",
+        "elements": {
+          "main": {
+            "xs": 12,
+            "slotName": "main",
+            "rootStyle": {
+              "maxWidth": "0"
+            },
+            "contentStyle": {
+              "sx": {
+                "alignContent": "center"
+              }
+            }
+          }
+        },
+        "rootStyle": {
+          "maxWidth": "md"
+        }
+      }
+    }
+  },
+  "footer": {
+    "elements": {
+      "main": {
+        "rootStyle": {
+          "maxWidth": "lg"
+        },
+        "elements": {
+          "bottom": {
+            "maxWidth": false
+          }
+        }
+      }
+    }
+  },
+  "title": "Simple Medium - Medium content column",
+  "description": "",
+  "info": {
+    "bundle": "web",
+    "name": "simple-md"
+  }
+}

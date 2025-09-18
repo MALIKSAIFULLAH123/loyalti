@@ -1,0 +1,39 @@
+{
+  "itemProps": {
+    "showActionMenu": 1,
+    "variant": "flattedCard",
+    "title": {
+      "lines": 1,
+      "variant": "h5",
+      "ml": 1.5,
+      "color": "text.primary",
+      "margin": 0
+    },
+    "media": {
+      "width": 40,
+      "aspectRatio": "11",
+      "marginRight": 1
+    },
+    "content": {
+      "sx": {
+        "mt": 0,
+        "mb": 2,
+        "ml": 0,
+        "mr": 1,
+        "pt": 0,
+        "pl": 1.5,
+        "pb": 0,
+        "pr": 1.5,
+        "alignItems": "center",
+        "bgcolor": "",
+        "borderRadius": 1
+      },
+      "selectedVariant": "background",
+      "hoverVariant": "background"
+    }
+  },
+  "info": {
+    "bundle": "web",
+    "name": "ChatRoom - Main Card"
+  }
+}

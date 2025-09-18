@@ -1,0 +1,46 @@
+{
+  "itemProps": {
+    "variant": "containedCard",
+    "showActionMenu": 1,
+    "content": {
+      "sx": {
+        "p": 2,
+        "borderRadius": 1,
+        "alignItems": "center",
+        "justifyContent": "",
+        "bgcolor": "background.paper",
+        "borderColor": "transparent",
+        "borderStyle": "solid",
+        "borderLeftWidth": 0,
+        "borderRightWidth": 0,
+        "borderTopWidth": 0,
+        "borderBottomWidth": 0
+      },
+      "selectedVariant": "",
+      "dividerVariant": "",
+      "hoverVariant": ""
+    },
+    "media": {
+      "width": "auto",
+      "aspectRatio": "11",
+      "placement": "start"
+    },
+    "title": {
+      "variant": "h4",
+      "lines": 1,
+      "fixHeight": 1,
+      "sx": {
+        "mb": 1
+      }
+    },
+    "text": {
+      "sx": {
+        "pl": 2
+      }
+    }
+  },
+  "info": {
+    "bundle": "web",
+    "name": "Page - Main Card - Mobile"
+  }
+}

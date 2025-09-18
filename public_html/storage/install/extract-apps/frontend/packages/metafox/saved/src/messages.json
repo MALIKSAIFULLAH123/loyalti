@@ -1,0 +1,15 @@
+{
+  "add_to_collection": "Add to Collection",
+  "add_to_new_collection": "Add to new Collection",
+  "no_collections_found": "No collections found.",
+  "added_to": "Added to",
+  "total_item": "{ value, plural, =1{# item} other{# items} }",
+  "value_more": "{value} more",
+  "no_saved_items_found_description": "Discover more posts, items and save them for later",
+  "saved_items": "Saved Items",
+  "collection_list_title": "Saved Items: <bold>{title}</bold>",
+  "new_collection": "New collection",
+  "save_to_collection": "Save to collection",
+  "add_to_collections": "Add to collections",
+  "no_description_collections_found": "No collections created. Get stared by creating new collection."
+}

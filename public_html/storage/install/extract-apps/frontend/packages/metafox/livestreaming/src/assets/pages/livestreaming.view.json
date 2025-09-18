@@ -1,0 +1,29 @@
+{
+  "large": {
+    "templateName": "fixed-full",
+    "blocks": [
+      {
+        "blockId": "vpml",
+        "component": "livevideo.block.videoView",
+        "slotName": "main-fixed"
+      }
+    ]
+  },
+  "small": {
+    "blocks": [
+      {
+        "blockId": "vpmm",
+        "component": "livevideo.block.videoView",
+        "slotName": "main",
+        "title": "",
+        "placeholder": "Search",
+        "blockLayout": "Blocker - Mobile"
+      }
+    ],
+    "templateName": "mobile"
+  },
+  "info": {
+    "bundle": "web",
+    "name": "livestreaming.view"
+  }
+}

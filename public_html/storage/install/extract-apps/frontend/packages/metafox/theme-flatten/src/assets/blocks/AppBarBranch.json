@@ -1,0 +1,14 @@
+{
+  "blockProps": {
+    "blockStyle": {
+      "sx": {}
+    }
+  },
+  "noHeader": true,
+  "noFooter": true,
+  "freeze": true,
+  "info": {
+    "bundle": "web",
+    "theme": "flatten"
+  }
+}

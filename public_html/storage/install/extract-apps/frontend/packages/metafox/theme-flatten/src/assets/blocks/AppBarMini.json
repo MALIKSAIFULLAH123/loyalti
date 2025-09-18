@@ -1,0 +1,12 @@
+{
+  "blockProps": {
+    "searchPlacement": "left"
+  },
+  "noHeader": 0,
+  "noFooter": true,
+  "freeze": 0,
+  "info": {
+    "bundle": "web",
+    "name": "AppBarMini"
+  }
+}

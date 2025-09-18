@@ -1,0 +1,19 @@
+{
+  "noHeader": true,
+  "noFooter": true,
+  "blockProps": {
+    "blockStyle": {
+      "sx": {
+        "mt": 0,
+        "mb": 1.5,
+        "pr": 1,
+        "pl": 0.5,
+        "pt": 1
+      }
+    }
+  },
+  "info": {
+    "bundle": "web",
+    "name": "sidebar primary menu"
+  }
+}

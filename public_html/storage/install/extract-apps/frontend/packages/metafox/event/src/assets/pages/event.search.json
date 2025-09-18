@@ -1,0 +1,113 @@
+{
+  "large": {
+    "blocks": [
+      {
+        "component": "core.block.mainListing",
+        "slotName": "main",
+        "gridLayout": "Event - Main Card",
+        "blockLayout": "App List",
+        "emptyPage": "core.block.no_content_with_icon",
+        "emptyPageProps": {
+          "image": "ico-calendar-o",
+          "title": "no_events_found",
+          "description": "lets_create_a_new_event_to_connect_with_people",
+          "noBlock": true
+        },
+        "itemProps": {
+          "showActionMenu": true
+        },
+        "blockId": "i10",
+        "itemView": "event.itemView.mainCard",
+        "canLoadMore": true,
+        "itemLayout": "Event - Main Card"
+      },
+      {
+        "blockId": "ia",
+        "component": "core.block.sideAppHeader",
+        "slotName": "side",
+        "title": "Events",
+        "icon": "ico-compose-alt",
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "textPrimary",
+          "noFooter": true,
+          "noHeader": true,
+          "blockStyle": {
+            "pl": 3,
+            "pt": 4,
+            "pr": 3,
+            "pb": 4
+          },
+          "testid": "sidebarAppHeaderBlock"
+        },
+        "freeze": true,
+        "blockLayout": "sidebar app header"
+      },
+      {
+        "blockId": "028tf",
+        "component": "core.block.sidebarQuickFilter",
+        "slotName": "side",
+        "title": "Filters",
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "textPrimary",
+          "noFooter": true,
+          "noHeader": false
+        },
+        "blockLayout": "sidebar app filter"
+      }
+    ],
+    "containers": {},
+    "pageName": "event.all",
+    "templateName": "two-column-fixed"
+  },
+  "small": {
+    "blocks": [
+      {
+        "component": "core.block.sidebarAppMobile",
+        "slotName": "main",
+        "title": "events",
+        "blockProps": {
+          "variant": "plained",
+          "marginBottom": 2
+        },
+        "contents": [
+          {
+            "name": "core.block.sidebarQuickFilter"
+          }
+        ],
+        "blockId": "lcfv"
+      },
+      {
+        "component": "core.block.mainListing",
+        "slotName": "main",
+        "gridLayout": "Event - Main Card",
+        "blockLayout": "App List - Mobile",
+        "emptyPage": "core.block.no_content_with_icon",
+        "emptyPageProps": {
+          "image": "ico-calendar-o",
+          "title": "no_events_found",
+          "description": "lets_create_a_new_event_to_connect_with_people"
+        },
+        "itemProps": {
+          "showActionMenu": true
+        },
+        "blockId": "i10",
+        "itemView": "event.itemView.mainCard",
+        "canLoadMore": true,
+        "itemLayout": "Event - Main Card"
+      }
+    ],
+    "containers": {},
+    "pageName": "event.all",
+    "templateName": "mobile"
+  },
+  "info": {
+    "bundle": "web",
+    "name": "event.search"
+  }
+}

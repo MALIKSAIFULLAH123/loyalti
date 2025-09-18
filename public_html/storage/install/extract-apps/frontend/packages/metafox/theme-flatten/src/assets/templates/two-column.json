@@ -1,0 +1,39 @@
+{
+  "title": "02 columns",
+  "blocks": [],
+  "header": {
+    "elements": {
+      "header": {
+        "disableGutters": true,
+        "elements": {
+          "header": {}
+        }
+      }
+    }
+  },
+  "content": {
+    "elements": {
+      "main": {
+        "gridContainer": true,
+        "disableGutters": true,
+        "elements": {
+          "side": {
+            "xs": 3,
+            "maxWidth": "xs2",
+            "minWidth": "xs1",
+            "rootStyle": {},
+            "contentStyle": {},
+            "stageStyle": {}
+          },
+          "main": {
+            "xs": 9
+          }
+        }
+      }
+    }
+  },
+  "info": {
+    "bundle": "web",
+    "name": "two-column"
+  }
+}

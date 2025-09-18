@@ -1,0 +1,36 @@
+{
+  "itemProps": {
+    "media": {
+      "placement": "start",
+      "width": "auto",
+      "aspectRatio": "11",
+      "sx": {}
+    },
+    "content": {
+      "hoverVariant": "background",
+      "sx": {
+        "borderRadius": 1,
+        "pt": 1.5,
+        "pr": 1,
+        "pb": 1.5,
+        "pl": 1
+      }
+    },
+    "title": {
+      "color": "text.primary",
+      "variant": "body1",
+      "lines": 3,
+      "sx": {}
+    },
+    "text": {
+      "sx": {
+        "pl": 2
+      }
+    },
+    "showActionMenu": 1
+  },
+  "info": {
+    "bundle": "web",
+    "name": "Collection List"
+  }
+}

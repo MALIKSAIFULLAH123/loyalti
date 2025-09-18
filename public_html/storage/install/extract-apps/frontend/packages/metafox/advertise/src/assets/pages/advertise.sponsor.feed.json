@@ -1,0 +1,28 @@
+{
+  "large": {
+    "templateName": "simple",
+    "blocks": [
+      {
+        "component": "advertise.block.sponsorFeed",
+        "slotName": "main",
+        "blockId": "c7ire",
+        "blockLayout": "Full Screen Form"
+      }
+    ]
+  },
+  "small": {
+    "blocks": [
+      {
+        "component": "advertise.block.sponsorFeed",
+        "slotName": "main",
+        "blockId": "c7ire",
+        "blockLayout": "Full Screen Form"
+      }
+    ],
+    "templateName": "mobile"
+  },
+  "info": {
+    "bundle": "web",
+    "name": "advertise.sponsor.feed"
+  }
+}

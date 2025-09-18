@@ -1,0 +1,48 @@
+{
+  "itemProps": {
+    "showActionMenu": 1,
+    "variant": "containedCard",
+    "content": {
+      "sx": {
+        "pt": 2,
+        "pl": 2,
+        "pb": 2,
+        "pr": 2,
+        "alignItems": "flex-start",
+        "justifyContent": "",
+        "ml": 0,
+        "borderRadius": ""
+      },
+      "selectedVariant": "",
+      "dividerVariant": "divider",
+      "hoverVariant": "",
+      "backgroundColor": "paper"
+    },
+    "title": {
+      "lines": 2,
+      "variant": "h5",
+      "fontWeight": 500,
+      "sx": {
+        "mb": 0.5
+      }
+    },
+    "summary": {
+      "lines": 3,
+      "component": "div",
+      "variant": "body1",
+      "sx": {
+        "mt": 1,
+        "color": "text.primary"
+      }
+    },
+    "text": {
+      "sx": {
+        "pl": 0
+      }
+    }
+  },
+  "info": {
+    "bundle": "web",
+    "name": "Forum Thread Recent Posts"
+  }
+}

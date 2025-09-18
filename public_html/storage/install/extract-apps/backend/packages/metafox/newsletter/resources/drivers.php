@@ -1,0 +1,76 @@
+<?php
+
+/* this is auto generated file */
+return [
+    [
+        'type'    => 'package-setting',
+        'name'    => 'newsletter',
+        'driver'  => 'MetaFox\Newsletter\\Http\\Resources\\v1\\PackageSetting',
+        'version' => 'v1',
+    ],
+    [
+        'driver'     => 'MetaFox\\Newsletter\\Http\\Resources\\v1\\Newsletter\\Admin\\DataGrid',
+        'type'       => 'data-grid',
+        'name'       => 'newsletter',
+        'version'    => 'v1',
+        'resolution' => 'admin',
+        'is_active'  => true,
+        'is_preload' => false,
+    ],
+    [
+        'driver'     => 'MetaFox\\Newsletter\\Http\\Resources\\v1\\Newsletter\\Admin\\CreateNewsletterForm',
+        'type'       => 'form',
+        'name'       => 'newsletter.store',
+        'version'    => 'v1',
+        'resolution' => 'admin',
+        'is_active'  => true,
+        'is_preload' => false,
+        'type_label' => 'Form',
+    ],
+    [
+        'driver'     => 'MetaFox\\Newsletter\\Http\\Resources\\v1\\Newsletter\\Admin\\UpdateNewsletterForm',
+        'type'       => 'form',
+        'name'       => 'newsletter.update',
+        'version'    => 'v1',
+        'resolution' => 'admin',
+        'is_active'  => true,
+        'is_preload' => false,
+        'type_label' => 'Form',
+    ],
+    [
+        'driver'     => 'MetaFox\\Newsletter\\Http\\Resources\\v1\\Newsletter\\Admin\\SendTestMailForm',
+        'type'       => 'form',
+        'name'       => 'newsletter.send_test_mail',
+        'version'    => 'v1',
+        'resolution' => 'admin',
+        'is_active'  => true,
+        'is_preload' => false,
+        'type_label' => 'Form',
+    ],
+    [
+        'driver'     => 'MetaFox\\Newsletter\\Policies\\NewsletterPolicy',
+        'type'       => 'policy-resource',
+        'name'       => 'MetaFox\\Newsletter\\Models\\Newsletter',
+        'is_active'  => true,
+        'is_preload' => false,
+    ],
+    [
+        'driver'     => 'MetaFox\\Newsletter\\Models\\NewsletterText',
+        'type'       => 'entity',
+        'name'       => 'newsletter_text',
+        'is_active'  => true,
+        'is_preload' => false,
+        'title'      => 'NewsletterText',
+        'type_label' => 'Entity',
+    ],
+    [
+        'driver'     => 'MetaFox\\Newsletter\\Models\\Newsletter',
+        'type'       => 'entity',
+        'name'       => 'newsletter',
+        'is_active'  => true,
+        'is_preload' => false,
+        'title'      => 'Newsletter',
+        'type_label' => 'Entity',
+    ],
+
+];

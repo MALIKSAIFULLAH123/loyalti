@@ -1,0 +1,27 @@
+{
+  "large": {
+    "templateName": "story-view",
+    "blocks": [
+      {
+        "component": "story.block.addFormView",
+        "slotName": "main",
+        "blockId": "i7"
+      }
+    ]
+  },
+  "small": {
+    "templateName": "add-story-mobile",
+    "pageName": "story.add",
+    "blocks": [
+      {
+        "component": "story.block.addFormViewMobile",
+        "slotName": "main",
+        "blockId": "i7"
+      }
+    ]
+  },
+  "info": {
+    "bundle": "web",
+    "name": "story.add"
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "large": {
+    "pageName": "marketplace_invoice.bought",
+    "templateName": "two-column-fixed",
+    "blocks": [
+      {
+        "component": "core.block.sideAppHeader",
+        "slotName": "side",
+        "title": "marketplace",
+        "icon": "ico-box-o",
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "textPrimary",
+          "noFooter": true,
+          "noHeader": true
+        },
+        "freeze": true,
+        "blockId": "aq52",
+        "blockLayout": "sidebar app header"
+      },
+      {
+        "component": "core.block.sidebarAppMenu",
+        "slotName": "side",
+        "title": "marketplace",
+        "blockProps": {
+          "variant": "plained",
+          "noHeader": false,
+          "noFooter": false
+        },
+        "blockId": "7qxv",
+        "menuName": "sidebarMenu",
+        "blockLayout": "sidebar app menu"
+      },
+      {
+        "blockId": "d87c",
+        "component": "marketplace_invoice.block.invoice",
+        "slotName": "main",
+        "title": "all_invoices",
+        "blockLayout": "Large Main Lists",
+        "blockOrigin": "page"
+      }
+    ],
+    "containers": {}
+  },
+  "small": {
+    "pageName": "marketplace_invoice.bought",
+    "templateName": "mobile",
+    "blocks": [
+      {
+        "component": "core.block.sidebarAppMobile",
+        "slotName": "main",
+        "blockProps": {
+          "variant": "plained",
+          "marginBottom": 2
+        },
+        "blockId": "ck9e"
+      },
+      {
+        "blockId": "d87c",
+        "component": "marketplace_invoice.block.invoice",
+        "slotName": "main",
+        "title": "all_invoices",
+        "blockLayout": "App List - Table - Mobile",
+        "blockOrigin": "page"
+      }
+    ],
+    "containers": {}
+  },
+  "info": {
+    "bundle": "web",
+    "name": "marketplace_invoice.bought"
+  }
+}

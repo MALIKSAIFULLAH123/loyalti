@@ -1,0 +1,62 @@
+{
+  "itemProps": {
+    "variant": "containedCard",
+    "showActionMenu": 1,
+    "content": {
+      "sx": {
+        "alignItems": "flex-start",
+        "justifyContent": "",
+        "bgcolor": "background.paper",
+        "borderRadius": 1,
+        "pt": 0,
+        "pr": 0,
+        "pb": 2,
+        "pl": 0
+      },
+      "selectedVariant": "",
+      "dividerVariant": "",
+      "hoverVariant": ""
+    },
+    "media": {
+      "width": "100%",
+      "aspectRatio": "169",
+      "placement": "top",
+      "sx": {
+        "borderTopWidth": 0,
+        "borderRightWidth": 0,
+        "borderBottomWidth": 1,
+        "borderLeftWidth": 0,
+        "borderColor": "border.secondary",
+        "borderStyle": "solid",
+        "mb": 2
+      }
+    },
+    "title": {
+      "variant": "h4",
+      "lines": 1,
+      "fixHeight": 1,
+      "sx": {
+        "mb": 1
+      }
+    },
+    "text": {
+      "sx": {
+        "pl": 2,
+        "pr": 2
+      }
+    },
+    "summary": {
+      "component": "span",
+      "variant": "body1",
+      "lines": 1,
+      "fixHeight": 1,
+      "sx": {
+        "color": "textSecondary"
+      }
+    }
+  },
+  "info": {
+    "bundle": "web",
+    "name": "Group - Main Card"
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "blocks": [],
+  "header": {
+    "elements": {
+      "header": {
+        "disableGutters": true,
+        "elements": {
+          "header": {}
+        }
+      }
+    }
+  },
+  "content": {
+    "elements": {
+      "top": {
+        "elements": {
+          "top": {
+            "flexWeight": 1
+          }
+        }
+      },
+      "main": {
+        "gridContainer": true,
+        "maxWidth": "md",
+        "elements": {
+          "side": {
+            "xs": 3,
+            "maxWidth": "xs2",
+            "minWidth": "xs1",
+            "rootStyle": {},
+            "contentStyle": {},
+            "stageStyle": {}
+          },
+          "main": {
+            "xs": 6
+          },
+          "subside": {
+            "xs": 3,
+            "maxWidth": "xs1",
+            "minWidth": "xs1",
+            "rootStyle": {},
+            "contentStyle": {},
+            "stageStyle": {}
+          }
+        }
+      }
+    }
+  },
+  "info": {
+    "bundle": "web",
+    "name": "default"
+  }
+}

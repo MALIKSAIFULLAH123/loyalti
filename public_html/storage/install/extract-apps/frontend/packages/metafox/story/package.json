@@ -1,0 +1,39 @@
+{
+  "name": "@metafox/story",
+  "version": "5.0.1",
+  "description": "@metafox/story",
+  "main": "dist/index.js",
+  "author": "developer@phpfox.com",
+  "license": "MIT",
+  "private": false,
+  "publishConfig": {
+    "access": "public",
+    "directory": "dist"
+  },
+  "repository": {},
+  "peerDependencies": {
+    "@metafox/framework": "*",
+    "@metafox/scripts": "*",
+    "eslint-config-metafox": "*"
+  },
+  "eslintConfig": {
+    "extends": [
+      "metafox"
+    ]
+  },
+  "scripts": {
+    "build": "metafox build-package && tsc -p tsconfig.build.json",
+    "test": "jest",
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx src --fix",
+    "eslint:config": "eslint --print-config package.json",
+    "unittest": "metafox jest-unittest"
+  },
+  "dependencies": {
+    "@fontsource/nunito": "^5.0.16",
+    "@fontsource/pacifico": "^5.0.8",
+    "@fontsource/playfair-display": "^5.0.18",
+    "@fontsource/roboto": "^5.0.8",
+    "@fontsource/rubik-doodle-shadow": "^5.0.1",
+    "modern-screenshot": "^4.4.37"
+  }
+}

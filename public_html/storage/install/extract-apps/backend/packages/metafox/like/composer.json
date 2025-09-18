@@ -1,0 +1,50 @@
+{
+    "name": "metafox/like",
+    "description": "",
+    "version": "5.0.24",
+    "authors": [
+        {
+            "name": "phpFox",
+            "email": "developer@phpfox.com",
+            "homepage": "https://www.phpfox.com"
+        }
+    ],
+    "extra": {
+        "metafox": {
+            "core": false,
+            "alias": "like",
+            "frontendAlias": "preaction",
+            "mobileAlias": "preaction",
+            "asset": "like",
+            "namespace": "MetaFox\\Like",
+            "path": "packages/metafox/like",
+            "title": "Reactions",
+            "internalAdminUrl": "/like/permission",
+            "providers": [
+                "MetaFox\\Like\\Providers\\PackageServiceProvider"
+            ],
+            "frontend": {
+                "@metafox/like": "*",
+                "@metafox/reaction": "*"
+            },
+            "frontendPaths": [
+                "packages/metafox/reaction"
+            ],
+            "require": {
+                "metafox/core": "5.1.18 - 5.1.19"
+            },
+            "aliases": {
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "MetaFox\\Like\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "MetaFox\\Like\\Tests\\": "tests/"
+        }
+    }
+}

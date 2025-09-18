@@ -1,0 +1,62 @@
+{
+  "large": {
+    "templateName": "profile-Subside",
+    "blocks": [
+      {
+        "component": "group.block.groupProfileHeader",
+        "slotName": "top",
+        "title": "Group Profile Header",
+        "blockProps": {
+          "variant": "containted",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "textPrimary",
+          "noFooter": true,
+          "noHeader": true,
+          "contentStyle": {},
+          "headerStyle": {},
+          "footerStyle": {},
+          "marginBottom": 2
+        },
+        "key": "dqwe",
+        "blockId": "dqwe"
+      }
+    ]
+  },
+  "small": {
+    "templateName": "mobile",
+    "blocks": [
+      {
+        "component": "core.block.sidebarAppMobile",
+        "slotName": "top",
+        "blockId": "dqwea"
+      },
+      {
+        "component": "group.block.groupProfileHeader",
+        "slotName": "top",
+        "title": "User Profile Header",
+        "blockProps": {
+          "variant": "containted",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "textPrimary",
+          "noFooter": true,
+          "noHeader": true,
+          "blockStyle": {
+            "mb": 2
+          },
+          "contentStyle": {},
+          "headerStyle": {},
+          "footerStyle": {},
+          "marginBottom": 2
+        },
+        "key": "dqwe",
+        "blockId": "dqwe"
+      }
+    ]
+  },
+  "info": {
+    "bundle": "web",
+    "name": "group.profile.loading"
+  }
+}

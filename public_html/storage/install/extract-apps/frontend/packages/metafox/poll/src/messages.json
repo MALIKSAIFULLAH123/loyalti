@@ -1,0 +1,14 @@
+{
+  "please_select_an_option": "Please select an option",
+  "create_poll": "Create Poll",
+  "poll_is_waiting_approve": "This poll post is waiting for approval",
+  "add_pool": "Add New Poll",
+  "name_type_poll": "Poll",
+  "people_who_voted": "People Who Voted",
+  "no_votes": "No Votes",
+  "no_poll_found": "No polls found",
+  "expire_on": "Expires on ",
+  "poll_closed": "Closed",
+  "voting_for_the_poll_was_closed": "Voting for the poll was closed.",
+  "no_polls_found_description": "Create a new poll for other people to vote together"
+}

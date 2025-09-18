@@ -1,0 +1,39 @@
+{
+  "itemProps": {
+    "media": {
+      "placement": "start",
+      "width": "auto",
+      "aspectRatio": "11",
+      "sx": {
+        "pt": 0.5
+      }
+    },
+    "content": {
+      "hoverVariant": "background",
+      "sx": {
+        "bgcolor": "background.paper",
+        "borderRadius": 1,
+        "pt": 1,
+        "pr": 1,
+        "pb": 1,
+        "pl": 1
+      }
+    },
+    "title": {
+      "variant": "h5",
+      "sx": {
+        "mb": 0.5
+      }
+    },
+    "text": {
+      "sx": {
+        "pl": 2
+      }
+    },
+    "showActionMenu": false
+  },
+  "info": {
+    "bundle": "web",
+    "name": "Saved Collection List View"
+  }
+}

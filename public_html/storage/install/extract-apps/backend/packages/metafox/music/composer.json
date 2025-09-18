@@ -1,0 +1,50 @@
+{
+    "name": "metafox/music",
+    "version": "5.0.21",
+    "description": "",
+    "authors": [
+        {
+            "name": "phpFox",
+            "email": "developer@phpfox.com",
+            "homepage": "https://www.phpfox.com"
+        }
+    ],
+    "extra": {
+        "metafox": {
+            "core": false,
+            "alias": "music",
+            "asset": "music",
+            "path": "packages/metafox/music",
+            "title": "Music",
+            "namespace": "MetaFox\\Music",
+            "internalAdminUrl": "/music/setting",
+            "providers": [
+                "MetaFox\\Music\\Providers\\PackageServiceProvider"
+            ],
+            "frontend": {
+                "@metafox/music": "*"
+            },
+            "frontendPaths": [
+                "packages/metafox/music"
+            ],
+            "require": {
+                "metafox/core": "5.1.18 - 5.1.19"
+            },
+            "aliases": {
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "MetaFox\\Music\\": "src/"
+        }
+    },
+    "require": {
+        "owen-oj/laravel-getid3": "^2.2"
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "MetaFox\\Music\\Tests\\": "tests/"
+        }
+    }
+}

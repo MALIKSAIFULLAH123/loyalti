@@ -1,0 +1,635 @@
+{
+  "large": {
+    "templateName": "profile-menu-subside",
+    "blocks": [
+      {
+        "component": "core.block.sideAppHeader",
+        "slotName": "side",
+        "title": "Events",
+        "icon": "ico-compose-alt",
+        "blockId": "pxfyc",
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "textPrimary",
+          "noFooter": false,
+          "noHeader": false,
+          "blockStyle": {
+            "pl": 3,
+            "pt": 4,
+            "pr": 3,
+            "pb": 4
+          },
+          "testid": "sidebarAppHeaderBlock"
+        },
+        "freeze": true,
+        "blockLayout": "sidebar app header"
+      },
+      {
+        "component": "core.block.searchBox",
+        "slotName": "side",
+        "placeholder": "Search",
+        "blockId": "w1t9",
+        "title": "",
+        "blockLayout": "sidebar search box",
+        "icon": "ico-map-o",
+        "action": "event/search-map",
+        "titleIcon": "view_on_map",
+        "freeze": true
+      },
+      {
+        "component": "core.block.sidebarAppMenu",
+        "slotName": "side",
+        "title": "Events",
+        "blockId": "mb8c",
+        "menuName": "sidebarMenu",
+        "blockLayout": "sidebar app menu"
+      },
+      {
+        "blockId": "b3ag",
+        "component": "core.dividerBlock",
+        "slotName": "side",
+        "title": "",
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "textPrimary",
+          "noFooter": true,
+          "noHeader": true
+        },
+        "dividerVariant": "middle"
+      },
+      {
+        "component": "core.categoryBlock",
+        "slotName": "side",
+        "title": "categories",
+        "href": "/event/category",
+        "blockId": "k4zz",
+        "blockLayout": "sidebar app category"
+      },
+      {
+        "component": "event.block.eventBannerView",
+        "slotName": "top",
+        "blockProps": {
+          "variant": "plained",
+          "titleColor": "textPrimary",
+          "noFooter": false,
+          "noHeader": false,
+          "contentStyle": {
+            "borderRadius": "base"
+          }
+        },
+        "blockId": "vxk5e",
+        "title": "",
+        "placeholder": "Search",
+        "freeze": false
+      },
+      {
+        "component": "event.block.co-hostInvitation",
+        "slotName": "subside",
+        "title": "Co-host Invitation",
+        "blockId": "hehe21",
+        "blockLayout": "Profile - Side Contained (no gutter)"
+      },
+      {
+        "component": "event.block.eventHost",
+        "slotName": "subside",
+        "title": "hosts",
+        "displayLimit": 3,
+        "itemView": "event.itemView.hostSmallCard",
+        "blockId": "6wfkh",
+        "blockLayout": "Profile - Side Contained (no header divider)",
+        "gridLayout": "Profile Friends Small Lists",
+        "itemLayout": "Profile Friends Small Lists",
+        "showWhen": [
+          "truthy",
+          "profile.extra.can_view_hosts"
+        ],
+        "headerActions": [
+          {
+            "as": "event.viewListHostButton",
+            "showWhen": [
+              "truthy",
+              "item.extra.can_view_hosts"
+            ]
+          }
+        ]
+      },
+      {
+        "component": "event.block.overviewOwner",
+        "slotName": "subside",
+        "title": "Owner",
+        "blockId": "heh21",
+        "blockLayout": "Profile - Side Contained"
+      },
+      {
+        "component": "event.block.similarEventBlock",
+        "slotName": "subside",
+        "title": "similar_events",
+        "blockLayout": "Profile - Side Contained (no gutter)",
+        "blockId": "he221",
+        "itemView": "event.itemView.upcomingCard",
+        "displayLimit": 1,
+        "emptyPage": "hide"
+      },
+      {
+        "component": "event.block.guestViewEventBlock",
+        "slotName": "subside",
+        "title": "guests",
+        "blockLayout": "Profile - Side Contained",
+        "blockId": "uz4o",
+        "headerActions": [
+          {
+            "as": "event.viewListGuestButton",
+            "showWhen": [
+              "truthy",
+              "item.extra.can_view_members"
+            ]
+          }
+        ]
+      },
+      {
+        "component": "core.block.footer",
+        "slotName": "subside",
+        "dividerVariant": "middle",
+        "blockLayout": "footer",
+        "blockId": "qlfp"
+      },
+      {
+        "blockId": "notime1",
+        "component": "event.block.invitationCard",
+        "slotName": "top",
+        "freeze": false
+      }, 
+      {
+        "blockId": "kw3ih",
+        "parentBlockId": "o4r8d",
+        "component": "event.block.eventView",
+        "slotName": "main",
+        "title": "Event Detail",
+        "freeze": false,
+        "blockLayout": "App Simple - Tab Contained"
+      },
+      {
+        "blockId": "pwzvn",
+        "parentBlockId": "gowz",
+        "component": "event.block.eventDiscussion",
+        "slotName": "main",
+        "blockLayout": "App Simple - Tab Contained"
+      },
+      {
+        "blockId": "eceec",
+        "parentBlockId": "weq21",
+        "component": "event.block.manageEvent",
+        "slotName": "main",
+        "blockLayout": "App Simple - Tab Contained"
+      },
+      {
+        "blockId": "oki1",
+        "parentBlockId": "nu1q2",
+        "component": "event.block.pendingPosts",
+        "actionName": "viewPendingPost",
+        "itemView": "event.itemView.pendingPost",
+        "slotName": "main",
+        "gridLayout": "Event - PendingPost - Main Card",
+        "blockLayout": "Event Lists",
+        "itemLayout": "Event - PendingPost - Main Card"
+      },
+      {
+        "blockId": "okiela12",
+        "parentBlockId": "nu1q",
+        "component": "event.block.pendingPosts",
+        "actionName": "viewCreatorPendingPost",
+        "itemView": "event.itemView.myPendingPost",
+        "slotName": "main",
+        "gridLayout": "Event - PendingPost - Main Card",
+        "blockLayout": "Event Lists",
+        "itemLayout": "Event - PendingPost - Main Card"
+      },
+      {
+        "blockId": "o4r8d",
+        "parentBlockId": "vve8s",
+        "component": "core.block.listContainer",
+        "slotName": "main",
+        "title": "",
+        "freeze": false,
+        "name": "event_info"
+      },
+      {
+        "blockId": "gowz",
+        "parentBlockId": "vve8s",
+        "component": "core.block.listContainer",
+        "slotName": "main",
+        "title": "",
+        "freeze": false,
+        "name": "discussions"
+      },
+      {
+        "blockId": "weq21",
+        "parentBlockId": "vve8s",
+        "component": "core.block.listContainer",
+        "slotName": "main",
+        "title": "",
+        "freeze": false,
+        "name": "manage"
+      },
+      {
+        "blockId": "nu1q2",
+        "parentBlockId": "vve8s",
+        "component": "core.block.listContainer",
+        "slotName": "main",
+        "title": "",
+        "freeze": false,
+        "name": "pending_posts"
+      },
+      {
+        "blockId": "nu1q",
+        "parentBlockId": "vve8s",
+        "component": "core.block.listContainer",
+        "slotName": "main",
+        "title": "",
+        "freeze": false,
+        "name": "my_pending_posts"
+      },
+      {
+        "blockId": "vve8s",
+        "component": "core.block.tabContainer",
+        "slotName": "main",
+        "title": " ",
+        "hasSearchBox": false,
+        "freeze": false,
+        "blockProps": {
+          "blockStyle": {
+            "sx": {
+              "mt": 1
+            }
+          }
+        },
+        "tabProps": {
+          "tabs": [
+            {
+              "id": 1,
+              "label": "tab_event_event_info",
+              "tab": "event_info"
+            },
+            {
+              "id": 2,
+              "label": "tab_event_discussions",
+              "tab": "discussions",
+              "redirectWhenNoPermission": "event_info",
+              "showWhen": [
+                "and",
+                [
+                  "truthy",
+                  "item.extra.can_view_discussion"
+                ],
+                [
+                  "falsy",
+                  "item.is_pending"
+                ]
+              ]
+            },
+            {
+              "id": 3,
+              "label": "tab_event_manage",
+              "tab": "manage",
+              "showWhen": [
+                "truthy",
+                "item.extra.can_edit"
+              ]
+            },
+            {
+              "id": 4,
+              "label": "tab_event_my_pending_posts",
+              "tab": "my_pending_posts",
+              "showWhen": [
+                "and",
+                [
+                  "falsy",
+                  "item.is_host"
+                ],
+                [
+                  "falsy",
+                  "item.extra.can_manage_pending_post"
+                ],
+                [
+                  "truthy",
+                  "item.extra.can_view_discussion"
+                ],
+                [
+                  "truthy",
+                  "item.extra.can_create_discussion"
+                ],
+                [
+                  "truthy",
+                  "authUser.extra_statistics.event.total_pending_posts"
+                ]
+              ]
+            },
+            {
+              "id": 5,
+              "label": "tab_event_pending_posts",
+              "tab": "pending_posts",
+              "showWhen": [
+                "and",
+                [
+                  "or",
+                  [
+                    "truthy",
+                    "item.is_host"
+                  ],
+                  [
+                    "truthy",
+                    "item.extra.can_manage_pending_post"
+                  ]
+                ],
+                [
+                  "or",
+                  [
+                    "truthy",
+                    "item.extra_statistics.total_pending_posts"
+                  ],
+                  [
+                    "truthy",
+                    "item.pending_mode"
+                  ]
+                ]
+              ]
+            }
+          ],
+          "activeTab": "event_info"
+        }
+      }
+    ]
+  },
+  "small": {
+    "blocks": [
+      {
+        "component": "core.block.sidebarAppMobile",
+        "slotName": "top",
+        "blockId": "raegh"
+      },
+      {
+        "component": "event.block.eventBannerView",
+        "slotName": "top",
+        "blockId": "vxk5e",
+        "title": "",
+        "placeholder": "Search",
+        "freeze": false
+      },
+      {
+        "blockId": "notime1",
+        "component": "event.block.invitationCard",
+        "slotName": "top",
+        "freeze": false
+      },
+      {
+        "component": "event.block.co-hostInvitation",
+        "slotName": "main",
+        "title": "Co-host Invitation",
+        "blockId": "hehe21",
+        "blockLayout": "Profile - Side Contained (no gutter)"
+      },
+      {
+        "blockId": "kw3ih",
+        "parentBlockId": "o4r8d",
+        "component": "event.block.eventView",
+        "slotName": "main",
+        "title": "Event Detail",
+        "freeze": false,
+        "blockLayout": "App Simple - Tab Contained"
+      },
+      {
+        "blockId": "pwzvn",
+        "parentBlockId": "gowz",
+        "component": "event.block.eventDiscussion",
+        "slotName": "main",
+        "blockLayout": "App Simple - Tab Contained"
+      },
+      {
+        "blockId": "eceec",
+        "parentBlockId": "weq21",
+        "component": "event.block.manageEvent",
+        "slotName": "main",
+        "blockLayout": "App Simple - Tab Contained"
+      },
+      {
+        "blockId": "oki1",
+        "parentBlockId": "nu1q2",
+        "component": "event.block.pendingPosts",
+        "actionName": "viewPendingPost",
+        "itemView": "event.itemView.pendingPost",
+        "slotName": "main",
+        "gridLayout": "Event - PendingPost - Main Card",
+        "blockLayout": "Event Lists",
+        "itemLayout": "Event - PendingPost - Main Card"
+      },
+      {
+        "blockId": "okiela12",
+        "parentBlockId": "nu1q",
+        "component": "event.block.pendingPosts",
+        "actionName": "viewCreatorPendingPost",
+        "itemView": "event.itemView.myPendingPost",
+        "slotName": "main",
+        "gridLayout": "Event - PendingPost - Main Card",
+        "blockLayout": "Event Lists",
+        "itemLayout": "Event - PendingPost - Main Card"
+      },
+      {
+        "blockId": "o4r8d",
+        "parentBlockId": "vve8s",
+        "component": "core.block.listContainer",
+        "slotName": "main",
+        "title": "",
+        "freeze": false,
+        "name": "event_info"
+      },
+      {
+        "blockId": "gowz",
+        "parentBlockId": "vve8s",
+        "component": "core.block.listContainer",
+        "slotName": "main",
+        "title": "",
+        "freeze": false,
+        "name": "discussions"
+      },
+      {
+        "blockId": "weq21",
+        "parentBlockId": "vve8s",
+        "component": "core.block.listContainer",
+        "slotName": "main",
+        "title": "",
+        "freeze": false,
+        "name": "manage"
+      },
+      {
+        "blockId": "nu1q2",
+        "parentBlockId": "vve8s",
+        "component": "core.block.listContainer",
+        "slotName": "main",
+        "title": "",
+        "freeze": false,
+        "name": "pending_posts"
+      },
+      {
+        "blockId": "nu1q",
+        "parentBlockId": "vve8s",
+        "component": "core.block.listContainer",
+        "slotName": "main",
+        "title": "",
+        "freeze": false,
+        "name": "my_pending_posts"
+      },
+      {
+        "blockId": "vve8s",
+        "component": "core.block.tabContainer",
+        "slotName": "main",
+        "title": " ",
+        "hasSearchBox": false,
+        "freeze": false,
+        "pageDetail": true,
+        "tabProps": {
+          "tabs": [
+            {
+              "id": 1,
+              "label": "tab_event_event_info",
+              "tab": "event_info"
+            },
+            {
+              "id": 2,
+              "label": "tab_event_discussions",
+              "tab": "discussions",
+              "redirectWhenNoPermission": "event_info",
+              "showWhen": [
+                "and",
+                [
+                  "truthy",
+                  "item.extra.can_view_discussion"
+                ],
+                [
+                  "falsy",
+                  "item.is_pending"
+                ]
+              ]
+            },
+            {
+              "id": 3,
+              "label": "tab_event_manage",
+              "tab": "manage",
+              "showWhen": [
+                "truthy",
+                "item.extra.can_edit"
+              ]
+            },
+            {
+              "id": 4,
+              "label": "tab_event_my_pending_posts",
+              "tab": "my_pending_posts",
+              "showWhen": [
+                "and",
+                [
+                  "falsy",
+                  "item.is_host"
+                ],
+                [
+                  "falsy",
+                  "item.extra.can_manage_pending_post"
+                ],
+                [
+                  "truthy",
+                  "item.extra.can_view_discussion"
+                ],
+                [
+                  "truthy",
+                  "item.extra.can_create_discussion"
+                ],
+                [
+                  "truthy",
+                  "authUser.extra_statistics.event.total_pending_posts"
+                ]
+              ]
+            },
+            {
+              "id": 5,
+              "label": "tab_event_pending_posts",
+              "tab": "pending_posts",
+              "showWhen": [
+                "and",
+                [
+                  "or",
+                  [
+                    "truthy",
+                    "item.is_host"
+                  ],
+                  [
+                    "truthy",
+                    "item.extra.can_manage_pending_post"
+                  ]
+                ],
+                [
+                  "or",
+                  [
+                    "truthy",
+                    "item.extra_statistics.total_pending_posts"
+                  ],
+                  [
+                    "truthy",
+                    "item.pending_mode"
+                  ]
+                ]
+              ]
+            }
+          ],
+          "activeTab": "event_info"
+        }
+      },
+      {
+        "component": "event.block.eventHost",
+        "slotName": "main",
+        "title": "hosts",
+        "displayLimit": 3,
+        "itemView": "event.itemView.hostSmallCard",
+        "blockId": "6wfkh",
+        "blockLayout": "Profile - Side Contained (no header divider)",
+        "gridLayout": "Profile Friends Small Lists",
+        "showWhen": [
+          "truthy",
+          "profile.extra.can_view_hosts"
+        ],
+        "headerActions": [
+          {
+            "as": "event.viewListHostButton",
+            "showWhen": [
+              "truthy",
+              "item.extra.can_view_hosts"
+            ]
+          }
+        ],
+        "itemLayout": "Profile Friends Small Lists"
+      },
+      {
+        "component": "event.block.guestViewEventBlock",
+        "slotName": "main",
+        "title": "guests",
+        "blockLayout": "Profile - Side Contained",
+        "blockId": "uz4o",
+        "headerActions": [
+          {
+            "as": "event.viewListGuestButton",
+            "showWhen": [
+              "truthy",
+              "item.extra.can_view_members"
+            ]
+          }
+        ]
+      }
+    ],
+    "templateName": "mobile"
+  },
+  "info": {
+    "bundle": "web",
+    "name": "event.view"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "gridContainerProps": {
+    "rowSpacing": 2
+  },
+  "gridVariant": "listView",
+  "info": {
+    "bundle": "web",
+    "name": "Poll - Main Card - Mobile"
+  }
+}

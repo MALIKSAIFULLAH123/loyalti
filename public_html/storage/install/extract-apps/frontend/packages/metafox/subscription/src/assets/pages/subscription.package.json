@@ -1,0 +1,105 @@
+{
+  "large": {
+    "pageName": "subscription.package",
+    "templateName": "two-column-fixed",
+    "blocks": [
+      {
+        "component": "core.block.sideAppHeader",
+        "slotName": "side",
+        "title": "Subscriptions",
+        "icon": "ico-box-o",
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "textPrimary",
+          "noFooter": true,
+          "noHeader": true
+        },
+        "freeze": true,
+        "blockId": "sd0aw",
+        "blockLayout": "sidebar app header"
+      },
+      {
+        "component": "core.block.sidebarAppMenu",
+        "slotName": "side",
+        "title": "Subscriptions",
+        "blockProps": {
+          "variant": "plained",
+          "noHeader": false,
+          "noFooter": false
+        },
+        "blockId": "gsyzk",
+        "menuName": "sidebarMenu",
+        "blockLayout": "sidebar app menu"
+      },
+      {
+        "component": "subscription.block.packages",
+        "slotName": "main",
+        "title": "packages",
+        "itemView": "subscription_package.itemView.mainCard",
+        "gridLayout": "Subscription - Packages",
+        "blockLayout": "Subscription Home",
+        "emptyPageProps": {
+          "image": "ico-box-o",
+          "noHeader": true,
+          "contentStyle": {
+            "bgColor": "0"
+          },
+          "variant": "default",
+          "title": "no_subscription_packages_found",
+          "noBlock": 1
+        },
+        "emptyPage": "core.block.no_content_with_icon",
+        "blockId": "fr31",
+        "itemLayout": "Subscription - Packages"
+      }
+    ],
+    "containers": {}
+  },
+  "small": {
+    "pageName": "subscription.package",
+    "templateName": "mobile",
+    "blocks": [
+      {
+        "component": "core.block.sidebarAppMobile",
+        "slotName": "main",
+        "blockProps": {
+          "variant": "plained",
+          "marginBottom": 2
+        },
+        "contents": [
+          {
+            "name": "core.block.sidebarAppMenu"
+          }
+        ],
+        "blockId": "ckbwe"
+      },
+      {
+        "component": "subscription.block.packages",
+        "slotName": "main",
+        "title": "packages",
+        "itemView": "subscription_package.itemView.mainCard",
+        "gridLayout": "Subscription - Packages",
+        "blockLayout": "Subscription Home Mobile",
+        "emptyPageProps": {
+          "noHeader": true,
+          "contentStyle": {
+            "bgColor": "0"
+          },
+          "variant": "default",
+          "title": "no_subscription_packages_found",
+          "noBlock": 1
+        },
+        "emptyPage": "core.block.no_content_with_icon",
+        "blockId": "xt5x7",
+        "itemLayout": "Subscription - Packages"
+      }
+    ],
+    "containers": {}
+  },
+  "info": {
+    "bundle": "web",
+    "name": "subscription.package"
+  }
+}

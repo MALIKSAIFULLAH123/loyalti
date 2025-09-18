@@ -1,0 +1,120 @@
+{
+  "large": {
+    "blocks": [
+      {
+        "blockId": "i83",
+        "component": "music.block.mainListing",
+        "slotName": "main",
+        "canLoadMore": true,
+        "canLoadSmooth": true,
+        "title": "",
+        "gridVariant": "gridView",
+        "itemProps": {
+          "showActionMenu": true
+        },
+        "displayLimit": "8",
+        "blockLayout": "App List",
+        "gridLayout": "Music - Main Card",
+        "itemLayout": "Music_song - Main Card",
+        "emptyPage": "core.block.no_content_with_icon"
+      },
+      {
+        "component": "core.block.sideAppHeader",
+        "slotName": "side",
+        "title": "Album",
+        "blockId": "cb9wj"
+      },
+      {
+        "blockId": "nq95j",
+        "component": "core.block.sidebarQuickFilter",
+        "slotName": "side",
+        "title": "Music",
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "textPrimary",
+          "noFooter": true,
+          "noHeader": false,
+          "testid": "sidebarQuickFilter"
+        }
+      }
+    ],
+    "containers": {},
+    "templateName": "two-column-fixed"
+  },
+  "sMedium": {
+    "blocks": [
+      {
+        "component": "core.block.sidebarAppMobile",
+        "slotName": "main",
+        "title": "music",
+        "blockProps": {
+          "variant": "plained",
+          "marginBottom": 2
+        },
+        "contents": [
+          {
+            "name": "core.block.sidebarQuickFilter"
+          }
+        ],
+        "blockId": "lcfv"
+      },
+      {
+        "component": "music.block.mainListing",
+        "slotName": "main",
+        "emptyPage": "core.block.no_content_with_icon",
+        "itemProps": {
+          "showActionMenu": true
+        },
+        "blockId": "i10",
+        "canLoadMore": true,
+        "canLoadSmooth": true,
+        "blockLayout": "App List - Mobile",
+        "gridLayout": "Music - Main Card",
+        "itemLayout": "Music_song - Main Card"
+      }
+    ],
+    "containers": {},
+    "templateName": "mobile"
+  },
+  "small": {
+    "blocks": [
+      {
+        "component": "core.block.sidebarAppMobile",
+        "slotName": "main",
+        "title": "Music",
+        "blockProps": {
+          "variant": "plained",
+          "marginBottom": 2
+        },
+        "contents": [
+          {
+            "name": "core.block.sidebarQuickFilter"
+          }
+        ],
+        "blockId": "lcfv"
+      },
+      {
+        "component": "music.block.mainListing",
+        "slotName": "main",
+        "emptyPage": "core.block.no_content_with_icon",
+        "itemProps": {
+          "showActionMenu": true
+        },
+        "blockId": "i10",
+        "canLoadMore": true,
+        "canLoadSmooth": true,
+        "blockLayout": "App List - Mobile",
+        "gridLayout": "Music - Main Card - Mobile",
+        "itemLayout": "Music_song - Main Card - Mobile"
+      }
+    ],
+    "containers": {},
+    "templateName": "mobile"
+  },
+  "info": {
+    "bundle": "web",
+    "name": "music_song.search"
+  }
+}

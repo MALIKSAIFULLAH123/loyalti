@@ -1,0 +1,91 @@
+{
+  "large": {
+    "templateName": "profile-tab",
+    "blocks": [
+      {
+        "component": "pages.block.pageProfileHeader",
+        "slotName": "top",
+        "title": "Page Profile Header",
+        "key": "9xaj",
+        "blockId": "9xaj"
+      },
+      {
+        "component": "blog.block.ProfileBlogs",
+        "slotName": "main",
+        "title": "blogs",
+        "canLoadMore": true,
+        "key": "5ylxq",
+        "blockId": "5ylxq",
+        "itemView": "blog.itemView.mainCard",
+        "contentType": "blog",
+        "dataSource": {
+          "apiUrl": "/blog",
+          "apiParams": "user_id=:id&limit=6"
+        },
+        "hasSearchBox": true,
+        "placeholderSearchBox": "search_blogs",
+        "freeze": false,
+        "blockLayout": "Profile - Side Contained",
+        "gridLayout": "Blog User - Main Card",
+        "emptyPage": "core.block.no_item_with_icon",
+        "emptyPageProps": {
+          "description": "no_blog_found",
+          "image": "ico-newspaper-alt-o"
+        },
+        "headerActionsResource": "blog.blog.headerItemActionOnPageProfileMenu",
+        "itemLinkProps": {
+          "asModal": 1
+        },
+        "itemLayout": "Blog User - Main Card"
+      }
+    ]
+  },
+  "small": {
+    "templateName": "mobile",
+    "blocks": [
+      {
+        "component": "core.block.sidebarAppMobile",
+        "slotName": "top",
+        "blockId": "raegh"
+      },
+      {
+        "component": "pages.block.pageProfileHeader",
+        "slotName": "top",
+        "title": "Page Profile Header"
+      },
+      {
+        "component": "blog.block.ProfileBlogs",
+        "slotName": "main",
+        "title": "blogs",
+        "canLoadMore": true,
+        "key": "5ylxq",
+        "blockId": "5ylxq",
+        "itemView": "blog.itemView.mainCard",
+        "contentType": "blog",
+        "dataSource": {
+          "apiUrl": "/blog",
+          "apiParams": "user_id=:id&limit=6"
+        },
+        "hasSearchBox": true,
+        "placeholderSearchBox": "search_blogs",
+        "freeze": false,
+        "blockLayout": "Profile Mobile - Contained",
+        "gridLayout": "Blog - Profile - Main Card",
+        "itemLayout": "Blog - Profile - Main Card",
+        "emptyPage": "core.block.no_item_with_icon",
+        "emptyPageProps": {
+          "description": "no_blog_found",
+          "image": "ico-newspaper-alt-o"
+        },
+        "headerActionsResource": "blog.blog.headerItemActionOnPageProfileMenu",
+        "itemLinkProps": {
+          "asModal": 1
+        }
+      }
+    ]
+  },
+  "info": {
+    "bundle": "web",
+    "name": "page.profile.blog"
+  }
+}

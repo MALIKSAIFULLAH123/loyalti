@@ -1,0 +1,21 @@
+{
+  "blockProps": {
+    "contentStyle": {
+      "sx": {
+        "p": 0
+      }
+    },
+    "blockStyle": {
+      "sx": {
+        "mb": 0,
+        "mt": 2
+      }
+    }
+  },
+  "noHeader": true,
+  "noFooter": true,
+  "info": {
+    "bundle": "web",
+    "name": "Story - Listing - Feed"
+  }
+}

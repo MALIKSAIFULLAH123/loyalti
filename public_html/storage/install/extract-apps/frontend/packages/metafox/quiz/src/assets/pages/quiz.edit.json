@@ -1,0 +1,42 @@
+{
+  "large": {
+    "blocks": [
+      {
+        "component": "core.breadcrumbBlock",
+        "slotName": "main",
+        "title": "breadcrumb",
+        "blockId": "i9b",
+        "blockLayout": "form breadcrumb"
+      },
+      {
+        "component": "core.block.mainForm",
+        "slotName": "main",
+        "blockId": "78ij",
+        "blockLayout": "Full Screen Form"
+      }
+    ],
+    "templateName": "simple"
+  },
+  "small": {
+    "templateName": "mobile",
+    "blocks": [
+      {
+        "component": "core.breadcrumbBlock",
+        "slotName": "main",
+        "title": "breadcrumb",
+        "blockId": "i9b",
+        "blockLayout": "form breadcrumb"
+      },
+      {
+        "blockId": "78ubt",
+        "component": "core.block.mainForm",
+        "slotName": "main",
+        "blockLayout": "Full Screen Form"
+      }
+    ]
+  },
+  "info": {
+    "bundle": "web",
+    "name": "quiz.edit"
+  }
+}

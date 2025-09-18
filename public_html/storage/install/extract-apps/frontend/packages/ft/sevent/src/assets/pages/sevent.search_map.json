@@ -1,0 +1,139 @@
+{
+  "large": {
+    "blocks": [
+      {
+        "component": "core.block.sideAppHeader",
+        "slotName": "side",
+        "title": "Events",
+        "icon": "ico-compose-alt",
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "textPrimary",
+          "noFooter": true,
+          "noHeader": true,
+          "blockStyle": {
+            "pl": 3,
+            "pt": 4,
+            "pr": 3,
+            "pb": 4
+          },
+          "testid": "sidebarAppHeaderBlock"
+        },
+        "freeze": true,
+        "blockLayout": "sidebar app header"
+      },
+      {
+        "component": "core.block.sidebarQuickFilter",
+        "resourceNameAction": "viewEventsMap",
+        "formName": "search_map",
+        "slotName": "side",
+        "title": "Filters",
+        "blockProps": {
+          "variant": "plained",
+          "titleComponent": "h2",
+          "titleVariant": "subtitle1",
+          "titleColor": "textPrimary",
+          "noFooter": true,
+          "noHeader": false
+        },
+        "blockLayout": "sidebar app filter"
+      },
+      {
+        "component": "core.block.mainListing",
+        "slotName": "side",
+        "gridLayout": "Sevent - Side - List",
+        "blockLayout": "Search",
+        "emptyPage": "core.block.no_content_with_icon",
+        "emptyPageProps": {
+          "image": "ico-calendar-o",
+          "title": "no_sevents_found"
+        },
+        "itemProps": {
+          "itemOnMap": true,
+          "showActionMenu": true
+        },
+        "itemView": "sevent.itemView.mainCard",
+        "canLoadMore": false,
+        "title": "",
+        "displayLimit": 20
+      },
+      {
+        "component": "core.block.listingMap",
+        "slotName": "main",
+        "gridLayout": "Subscription - List",
+        "blockLayout": "Block Map",
+        "itemProps": {
+          "showActionMenu": true
+        },
+        "canLoadMore": false,
+        "title": ""
+      }
+    ],
+    "containers": {},
+    "pageName": "sevent.search_map",
+    "templateName": "two-column-fixed"
+  },
+  "small": {
+    "blocks": [
+      {
+        "component": "core.block.sidebarAppMobile",
+        "slotName": "main",
+        "title": "events",
+        "keepMounted": true,
+        "blockProps": {
+          "variant": "plained",
+          "marginBottom": 2
+        },
+        "contents": [
+          {
+            "name": "core.block.sidebarQuickFilter",
+            "props": {
+              "resourceNameAction": "viewEventsMap",
+              "formName": "search_map"
+            }
+          },
+          {
+            "name": "core.block.mainListing",
+            "props": {
+              "gridLayout": "Sevent - Side - List",
+              "blockLayout": "Search",
+              "emptyPage": "core.block.no_content_with_icon",
+              "emptyPageProps": {
+                "image": "ico-calendar-o",
+                "title": "no_sevents_found"
+              },
+              "itemProps": {
+                "itemOnMap": true,
+                "showActionMenu": true
+              },
+              "itemView": "sevent.itemView.mainCard",
+              "canLoadMore": false,
+              "title": "",
+              "displayLimit": 20
+            }
+          }
+        ]
+      },
+      {
+        "component": "core.block.listingMap",
+        "slotName": "main",
+        "gridLayout": "Subscription - List",
+        "blockLayout": "Block Full Main",
+        "itemProps": {
+          "showActionMenu": true
+        },
+        "canLoadMore": false,
+        "title": ""
+      }
+    ],
+    "containers": {},
+    "pageName": "sevent.search_map",
+    "templateName": "mobile"
+  },
+  "info": {
+    "bundle": "web",
+    "name": "sevent.search_map"
+  }
+}
