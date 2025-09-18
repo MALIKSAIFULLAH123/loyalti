@@ -1,1 +1,0 @@
-export { getMenuAction } from './getMenuAction';

@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunk_metafox_react=self.webpackChunk_metafox_react||[]).push([["metafox-forum-components-ForumItem-SliderCard-LoadingSkeleton"],{70734(e,t,a){a.r(t),a.d(t,{default:()=>o});var r=a(52705),n=a(96540);function o({wrapAs:e,wrapProps:t}){return n.createElement(r.A,{height:200,width:"100%"})}}}]);

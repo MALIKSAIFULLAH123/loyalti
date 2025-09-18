@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunk_metafox_react=self.webpackChunk_metafox_react||[]).push([["metafox-forum-blocks-ThreadListing-Block"],{18108(e,t,a){a.r(t),a.d(t,{default:()=>i});var r=a(91557);let i=(0,r.WvA)({extendBlock:"core.block.listview",defaults:{title:"Threads",itemView:"forum_thread.itemView.mainCard"}})}}]);

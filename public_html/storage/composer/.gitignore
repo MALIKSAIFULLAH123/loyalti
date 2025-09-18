@@ -1,6 +1,0 @@
-cache
-!.gitignore
-!.htaccess
-!auth.json
-!keys.dev.pub
-!keys.tags.pub

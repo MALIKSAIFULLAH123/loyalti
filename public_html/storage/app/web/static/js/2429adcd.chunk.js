@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunk_metafox_react=self.webpackChunk_metafox_react||[]).push([["metafox-marketplace-blocks-MarketplaceListing-Block"],{65172(e,a,t){t.r(a),t.d(a,{default:()=>r});var c=t(91557);let l=(0,c.WvA)({name:"MarketplaceListingBlock",extendBlock:"core.block.listview",overrides:{contentType:"marketplace",dataSource:{apiUrl:"/marketplace"}}}),r=l}}]);

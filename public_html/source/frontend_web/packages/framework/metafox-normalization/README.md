@@ -1,3 +1,0 @@
-# normalization
-
-JSON data normalization

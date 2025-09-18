@@ -1,9 +1,0 @@
-{
-  "gridItemProps": {
-    "xs": 12
-  },
-  "info": {
-    "bundle": "web",
-    "name": "user.itemView.reviewPosts"
-  }
-}

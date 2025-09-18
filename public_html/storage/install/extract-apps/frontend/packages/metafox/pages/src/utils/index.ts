@@ -1,1 +1,0 @@
-export { mappingRelationship } from './mappingRelationship';

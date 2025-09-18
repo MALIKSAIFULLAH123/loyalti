@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunk_metafox_react=self.webpackChunk_metafox_react||[]).push([["metafox-event-blocks-Page-PageEventListing-Block"],{59876(e,t,a){a.r(t),a.d(t,{default:()=>l});var c=a(91557);let l=(0,c.WvA)({extendBlock:"core.block.listview"})}}]);

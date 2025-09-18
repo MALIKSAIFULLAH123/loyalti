@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunk_metafox_react=self.webpackChunk_metafox_react||[]).push([["metafox-group-blocks-GroupComposer-Block"],{82053(e,o,s){s.r(o),s.d(o,{default:()=>a});var r=s(91557);let a=(0,r.WvA)({extendBlock:"feed.block.statusComposer",name:"GroupComposer",overrides:{showWhen:["and",["falsy","profile.is_muted"],["falsy","profile.is_pending"]]}})}}]);

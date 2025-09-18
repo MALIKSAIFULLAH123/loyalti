@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunk_metafox_react=self.webpackChunk_metafox_react||[]).push([["metafox-ui-SmartDataGrid-IconCell"],{46878(e,t,a){a.r(t),a.d(t,{default:()=>u});var c=a(40515),l=a(58156),n=a.n(l),r=a(96540);function u({row:e,colDef:{field:t,sx:a}}){let l=n()(e,t);return l?r.createElement(c.s4,{icon:l,sx:a}):null}}}]);

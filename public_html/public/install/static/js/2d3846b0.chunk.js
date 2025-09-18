@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunk_metafox_react=self.webpackChunk_metafox_react||[]).push([["metafox-react-app-bundle-web-style-a0-theme-a0-tsx"],{78286(e,a,t){t.r(a),t.d(a,{default:()=>m,info:()=>f});var s=t(77265);let f={name:"a0",theme:"a0",system:!0,id:"a0:a0",dir:"packages/framework/metafox-theme-default/src/styles/a0"},m=s.A},77265(e,a,t){t.d(a,{A:()=>s});let s={}}}]);
