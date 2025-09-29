@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:loyalty_app/Auth/SignIn.dart';
+import 'package:loyalty_app/Auth/TermsConditionsScreen.dart';
 import 'package:loyalty_app/utils/api_constants.dart';
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -106,7 +107,7 @@ class _SignUpScreen2State extends State<SignUpScreen2> {
                     style: const TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.w500,
-                      fontFamily: 'Poppins',
+                      fontFamily: 'NotoSans',
                     ),
                   ),
                 ),
@@ -830,80 +831,64 @@ class _SignUpScreen2State extends State<SignUpScreen2> {
     }
   }
 
+  final Map<String, String> displayLanguageMap = {
+    'el': 'GR',
+    'en': 'EN',
+    'ro': 'RO',
+  };
   @override
   Widget build(BuildContext context) {
-    final localizations = AppLocalizations.of(context)!;
-    final localizationService = Provider.of<LocalizationService>(context);
+    return Consumer<LocalizationService>(
+      builder: (context, localizationService, child) {
+        final localizations = AppLocalizations.of(context)!;
+        final currentDisplayLanguage =
+            displayLanguageMap[localizationService
+                .currentLocale
+                .languageCode] ??
+            'GR';
 
-    return Scaffold(
-      resizeToAvoidBottomInset: true,
-      body: Stack(
-        children: [
-          // Background image
-          Container(
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage("assets/images/auth.jpg"),
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
-          Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [
-                  Colors.black.withOpacity(0.3),
-                  Colors.black.withOpacity(0.1),
-                ],
-              ),
-            ),
-          ),
-
-          // Main content with SingleChildScrollView
-          SafeArea(
-            child: SingleChildScrollView(
-              padding: EdgeInsets.only(
-                bottom: MediaQuery.of(context).viewInsets.bottom,
-              ),
-              child: ConstrainedBox(
-                constraints: BoxConstraints(
-                  minHeight:
-                      MediaQuery.of(context).size.height -
-                      MediaQuery.of(context).padding.top,
+        return Scaffold(
+          body: Stack(
+            children: [
+              // Background image with blur
+              Container(
+                decoration: const BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage("assets/images/auth.jpg"),
+                    fit: BoxFit.cover,
+                  ),
                 ),
-                child: Column(
-                  children: [
-                    const SizedBox(height: 20),
-
-                    // Logo
-                    Center(
-                      child: Image.asset(
-                        'assets/images/app-logo.png',
-                        height: 80,
-                        width: 480,
-                      ),
-                    ),
-                    const SizedBox(height: 15),
-
-                    // Language Selection
-                    Center(
-                      child: Text(
-                        localizations.chooseLanguage,
-                        style: const TextStyle(
-                          fontSize: 18,
-                          color: Colors.white,
-                          fontFamily: 'Poppins',
-                          fontWeight: FontWeight.w500,
+              ),
+              Container(color: Colors.black.withOpacity(0.3)),
+              SafeArea(
+                child: SingleChildScrollView(
+                  // Add this wrapper
+                  child: Column(
+                    children: [
+                      const SizedBox(height: 20),
+                      // Logo
+                      Center(
+                        child: Image.asset(
+                          'assets/images/app-logo.png',
+                          height: 100,
+                          width: 600,
                         ),
-                        textAlign: TextAlign.center,
                       ),
-                    ),
-                    const SizedBox(height: 10),
+                      const SizedBox(height: 40),
 
-                    Center(
-                      child: Row(
+                      // Language Selection - Centered
+                      Center(
+                        child: Text(
+                          localizations.chooseLanguage,
+                          style: TextStyle(
+                            fontSize: 20,
+                            color: Colors.white,
+                            fontFamily: 'NotoSans',
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           _buildLanguageOption('GR'),
@@ -913,26 +898,16 @@ class _SignUpScreen2State extends State<SignUpScreen2> {
                           _buildLanguageOption('ro'),
                         ],
                       ),
-                    ),
-                    const SizedBox(height: 15),
 
-                    // White Card with form
-                    Padding(
-                      padding: const EdgeInsets.only(top: 90.0),
-                      child: Container(
+                      const SizedBox(height: 20), // Changed from Spacer()
+                      // White Card
+                      Container(
                         width: double.infinity,
-                        margin: const EdgeInsets.fromLTRB(16, 0, 16, 16),
-                        padding: const EdgeInsets.all(20),
+                        margin: const EdgeInsets.symmetric(horizontal: 36),
+                        padding: const EdgeInsets.all(24),
                         decoration: BoxDecoration(
                           color: Colors.white,
-                          borderRadius: BorderRadius.circular(25),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black.withOpacity(0.1),
-                              blurRadius: 20,
-                              offset: const Offset(0, 10),
-                            ),
-                          ],
+                          borderRadius: BorderRadius.circular(30),
                         ),
                         child: Form(
                           key: _formKey,
@@ -940,71 +915,205 @@ class _SignUpScreen2State extends State<SignUpScreen2> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              // Title section
-                              Column(
-                                children: [
-                                  Center(
-                                    child: Text(
-                                      localizations.signUp,
-                                      style: const TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 22,
-                                        fontFamily: 'Poppins',
-                                        color: Colors.black87,
-                                      ),
-                                      textAlign: TextAlign.center,
-                                    ),
+                              Center(
+                                child: Text(
+                                  localizations.signUp,
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 22,
+                                    fontFamily: 'NotoSans',
                                   ),
-                                  const SizedBox(height: 6),
-                                  Center(
-                                    child: Text(
-                                      _phoneVerified
-                                          ? localizations.phoneVerifiedCreating
-                                          : _otpSent
-                                          ? localizations.enterSixDigitCode
-                                          : localizations.createAccount,
-                                      style: TextStyle(
-                                        color: _phoneVerified
-                                            ? Colors.green[600]
-                                            : Colors.grey[600],
-                                        fontSize: 11,
-                                        fontFamily: 'Poppins',
-                                      ),
-                                      textAlign: TextAlign.center,
-                                    ),
-                                  ),
-                                ],
+                                ),
                               ),
-                              const SizedBox(height: 16),
+                              const SizedBox(height: 10),
+                              Center(
+                                child: Text(
+                                  _phoneVerified
+                                      ? localizations.phoneVerifiedCreating
+                                      : _otpSent
+                                      ? localizations.enterSixDigitCode
+                                      : localizations.createAccount,
+                                  style: TextStyle(
+                                    color: _phoneVerified
+                                        ? Colors.green[600]
+                                        : Colors.grey[700],
+                                    fontSize: 11,
+                                    fontFamily: 'NotoSans',
+                                  ),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ),
+                              const SizedBox(height: 10),
 
                               // Form fields section
                               if (!_otpSent) ...[
                                 // Full Name field
-                                _buildFieldLabel(localizations.fullName),
-                                _buildTextFormField(
+                                const SizedBox(height: 6),
+                                TextFormField(
                                   controller: fullNameController,
                                   validator: _validateName,
-                                  hintText: localizations.enterFullName,
-                                  prefixIcon: Icons.person_outline,
+                                  decoration: InputDecoration(
+                                    filled: true,
+                                    fillColor: Colors.grey[200],
+                                    hintText: localizations.enterFullName,
+                                    hintStyle: TextStyle(
+                                      color: Colors.grey[500],
+                                      fontSize: 13,
+                                    ),
+                                    prefixIcon: Icon(
+                                      Icons.person_outline,
+                                      color: Colors.grey[600],
+                                      size: 20,
+                                    ),
+                                    contentPadding: EdgeInsets.symmetric(
+                                      vertical: 10,
+                                      horizontal: 12,
+                                    ),
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(12),
+                                      borderSide: BorderSide.none,
+                                    ),
+                                    enabledBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(12),
+                                      borderSide: BorderSide(
+                                        color: Colors.grey[300]!,
+                                      ),
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(12),
+                                      borderSide: BorderSide(
+                                        color: Colors.orange.shade400,
+                                        width: 2,
+                                      ),
+                                    ),
+                                    errorBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(12),
+                                      borderSide: const BorderSide(
+                                        color: Colors.red,
+                                        width: 1,
+                                      ),
+                                    ),
+                                  ),
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    fontFamily: 'NotoSans',
+                                  ),
                                 ),
+
                                 const SizedBox(height: 12),
 
                                 // Phone Number field
-                                _buildFieldLabel(localizations.phone),
-                                _buildPhoneField(),
+                                TextFormField(
+                                  controller: phoneController,
+                                  validator: _validatePhone,
+                                  keyboardType: TextInputType.phone,
+                                  inputFormatters: [
+                                    FilteringTextInputFormatter.digitsOnly,
+                                  ],
+                                  decoration: InputDecoration(
+                                    filled: true,
+                                    fillColor: Colors.grey[200],
+                                    hintText: localizations.enterPhone,
+                                    hintStyle: TextStyle(
+                                      color: Colors.grey[500],
+                                      fontSize: 13,
+                                    ),
+                                    prefixIcon: Icon(
+                                      Icons.phone_outlined,
+                                      color: Colors.grey[600],
+                                      size: 20,
+                                    ),
+                                    contentPadding: EdgeInsets.symmetric(
+                                      vertical: 10,
+                                      horizontal: 12,
+                                    ),
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(12),
+                                      borderSide: BorderSide.none,
+                                    ),
+                                    enabledBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(12),
+                                      borderSide: BorderSide(
+                                        color: Colors.grey[300]!,
+                                      ),
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(12),
+                                      borderSide: BorderSide(
+                                        color: Colors.orange.shade400,
+                                        width: 2,
+                                      ),
+                                    ),
+                                    errorBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(12),
+                                      borderSide: const BorderSide(
+                                        color: Colors.red,
+                                        width: 1,
+                                      ),
+                                    ),
+                                  ),
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    fontFamily: 'NotoSans',
+                                  ),
+                                ),
                               ] else if (!_phoneVerified) ...[
                                 // OTP Verification Section
-                                _buildFieldLabel(localizations.enterOtp),
-                                _buildTextFormField(
+                                const SizedBox(height: 6),
+                                TextFormField(
                                   controller: otpController,
                                   validator: _validateOtp,
-                                  hintText: localizations.enterSixDigitOtp,
-                                  prefixIcon: Icons.security,
                                   keyboardType: TextInputType.number,
                                   inputFormatters: [
                                     FilteringTextInputFormatter.digitsOnly,
                                     LengthLimitingTextInputFormatter(6),
                                   ],
+                                  decoration: InputDecoration(
+                                    filled: true,
+                                    fillColor: Colors.grey[200],
+                                    hintText: localizations.enterSixDigitOtp,
+                                    hintStyle: TextStyle(
+                                      color: Colors.grey[500],
+                                      fontSize: 13,
+                                    ),
+                                    prefixIcon: Icon(
+                                      Icons.security,
+                                      color: Colors.grey[600],
+                                      size: 20,
+                                    ),
+                                    contentPadding: EdgeInsets.symmetric(
+                                      vertical: 10,
+                                      horizontal: 12,
+                                    ),
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(12),
+                                      borderSide: BorderSide.none,
+                                    ),
+                                    enabledBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(12),
+                                      borderSide: BorderSide(
+                                        color: Colors.grey[300]!,
+                                      ),
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(12),
+                                      borderSide: BorderSide(
+                                        color: Colors.orange.shade400,
+                                        width: 2,
+                                      ),
+                                    ),
+                                    errorBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(12),
+                                      borderSide: const BorderSide(
+                                        color: Colors.red,
+                                        width: 1,
+                                      ),
+                                    ),
+                                  ),
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    fontFamily: 'NotoSans',
+                                  ),
                                 ),
                                 const SizedBox(height: 10),
                                 Row(
@@ -1017,7 +1126,7 @@ class _SignUpScreen2State extends State<SignUpScreen2> {
                                         style: TextStyle(
                                           color: Colors.grey[600],
                                           fontSize: 11,
-                                          fontFamily: 'Poppins',
+                                          fontFamily: 'NotoSans',
                                         ),
                                         overflow: TextOverflow.ellipsis,
                                       ),
@@ -1033,7 +1142,7 @@ class _SignUpScreen2State extends State<SignUpScreen2> {
                                               ? Colors.orange
                                               : Colors.grey,
                                           fontSize: 11,
-                                          fontFamily: 'Poppins',
+                                          fontFamily: 'NotoSans',
                                           fontWeight: FontWeight.w500,
                                         ),
                                       ),
@@ -1065,7 +1174,7 @@ class _SignUpScreen2State extends State<SignUpScreen2> {
                                           style: TextStyle(
                                             color: Colors.green[700],
                                             fontSize: 12,
-                                            fontFamily: 'Poppins',
+                                            fontFamily: 'NotoSans',
                                             fontWeight: FontWeight.w500,
                                           ),
                                         ),
@@ -1075,11 +1184,9 @@ class _SignUpScreen2State extends State<SignUpScreen2> {
                                 ),
                               ],
 
-                              const SizedBox(height: 10),
-
+                              const SizedBox(height: 12),
                               // Terms checkbox
                               Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Checkbox(
                                     value: _acceptTerms,
@@ -1088,81 +1195,25 @@ class _SignUpScreen2State extends State<SignUpScreen2> {
                                         _acceptTerms = val!;
                                       });
                                     },
-                                    activeColor: const Color(0xFFEC7103),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(4),
-                                    ),
+                                    activeColor: Color(0xFFEC7103),
                                   ),
                                   Expanded(
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(top: 10),
-                                      child: RichText(
-                                        text: TextSpan(
-                                          style: const TextStyle(
-                                            color: Colors.black87,
-                                            fontFamily: 'Poppins',
-                                            fontSize: 12,
-                                          ),
-                                          children: [
-                                            TextSpan(
-                                              text: '${localizations.iAccept} ',
-                                            ),
-                                            TextSpan(
-                                              text: localizations.termsOfUse,
-                                              style: const TextStyle(
-                                                color: Color(0xFFEC7103),
-                                                decoration:
-                                                    TextDecoration.underline,
-                                                fontWeight: FontWeight.w500,
-                                              ),
-                                            ),
-                                            TextSpan(
-                                              text: ' ${localizations.and} ',
-                                            ),
-                                            TextSpan(
-                                              text: localizations.privacyPolicy,
-                                              style: const TextStyle(
-                                                color: Color(0xFFEC7103),
-                                                decoration:
-                                                    TextDecoration.underline,
-                                                fontWeight: FontWeight.w500,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-
-                              const SizedBox(height: 15),
-
-                              // Bottom section with sign in text and button
-                              Column(
-                                children: [
-                                  // Sign in text
-                                  Center(
                                     child: RichText(
                                       text: TextSpan(
-                                        style: const TextStyle(
+                                        style: TextStyle(
                                           color: Colors.black87,
-                                          fontFamily: 'Poppins',
-                                          fontSize: 11,
+                                          fontFamily: 'NotoSans',
                                         ),
                                         children: [
                                           TextSpan(
-                                            text:
-                                                '${localizations.haveAccount} ',
+                                            text: '${localizations.iAccept} ',
                                           ),
                                           TextSpan(
-                                            text: localizations.signIn,
-                                            style: const TextStyle(
+                                            text: localizations.termsOfUse,
+                                            style: TextStyle(
                                               color: Color(0xFFEC7103),
-                                              fontWeight: FontWeight.bold,
                                               decoration:
                                                   TextDecoration.underline,
-                                              fontSize: 13,
                                             ),
                                             recognizer: TapGestureRecognizer()
                                               ..onTap = () {
@@ -1170,7 +1221,7 @@ class _SignUpScreen2State extends State<SignUpScreen2> {
                                                   context,
                                                   MaterialPageRoute(
                                                     builder: (context) =>
-                                                        SignInScreen(),
+                                                        TermsConditionsScreen(),
                                                   ),
                                                 );
                                               },
@@ -1179,103 +1230,135 @@ class _SignUpScreen2State extends State<SignUpScreen2> {
                                       ),
                                     ),
                                   ),
-                                  const SizedBox(height: 15),
+                                ],
+                              ),
 
-                                  // Sign Up button
-                                  Center(
-                                    child: SizedBox(
-                                      width: double.infinity,
-                                      child: ElevatedButton(
-                                        onPressed:
-                                            (_isLoading || _isCheckingUser)
-                                            ? null
-                                            : _handleSignup,
-                                        style: ElevatedButton.styleFrom(
-                                          backgroundColor: const Color(
-                                            0xFFEC7103,
-                                          ),
-                                          foregroundColor: Colors.white,
-                                          padding: const EdgeInsets.symmetric(
-                                            vertical: 14,
-                                          ),
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(
-                                              25,
-                                            ),
-                                          ),
-                                          elevation: 2,
+                              // Sign in text
+                              Center(
+                                child: RichText(
+                                  text: TextSpan(
+                                    style: TextStyle(
+                                      color: Colors.black87,
+                                      fontFamily: 'NotoSans',
+                                      fontSize: 12,
+                                    ),
+                                    children: [
+                                      TextSpan(
+                                        text: '${localizations.haveAccount} ',
+                                      ),
+                                      TextSpan(
+                                        text: localizations.signIn,
+                                        style: TextStyle(
+                                          color: Color(0xFFEC7103),
+                                          fontWeight: FontWeight.bold,
+                                          decoration: TextDecoration.underline,
+                                          fontSize: 14,
                                         ),
-                                        child:
-                                            (_isLoading ||
-                                                _isCheckingUser ||
-                                                _isVerifyingOtp)
-                                            ? Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                children: [
-                                                  const SizedBox(
-                                                    width: 18,
-                                                    height: 18,
-                                                    child: CircularProgressIndicator(
-                                                      strokeWidth: 2,
-                                                      valueColor:
-                                                          AlwaysStoppedAnimation<
-                                                            Color
-                                                          >(Colors.white),
-                                                    ),
-                                                  ),
-                                                  const SizedBox(width: 10),
-                                                  Text(
-                                                    _isCheckingUser
-                                                        ? localizations
-                                                              .checkingUser
-                                                        : _isVerifyingOtp
-                                                        ? localizations
-                                                              .verifyingOtp
-                                                        : _phoneVerified
-                                                        ? localizations
-                                                              .creatingAccount
-                                                        : localizations
-                                                              .sendingOtp,
-                                                    style: const TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.w600,
-                                                      fontFamily: 'Poppins',
-                                                      fontSize: 15,
-                                                    ),
-                                                  ),
-                                                ],
-                                              )
-                                            : Text(
-                                                !_otpSent
-                                                    ? localizations.sendOtp
-                                                    : !_phoneVerified
-                                                    ? localizations.verifyOtp
-                                                    : localizations
-                                                          .createAccount,
-                                                style: const TextStyle(
-                                                  fontWeight: FontWeight.w600,
-                                                  fontFamily: 'Poppins',
-                                                  fontSize: 15,
+                                        recognizer: TapGestureRecognizer()
+                                          ..onTap = () {
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) =>
+                                                    SignInScreen(),
+                                              ),
+                                            );
+                                          },
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+
+                              const SizedBox(height: 30),
+
+                              // Sign Up button - Centered
+                              Center(
+                                child: SizedBox(
+                                  width: double.infinity,
+                                  child: ElevatedButton(
+                                    onPressed: (_isLoading || _isCheckingUser)
+                                        ? null
+                                        : _handleSignup,
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor: const Color(0xFFEC7103),
+                                      foregroundColor: Colors.white,
+                                      padding: const EdgeInsets.symmetric(
+                                        vertical: 16,
+                                      ),
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(25),
+                                      ),
+                                      elevation: 2,
+                                    ),
+                                    child:
+                                        (_isLoading ||
+                                            _isCheckingUser ||
+                                            _isVerifyingOtp)
+                                        ? Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              const SizedBox(
+                                                width: 20,
+                                                height: 20,
+                                                child: CircularProgressIndicator(
+                                                  strokeWidth: 2,
+                                                  valueColor:
+                                                      AlwaysStoppedAnimation<
+                                                        Color
+                                                      >(Colors.white),
                                                 ),
                                               ),
-                                      ),
-                                    ),
+                                              const SizedBox(width: 12),
+                                              Text(
+                                                _isCheckingUser
+                                                    ? localizations.checkingUser
+                                                    : _isVerifyingOtp
+                                                    ? localizations.verifyingOtp
+                                                    : _phoneVerified
+                                                    ? localizations
+                                                          .creatingAccount
+                                                    : localizations.sendingOtp,
+                                                style: const TextStyle(
+                                                  fontWeight: FontWeight.w600,
+                                                  fontFamily: 'NotoSans',
+                                                  fontSize: 16,
+                                                ),
+                                                textAlign: TextAlign.center,
+                                              ),
+                                            ],
+                                          )
+                                        : Text(
+                                            !_otpSent
+                                                ? localizations.sendOtp
+                                                : !_phoneVerified
+                                                ? localizations.verifyOtp
+                                                : localizations.createAccount,
+                                            style: const TextStyle(
+                                              fontWeight: FontWeight.w600,
+                                              fontFamily: 'NotoSans',
+                                              fontSize: 16,
+                                            ),
+                                            textAlign: TextAlign.center,
+                                          ),
                                   ),
-                                ],
+                                ),
                               ),
                             ],
                           ),
                         ),
                       ),
-                    ),
-                  ],
+
+                      const SizedBox(height: 30),
+                    ],
+                  ),
                 ),
               ),
-            ),
+            ],
           ),
-        ],
-      ),
+        );
+      },
     );
   }
 
@@ -1286,7 +1369,7 @@ class _SignUpScreen2State extends State<SignUpScreen2> {
         text,
         style: const TextStyle(
           fontWeight: FontWeight.w600,
-          fontFamily: 'Poppins',
+          fontFamily: 'NotoSans',
           fontSize: 14,
           color: Colors.black87,
         ),
@@ -1311,7 +1394,7 @@ class _SignUpScreen2State extends State<SignUpScreen2> {
       keyboardType: keyboardType,
       inputFormatters: inputFormatters,
       obscureText: obscureText,
-      style: const TextStyle(fontSize: 14, fontFamily: 'Poppins'),
+      style: const TextStyle(fontSize: 14, fontFamily: 'NotoSans'),
       decoration: InputDecoration(
         filled: true,
         fillColor: Colors.grey[100],
@@ -1343,7 +1426,7 @@ class _SignUpScreen2State extends State<SignUpScreen2> {
           borderRadius: BorderRadius.circular(12),
           borderSide: const BorderSide(color: Colors.red, width: 2),
         ),
-        errorStyle: const TextStyle(fontSize: 12, fontFamily: 'Poppins'),
+        errorStyle: const TextStyle(fontSize: 12, fontFamily: 'NotoSans'),
       ),
     );
   }
@@ -1385,7 +1468,7 @@ class _SignUpScreen2State extends State<SignUpScreen2> {
               : Colors.white, // White for inactive
           fontWeight: selected ? FontWeight.bold : FontWeight.normal,
           fontSize: 16,
-          fontFamily: 'Jura',
+          fontFamily: 'NotoSans',
         ),
       ),
     );

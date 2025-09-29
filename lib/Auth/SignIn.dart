@@ -102,7 +102,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     style: const TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.w500,
-                      fontFamily: 'Poppins',
+                      fontFamily: 'NotoSans',
                     ),
                   ),
                 ),
@@ -486,7 +486,7 @@ class _SignInScreenState extends State<SignInScreen> {
                         style: TextStyle(
                           fontSize: 20,
                           color: Colors.white,
-                          fontFamily: 'Poppins',
+                          fontFamily: 'NotoSans',
                         ),
                       ),
                     ),
@@ -537,7 +537,7 @@ class _SignInScreenState extends State<SignInScreen> {
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 22,
-                                  fontFamily: 'Poppins',
+                                  fontFamily: 'NotoSans',
                                 ),
                               ),
                             ),
@@ -548,7 +548,7 @@ class _SignInScreenState extends State<SignInScreen> {
                                 style: TextStyle(
                                   color: Colors.grey[700],
                                   fontSize: 11,
-                                  fontFamily: 'Poppins',
+                                  fontFamily: 'NotoSans',
                                 ),
                                 textAlign: TextAlign.center,
                               ),
@@ -608,7 +608,7 @@ class _SignInScreenState extends State<SignInScreen> {
                               ),
                               style: TextStyle(
                                 fontSize: 14,
-                                fontFamily: 'Poppins',
+                                fontFamily: 'NotoSans',
                               ),
                             ),
 
@@ -630,7 +630,7 @@ class _SignInScreenState extends State<SignInScreen> {
                                     text: TextSpan(
                                       style: TextStyle(
                                         color: Colors.black87,
-                                        fontFamily: 'Poppins',
+                                        fontFamily: 'NotoSans',
                                       ),
                                       children: [
                                         TextSpan(text: '${localizations.acceptTerms} '),
@@ -665,7 +665,7 @@ class _SignInScreenState extends State<SignInScreen> {
                                 text: TextSpan(
                                   style: TextStyle(
                                     color: Colors.black87,
-                                    fontFamily: 'Poppins',
+                                    fontFamily: 'NotoSans',
                                     fontSize: 12,
                                   ),
                                   children: [
@@ -737,7 +737,7 @@ class _SignInScreenState extends State<SignInScreen> {
                                                   : localizations.signingIn,
                                               style: const TextStyle(
                                                 fontWeight: FontWeight.w600,
-                                                fontFamily: 'Poppins',
+                                                fontFamily: 'NotoSans',
                                                 fontSize: 16,
                                               ),
                                               textAlign: TextAlign.center,
@@ -748,7 +748,7 @@ class _SignInScreenState extends State<SignInScreen> {
                                           localizations.signInButton,
                                           style: const TextStyle(
                                             fontWeight: FontWeight.w600,
-                                            fontFamily: 'Poppins',
+                                            fontFamily: 'NotoSans',
                                             fontSize: 16,
                                           ),
                                           textAlign: TextAlign.center,
@@ -792,7 +792,7 @@ class _SignInScreenState extends State<SignInScreen> {
               : Colors.white,
           fontWeight: selected ? FontWeight.bold : FontWeight.normal,
           fontSize: 16,
-          fontFamily: 'Jura',
+          fontFamily: 'NotoSans',
         ),
       ),
     );

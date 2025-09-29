@@ -943,7 +943,9 @@ class _HomeScreenState extends State<HomeScreen>
   late Animation<double> _fadeAnimation;
   late Animation<Offset> _slideAnimation;
   late Animation<double> _pulseAnimation;
-
+  static const _tokenPrefsKey = "fcm_access_token";
+  static const _tokenExpiryKey = "fcm_token_expiry";
+  static const _apiTokenKey = "fcm_api_token"; // New key for API token
   String totalPoints = "0";
   String userName = "User";
   List<BannerModel> banners = [];
@@ -966,13 +968,58 @@ class _HomeScreenState extends State<HomeScreen>
     _loadUserName();
     _loadAllHomeData();
     _startBannerAutoSlide();
+    _generateAccessToken();
     _handleFcmToken(); // Add this line
+    // _sendFcmTokenToBackend();
     print('init chal gaya');
     // HomeScreen ke initState() mein add karo:
     // Test notification send karne ke liye
     // Future.delayed(Duration(seconds: 5), () {
     //   NotificationService.sendTestNotification();
     // });
+  }
+
+  /// Generate new Access Token
+  static Future<String?> _generateAccessToken() async {
+    try {
+      final jsonKey = await _loadServiceAccountJson();
+      final accountCredentials = ServiceAccountCredentials.fromJson(jsonKey);
+      const scopes = ['https://www.googleapis.com/auth/firebase.messaging'];
+
+      final client = await clientViaServiceAccount(accountCredentials, scopes);
+      final accessToken = client.credentials.accessToken.data;
+
+      // Token usually expires in 1 hour, save expiry time (55 minutes to be safe)
+      final expiryTime = DateTime.now()
+          .add(Duration(minutes: 55))
+          .millisecondsSinceEpoch;
+
+      // Save to SharedPreferences
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setString(_tokenPrefsKey, accessToken);
+      await prefs.setInt(_tokenExpiryKey, expiryTime);
+
+      client.close();
+
+      debugPrint("✅ New access token generated successfully");
+      print('✔✔✔✔ access  $accessToken');
+      return accessToken;
+    } catch (e) {
+      debugPrint("❗ Error generating access token: $e");
+      return null;
+    }
+  }
+
+  static Future<Map<String, dynamic>> _loadServiceAccountJson() async {
+    try {
+      String jsonString = await rootBundle.loadString(
+        'assets/service_account.json',
+      );
+      return json.decode(jsonString);
+    } catch (e) {
+      debugPrint("❗ Error loading service account JSON: $e");
+      rethrow;
+    }
   }
 
   @override
@@ -1021,12 +1068,13 @@ class _HomeScreenState extends State<HomeScreen>
   Future<void> _handleFcmToken() async {
     try {
       String? fcmToken;
+      fcmToken = await FirebaseMessaging.instance.getToken();
+
+        await _sendFcmTokenToBackend(fcmToken!);
 
       if (kIsWeb) {
         // Web-specific FCM initialization
-        fcmToken = await FirebaseMessaging.instance.getToken(
-          vapidKey: "⚡ apni web push key dalni hogi yahan ⚡",
-        );
+        fcmToken = await FirebaseMessaging.instance.getToken();
       } else {
         // Mobile platform
         fcmToken = await FirebaseMessaging.instance.getToken();
@@ -1114,7 +1162,12 @@ class _HomeScreenState extends State<HomeScreen>
         "KEY": trdr,
         "data": {
           "CUSTOMER": [
-            {"NAME": userName, "PHONE01": phone, "GLNCODE": fcmToken},
+            {
+              "NAME": userName,
+              "PHONE01": phone,
+              "GLNCODE": fcmToken,
+              "CCCXITACCESSTOKEN": _generateAccessToken(),
+            },
           ],
         },
       };
@@ -1145,21 +1198,21 @@ class _HomeScreenState extends State<HomeScreen>
   }
 
   // 🔥 FIX: Auto-slide banners every 3 seconds
-void _startBannerAutoSlide() {
-  Future.delayed(const Duration(seconds: 3), () {
-    if (mounted && banners.isNotEmpty) {
-      final nextIndex = (_currentBannerIndex + 1) % banners.length;
-      
-      _bannerPageController.animateToPage(
-        nextIndex,
-        duration: const Duration(milliseconds: 300),
-        curve: Curves.easeInOut,
-      );
+  void _startBannerAutoSlide() {
+    Future.delayed(const Duration(seconds: 3), () {
+      if (mounted && banners.isNotEmpty) {
+        final nextIndex = (_currentBannerIndex + 1) % banners.length;
 
-      _startBannerAutoSlide();
-    }
-  });
-}
+        _bannerPageController.animateToPage(
+          nextIndex,
+          duration: const Duration(milliseconds: 300),
+          curve: Curves.easeInOut,
+        );
+
+        _startBannerAutoSlide();
+      }
+    });
+  }
 
   // Load user name from SharedPreferences
   Future<void> _loadUserName() async {
@@ -2306,49 +2359,49 @@ class FCMNotificationHelper {
     }
   }
 
-  /// Remove API token from SharedPreferences
-  // static Future<void> clearApiTokenFromPrefs() async {
-  //   try {
-  //     final prefs = await SharedPreferences.getInstance();
-  //     await prefs.remove(_apiTokenKey);
-  //     debugPrint("✅ API token cleared from SharedPreferences");
-  //   } catch (e) {
-  //     debugPrint("❗ Error clearing API token: $e");
-  //   }
-  // }
+  // Remove API token from SharedPreferences
+  static Future<void> clearApiTokenFromPrefs() async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.remove(_apiTokenKey);
+      debugPrint("✅ API token cleared from SharedPreferences");
+    } catch (e) {
+      debugPrint("❗ Error clearing API token: $e");
+    }
+  }
 
-  // /// Updated test method with token refresh
-  // static Future<void> sendTestNotification() async {
-  //   try {
-  //     // Force refresh token
-  //     await FirebaseMessaging.instance.deleteToken();
-  //     String? newToken = await FirebaseMessaging.instance.getToken();
+  // Updated test method with token refresh
+  static Future<void> sendTestNotification() async {
+    try {
+      // Force refresh token
+      await FirebaseMessaging.instance.deleteToken();
+      String? newToken = await FirebaseMessaging.instance.getToken();
 
-  //     if (newToken == null) {
-  //       debugPrint("❌ Failed to get new token");
-  //       return;
-  //     }
+      if (newToken == null) {
+        debugPrint("❌ Failed to get new token");
+        return;
+      }
 
-  //     debugPrint("🔄 New Token: ${newToken.substring(0, 20)}...");
+      debugPrint("🔄 New Token: ${newToken.substring(0, 20)}...");
 
-  //     // Save new token
-  //     final prefs = await SharedPreferences.getInstance();
-  //     await prefs.setString('fcm_token', newToken);
+      // Save new token
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setString('fcm_token', newToken);
 
-  //     // Test notification
-  //     final success = await FCMNotificationHelper.sendNotificationToToken(
-  //       fcmToken: newToken,
-  //       title: "Fresh Token Test",
-  //       body: "Testing with newly generated token",
-  //     );
+      // Test notification
+      final success = await FCMNotificationHelper.sendNotificationToToken(
+        fcmToken: newToken,
+        title: "Fresh Token Test",
+        body: "Testing with newly generated token",
+      );
 
-  //     debugPrint(success ? "✅ Success!" : "❌ Still failed");
-  //   } catch (e) {
-  //     debugPrint("❌ Test failed: $e");
-  //   }
-  // }
+      debugPrint(success ? "✅ Success!" : "❌ Still failed");
+    } catch (e) {
+      debugPrint("❌ Test failed: $e");
+    }
+  }
 
-  /// Get valid access token (Priority: Prefs -> Generate new)
+  // Get valid access token (Priority: Prefs -> Generate new)
   static Future<String?> getAccessToken() async {
     try {
       // First try to get API token from SharedPreferences
@@ -2410,229 +2463,229 @@ class FCMNotificationHelper {
     }
   }
 
-  //   /// Send notification to specific FCM token
-  //   static Future<bool> sendNotificationToToken({
-  //     required String fcmToken,
-  //     required String title,
-  //     required String body,
-  //     Map<String, dynamic>? data,
-  //   }) async {
-  //     try {
-  //       final accessToken = await getAccessToken();
-  //       if (accessToken == null) {
-  //         debugPrint("❗ Failed to get access token");
-  //         return false;
-  //       }
+  /// Send notification to specific FCM token
+  static Future<bool> sendNotificationToToken({
+    required String fcmToken,
+    required String title,
+    required String body,
+    Map<String, dynamic>? data,
+  }) async {
+    try {
+      final accessToken = await getAccessToken();
+      if (accessToken == null) {
+        debugPrint("❗ Failed to get access token");
+        return false;
+      }
 
-  //       final url =
-  //           'https://fcm.googleapis.com/v1/projects/lloyalty-application/messages:send';
+      final url =
+          'https://fcm.googleapis.com/v1/projects/lloyalty-application/messages:send';
 
-  //       final payload = {
-  //         "message": {
-  //           "token": fcmToken,
-  //           "notification": {"title": title, "body": body},
-  //           if (data != null) "data": data,
-  //           "android": {
-  //             "priority": "HIGH",
-  //             "notification": {
-  //               "sound": "default",
-  //               "channel_id": "high_importance_channel",
-  //             },
-  //           },
-  //           "apns": {
-  //             "payload": {
-  //               "aps": {"sound": "default", "badge": 1},
-  //             },
-  //           },
-  //         },
-  //       };
+      final payload = {
+        "message": {
+          "token": fcmToken,
+          "notification": {"title": title, "body": body},
+          if (data != null) "data": data,
+          "android": {
+            "priority": "HIGH",
+            "notification": {
+              "sound": "default",
+              "channel_id": "high_importance_channel",
+            },
+          },
+          "apns": {
+            "payload": {
+              "aps": {"sound": "default", "badge": 1},
+            },
+          },
+        },
+      };
 
-  //       debugPrint("🚀 Sending notification to: $fcmToken");
-  //       debugPrint("📝 Payload: ${jsonEncode(payload)}");
+      debugPrint("🚀 Sending notification to: $fcmToken");
+      debugPrint("📝 Payload: ${jsonEncode(payload)}");
 
-  //       final response = await http
-  //           .post(
-  //             Uri.parse(url),
-  //             headers: {
-  //               'Content-Type': 'application/json',
-  //               'Authorization': 'Bearer $accessToken',
-  //             },
-  //             body: jsonEncode(payload),
-  //           )
-  //           .timeout(Duration(seconds: 10));
+      final response = await http
+          .post(
+            Uri.parse(url),
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': 'Bearer $accessToken',
+            },
+            body: jsonEncode(payload),
+          )
+          .timeout(Duration(seconds: 10));
 
-  //       debugPrint("📥 Response Status: ${response.statusCode}");
-  //       debugPrint("📥 Response Body: ${response.body}");
+      debugPrint("📥 Response Status: ${response.statusCode}");
+      debugPrint("📥 Response Body: ${response.body}");
 
-  //       if (response.statusCode == 200) {
-  //         debugPrint("✅ Notification sent successfully!");
-  //         return true;
-  //       } else {
-  //         debugPrint("❌ Failed to send notification: ${response.statusCode}");
-  //         debugPrint("❌ Error: ${response.body}");
-  //         return false;
-  //       }
-  //     } catch (e) {
-  //       debugPrint("❗ Exception while sending notification: $e");
-  //       return false;
-  //     }
-  //   }
+      if (response.statusCode == 200) {
+        debugPrint("✅ Notification sent successfully!");
+        return true;
+      } else {
+        debugPrint("❌ Failed to send notification: ${response.statusCode}");
+        debugPrint("❌ Error: ${response.body}");
+        return false;
+      }
+    } catch (e) {
+      debugPrint("❗ Exception while sending notification: $e");
+      return false;
+    }
+  }
 
-  //   /// Send notification to multiple tokens
-  //   static Future<int> sendNotificationToMultipleTokens({
-  //     required List<String> fcmTokens,
-  //     required String title,
-  //     required String body,
-  //     Map<String, dynamic>? data,
-  //   }) async {
-  //     int successCount = 0;
+  /// Send notification to multiple tokens
+  static Future<int> sendNotificationToMultipleTokens({
+    required List<String> fcmTokens,
+    required String title,
+    required String body,
+    Map<String, dynamic>? data,
+  }) async {
+    int successCount = 0;
 
-  //     for (String token in fcmTokens) {
-  //       final success = await sendNotificationToToken(
-  //         fcmToken: token,
-  //         title: title,
-  //         body: body,
-  //         data: data,
-  //       );
-  //       if (success) successCount++;
+    for (String token in fcmTokens) {
+      final success = await sendNotificationToToken(
+        fcmToken: token,
+        title: title,
+        body: body,
+        data: data,
+      );
+      if (success) successCount++;
 
-  //       // Add small delay between requests to avoid rate limiting
-  //       await Future.delayed(Duration(milliseconds: 100));
-  //     }
+      // Add small delay between requests to avoid rate limiting
+      await Future.delayed(Duration(milliseconds: 100));
+    }
 
-  //     debugPrint(
-  //       "📊 Sent notifications to $successCount/${fcmTokens.length} devices",
-  //     );
-  //     return successCount;
-  //   }
+    debugPrint(
+      "📊 Sent notifications to $successCount/${fcmTokens.length} devices",
+    );
+    return successCount;
+  }
 
-  //   /// Send notification to topic
-  //   static Future<bool> sendNotificationToTopic({
-  //     required String topic,
-  //     required String title,
-  //     required String body,
-  //     Map<String, dynamic>? data,
-  //   }) async {
-  //     try {
-  //       final accessToken = await getAccessToken();
-  //       print('accessToken $accessToken');
-  //       if (accessToken == null) {
-  //         debugPrint("❗ Failed to get access token");
-  //         return false;
-  //       }
+  /// Send notification to topic
+  static Future<bool> sendNotificationToTopic({
+    required String topic,
+    required String title,
+    required String body,
+    Map<String, dynamic>? data,
+  }) async {
+    try {
+      final accessToken = await getAccessToken();
+      print('accessToken $accessToken');
+      if (accessToken == null) {
+        debugPrint("❗ Failed to get access token");
+        return false;
+      }
 
-  //       final url =
-  //           'https://fcm.googleapis.com/v1/projects/lloyalty-application/messages:send';
+      final url =
+          'https://fcm.googleapis.com/v1/projects/lloyalty-application/messages:send';
 
-  //       final payload = {
-  //         "message": {
-  //           "topic": topic,
-  //           "notification": {"title": title, "body": body},
-  //           if (data != null) "data": data,
-  //           "android": {
-  //             "priority": "HIGH",
-  //             "notification": {
-  //               "sound": "default",
-  //               "channel_id": "high_importance_channel",
-  //             },
-  //           },
-  //         },
-  //       };
+      final payload = {
+        "message": {
+          "topic": topic,
+          "notification": {"title": title, "body": body},
+          if (data != null) "data": data,
+          "android": {
+            "priority": "HIGH",
+            "notification": {
+              "sound": "default",
+              "channel_id": "high_importance_channel",
+            },
+          },
+        },
+      };
 
-  //       final response = await http.post(
-  //         Uri.parse(url),
-  //         headers: {
-  //           'Content-Type': 'application/json',
-  //           'Authorization': 'Bearer $accessToken',
-  //         },
-  //         body: jsonEncode(payload),
-  //       );
+      final response = await http.post(
+        Uri.parse(url),
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer $accessToken',
+        },
+        body: jsonEncode(payload),
+      );
 
-  //       if (response.statusCode == 200) {
-  //         debugPrint("✅ Topic notification sent successfully!");
-  //         return true;
-  //       } else {
-  //         debugPrint(
-  //           "❌ Failed to send topic notification: ${response.statusCode}",
-  //         );
-  //         return false;
-  //       }
-  //     } catch (e) {
-  //       debugPrint("❗ Exception while sending topic notification: $e");
-  //       return false;
-  //     }
-  //   }
-  // }
+      if (response.statusCode == 200) {
+        debugPrint("✅ Topic notification sent successfully!");
+        return true;
+      } else {
+        debugPrint(
+          "❌ Failed to send topic notification: ${response.statusCode}",
+        );
+        return false;
+      }
+    } catch (e) {
+      debugPrint("❗ Exception while sending topic notification: $e");
+      return false;
+    }
+  }
+}
 
-  // // Usage Example Class
-  // class NotificationService {
-  //   /// Test notification - Manual API call
-  //   static Future<void> sendTestNotification() async {
-  //     // Get stored FCM token from SharedPreferences
-  //     final prefs = await SharedPreferences.getInstance();
-  //     final fcmToken =
-  //         'c72ECWFdTmCiisxp4h17-q:APA91bEMBEY4i3e5xlYudd-HiXbbfe6y-5kmcmYfPb0jpjdzxZhqErDrzJsrbqFGIfey5qix1UZ2VTZv1f-OJYR449KtergzTbJWz8VbF6AAUOgbSsqH814';
-  //     // final fcmToken =
-  //     //     'f-V0lnOcSyi0EkgkoGgTVa:APA91bGd3hTwxhFIhpp6ip3PhpzeisnkLGLyAPZofmRmMbmAYMhePjCOBtsJ-5l1yfJhv-yKrcJD5x78_LN5Y7t6vjHvgVJO6zMCM2OPYDtqzDDCG0-Q5DU';
+// Usage Example Class
+class NotificationService {
+  /// Test notification - Manual API call
+  static Future<void> sendTestNotification() async {
+    // Get stored FCM token from SharedPreferences
+    final prefs = await SharedPreferences.getInstance();
+    final fcmToken =
+        'c72ECWFdTmCiisxp4h17-q:APA91bEMBEY4i3e5xlYudd-HiXbbfe6y-5kmcmYfPb0jpjdzxZhqErDrzJsrbqFGIfey5qix1UZ2VTZv1f-OJYR449KtergzTbJWz8VbF6AAUOgbSsqH814';
+    // final fcmToken =
+    //     'f-V0lnOcSyi0EkgkoGgTVa:APA91bGd3hTwxhFIhpp6ip3PhpzeisnkLGLyAPZofmRmMbmAYMhePjCOBtsJ-5l1yfJhv-yKrcJD5x78_LN5Y7t6vjHvgVJO6zMCM2OPYDtqzDDCG0-Q5DU';
 
-  //     if (fcmToken.isEmpty) {
-  //       debugPrint("❗ No FCM token found in SharedPreferences");
-  //       return;
-  //     }
+    if (fcmToken.isEmpty) {
+      debugPrint("❗ No FCM token found in SharedPreferences");
+      return;
+    }
 
-  //     // Send notification
-  //     final success = await FCMNotificationHelper.sendNotificationToToken(
-  //       fcmToken: fcmToken,
-  //       title: "Test Notification",
-  //       body: "Yeh manual API se bheja gaya notification hai!",
-  //       data: {
-  //         "screen": "home",
-  //         "action": "test",
-  //         "timestamp": DateTime.now().toIso8601String(),
-  //       },
-  //     );
+    // Send notification
+    final success = await FCMNotificationHelper.sendNotificationToToken(
+      fcmToken: fcmToken,
+      title: "Test Notification",
+      body: "Yeh manual API se bheja gaya notification hai!",
+      data: {
+        "screen": "home",
+        "action": "test",
+        "timestamp": DateTime.now().toIso8601String(),
+      },
+    );
 
-  //     if (success) {
-  //       debugPrint("🎉 Test notification sent successfully!");
-  //     } else {
-  //       debugPrint("❌ Failed to send test notification");
-  //     }
-  //   }
+    if (success) {
+      debugPrint("🎉 Test notification sent successfully!");
+    } else {
+      debugPrint("❌ Failed to send test notification");
+    }
+  }
 
-  //   /// Send promotional notification
-  //   static Future<void> sendPromotionalNotification({
-  //     required String userFcmToken,
-  //     required String offerTitle,
-  //     required String offerDescription,
-  //   }) async {
-  //     await FCMNotificationHelper.sendNotificationToToken(
-  //       fcmToken: userFcmToken,
-  //       title: offerTitle,
-  //       body: offerDescription,
-  //       data: {
-  //         "type": "promotion",
-  //         "screen": "offers",
-  //         "timestamp": DateTime.now().toIso8601String(),
-  //       },
-  //     );
-  //   }
+  /// Send promotional notification
+  static Future<void> sendPromotionalNotification({
+    required String userFcmToken,
+    required String offerTitle,
+    required String offerDescription,
+  }) async {
+    await FCMNotificationHelper.sendNotificationToToken(
+      fcmToken: userFcmToken,
+      title: offerTitle,
+      body: offerDescription,
+      data: {
+        "type": "promotion",
+        "screen": "offers",
+        "timestamp": DateTime.now().toIso8601String(),
+      },
+    );
+  }
 
-  //   /// Send bulk notifications to all users
-  //   static Future<void> sendBulkNotification({
-  //     required List<String> allUserTokens,
-  //     required String title,
-  //     required String message,
-  //   }) async {
-  //     final successCount =
-  //         await FCMNotificationHelper.sendNotificationToMultipleTokens(
-  //           fcmTokens: allUserTokens,
-  //           title: title,
-  //           body: message,
-  //           data: {"type": "bulk", "timestamp": DateTime.now().toIso8601String()},
-  //         );
+  /// Send bulk notifications to all users
+  static Future<void> sendBulkNotification({
+    required List<String> allUserTokens,
+    required String title,
+    required String message,
+  }) async {
+    final successCount =
+        await FCMNotificationHelper.sendNotificationToMultipleTokens(
+          fcmTokens: allUserTokens,
+          title: title,
+          body: message,
+          data: {"type": "bulk", "timestamp": DateTime.now().toIso8601String()},
+        );
 
-  //     debugPrint("📊 Bulk notification sent to $successCount users");
-  //   }
+    debugPrint("📊 Bulk notification sent to $successCount users");
+  }
 
   /// Save your custom API token
   static Future<void> saveCustomApiToken(String apiToken) async {
@@ -2644,8 +2697,8 @@ class FCMNotificationHelper {
     return await FCMNotificationHelper.getApiTokenFromPrefs();
   }
 
-  /// Clear saved API token
-  // static Future<void> clearSavedApiToken() async {
-  //   await FCMNotificationHelper.clearApiTokenFromPrefs();
-  // }
+  // Clear saved API token
+  static Future<void> clearSavedApiToken() async {
+    await FCMNotificationHelper.clearApiTokenFromPrefs();
+  }
 }
