@@ -44,6 +44,7 @@ dependencies:
     sdk: flutter
   smooth_page_indicator: ^1.2.1
   flutter_launcher_icons: ^0.14.4
+  charset_converter: ^2.3.0
 
 dev_dependencies:
   flutter_test:
@@ -68,37 +69,39 @@ flutter:
     - assets/animation/
     - assets/images/
     - assets/icons/
-    - assets/fonts/jura/Jura-Regular.ttf
-    - assets/fonts/jura/Jura-Bold.ttf
-    - assets/fonts/jura/Jura-Medium.ttf
-    - assets/fonts/poppins/Poppins-Regular.ttf
-    - assets/fonts/poppins/Poppins-Bold.ttf
-    - assets/fonts/poppins/Poppins-Medium.ttf
-    - assets/fonts/Noto_Sans/NotoSans-Regular.ttf
-    - assets/fonts/Noto_Sans/NotoSans-Bold.ttf
+    - assets/fonts/
     - assets/service_account.json
 
   fonts:
     - family: Poppins
       fonts:
-        - asset: assets/fonts/poppins/Poppins-Regular.ttf
-        - asset: assets/fonts/poppins/Poppins-Bold.ttf
+        - asset: assets/fonts/Poppins-Regular.ttf
           weight: 700
-        - asset: assets/fonts/poppins/Poppins-Medium.ttf
+        - asset: assets/fonts/Poppins-Medium.ttf
           weight: 500
     - family: Jura
       fonts:
-        - asset: assets/fonts/jura/Jura-Regular.ttf
-        - asset: assets/fonts/jura/Jura-Bold.ttf
+        - asset: assets/fonts/Jura-Regular.ttf
           weight: 700
-        - asset: assets/fonts/jura/Jura-Medium.ttf
+        - asset: assets/fonts/Jura-Medium.ttf
           weight: 500
     - family: NotoSans
       fonts:
-        - asset: assets/fonts/Noto_Sans/NotoSans-Regular.ttf
-        - asset: assets/fonts/Noto_Sans/NotoSans-Bold.ttf
+        - asset: assets/fonts/NotoSans-Regular.ttf
           weight: 700
-
+    - family: PinyonScript
+      fonts:
+        - asset: assets/fonts/PinyonScript-Regular.ttf  # Updated path to include assets/
+          style: normal
+    - family: Parisienne
+      fonts:
+        - asset: assets/fonts/Parisienne-Regular.ttf  # Updated path to include assets/
+          style: normal  
+    - family: Parisienne
+      fonts:
+        - asset: assets/fonts/Roboto-Regular.ttf  # Updated path to include assets/
+          style: normal  
+          
   # ✅ Enable localization generation
   generate: true
 

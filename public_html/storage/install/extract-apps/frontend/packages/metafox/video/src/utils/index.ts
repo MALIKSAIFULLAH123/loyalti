@@ -1,1 +1,0 @@
-export { isVideo } from './isVideo';

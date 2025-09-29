@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunk_metafox_react=self.webpackChunk_metafox_react||[]).push([["metafox-react-app-bundle-web-style-flatten0-theme-flatten-tsx"],{23434(e,t,a){a.r(t),a.d(t,{default:()=>l,info:()=>f});let f={name:"flatten0",theme:"flatten",id:"flatten:flatten0",dir:"packages/metafox/theme-flatten/src/styles/flatten0"},l={}}}]);

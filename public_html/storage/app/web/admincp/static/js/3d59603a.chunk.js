@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunk_metafox_react=self.webpackChunk_metafox_react||[]).push([["metafox-photo-components-PhotoItem-MainCard-LoadingSkeleton"],{97308(e,t,a){a.r(t),a.d(t,{default:()=>o});var n=a(40515),r=a(96540);function o({wrapAs:e,wrapProps:t}){return r.createElement(n.ne,{wrapAs:e,wrapProps:t},r.createElement(n.Qm,null,r.createElement(n.nn,{ratio:"169"})))}}}]);

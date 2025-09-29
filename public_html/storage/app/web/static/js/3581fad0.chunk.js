@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunk_metafox_react=self.webpackChunk_metafox_react||[]).push([["metafox-pages-blocks-PeopleAlsoLike-Block"],{14568(e,a,t){t.r(a),t.d(a,{default:()=>s});var l=t(91557);let s=(0,l.WvA)({name:"PagesListingBlock",extendBlock:"core.block.listview",defaults:{itemView:"page.itemView.mainCard"}})}}]);
