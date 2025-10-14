@@ -44,14 +44,16 @@ class _ProfileState extends State<Profile> {
     super.initState();
     _loadProfileImageFromBase64();
   }
-@override
-void didChangeDependencies() {
-  super.didChangeDependencies();
-  // Load user data after dependencies are resolved
-  if (mounted) {
-    _loadUserData();
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    // Load user data after dependencies are resolved
+    if (mounted) {
+      _loadUserData();
+    }
   }
-}
+
   Future<void> _loadProfileImageFromBase64() async {
     try {
       final prefs = await SharedPreferences.getInstance();
@@ -92,54 +94,56 @@ void didChangeDependencies() {
       }
     }
   }
+
   Future<void> _saveProfileImageAsBase64(String imagePath) async {
-  try {
-    final file = File(imagePath);
+    try {
+      final file = File(imagePath);
 
-    if (!await file.exists()) {
-      throw Exception("Image file not found");
+      if (!await file.exists()) {
+        throw Exception("Image file not found");
+      }
+
+      // Read file in chunks to avoid memory issues
+      final bytes = await file.readAsBytes();
+
+      if (bytes.length > 2 * 1024 * 1024) {
+        throw Exception("Image size too large (max 2MB)");
+      }
+
+      // Encode in background to avoid UI freeze
+      String base64Image = await compute(_encodeImageToBase64, bytes);
+
+      if (base64Image.isEmpty) {
+        throw Exception("Image encoding failed");
+      }
+
+      final prefs = await SharedPreferences.getInstance();
+      bool saved = await prefs.setString('profile_image_base64', base64Image);
+
+      if (!saved) {
+        throw Exception("Failed to save image");
+      }
+
+      if (mounted) {
+        setState(() {
+          profileImageBase64 = base64Image;
+          profileImageBytes = bytes;
+        });
+      }
+
+      debugPrint(
+        "✅ Profile image saved successfully as base64 (${(bytes.length / 1024).round()}KB)",
+      );
+    } catch (e) {
+      debugPrint("❌ Error saving profile image: $e");
+      rethrow;
     }
-
-    // Read file in chunks to avoid memory issues
-    final bytes = await file.readAsBytes();
-
-    if (bytes.length > 2 * 1024 * 1024) {
-      throw Exception("Image size too large (max 2MB)");
-    }
-
-    // Encode in background to avoid UI freeze
-    String base64Image = await compute(_encodeImageToBase64, bytes);
-
-    if (base64Image.isEmpty) {
-      throw Exception("Image encoding failed");
-    }
-
-    final prefs = await SharedPreferences.getInstance();
-    bool saved = await prefs.setString('profile_image_base64', base64Image);
-
-    if (!saved) {
-      throw Exception("Failed to save image");
-    }
-
-    if (mounted) {
-      setState(() {
-        profileImageBase64 = base64Image;
-        profileImageBytes = bytes;
-      });
-    }
-
-    debugPrint("✅ Profile image saved successfully as base64 (${(bytes.length / 1024).round()}KB)");
-  } catch (e) {
-    debugPrint("❌ Error saving profile image: $e");
-    rethrow;
   }
-}
 
-
-// Add this static method for background image encoding:
-static String _encodeImageToBase64(Uint8List bytes) {
-  return base64Encode(bytes);
-}
+  // Add this static method for background image encoding:
+  static String _encodeImageToBase64(Uint8List bytes) {
+    return base64Encode(bytes);
+  }
 
   void _showImagePickerOptions() {
     final localizations = AppLocalizations.of(context)!;
@@ -337,219 +341,243 @@ static String _encodeImageToBase64(Uint8List bytes) {
 
   // Also fix the _loadUserData method to handle API profile image properly
   Future<void> _loadUserData() async {
-  final localizations = AppLocalizations.of(context)!;
+    final localizations = AppLocalizations.of(context)!;
 
-  setState(() {
-    isLoading = true;
-  });
+    setState(() {
+      isLoading = true;
+    });
 
-  try {
-    final prefs = await SharedPreferences.getInstance();
-    trdr = prefs.getString('TRDR') ?? '';
-    clientID = prefs.getString('clientID') ?? '';
-    final companyUrl = prefs.getString('company_url');
-    final softwareType = prefs.getString('software_type');
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      trdr = prefs.getString('TRDR') ?? '';
+      clientID = prefs.getString('clientID') ?? '';
+      final companyUrl = prefs.getString('company_url');
+      final softwareType = prefs.getString('software_type');
 
-    if (trdr.isEmpty || clientID.isEmpty || companyUrl == null || softwareType == null) {
-      _showError(localizations.missingUserCredentials);
-      return;
-    }
+      if (trdr.isEmpty ||
+          clientID.isEmpty ||
+          companyUrl == null ||
+          softwareType == null) {
+        _showError(localizations.missingUserCredentials);
+        return;
+      }
 
-    final servicePath = _getServicePath(softwareType);
-    final uri = _buildApiUri(companyUrl, servicePath);
+      final servicePath = _getServicePath(softwareType);
+      final uri = _buildApiUri(companyUrl, servicePath);
 
-    // Add timeout to prevent hanging
-    final response = await http.post(
-      uri,
-      headers: {'Content-Type': 'application/json'},
-      body: jsonEncode({
-        "service": "SqlData",
-        "clientID": clientID,
-        "appId": "1001",
-        "SqlName": "9700",
-        "trdr": int.parse(trdr),
-      }),
-    ).timeout(
-      Duration(seconds: 10), // 10 second timeout
-      onTimeout: () {
-        throw Exception('Request timeout');
-      },
-    );
+      // Add timeout to prevent hanging
+      final response = await http
+          .post(
+            uri,
+            headers: {'Content-Type': 'application/json'},
+            body: jsonEncode({
+              "service": "SqlData",
+              "clientID": clientID,
+              "appId": "1001",
+              "SqlName": "9700",
+              "trdr": int.parse(trdr),
+            }),
+          )
+          .timeout(
+            Duration(seconds: 10), // 10 second timeout
+            onTimeout: () {
+              throw Exception('Request timeout');
+            },
+          );
 
-    if (response.statusCode == 200) {
-      // Move heavy decoding to background isolate
-      String responseBody = await _decodeApiResponseAsync(response);
-      final data = jsonDecode(responseBody);
+      if (response.statusCode == 200) {
+        // Move heavy decoding to background isolate
+        String responseBody = await _decodeApiResponseAsync(response);
+        final data = jsonDecode(responseBody);
 
-      if (data['success'] == true && data['rows'] != null && data['rows'].isNotEmpty) {
-        final userInfo = data['rows'][0];
-        
-        // Process user data
-        await _processUserData(userInfo, prefs, localizations);
+        if (data['success'] == true &&
+            data['rows'] != null &&
+            data['rows'].isNotEmpty) {
+          final userInfo = data['rows'][0];
+
+          // Process user data
+          await _processUserData(userInfo, prefs, localizations);
+        } else {
+          _showError(localizations.failedLoadUserData);
+          if (mounted) setState(() => isLoading = false);
+        }
       } else {
-        _showError(localizations.failedLoadUserData);
+        _showError('${localizations.serverError}: ${response.statusCode}');
         if (mounted) setState(() => isLoading = false);
       }
-    } else {
-      _showError('${localizations.serverError}: ${response.statusCode}');
+    } catch (e) {
+      _showError('${localizations.connectionError}: ${e.toString()}');
       if (mounted) setState(() => isLoading = false);
     }
-  } catch (e) {
-    _showError('${localizations.connectionError}: ${e.toString()}');
-    if (mounted) setState(() => isLoading = false);
   }
-}
 
-// Replace your _decodeApiResponse method with this async version:
-Future<String> _decodeApiResponseAsync(http.Response response) async {
-  try {
-    // Check content type first
-    String? contentType = response.headers['content-type'];
-    
-    if (contentType != null) {
-      if (contentType.contains('charset=windows-1253')) {
-        return _convertWindows1253ToUtf8(String.fromCharCodes(response.bodyBytes));
-      } else if (contentType.contains('charset=iso-8859-7')) {
-        return await _convertIso88597ToUtf8(String.fromCharCodes(response.bodyBytes));
-      }
-    }
-
-    // Try UTF-8 first
+  // Replace your _decodeApiResponse method with this async version:
+  Future<String> _decodeApiResponseAsync(http.Response response) async {
     try {
-      String responseBody = utf8.decode(response.bodyBytes);
-      if (_containsGreekUnicode(responseBody) || !_containsLatinExtended(responseBody)) {
-        return responseBody;
+      // Check content type first
+      String? contentType = response.headers['content-type'];
+
+      if (contentType != null) {
+        if (contentType.contains('charset=windows-1253')) {
+          return _convertWindows1253ToUtf8(
+            String.fromCharCodes(response.bodyBytes),
+          );
+        } else if (contentType.contains('charset=iso-8859-7')) {
+          return await _convertIso88597ToUtf8(
+            String.fromCharCodes(response.bodyBytes),
+          );
+        }
       }
+
+      // Try UTF-8 first
+      try {
+        String responseBody = utf8.decode(response.bodyBytes);
+        if (_containsGreekUnicode(responseBody) ||
+            !_containsLatinExtended(responseBody)) {
+          return responseBody;
+        }
+      } catch (e) {
+        debugPrint('UTF-8 decoding failed: $e');
+      }
+
+      // Fallback to Latin-1 then convert
+      try {
+        String latin1Decoded = latin1.decode(response.bodyBytes);
+        String converted = _decodeGreekText(latin1Decoded);
+        if (_containsGreekUnicode(converted)) {
+          return converted;
+        }
+      } catch (e) {
+        debugPrint('Latin-1 decoding failed: $e');
+      }
+
+      // Ultimate fallback
+      return _decodeGreekText(response.body);
     } catch (e) {
-      debugPrint('UTF-8 decoding failed: $e');
+      return response.body;
     }
+  }
 
-    // Fallback to Latin-1 then convert
-    try {
-      String latin1Decoded = latin1.decode(response.bodyBytes);
-      String converted = _decodeGreekText(latin1Decoded);
-      if (_containsGreekUnicode(converted)) {
-        return converted;
+  // Add this new method to process user data asynchronously
+  Future<void> _processUserData(
+    Map<String, dynamic> userInfo,
+    SharedPreferences prefs,
+    AppLocalizations localizations,
+  ) async {
+    String name = userInfo['NAME']?.toString().isNotEmpty == true
+        ? userInfo['NAME'].toString()
+        : localizations.fullName;
+
+    String userEmail = userInfo['EMAIL']?.toString().isNotEmpty == true
+        ? userInfo['EMAIL'].toString()
+        : 'email@domain.gr';
+
+    String userPhone = userInfo['PHONE01']?.toString().isNotEmpty == true
+        ? userInfo['PHONE01'].toString()
+        : '+30 6912345678';
+
+    String rawDate = userInfo['INSDATE']?.toString() ?? '';
+    String formattedDate = 'DD/MM/YYYY';
+    if (rawDate.isNotEmpty && rawDate.contains(' ')) {
+      String datePart = rawDate.split(' ')[0];
+      try {
+        DateTime parsedDate = DateTime.parse(datePart);
+        formattedDate =
+            "${parsedDate.day.toString().padLeft(2, '0')}/${parsedDate.month.toString().padLeft(2, '0')}/${parsedDate.year}";
+      } catch (_) {
+        formattedDate = datePart;
       }
-    } catch (e) {
-      debugPrint('Latin-1 decoding failed: $e');
     }
 
-    // Ultimate fallback
-    return _decodeGreekText(response.body);
-  } catch (e) {
-    return response.body;
-  }
-}
+    String total = userInfo['totalpoints']?.toString() ?? '0';
+    String redeemed = userInfo['redeemedpoints']?.toString() ?? '0';
+    String userAddress = userInfo['ADDRESS']?.toString().isNotEmpty == true
+        ? userInfo['ADDRESS'].toString()
+        : localizations.address;
+    String userCity = userInfo['CITY']?.toString().isNotEmpty == true
+        ? userInfo['CITY'].toString()
+        : localizations.city;
+    String userZip = userInfo['ZIP']?.toString().isNotEmpty == true
+        ? userInfo['ZIP'].toString()
+        : localizations.zip;
+    String profileImageUrl = userInfo['IMAGE']?.toString() ?? '';
 
-// Add this new method to process user data asynchronously
-Future<void> _processUserData(Map<String, dynamic> userInfo, SharedPreferences prefs, AppLocalizations localizations) async {
-  String name = userInfo['NAME']?.toString().isNotEmpty == true
-      ? userInfo['NAME'].toString()
-      : localizations.fullName;
-
-  String userEmail = userInfo['EMAIL']?.toString().isNotEmpty == true
-      ? userInfo['EMAIL'].toString()
-      : 'email@domain.gr';
-
-  String userPhone = userInfo['PHONE01']?.toString().isNotEmpty == true
-      ? userInfo['PHONE01'].toString()
-      : '+30 6912345678';
-
-  String rawDate = userInfo['INSDATE']?.toString() ?? '';
-  String formattedDate = 'DD/MM/YYYY';
-  if (rawDate.isNotEmpty && rawDate.contains(' ')) {
-    String datePart = rawDate.split(' ')[0];
-    try {
-      DateTime parsedDate = DateTime.parse(datePart);
-      formattedDate =
-          "${parsedDate.day.toString().padLeft(2, '0')}/${parsedDate.month.toString().padLeft(2, '0')}/${parsedDate.year}";
-    } catch (_) {
-      formattedDate = datePart;
-    }
-  }
-
-  String total = userInfo['totalpoints']?.toString() ?? '0';
-  String redeemed = userInfo['redeemedpoints']?.toString() ?? '0';
-  String userAddress = userInfo['ADDRESS']?.toString().isNotEmpty == true
-      ? userInfo['ADDRESS'].toString()
-      : localizations.address;
-  String userCity = userInfo['CITY']?.toString().isNotEmpty == true
-      ? userInfo['CITY'].toString()
-      : localizations.city;
-  String userZip = userInfo['ZIP']?.toString().isNotEmpty == true
-      ? userInfo['ZIP'].toString()
-      : localizations.zip;
-  String profileImageUrl = userInfo['IMAGE']?.toString() ?? '';
-
-  // Process API profile image in background
-  String apiProfileImage = userInfo['CCCXITLIMAGE']?.toString() ?? '';
-  if (apiProfileImage.isNotEmpty && (profileImageBase64 == null || profileImageBase64!.isEmpty)) {
-    // Don't block UI - process in background
-    _processApiImageAsync(apiProfileImage, prefs);
-  }
-
-  // Save to preferences
-  await Future.wait([
-    prefs.setString('user_fullname', name),
-    prefs.setString('user_email', userEmail),
-    prefs.setString('user_phone', userPhone),
-    prefs.setString('user_created_at', formattedDate),
-    prefs.setString('user_total_points', total),
-    prefs.setString('user_redeemed_points', redeemed),
-    prefs.setString('user_address', userAddress),
-    prefs.setString('user_city', userCity),
-    prefs.setString('user_zip', userZip),
-    prefs.setString('u_image', profileImageUrl),
-  ]);
-
-  if (mounted) {
-    setState(() {
-      fullName = name;
-      email = userEmail;
-      phone = userPhone;
-      createdAt = formattedDate;
-      totalPoints = total;
-      redeemedPoints = redeemed;
-      address = userAddress;
-      city = userCity;
-      zip = userZip;
-      isLoading = false;
-    });
-  }
-}
-
-// Add this method to process API image in background
-Future<void> _processApiImageAsync(String apiProfileImage, SharedPreferences prefs) async {
-  try {
-    // Clean the base64 string
-    String cleanBase64 = apiProfileImage;
-    if (cleanBase64.contains(',')) {
-      cleanBase64 = cleanBase64.split(',').last;
+    // Process API profile image in background
+    String apiProfileImage = userInfo['CCCXITLIMAGE']?.toString() ?? '';
+    if (apiProfileImage.isNotEmpty &&
+        (profileImageBase64 == null || profileImageBase64!.isEmpty)) {
+      // Don't block UI - process in background
+      _processApiImageAsync(apiProfileImage, prefs);
     }
 
-    // Validate length before decoding
-    if (cleanBase64.length < 100) return;
+    // Save to preferences
+    await Future.wait([
+      prefs.setString('user_fullname', name),
+      prefs.setString('user_email', userEmail),
+      prefs.setString('user_phone', userPhone),
+      prefs.setString('user_created_at', formattedDate),
+      prefs.setString('user_total_points', total),
+      prefs.setString('user_redeemed_points', redeemed),
+      prefs.setString('user_address', userAddress),
+      prefs.setString('user_city', userCity),
+      prefs.setString('user_zip', userZip),
+      prefs.setString('u_image', profileImageUrl),
+    ]);
+          print('user bname profil2 $fullName');
+          print('user bname profil3 $name');
 
-    // Decode image in background
-    Uint8List imageBytes = base64Decode(cleanBase64);
-
-    // Save to local storage
-    await prefs.setString('profile_image_base64', cleanBase64);
-
-    // Update UI on main thread
     if (mounted) {
       setState(() {
-        profileImageBase64 = cleanBase64;
-        profileImageBytes = imageBytes;
+        fullName = name;
+        email = userEmail;
+        phone = userPhone;
+        createdAt = formattedDate;
+        totalPoints = total;
+        redeemedPoints = redeemed;
+        address = userAddress;
+        city = userCity;
+        zip = userZip;
+        isLoading = false;
       });
     }
-
-    debugPrint("✅ API profile image loaded successfully (${(imageBytes.length / 1024).round()}KB)");
-  } catch (e) {
-    debugPrint("❌ Error loading API profile image: $e");
   }
-}
+
+  // Add this method to process API image in background
+  Future<void> _processApiImageAsync(
+    String apiProfileImage,
+    SharedPreferences prefs,
+  ) async {
+    try {
+      // Clean the base64 string
+      String cleanBase64 = apiProfileImage;
+      if (cleanBase64.contains(',')) {
+        cleanBase64 = cleanBase64.split(',').last;
+      }
+
+      // Validate length before decoding
+      if (cleanBase64.length < 100) return;
+
+      // Decode image in background
+      Uint8List imageBytes = base64Decode(cleanBase64);
+
+      // Save to local storage
+      await prefs.setString('profile_image_base64', cleanBase64);
+
+      // Update UI on main thread
+      if (mounted) {
+        setState(() {
+          profileImageBase64 = cleanBase64;
+          profileImageBytes = imageBytes;
+        });
+      }
+
+      debugPrint(
+        "✅ API profile image loaded successfully (${(imageBytes.length / 1024).round()}KB)",
+      );
+    } catch (e) {
+      debugPrint("❌ Error loading API profile image: $e");
+    }
+  }
 
   String _getServicePath(String softwareType) {
     return softwareType == "TESAE"
@@ -560,115 +588,122 @@ Future<void> _processApiImageAsync(String apiProfileImage, SharedPreferences pre
   Uri _buildApiUri(String companyUrl, String servicePath) {
     return Uri.parse("${ApiConstants.baseUrl}https://$companyUrl$servicePath");
   }
-  
-  
 
-// Update your _updateUserData method with timeout:
-Future<void> _updateUserData() async {
-  final localizations = AppLocalizations.of(context)!;
+  // Update your _updateUserData method with timeout:
+  Future<void> _updateUserData() async {
+    final localizations = AppLocalizations.of(context)!;
 
-  try {
-    setState(() {
-      isLoading = true;
-    });
-
-    final prefs = await SharedPreferences.getInstance();
-    final companyUrl = prefs.getString('company_url');
-    final softwareType = prefs.getString('software_type');
-    final fcmToken = prefs.getString('fcm_token');
-
-    if (companyUrl == null || softwareType == null) {
-      _showError(localizations.missingConfiguration);
-      return;
-    }
-
-    final servicePath = _getServicePath(softwareType);
-    final uri = _buildApiUri(companyUrl, servicePath);
-
-    Map<String, dynamic> userData = {
-      "CODE": phone,
-      "NAME": fullName,
-      "EMAIL": email,
-      "PHONE01": phone,
-      "ADDRESS": address,
-      "CITY": city,
-      "ZIP": zip,
-      "CCCXITUSERNAME": "username",
-      "CCCXITPASSWORD": password,
-      "REMARKS": "Updated via app",
-    };
-
-    if (fcmToken != null && fcmToken.isNotEmpty) {
-      userData["GLNCODE"] = fcmToken;
-    }
-
-    if (profileImageBase64 != null && profileImageBase64!.isNotEmpty) {
-      String cleanBase64 = profileImageBase64!;
-      if (cleanBase64.contains(',')) {
-        cleanBase64 = cleanBase64.split(',').last;
-      }
-      userData["CCCXITLIMAGE"] = cleanBase64;
-      debugPrint("📤 Sending image to CCCXITLIMAGE field (${cleanBase64.length} chars)");
-    }
-
-    // Add timeout to prevent hanging
-    final response = await http.post(
-      uri,
-      headers: {'Content-Type': 'application/json'},
-      body: jsonEncode({
-        "service": "setData",
-        "clientID": clientID,
-        "appId": "1001",
-        "OBJECT": "CUSTOMER[FORM=WEB]",
-        "KEY": trdr,
-        "data": {
-          "CUSTOMER": [userData],
-        },
-      }),
-    ).timeout(
-      Duration(seconds: 15), // 15 second timeout
-      onTimeout: () {
-        throw Exception('Request timeout');
-      },
-    );
-
-    debugPrint("🌐 API Response Status: ${response.statusCode}");
-
-    if (response.statusCode == 200) {
-      String responseBody = await _decodeApiResponseAsync(response);
-      final data = jsonDecode(responseBody);
-      
-      if (data['success'] == true) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Row(
-              children: [
-                Icon(Icons.check_circle, color: Colors.white, size: 20),
-                SizedBox(width: 8),
-                Text(localizations.profileUpdatedSuccessfully),
-              ],
-            ),
-            backgroundColor: Colors.green,
-            behavior: SnackBarBehavior.floating,
-          ),
-        );
-      } else {
-        _showError('${localizations.failedUpdateProfile}: ${data['message'] ?? localizations.unknownError}');
-      }
-    } else {
-      _showError('${localizations.serverError}: ${response.statusCode}');
-    }
-  } catch (e) {
-    debugPrint("❌ Error in _updateUserData: $e");
-    _showError('${localizations.connectionError}: ${e.toString()}');
-  } finally {
-    if (mounted) {
+    try {
       setState(() {
-        isLoading = false;
+        isLoading = true;
       });
+
+      final prefs = await SharedPreferences.getInstance();
+      final companyUrl = prefs.getString('company_url');
+      final softwareType = prefs.getString('software_type');
+      final fcmToken = prefs.getString('fcm_token');
+
+      if (companyUrl == null || softwareType == null) {
+        _showError(localizations.missingConfiguration);
+        return;
+      }
+
+      final servicePath = _getServicePath(softwareType);
+      final uri = _buildApiUri(companyUrl, servicePath);
+
+      Map<String, dynamic> userData = {
+        "CODE": phone,
+        "NAME": fullName,
+        "EMAIL": email,
+        "PHONE01": phone,
+        "ADDRESS": address,
+        "CITY": city,
+        "ZIP": zip,
+        "CCCXITUSERNAME": "username",
+        "CCCXITPASSWORD": password,
+        "REMARKS": "Updated via app",
+      };
+
+      if (fcmToken != null && fcmToken.isNotEmpty) {
+        userData["GLNCODE"] = fcmToken;
+      }
+
+      if (profileImageBase64 != null && profileImageBase64!.isNotEmpty) {
+        String cleanBase64 = profileImageBase64!;
+        if (cleanBase64.contains(',')) {
+          cleanBase64 = cleanBase64.split(',').last;
+        }
+        userData["CCCXITLIMAGE"] = cleanBase64;
+        debugPrint(
+          "📤 Sending image to CCCXITLIMAGE field (${cleanBase64.length} chars)",
+        );
+      }
+
+      // Add timeout to prevent hanging
+      final response = await http
+          .post(
+            uri,
+            headers: {'Content-Type': 'application/json'},
+            body: jsonEncode({
+              "service": "setData",
+              "clientID": clientID,
+              "appId": "1001",
+              "OBJECT": "CUSTOMER[FORM=WEB]",
+              "KEY": trdr,
+              "data": {
+                "CUSTOMER": [userData],
+              },
+            }),
+          )
+          .timeout(
+            Duration(seconds: 15), // 15 second timeout
+            onTimeout: () {
+              throw Exception('Request timeout');
+            },
+          );
+
+      debugPrint("🌐 API Response Status: ${response.statusCode}");
+
+      if (response.statusCode == 200) {
+        String responseBody = await _decodeApiResponseAsync(response);
+        final data = jsonDecode(responseBody);
+                                     print('user bname profile4 $fullName');
+
+        if (data['success'] == true) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Row(
+                children: [
+                  Icon(Icons.check_circle, color: Colors.white, size: 20),
+                  SizedBox(width: 8),
+                  Text(localizations.profileUpdatedSuccessfully),
+                ],
+              ),
+              backgroundColor: Colors.green,
+              behavior: SnackBarBehavior.floating,
+            ),
+          );
+        } else {
+          _showError(
+            '${localizations.failedUpdateProfile}: ${data['message'] ?? localizations.unknownError}',
+          );
+        }
+      } else {
+        _showError('${localizations.serverError}: ${response.statusCode}');
+      }
+    } catch (e) {
+      debugPrint("❌ Error in _updateUserData: $e");
+      _showError('${localizations.connectionError}: ${e.toString()}');
+    } finally {
+      if (mounted) {
+        setState(() {
+          isLoading = false;
+        });
+      }
     }
+                                         print('user bname profile3 $fullName');
+
   }
-}
 
   bool _validateBase64Image(String base64String) {
     try {
@@ -824,6 +859,7 @@ Future<void> _updateUserData() async {
         ],
       ),
     );
+    print('user bname profile2 $fullName');
   }
 
   @override
@@ -960,6 +996,7 @@ Future<void> _updateUserData() async {
                                   fontSize: 20,
                                 ),
                               ),
+
                               const SizedBox(height: 4),
                               Text(
                                 email,
@@ -1070,6 +1107,14 @@ Future<void> _updateUserData() async {
                   localizations.email,
                   email,
                   Icons.email_outlined,
+                  editable: true,
+                  onTap: () {
+                    showEditDialog(
+                      localizations.email,
+                      email,
+                      (value) => setState(() => email = value),
+                    );
+                  },
                 ),
                 _buildDetailRow(
                   localizations.phone,

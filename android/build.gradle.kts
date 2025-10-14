@@ -1,3 +1,17 @@
+// Top-level build.gradle.kts
+
+buildscript {
+    dependencies {
+        classpath("com.android.tools.build:gradle:8.1.1")
+        classpath("com.google.gms:google-services:4.4.2")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.0")
+    }
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
 allprojects {
     repositories {
         google()
@@ -11,7 +25,6 @@ rootProject.layout.buildDirectory.set(newBuildDir)
 subprojects {
     val newSubprojectBuildDir = newBuildDir.dir(name)
     layout.buildDirectory.set(newSubprojectBuildDir)
-
     evaluationDependsOn(":app")
 }
 

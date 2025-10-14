@@ -25,9 +25,15 @@ class DefaultFirebaseOptions {
       case TargetPlatform.iOS:
         return ios;
       case TargetPlatform.macOS:
-        return macos;
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for macos - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       case TargetPlatform.windows:
-        return windows;
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for windows - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       case TargetPlatform.linux:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for linux - '
@@ -41,48 +47,29 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyCQ45FatclTAFkf8m8J-LgHFStyiaPuP4c',
-    appId: '1:117453057789:web:ac9bd3d9594a8992a71894',
-    messagingSenderId: '117453057789',
-    projectId: 'lloyalty-application',
-    authDomain: 'lloyalty-application.firebaseapp.com',
-    storageBucket: 'lloyalty-application.firebasestorage.app',
-    measurementId: 'G-54VC83N2PY',
+    apiKey: 'AIzaSyBNY9LhjqXF3j7oPJCNOU5We2_ftKAbj5M',
+    appId: '1:661244516021:web:081745dbb8c8daeb9950fc',
+    messagingSenderId: '661244516021',
+    projectId: 'angelopoulos--hair',
+    authDomain: 'angelopoulos--hair.firebaseapp.com',
+    storageBucket: 'angelopoulos--hair.firebasestorage.app',
+    measurementId: 'G-09SECP810C',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyDYMzYkBPm5-Xy153PNWe-JrWqjr93z7b8',
-    appId: '1:117453057789:android:074aa20f750ab5b9a71894',
-    messagingSenderId: '117453057789',
-    projectId: 'lloyalty-application',
-    storageBucket: 'lloyalty-application.firebasestorage.app',
+    apiKey: 'AIzaSyDD8QqAK_K5tzm-4awmBOvtEj_lHWlCplc',
+    appId: '1:661244516021:android:2a87d837946b425f9950fc',
+    messagingSenderId: '661244516021',
+    projectId: 'angelopoulos--hair',
+    storageBucket: 'angelopoulos--hair.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyAPyEIUPpXvTKNHZJokBfJnDBPl6fI8Md0',
-    appId: '1:117453057789:ios:2361836cdb863ccda71894',
-    messagingSenderId: '117453057789',
-    projectId: 'lloyalty-application',
-    storageBucket: 'lloyalty-application.firebasestorage.app',
-    iosBundleId: 'com.example.loyaltyApp',
-  );
-
-  static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyAPyEIUPpXvTKNHZJokBfJnDBPl6fI8Md0',
-    appId: '1:117453057789:ios:2361836cdb863ccda71894',
-    messagingSenderId: '117453057789',
-    projectId: 'lloyalty-application',
-    storageBucket: 'lloyalty-application.firebasestorage.app',
-    iosBundleId: 'com.example.loyaltyApp',
-  );
-
-  static const FirebaseOptions windows = FirebaseOptions(
-    apiKey: 'AIzaSyCQ45FatclTAFkf8m8J-LgHFStyiaPuP4c',
-    appId: '1:117453057789:web:3bc67cfc4e3ce907a71894',
-    messagingSenderId: '117453057789',
-    projectId: 'lloyalty-application',
-    authDomain: 'lloyalty-application.firebaseapp.com',
-    storageBucket: 'lloyalty-application.firebasestorage.app',
-    measurementId: 'G-X7TQCRDSPQ',
+    apiKey: 'AIzaSyBcJNHcg6vJpFYQII6HMm6-ae1qad8_jt8',
+    appId: '1:661244516021:ios:dcb8fd7416da3fd29950fc',
+    messagingSenderId: '661244516021',
+    projectId: 'angelopoulos--hair',
+    storageBucket: 'angelopoulos--hair.firebasestorage.app',
+    iosBundleId: 'com.angelopouloshair.app',
   );
 }

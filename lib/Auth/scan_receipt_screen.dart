@@ -332,110 +332,112 @@ class _ScanReceiptScreenState extends State<ScanReceiptScreen>
     return Scaffold(
       backgroundColor: const Color(0xFFF5F5F5),
      
-      body: Column(
-        children: [
-          // Header with company logo
-          const SizedBox(height: 20),
-          // Logo
-          Center(
-            child: Image.asset(
-              'assets/images/app-logo.png',
-              height: 100,
-              width: 600,
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            // Header with company logo
+            const SizedBox(height: 20),
+            // Logo
+            Center(
+              child: Image.asset(
+                'assets/images/app-logo.png',
+                height: 100,
+                width: 600,
+              ),
             ),
-          ),
-          const SizedBox(height: 2),
-
-          Container(
-            child: Column(
-              children: [
-                Image.asset(
-                  'assets/images/scan-reciept.png',
-                  height: 280,
-                  width: double.infinity,
-                  fit: BoxFit.contain,
-                ),
-                const SizedBox(height: 10),
-              ],
+            const SizedBox(height: 2),
+        
+            Container(
+              child: Column(
+                children: [
+                  Image.asset(
+                    'assets/images/scan-reciept.png',
+                    height: 280,
+                    width: double.infinity,
+                    fit: BoxFit.contain,
+                  ),
+                  const SizedBox(height: 10),
+                ],
+              ),
             ),
-          ),
-
-          // Orange section with receipt
-
-          // Bottom section with text and button
-          Container(
-            color: const Color(0xFFF5F5F5),
-            padding: const EdgeInsets.all(24),
-            child: Column(
-              children: [
-                Text(
-                  localizations.scanYourReceipt,
-                  style: TextStyle(
-                    fontSize: 28,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
+        
+            // Orange section with receipt
+        
+            // Bottom section with text and button
+            Container(
+              color: const Color(0xFFF5F5F5),
+              padding: const EdgeInsets.all(24),
+              child: Column(
+                children: [
+                  Text(
+                    localizations.scanYourReceipt,
+                    style: TextStyle(
+                      fontSize: 28,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                    ),
                   ),
-                ),
-                const SizedBox(height: 8),
-                Text(
-                  localizations.earnPointsInstantly,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: Colors.grey,
-                    height: 1.4,
+                  const SizedBox(height: 8),
+                  Text(
+                    localizations.earnPointsInstantly,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.grey,
+                      height: 1.4,
+                    ),
                   ),
-                ),
-                const SizedBox(height: 30),
-
-                // Scan button
-                Container(
-                  width: double.infinity,
-                  height: 56,
-                  decoration: BoxDecoration(
-                    color: Colors.black,
-                    borderRadius: BorderRadius.circular(28),
-                  ),
-                  child: Material(
-                    color: Colors.transparent,
-                    child: InkWell(
+                  const SizedBox(height: 30),
+        
+                  // Scan button
+                  Container(
+                    width: double.infinity,
+                    height: 56,
+                    decoration: BoxDecoration(
+                      color: Colors.black,
                       borderRadius: BorderRadius.circular(28),
-                      onTap: _navigateToScanner,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Container(
-                            padding: const EdgeInsets.all(8),
-                            decoration: BoxDecoration(
-                              color: Colors.white.withOpacity(0.1),
-                              borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Material(
+                      color: Colors.transparent,
+                      child: InkWell(
+                        borderRadius: BorderRadius.circular(28),
+                        onTap: _navigateToScanner,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Container(
+                              padding: const EdgeInsets.all(8),
+                              decoration: BoxDecoration(
+                                color: Colors.white.withOpacity(0.1),
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              child: Icon(
+                                Icons.qr_code_scanner,
+                                color: Colors.white,
+                                size: 20,
+                              ),
                             ),
-                            child: Icon(
-                              Icons.qr_code_scanner,
-                              color: Colors.white,
-                              size: 20,
+                            const SizedBox(width: 12),
+                            Text(
+                              localizations.startScanning,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                                fontWeight: FontWeight.w600,
+                                letterSpacing: 1,
+                              ),
                             ),
-                          ),
-                          const SizedBox(width: 12),
-                          Text(
-                            localizations.startScanning,
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600,
-                              letterSpacing: 1,
-                            ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   ),
-                ),
-                const SizedBox(height: 20),
-              ],
+                  const SizedBox(height: 20),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
 
       // Bottom navigation bar
@@ -568,13 +570,15 @@ class _QRScannerScreenState extends State<QRScannerScreen>
 
     return Scaffold(
       backgroundColor: Colors.black,
-      body: Stack(
-        children: [
-          _buildCameraView(),
-          _buildScanningOverlay(),
-          _buildInstructions(localizations),
-          if (_isProcessing) _buildProcessingOverlay(localizations),
-        ],
+      body: SingleChildScrollView(
+        child: Stack(
+          children: [
+            _buildCameraView(),
+            _buildScanningOverlay(),
+            _buildInstructions(localizations),
+            if (_isProcessing) _buildProcessingOverlay(localizations),
+          ],
+        ),
       ),
     );
   }
@@ -747,18 +751,20 @@ class _QRScannerScreenState extends State<QRScannerScreen>
   /// Builds web unsupported view
   Widget _buildWebUnsupportedView(AppLocalizations localizations) {
     return Scaffold(
-      body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [Color(0xFF1a1a2e), Color(0xFF16213e), Color(0xFF0f3460)],
+      body: SingleChildScrollView(
+        child: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [Color(0xFF1a1a2e), Color(0xFF16213e), Color(0xFF0f3460)],
+            ),
           ),
-        ),
-        child: Center(
-          child: Text(
-            localizations.qrScannerNotAvailableWeb,
-            style: TextStyle(color: Colors.white, fontSize: 18),
+          child: Center(
+            child: Text(
+              localizations.qrScannerNotAvailableWeb,
+              style: TextStyle(color: Colors.white, fontSize: 18),
+            ),
           ),
         ),
       ),

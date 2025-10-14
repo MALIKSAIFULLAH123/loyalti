@@ -2,7 +2,7 @@ name: loyalty_app
 description: "A new Flutter project."
 publish_to: 'none'
 
-version: 1.0.0+1
+version: 1.0.1+2
 
 environment:
   sdk: ^3.8.0
@@ -45,6 +45,8 @@ dependencies:
   smooth_page_indicator: ^1.2.1
   flutter_launcher_icons: ^0.14.4
   charset_converter: ^2.3.0
+  intl_phone_field: ^3.2.0
+  change_app_package_name: ^1.5.0
 
 dev_dependencies:
   flutter_test:

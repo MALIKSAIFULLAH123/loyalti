@@ -42,150 +42,216 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
     // _autoMarkReadTimer = Timer(const Duration(seconds: 3), () {
     //   _markAllNotificationsAsRead();
     // });
-}
-
-
-/// Enhanced Greek text decoder - handles multiple encoding scenarios
-String _decodeGreekText(dynamic value) {
-  if (value == null) return '';
-  
-  String text = value.toString().trim();
-  if (text.isEmpty) return '';
-
-  try {
-    // Method 1: Check if text contains Greek Unicode characters (properly encoded)
-    if (_containsGreekUnicode(text)) {
-      return text; // Already properly encoded
-    }
-
-    // Method 2: Handle Windows-1253 to UTF-8 conversion (most common case)
-    if (_isWindows1253Encoded(text)) {
-      return _convertWindows1253ToUtf8(text);
-    }
-
-    // Method 3: Try byte-level Windows-1253 conversion
-    String converted = _convertBytesToGreek(text);
-    if (_containsGreekUnicode(converted)) {
-      return converted;
-    }
-
-    // Method 4: Handle HTML entities and numeric character references
-    text = _decodeHtmlEntities(text);
-    text = _decodeNumericEntities(text);
-
-    return text;
-  } catch (e) {
-    if (kDebugMode) {
-      print('Greek text decoding error: $e');
-      print('Original text: $text');
-    }
-    return text; // Return original if all methods fail
   }
-}
 
-/// Enhanced Windows-1253 detection
-bool _isWindows1253Encoded(String text) {
-  // Check for common Windows-1253 Greek character patterns
-  final windows1253Patterns = [
-    'Áí', 'ìï', 'êÝ', 'ðñ', 'óå', 'ôá', 'êá', 'Üò', 'íô', 'Þò',
-    'ýø', 'ôå', 'ñÝ', 'óö', 'ïñ', 'ëë', 'õí', 'éê', 'ðþ', 'íõ'
-  ];
-  
-  return windows1253Patterns.any((pattern) => text.contains(pattern)) ||
-         text.codeUnits.any((unit) => unit >= 0xC0 && unit <= 0xFF);
-}
+  /// Enhanced Greek text decoder - handles multiple encoding scenarios
+  String _decodeGreekText(dynamic value) {
+    if (value == null) return '';
 
-/// Enhanced Windows-1253 to Greek Unicode conversion
-String _convertWindows1253ToUtf8(String text) {
-  // Complete Windows-1253 to Greek Unicode mapping table
-  final Map<int, String> windows1253ToGreek = {
-    // Greek uppercase letters (0xC1-0xD9)
-    0xC1: 'Α', 0xC2: 'Β', 0xC3: 'Γ', 0xC4: 'Δ', 0xC5: 'Ε', 0xC6: 'Ζ', 0xC7: 'Η', 0xC8: 'Θ',
-    0xC9: 'Ι', 0xCA: 'Κ', 0xCB: 'Λ', 0xCC: 'Μ', 0xCD: 'Ν', 0xCE: 'Ξ', 0xCF: 'Ο', 0xD0: 'Π',
-    0xD1: 'Ρ', 0xD3: 'Σ', 0xD4: 'Τ', 0xD5: 'Υ', 0xD6: 'Φ', 0xD7: 'Χ', 0xD8: 'Ψ', 0xD9: 'Ω',
-    
-    // Greek lowercase letters (0xE1-0xF9)
-    0xE1: 'α', 0xE2: 'β', 0xE3: 'γ', 0xE4: 'δ', 0xE5: 'ε', 0xE6: 'ζ', 0xE7: 'η', 0xE8: 'θ',
-    0xE9: 'ι', 0xEA: 'κ', 0xEB: 'λ', 0xEC: 'μ', 0xED: 'ν', 0xEE: 'ξ', 0xEF: 'ο', 0xF0: 'π',
-    0xF1: 'ρ', 0xF2: 'ς', 0xF3: 'σ', 0xF4: 'τ', 0xF5: 'υ', 0xF6: 'φ', 0xF7: 'χ', 0xF8: 'ψ', 0xF9: 'ω',
-    
-    // Greek accented characters
-    0xAA: 'Ί', 0xBA: 'Ό', 0xDA: 'Ύ', 0xDB: 'Ώ', 0xDC: 'ΐ', 0xDD: 'ΰ',
-    0xFD: 'ύ', 0xFC: 'ό', 0xFE: 'ώ', 0xFB: 'ή', 0xFA: 'ί', 0xDF: 'ϊ',
-    
-    // Additional accented vowels
-    0xB6: 'Ά', 0xB8: 'Έ', 0xB9: 'Ή', 0xBC: 'Ό', 0xBE: 'Ύ', 0xBF: 'Ώ',
-    0xDC: 'ά', 0xDD: 'έ', 0xDE: 'ή', 0xDF: 'ί', 0xE0: 'ό', 0xFC: 'ύ', 0xFD: 'ώ',
-  };
+    String text = value.toString().trim();
+    if (text.isEmpty) return '';
 
-  String converted = '';
-  for (int i = 0; i < text.length; i++) {
-    int charCode = text.codeUnitAt(i);
-    if (windows1253ToGreek.containsKey(charCode)) {
-      converted += windows1253ToGreek[charCode]!;
-    } else {
-      converted += text[i];
+    try {
+      // Method 1: Check if text contains Greek Unicode characters (properly encoded)
+      if (_containsGreekUnicode(text)) {
+        return text; // Already properly encoded
+      }
+
+      // Method 2: Handle Windows-1253 to UTF-8 conversion (most common case)
+      if (_isWindows1253Encoded(text)) {
+        return _convertWindows1253ToUtf8(text);
+      }
+
+      // Method 3: Try byte-level Windows-1253 conversion
+      String converted = _convertBytesToGreek(text);
+      if (_containsGreekUnicode(converted)) {
+        return converted;
+      }
+
+      // Method 4: Handle HTML entities and numeric character references
+      text = _decodeHtmlEntities(text);
+      text = _decodeNumericEntities(text);
+
+      return text;
+    } catch (e) {
+      if (kDebugMode) {
+        print('Greek text decoding error: $e');
+        print('Original text: $text');
+      }
+      return text; // Return original if all methods fail
     }
   }
-  
-  return converted;
-}
 
-/// Byte-level conversion for stubborn encoding issues
-String _convertBytesToGreek(String text) {
-  try {
-    List<int> bytes = text.codeUnits;
-    String result = '';
-    
-    for (int byte in bytes) {
-      // Windows-1253 Greek range conversion
-      if (byte >= 0xC1 && byte <= 0xD9) {
-        // Uppercase Greek letters
-        int greekCode = 0x0391 + (byte - 0xC1);
-        if (byte == 0xD2) greekCode = 0x03A3; // Sigma special case
-        result += String.fromCharCode(greekCode);
-      } else if (byte >= 0xE1 && byte <= 0xF9) {
-        // Lowercase Greek letters
-        int greekCode = 0x03B1 + (byte - 0xE1);
-        if (byte == 0xF2) greekCode = 0x03C2; // Final sigma
-        result += String.fromCharCode(greekCode);
-      } else if (byte == 0xB6) {
-        result += 'Ά'; // Alpha with tonos
-      } else if (byte == 0xB8) {
-        result += 'Έ'; // Epsilon with tonos
-      } else if (byte == 0xB9) {
-        result += 'Ή'; // Eta with tonos
-      } else if (byte == 0xBC) {
-        result += 'Ό'; // Omicron with tonos
-      } else if (byte == 0xBE) {
-        result += 'Ύ'; // Upsilon with tonos
-      } else if (byte == 0xBF) {
-        result += 'Ώ'; // Omega with tonos
-      } else if (byte == 0xDC) {
-        result += 'ά'; // alpha with tonos
-      } else if (byte == 0xDD) {
-        result += 'έ'; // epsilon with tonos
-      } else if (byte == 0xDE) {
-        result += 'ή'; // eta with tonos
-      } else if (byte == 0xDF) {
-        result += 'ί'; // iota with tonos
-      } else if (byte == 0xFC) {
-        result += 'ό'; // omicron with tonos
-      } else if (byte == 0xFD) {
-        result += 'ύ'; // upsilon with tonos
-      } else if (byte == 0xFE) {
-        result += 'ώ'; // omega with tonos
+  /// Enhanced Windows-1253 detection
+  bool _isWindows1253Encoded(String text) {
+    // Check for common Windows-1253 Greek character patterns
+    final windows1253Patterns = [
+      'Áí',
+      'ìï',
+      'êÝ',
+      'ðñ',
+      'óå',
+      'ôá',
+      'êá',
+      'Üò',
+      'íô',
+      'Þò',
+      'ýø',
+      'ôå',
+      'ñÝ',
+      'óö',
+      'ïñ',
+      'ëë',
+      'õí',
+      'éê',
+      'ðþ',
+      'íõ',
+    ];
+
+    return windows1253Patterns.any((pattern) => text.contains(pattern)) ||
+        text.codeUnits.any((unit) => unit >= 0xC0 && unit <= 0xFF);
+  }
+
+  /// Enhanced Windows-1253 to Greek Unicode conversion
+  String _convertWindows1253ToUtf8(String text) {
+    // Complete Windows-1253 to Greek Unicode mapping table
+    final Map<int, String> windows1253ToGreek = {
+      // Greek uppercase letters (0xC1-0xD9)
+      0xC1: 'Α',
+      0xC2: 'Β',
+      0xC3: 'Γ',
+      0xC4: 'Δ',
+      0xC5: 'Ε',
+      0xC6: 'Ζ',
+      0xC7: 'Η',
+      0xC8: 'Θ',
+      0xC9: 'Ι',
+      0xCA: 'Κ',
+      0xCB: 'Λ',
+      0xCC: 'Μ',
+      0xCD: 'Ν',
+      0xCE: 'Ξ',
+      0xCF: 'Ο',
+      0xD0: 'Π',
+      0xD1: 'Ρ',
+      0xD3: 'Σ',
+      0xD4: 'Τ',
+      0xD5: 'Υ',
+      0xD6: 'Φ',
+      0xD7: 'Χ',
+      0xD8: 'Ψ',
+      0xD9: 'Ω',
+
+      // Greek lowercase letters (0xE1-0xF9)
+      0xE1: 'α',
+      0xE2: 'β',
+      0xE3: 'γ',
+      0xE4: 'δ',
+      0xE5: 'ε',
+      0xE6: 'ζ',
+      0xE7: 'η',
+      0xE8: 'θ',
+      0xE9: 'ι',
+      0xEA: 'κ',
+      0xEB: 'λ',
+      0xEC: 'μ',
+      0xED: 'ν',
+      0xEE: 'ξ',
+      0xEF: 'ο',
+      0xF0: 'π',
+      0xF1: 'ρ',
+      0xF2: 'ς',
+      0xF3: 'σ',
+      0xF4: 'τ',
+      0xF5: 'υ',
+      0xF6: 'φ',
+      0xF7: 'χ',
+      0xF8: 'ψ',
+      0xF9: 'ω',
+
+      // Greek accented characters
+      0xAA: 'Ί', 0xBA: 'Ό', 0xDA: 'Ύ', 0xDB: 'Ώ', 0xDC: 'ΐ', 0xDD: 'ΰ',
+      0xFD: 'ύ', 0xFC: 'ό', 0xFE: 'ώ', 0xFB: 'ή', 0xFA: 'ί', 0xDF: 'ϊ',
+
+      // Additional accented vowels
+      0xB6: 'Ά', 0xB8: 'Έ', 0xB9: 'Ή', 0xBC: 'Ό', 0xBE: 'Ύ', 0xBF: 'Ώ',
+      0xDC: 'ά',
+      0xDD: 'έ',
+      0xDE: 'ή',
+      0xDF: 'ί',
+      0xE0: 'ό',
+      0xFC: 'ύ',
+      0xFD: 'ώ',
+    };
+
+    String converted = '';
+    for (int i = 0; i < text.length; i++) {
+      int charCode = text.codeUnitAt(i);
+      if (windows1253ToGreek.containsKey(charCode)) {
+        converted += windows1253ToGreek[charCode]!;
       } else {
-        result += String.fromCharCode(byte);
+        converted += text[i];
       }
     }
-    
-    return result;
-  } catch (e) {
-    if (kDebugMode) print('Byte conversion failed: $e');
-    return text;
+
+    return converted;
   }
-}
+
+  /// Byte-level conversion for stubborn encoding issues
+  String _convertBytesToGreek(String text) {
+    try {
+      List<int> bytes = text.codeUnits;
+      String result = '';
+
+      for (int byte in bytes) {
+        // Windows-1253 Greek range conversion
+        if (byte >= 0xC1 && byte <= 0xD9) {
+          // Uppercase Greek letters
+          int greekCode = 0x0391 + (byte - 0xC1);
+          if (byte == 0xD2) greekCode = 0x03A3; // Sigma special case
+          result += String.fromCharCode(greekCode);
+        } else if (byte >= 0xE1 && byte <= 0xF9) {
+          // Lowercase Greek letters
+          int greekCode = 0x03B1 + (byte - 0xE1);
+          if (byte == 0xF2) greekCode = 0x03C2; // Final sigma
+          result += String.fromCharCode(greekCode);
+        } else if (byte == 0xB6) {
+          result += 'Ά'; // Alpha with tonos
+        } else if (byte == 0xB8) {
+          result += 'Έ'; // Epsilon with tonos
+        } else if (byte == 0xB9) {
+          result += 'Ή'; // Eta with tonos
+        } else if (byte == 0xBC) {
+          result += 'Ό'; // Omicron with tonos
+        } else if (byte == 0xBE) {
+          result += 'Ύ'; // Upsilon with tonos
+        } else if (byte == 0xBF) {
+          result += 'Ώ'; // Omega with tonos
+        } else if (byte == 0xDC) {
+          result += 'ά'; // alpha with tonos
+        } else if (byte == 0xDD) {
+          result += 'έ'; // epsilon with tonos
+        } else if (byte == 0xDE) {
+          result += 'ή'; // eta with tonos
+        } else if (byte == 0xDF) {
+          result += 'ί'; // iota with tonos
+        } else if (byte == 0xFC) {
+          result += 'ό'; // omicron with tonos
+        } else if (byte == 0xFD) {
+          result += 'ύ'; // upsilon with tonos
+        } else if (byte == 0xFE) {
+          result += 'ώ'; // omega with tonos
+        } else {
+          result += String.fromCharCode(byte);
+        }
+      }
+
+      return result;
+    } catch (e) {
+      if (kDebugMode) print('Byte conversion failed: $e');
+      return text;
+    }
+  }
 
   @override
   void dispose() {
@@ -194,14 +260,15 @@ String _convertBytesToGreek(String text) {
   }
 
   /// Enhanced Greek text decoder - handles multiple encoding scenarios
-  /// 
+  ///
   ///
   /// Check if text contains properly encoded Greek Unicode characters
   bool _containsGreekUnicode(String text) {
     // Greek Unicode range: U+0370–U+03FF and U+1F00–U+1FFF
-    return text.runes.any((rune) => 
-      (rune >= 0x0370 && rune <= 0x03FF) || 
-      (rune >= 0x1F00 && rune <= 0x1FFF)
+    return text.runes.any(
+      (rune) =>
+          (rune >= 0x0370 && rune <= 0x03FF) ||
+          (rune >= 0x1F00 && rune <= 0x1FFF),
     );
   }
 
@@ -213,7 +280,7 @@ String _convertBytesToGreek(String text) {
   //     'á', 'â', 'ã', 'ä', 'å', 'æ', 'ç', 'è', 'é', 'ê', 'ë', 'ì', 'í', 'î', 'ï',
   //     'ð', 'ñ', 'ò', 'ó', 'ô', 'õ', 'ö', '÷', 'ø', 'ù', 'ú', 'û', 'ü', 'ý', 'þ'
   //   ];
-    
+
   //   return windows1253Indicators.any((char) => text.contains(char));
   // }
 
@@ -225,12 +292,12 @@ String _convertBytesToGreek(String text) {
   //     'Á': 'Α', 'Â': 'Β', 'Ã': 'Γ', 'Ä': 'Δ', 'Å': 'Ε', 'Æ': 'Ζ', 'Ç': 'Η', 'È': 'Θ',
   //     'É': 'Ι', 'Ê': 'Κ', 'Ë': 'Λ', 'Ì': 'Μ', 'Í': 'Ν', 'Î': 'Ξ', 'Ï': 'Ο', 'Ð': 'Π',
   //     'Ñ': 'Ρ', 'Ó': 'Σ', 'Ô': 'Τ', 'Õ': 'Υ', 'Ö': 'Φ', '×': 'Χ', 'Ø': 'Ψ', 'Ù': 'Ω',
-      
+
   //     // Lowercase Greek letters
   //     'á': 'α', 'â': 'β', 'ã': 'γ', 'ä': 'δ', 'å': 'ε', 'æ': 'ζ', 'ç': 'η', 'è': 'θ',
   //     'é': 'ι', 'ê': 'κ', 'ë': 'λ', 'ì': 'μ', 'í': 'ν', 'î': 'ξ', 'ï': 'ο', 'ð': 'π',
   //     'ñ': 'ρ', 'ò': 'ς', 'ó': 'σ', 'ô': 'τ', 'õ': 'υ', 'ö': 'φ', '÷': 'χ', 'ø': 'ψ', 'ù': 'ω',
-      
+
   //     // Greek accented characters
   //     'Ú': 'Ί', 'Û': 'Ό', 'Ü': 'Ύ', 'Ý': 'Ώ', 'Þ': 'ΐ', 'ß': 'ΰ',
   //     'ú': 'ύ', 'û': 'ό', 'ü': 'ώ', 'ý': 'ή', 'þ': 'ί', 'ÿ': 'ϊ'
@@ -256,18 +323,19 @@ String _convertBytesToGreek(String text) {
   }
 
   /// Convert ISO-8859-7 to UTF-8
-Future<String> _convertIso88597ToUtf8(String text) async {
-  try {
-    // Convert List<int> → Uint8List
-    final bytes = Uint8List.fromList(text.codeUnits);
+  Future<String> _convertIso88597ToUtf8(String text) async {
+    try {
+      // Convert List<int> → Uint8List
+      final bytes = Uint8List.fromList(text.codeUnits);
 
-    // Decode from ISO-8859-7 to UTF-8
-    return await CharsetConverter.decode('iso-8859-7', bytes);
-  } catch (e) {
-    if (kDebugMode) print('ISO-8859-7 conversion failed: $e');
-    return text;
+      // Decode from ISO-8859-7 to UTF-8
+      return await CharsetConverter.decode('iso-8859-7', bytes);
+    } catch (e) {
+      if (kDebugMode) print('ISO-8859-7 conversion failed: $e');
+      return text;
+    }
   }
-}
+
   /// Check if text contains Latin extended characters
   bool _containsLatinExtended(String text) {
     return text.codeUnits.any((unit) => unit > 127 && unit < 256);
@@ -301,136 +369,144 @@ Future<String> _convertIso88597ToUtf8(String text) async {
       }
     });
   }
-Future<void> _loadNotifications() async {
-  try {
-    if (!isRefreshing) {
-      setState(() {
-        isLoading = true;
-        errorMessage = null;
-      });
-    }
 
-    final prefs = await SharedPreferences.getInstance();
-    final companyUrl = prefs.getString('company_url');
-    final softwareType = prefs.getString('software_type');
-    final clientID = prefs.getString('clientID');
-    final trdr = prefs.getString('TRDR');
-
-    if (companyUrl == null ||
-        softwareType == null ||
-        clientID == null ||
-        trdr == null) {
-      throw Exception("Required settings are missing. Please login again.");
-    }
-
-    final servicePath = softwareType == "TESAE"
-        ? "/pegasus/a_xit/connector.php"
-        : "/s1services";
-
-    final uri = Uri.parse(
-      "${ApiConstants.baseUrl}https://$companyUrl$servicePath",
-    );
-
-    final client = http.Client();
-
+  Future<void> _loadNotifications() async {
     try {
-      final response = await client
-          .post(
-            uri,
-            headers: {
-              'Content-Type': 'application/json; charset=utf-8',
-              'Accept': 'application/json; charset=utf-8',
-              'Accept-Charset': 'utf-8, iso-8859-7, windows-1253',
-              'Accept-Language': 'el-GR, en-US, *',
-              'User-Agent': 'LoyaltyApp/1.0',
-              'Cache-Control': 'no-cache, no-store, must-revalidate',
-              'Pragma': 'no-cache',
-              'Expires': '0',
-            },
-            body: utf8.encode(
-              jsonEncode({
-                "service": "SqlData",
-                "clientID": clientID,
-                "appId": "1001",
-                "SqlName": "9702",
-                "trdr": trdr,
-              }),
-            ),
-          )
-          .timeout(
-            const Duration(seconds: 30),
-            onTimeout: () {
-              throw Exception(
-                'Request timeout. Please check your internet connection.',
-              );
-            },
-          );
+      if (!isRefreshing) {
+        setState(() {
+          isLoading = true;
+          errorMessage = null;
+        });
+      }
 
-      if (response.statusCode == 200) {
-        String responseBody = await _decodeApiResponse(response);
+      final prefs = await SharedPreferences.getInstance();
+      final companyUrl = prefs.getString('company_url');
+      final softwareType = prefs.getString('software_type');
+      final clientID = prefs.getString('clientID');
+      final trdr = prefs.getString('TRDR');
 
-        if (kDebugMode) {
-          print('Decoded response body: $responseBody');
-        }
+      if (companyUrl == null ||
+          softwareType == null ||
+          clientID == null ||
+          trdr == null) {
+        throw Exception("Required settings are missing. Please login again.");
+      }
 
-        final data = jsonDecode(responseBody);
+      final servicePath = softwareType == "TESAE"
+          ? "/pegasus/a_xit/connector.php"
+          : "/s1services";
 
-        if (data is Map<String, dynamic>) {
-          if (data['success'] == true) {
-            final List<dynamic> rows = data['rows'] ?? [];
+      final uri = Uri.parse(
+        "${ApiConstants.baseUrl}https://$companyUrl$servicePath",
+      );
 
-            setState(() {
-              notifications = rows
-                  .map((row) => NotificationItem.fromApi(row, _decodeGreekText))
-                  .toList();
+      final client = http.Client();
 
-              // Sort notifications by date (newest first)
-              notifications.sort((a, b) => b.date.compareTo(a.date));
+      try {
+        final response = await client
+            .post(
+              uri,
+              headers: {
+                'Content-Type': 'application/json; charset=utf-8',
+                'Accept': 'application/json; charset=utf-8',
+                'Accept-Charset': 'utf-8, iso-8859-7, windows-1253',
+                'Accept-Language': 'el-GR, en-US, *',
+                'User-Agent': 'LoyaltyApp/1.0',
+                'Cache-Control': 'no-cache, no-store, must-revalidate',
+                'Pragma': 'no-cache',
+                'Expires': '0',
+              },
+              body: utf8.encode(
+                jsonEncode({
+                  "service": "SqlData",
+                  "clientID": clientID,
+                  "appId": "1001",
+                  "SqlName": "9702",
+                  "trdr": trdr,
+                }),
+              ),
+            )
+            .timeout(
+              const Duration(seconds: 30),
+              onTimeout: () {
+                throw Exception(
+                  'Request timeout. Please check your internet connection.',
+                );
+              },
+            );
 
-              isLoading = false;
-              isRefreshing = false;
-            });
+        if (response.statusCode == 200) {
+          String responseBody = await _decodeApiResponse(response);
 
-            // ❌ Remove auto-mark timer from here - notifications should stay unread until user interacts
-            if (kDebugMode) {
-              print('Loaded ${notifications.length} notifications');
-              print('Unread notifications: ${notifications.where((n) => !n.isRead).length}');
+          if (kDebugMode) {
+            print('Decoded response body: $responseBody');
+          }
+
+          final data = jsonDecode(responseBody);
+
+          if (data is Map<String, dynamic>) {
+            if (data['success'] == true) {
+              final List<dynamic> rows = data['rows'] ?? [];
+
+              setState(() {
+                notifications = rows
+                    .map(
+                      (row) => NotificationItem.fromApi(row, _decodeGreekText),
+                    )
+                    .toList();
+
+                // Sort notifications by date (newest first)
+                notifications.sort((a, b) => b.date.compareTo(a.date));
+
+                isLoading = false;
+                isRefreshing = false;
+              });
+
+              // ❌ Remove auto-mark timer from here - notifications should stay unread until user interacts
+              if (kDebugMode) {
+                print('Loaded ${notifications.length} notifications');
+                print(
+                  'Unread notifications: ${notifications.where((n) => !n.isRead).length}',
+                );
+              }
+            } else {
+              throw Exception(data['message'] ?? "API request failed");
             }
           } else {
-            throw Exception(data['message'] ?? "API request failed");
+            throw Exception("Invalid response format");
           }
         } else {
-          throw Exception("Invalid response format");
+          String errorMessage = "Server error: ${response.statusCode}";
+          if (response.statusCode == 404) {
+            errorMessage =
+                "Service not found. Please check your configuration.";
+          } else if (response.statusCode == 500) {
+            errorMessage = "Internal server error. Please try again later.";
+          } else if (response.statusCode >= 400 && response.statusCode < 500) {
+            errorMessage =
+                "Client error: ${response.statusCode}. Please check your request.";
+          }
+          throw Exception(errorMessage);
         }
-      } else {
-        String errorMessage = "Server error: ${response.statusCode}";
-        if (response.statusCode == 404) {
-          errorMessage = "Service not found. Please check your configuration.";
-        } else if (response.statusCode == 500) {
-          errorMessage = "Internal server error. Please try again later.";
-        } else if (response.statusCode >= 400 && response.statusCode < 500) {
-          errorMessage = "Client error: ${response.statusCode}. Please check your request.";
-        }
-        throw Exception(errorMessage);
+      } finally {
+        client.close();
       }
-    } finally {
-      client.close();
-    }
-  } catch (e) {
-    setState(() {
-      errorMessage = 'Failed to load notifications: ${e.toString().replaceAll(RegExp(r'^Exception: '), '')}';
-      isLoading = false;
-      isRefreshing = false;
-    });
+    } catch (e) {
+      setState(() {
+        errorMessage =
+            'Failed to load notifications: ${e.toString().replaceAll(RegExp(r'^Exception: '), '')}';
+        isLoading = false;
+        isRefreshing = false;
+      });
 
-    if (kDebugMode) {
-      print('General error: $e');
+      if (kDebugMode) {
+        print('General error: $e');
+      }
     }
   }
-}
 
   /// Enhanced API response decoder for Greek content
-  Future<String> _decodeApiResponse(http.Response response)async {
+  Future<String> _decodeApiResponse(http.Response response) async {
     String responseBody;
 
     try {
@@ -440,13 +516,13 @@ Future<void> _loadNotifications() async {
         if (contentType.contains('charset=windows-1253')) {
           // Decode as Windows-1253
           responseBody = _convertWindows1253ToUtf8(
-            String.fromCharCodes(response.bodyBytes)
+            String.fromCharCodes(response.bodyBytes),
           );
           return responseBody;
         } else if (contentType.contains('charset=iso-8859-7')) {
           // Decode as ISO-8859-7
           responseBody = await _convertIso88597ToUtf8(
-            String.fromCharCodes(response.bodyBytes)
+            String.fromCharCodes(response.bodyBytes),
           );
           return responseBody;
         }
@@ -455,7 +531,8 @@ Future<void> _loadNotifications() async {
       // Method 2: Try UTF-8 decoding first
       try {
         responseBody = utf8.decode(response.bodyBytes);
-        if (_containsGreekUnicode(responseBody) || !_containsLatinExtended(responseBody)) {
+        if (_containsGreekUnicode(responseBody) ||
+            !_containsLatinExtended(responseBody)) {
           return responseBody;
         }
       } catch (e) {
@@ -548,12 +625,15 @@ Future<void> _loadNotifications() async {
       debugPrint("📥 Response body: ${response.body}");
 
       if (response.statusCode == 200) {
-        final data = jsonDecode(response.body);
+        String responseBody = await _decodeApiResponseAsync(response);
+        final data = jsonDecode(responseBody);
         if (data is Map<String, dynamic> &&
             data['success'] == true &&
             data['rows'] != null &&
             data['rows'].isNotEmpty) {
           final points = data['rows'][0]['totalpoints']?.toString() ?? "0";
+          final Name = data['rows'][0]['NAME']?.toString() ?? "unknown";
+          await prefs.setString('Namee', Name);
 
           // Base64 image save karo
           final base64Image = data['rows'][0]['CCCXITLIMAGE']?.toString() ?? '';
@@ -567,6 +647,8 @@ Future<void> _loadNotifications() async {
 
           if (mounted) {
             setState(() {
+                userName = Name;
+
               profileImagePath = base64Image;
               _isLoading = false;
               _hasError = false;
@@ -585,6 +667,53 @@ Future<void> _loadNotifications() async {
           _hasError = true;
         });
       }
+    }
+  }
+
+  // Replace your _decodeApiResponse method with this async version:
+  Future<String> _decodeApiResponseAsync(http.Response response) async {
+    try {
+      // Check content type first
+      String? contentType = response.headers['content-type'];
+
+      if (contentType != null) {
+        if (contentType.contains('charset=windows-1253')) {
+          return _convertWindows1253ToUtf8(
+            String.fromCharCodes(response.bodyBytes),
+          );
+        } else if (contentType.contains('charset=iso-8859-7')) {
+          return await _convertIso88597ToUtf8(
+            String.fromCharCodes(response.bodyBytes),
+          );
+        }
+      }
+
+      // Try UTF-8 first
+      try {
+        String responseBody = utf8.decode(response.bodyBytes);
+        if (_containsGreekUnicode(responseBody) ||
+            !_containsLatinExtended(responseBody)) {
+          return responseBody;
+        }
+      } catch (e) {
+        debugPrint('UTF-8 decoding failed: $e');
+      }
+
+      // Fallback to Latin-1 then convert
+      try {
+        String latin1Decoded = latin1.decode(response.bodyBytes);
+        String converted = _decodeGreekText(latin1Decoded);
+        if (_containsGreekUnicode(converted)) {
+          return converted;
+        }
+      } catch (e) {
+        debugPrint('Latin-1 decoding failed: $e');
+      }
+
+      // Ultimate fallback
+      return _decodeGreekText(response.body);
+    } catch (e) {
+      return response.body;
     }
   }
 
@@ -665,7 +794,7 @@ Future<void> _loadNotifications() async {
   Future<void> _loadUserName() async {
     try {
       final prefs = await SharedPreferences.getInstance();
-      final name = prefs.getString('user_fullname') ?? 'user';
+      final name = prefs.getString('NAME') ?? 'user';
       if (mounted) {
         setState(() {
           userName = name;
@@ -808,84 +937,89 @@ Future<void> _loadNotifications() async {
   }
 
   Future<void> _markAsRead(NotificationItem notification) async {
-  if (notification.isRead) {
-    if (kDebugMode) print('Notification ${notification.id} is already read');
-    return;
-  }
-
-  try {
-    final prefs = await SharedPreferences.getInstance();
-    final companyUrl = prefs.getString('company_url');
-    final softwareType = prefs.getString('software_type');
-    final clientID = prefs.getString('clientID');
-
-    if (companyUrl == null || softwareType == null || clientID == null) {
-      throw Exception("Missing required settings");
+    if (notification.isRead) {
+      if (kDebugMode) print('Notification ${notification.id} is already read');
+      return;
     }
 
-    final servicePath = softwareType == "TESAE"
-        ? "/pegasus/a_xit/connector.php"
-        : "/s1services";
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final companyUrl = prefs.getString('company_url');
+      final softwareType = prefs.getString('software_type');
+      final clientID = prefs.getString('clientID');
 
-    final uri = Uri.parse(
-      "${ApiConstants.baseUrl}https://$companyUrl$servicePath",
-    );
+      if (companyUrl == null || softwareType == null || clientID == null) {
+        throw Exception("Missing required settings");
+      }
 
-    if (kDebugMode) {
-      print('🔄 Marking notification ${notification.id} as read...');
-    }
+      final servicePath = softwareType == "TESAE"
+          ? "/pegasus/a_xit/connector.php"
+          : "/s1services";
 
-    final requestBody = {
-      "service": "setData",
-      "clientID": clientID,
-      "appId": "1001",
-      "OBJECT": "SOACTION",
-      "KEY": notification.id,
-      "data": {
-        "SOACTION": [
-          {"ACTSTATUS": "3"},
-        ],
-      },
-    };
+      final uri = Uri.parse(
+        "${ApiConstants.baseUrl}https://$companyUrl$servicePath",
+      );
 
-    final response = await http
-        .post(
-          uri,
-          headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json',
-            'User-Agent': 'LoyaltyApp/1.0',
-          },
-          body: jsonEncode(requestBody),
-        )
-        .timeout(const Duration(seconds: 10));
+      if (kDebugMode) {
+        print('🔄 Marking notification ${notification.id} as read...');
+      }
 
-    if (kDebugMode) {
-      print('📥 Mark as read response: ${response.statusCode} - ${response.body}');
-    }
+      final requestBody = {
+        "service": "setData",
+        "clientID": clientID,
+        "appId": "1001",
+        "OBJECT": "SOACTION",
+        "KEY": notification.id,
+        "data": {
+          "SOACTION": [
+            {"ACTSTATUS": "3"},
+          ],
+        },
+      };
 
-    if (response.statusCode == 200) {
-      final data = jsonDecode(response.body);
-      if (data is Map<String, dynamic> && data['success'] == true) {
-        setState(() {
-          notification.isRead = true;
-        });
-        if (kDebugMode) {
-          print('✅ Notification ${notification.id} marked as read successfully');
+      final response = await http
+          .post(
+            uri,
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json',
+              'User-Agent': 'LoyaltyApp/1.0',
+            },
+            body: jsonEncode(requestBody),
+          )
+          .timeout(const Duration(seconds: 10));
+
+      if (kDebugMode) {
+        print(
+          '📥 Mark as read response: ${response.statusCode} - ${response.body}',
+        );
+      }
+
+      if (response.statusCode == 200) {
+        final data = jsonDecode(response.body);
+        if (data is Map<String, dynamic> && data['success'] == true) {
+          setState(() {
+            notification.isRead = true;
+          });
+          if (kDebugMode) {
+            print(
+              '✅ Notification ${notification.id} marked as read successfully',
+            );
+          }
+        } else {
+          throw Exception(data['message'] ?? "Failed to mark as read");
         }
       } else {
-        throw Exception(data['message'] ?? "Failed to mark as read");
+        throw Exception("HTTP ${response.statusCode}: ${response.body}");
       }
-    } else {
-      throw Exception("HTTP ${response.statusCode}: ${response.body}");
+    } catch (e) {
+      if (kDebugMode) {
+        print("❗ Mark as read error for ${notification.id}: $e");
+      }
+      // Don't show snackbar for individual failures, just log
     }
-  } catch (e) {
-    if (kDebugMode) {
-      print("❗ Mark as read error for ${notification.id}: $e");
-    }
-    // Don't show snackbar for individual failures, just log
   }
-}
+
   void _openNotificationDetail(NotificationItem notification) {
     // Mark as read when opening detail
     _markAsRead(notification);
@@ -1055,38 +1189,55 @@ class NotificationItem {
     required this.date,
     required this.isRead,
   });
-factory NotificationItem.fromApi(Map<String, dynamic> json, Function(dynamic) decoder) {
-  // API se read status properly parse karo
-  bool isReadStatus = false;
-  
-  // Multiple ways to check read status
-  if (json.containsKey('ACTSTATUS')) {
-    final status = json['ACTSTATUS']?.toString();
-    isReadStatus = status == '3' || status == 'read' || status == '1';
-  } else if (json.containsKey('isRead')) {
-    isReadStatus = json['isRead'] == true || json['isRead'] == 1 || json['isRead'] == '1';
-  } else if (json.containsKey('read_status')) {
-    isReadStatus = json['read_status'] == true || json['read_status'] == 1;
+  factory NotificationItem.fromApi(
+    Map<String, dynamic> json,
+    Function(dynamic) decoder,
+  ) {
+    // API se read status properly parse karo
+    bool isReadStatus = false;
+
+    // Multiple ways to check read status
+    if (json.containsKey('ACTSTATUS')) {
+      final status = json['ACTSTATUS']?.toString();
+      isReadStatus = status == '3' || status == 'read' || status == '1';
+    } else if (json.containsKey('isRead')) {
+      isReadStatus =
+          json['isRead'] == true ||
+          json['isRead'] == 1 ||
+          json['isRead'] == '1';
+    } else if (json.containsKey('read_status')) {
+      isReadStatus = json['read_status'] == true || json['read_status'] == 1;
+    }
+
+    if (kDebugMode) {
+      print(
+        'Notification ${json['id']}: isRead = $isReadStatus, raw status = ${json['ACTSTATUS']}',
+      );
+    }
+
+    return NotificationItem(
+      id: json['id']?.toString() ?? '',
+      title: decoder(json['title']),
+      message: decoder(json['bodymessage']),
+      date: DateTime.tryParse(json['date']?.toString() ?? '') ?? DateTime.now(),
+      isRead: isReadStatus,
+    );
   }
-
-  if (kDebugMode) {
-    print('Notification ${json['id']}: isRead = $isReadStatus, raw status = ${json['ACTSTATUS']}');
-  }
-
-  return NotificationItem(
-    id: json['id']?.toString() ?? '',
-    title: decoder(json['title']),
-    message: decoder(json['bodymessage']),
-    date: DateTime.tryParse(json['date']?.toString() ?? '') ?? DateTime.now(),
-    isRead: isReadStatus,
-  );
-}
-
 
   String get formattedDateTime {
     final months = [
-      'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-      'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
+      'Jan',
+      'Feb',
+      'Mar',
+      'Apr',
+      'May',
+      'Jun',
+      'Jul',
+      'Aug',
+      'Sep',
+      'Oct',
+      'Nov',
+      'Dec',
     ];
 
     final month = months[date.month - 1];
@@ -1122,9 +1273,18 @@ class NotificationDetailScreen extends StatelessWidget {
 
   String _stripHtmlTags(String htmlString) {
     String stripped = htmlString.replaceAll(RegExp(r'<!DOCTYPE[^>]*>'), '');
-    stripped = stripped.replaceAll(RegExp(r'<head>.*?</head>', dotAll: true), '');
-    stripped = stripped.replaceAll(RegExp(r'<script[^>]*>.*?</script>', dotAll: true), '');
-    stripped = stripped.replaceAll(RegExp(r'<style[^>]*>.*?</style>', dotAll: true), '');
+    stripped = stripped.replaceAll(
+      RegExp(r'<head>.*?</head>', dotAll: true),
+      '',
+    );
+    stripped = stripped.replaceAll(
+      RegExp(r'<script[^>]*>.*?</script>', dotAll: true),
+      '',
+    );
+    stripped = stripped.replaceAll(
+      RegExp(r'<style[^>]*>.*?</style>', dotAll: true),
+      '',
+    );
 
     stripped = stripped.replaceAll(RegExp(r'</tr>'), '\n');
     stripped = stripped.replaceAll(RegExp(r'</td>'), ' ');
@@ -1768,4 +1928,4 @@ class NotificationTile extends StatelessWidget {
       );
     }
   }
-  }
+}

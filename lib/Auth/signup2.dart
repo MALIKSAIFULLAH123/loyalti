@@ -10,6 +10,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:loyalty_app/Services/language_service.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:intl_phone_field/intl_phone_field.dart';
 
 Map<String, dynamic>? globalLiscence;
 
@@ -31,7 +32,10 @@ class _SignUpScreen2State extends State<SignUpScreen2> {
   String _selectedLanguage = 'GR';
   bool _isLoading = false;
   bool _isCheckingUser = false;
+  final bool _isSendingOtp = false; // ✅ Naya variable OTP sending ke liye
 
+  String _completePhoneNumber = ''; // Store full phone with country code
+  String _countryCode = '30'; // Store country code separately
   // Firebase OTP related variables
   final FirebaseAuth _auth = FirebaseAuth.instance;
   String? _verificationId;
@@ -133,9 +137,7 @@ class _SignUpScreen2State extends State<SignUpScreen2> {
     if (value.length < 2) {
       return localizations.nameMinLength;
     }
-    if (!RegExp(r'^[a-zA-Z\s]+$').hasMatch(value)) {
-      return localizations.nameLettersOnly;
-    }
+
     return null;
   }
 
@@ -180,70 +182,18 @@ class _SignUpScreen2State extends State<SignUpScreen2> {
 
   // Firebase OTP Functions
   String _formatPhoneNumber(String phone) {
-    // Remove all non-digit characters except +
+    // Agar IntlPhoneField se complete number mil gaya, use karo
+    if (_completePhoneNumber.isNotEmpty) {
+      debugPrint('Using IntlPhoneField number: $_completePhoneNumber');
+      return _completePhoneNumber;
+    }
+
+    // Fallback: purana logic
     String cleanPhone = phone.replaceAll(RegExp(r'[^\d+]'), '');
-
-    debugPrint('Original phone: $phone');
-    debugPrint('Cleaned phone: $cleanPhone');
-    final localizations = AppLocalizations.of(context)!;
-
-    // If already has country code, return as is
-    if (cleanPhone.startsWith('+')) {
-      debugPrint('Already formatted phone: $cleanPhone');
-      return cleanPhone;
+    if (!cleanPhone.startsWith('+')) {
+      cleanPhone = '92$cleanPhone';
     }
-
-    // Handle different country patterns
-    if (cleanPhone.startsWith('0')) {
-      // Remove leading zero and detect country
-      cleanPhone = cleanPhone.substring(1);
-
-      // Pakistan numbers (3xxxxxxxxx after removing 0)
-      if (cleanPhone.startsWith('3') && cleanPhone.length == 10) {
-        cleanPhone = '+92$cleanPhone';
-      }
-      // India numbers (6,7,8,9xxxxxxxxx after removing 0)
-      else if (RegExp(r'^[6-9]\d{9}$').hasMatch(cleanPhone)) {
-        cleanPhone = '+91$cleanPhone';
-      }
-      // UK numbers
-      else if (cleanPhone.startsWith('7') && cleanPhone.length == 10) {
-        cleanPhone = '+44$cleanPhone';
-      }
-      // Add more country patterns as needed
-      else {
-        // Default: assume it needs country code
-        throw Exception(localizations.includeCountryCode);
-      }
-    }
-    // Handle numbers without leading zero
-    else {
-      // If 10-11 digits, might need country code
-      if (cleanPhone.length >= 10 && cleanPhone.length <= 11) {
-        // Pakistan pattern (3xxxxxxxxx)
-        if (cleanPhone.startsWith('3') && cleanPhone.length == 10) {
-          cleanPhone = '+92$cleanPhone';
-        }
-        // India pattern (6,7,8,9xxxxxxxxx)
-        else if (RegExp(r'^[6-9]\d{9}$').hasMatch(cleanPhone)) {
-          cleanPhone = '+91$cleanPhone';
-        }
-        // US/Canada pattern (10 digits)
-        else if (cleanPhone.length == 10) {
-          cleanPhone = '+1$cleanPhone';
-        } else {
-          throw Exception(localizations.includeCountryCode);
-        }
-      }
-      // If 12+ digits, add + if missing
-      else if (cleanPhone.length >= 12) {
-        cleanPhone = '+$cleanPhone';
-      } else {
-        throw Exception(localizations.invalidPhoneFormat);
-      }
-    }
-
-    debugPrint('Formatted phone: $cleanPhone');
+    debugPrint('Fallback formatted phone: $cleanPhone');
     return cleanPhone;
   }
 
@@ -353,7 +303,10 @@ class _SignUpScreen2State extends State<SignUpScreen2> {
 
         verificationCompleted: (PhoneAuthCredential credential) async {
           debugPrint('✅ Auto verification completed');
-          setState(() => _phoneVerified = true);
+          setState(() {
+            _phoneVerified = true;
+            _isLoading = false; // Loading band karo
+          });
           _showCustomSnackBar(localizations.phoneVerifiedAuto, isSuccess: true);
 
           // Sign out immediately and proceed
@@ -391,6 +344,7 @@ class _SignUpScreen2State extends State<SignUpScreen2> {
               errorMessage = e.message ?? localizations.failedSendOtpTryAgain;
           }
 
+          setState(() => _isLoading = false); // Loading band karo
           _showCustomSnackBar(errorMessage, isError: true);
         },
 
@@ -404,6 +358,7 @@ class _SignUpScreen2State extends State<SignUpScreen2> {
             _resendToken = resendToken ?? 0;
             _canResend = false;
             _resendCountdown = 60;
+            _isLoading = false; // Loading band karo
           });
 
           _showCustomSnackBar(localizations.otpSent, isSuccess: true);
@@ -426,8 +381,8 @@ class _SignUpScreen2State extends State<SignUpScreen2> {
       } else {
         _showCustomSnackBar(localizations.errorSendingOtp, isError: true);
       }
-    } finally {
-      setState(() => _isLoading = false);
+
+      setState(() => _isLoading = false); // Loading band karo
     }
   }
 
@@ -489,9 +444,12 @@ class _SignUpScreen2State extends State<SignUpScreen2> {
   }
 
   // Backend API Functions
+
   Future<void> hitLicenseApiAndSave() async {
     final localizations = AppLocalizations.of(context)!;
     final uri = '${ApiConstants.baseUrl}https://webapp.xit.gr/service/license';
+    // "${ApiConstants.baseUrl}https://angelopouloshair.oncloud.gr/s1services?";
+
     try {
       final response = await http.get(Uri.parse(uri));
       if (response.statusCode == 200) {
@@ -522,7 +480,8 @@ class _SignUpScreen2State extends State<SignUpScreen2> {
     if (jwtToken == null) return null;
 
     final uri =
-        "${ApiConstants.baseUrl}https://license.xit.gr/wp-json/wp/v2/users/?slug=fanis2";
+        "${ApiConstants.baseUrl}https://license.xit.gr/wp-json/wp/v2/users/?slug=loyaltyangelop";
+    // "${ApiConstants.baseUrl}https://angelopouloshair.oncloud.gr/s1services?";
     try {
       final response = await http.get(
         Uri.parse(uri),
@@ -559,7 +518,7 @@ class _SignUpScreen2State extends State<SignUpScreen2> {
       final license = await _getLicenseDetails();
       if (license == null) {
         _showCustomSnackBar(localizations.licenseFailed, isError: true);
-        throw Exception('License check failed');
+        throw Exception('');
       }
 
       globalLiscence = license;
@@ -568,6 +527,7 @@ class _SignUpScreen2State extends State<SignUpScreen2> {
           : "/s1services";
 
       final uri = Uri.parse(
+        // "${ApiConstants.baseUrl}https://angelopouloshair.oncloud.gr/s1services?",
         "${ApiConstants.baseUrl}https://${license["company_url"]}$servicePath",
       );
 
@@ -576,13 +536,14 @@ class _SignUpScreen2State extends State<SignUpScreen2> {
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode({
           "service": "login",
-          "username": 'fanis2',
-          "password": '1234',
+          "username": "loyaltyangelop",
+          // Option B: raw string (no interpolation)
+          "password": r'@ng3l0pul0!$',
           "appId": "1001",
-          "COMPANY": "1000",
-          "BRANCH": "1000",
+          "COMPANY": "1001",
+          "BRANCH": "10",
           "MODULE": "0",
-          "REFID": "999",
+          "REFID": "998",
         }),
       );
 
@@ -635,9 +596,10 @@ class _SignUpScreen2State extends State<SignUpScreen2> {
           : "/s1services";
 
       final uri = Uri.parse(
+        // "${ApiConstants.baseUrl}https://angelopouloshair.oncloud.gr/s1services?",
         "${ApiConstants.baseUrl}https://$companyUrl$servicePath",
       );
-
+      String phone = _completePhoneNumber.replaceAll('+', '');
       final body = {
         "service": "getBrowserInfo",
         "clientID": clientID,
@@ -646,7 +608,7 @@ class _SignUpScreen2State extends State<SignUpScreen2> {
         "LIST": "",
         "VERSION": 2,
         "LIMIT": 1,
-        "FILTERS": "CUSTOMER.CODE=${phoneController.text.trim()}",
+        "FILTERS": "CUSTOMER.CODE= ${phone.replaceAll('+', '')}",
       };
 
       final response = await http.post(
@@ -689,6 +651,8 @@ class _SignUpScreen2State extends State<SignUpScreen2> {
       final companyUrl = prefs.getString('company_url');
       final softwareType = prefs.getString('software_type');
 
+      print('clientID =   $clientID');
+
       if (clientID == null || companyUrl == null || softwareType == null) {
         _showCustomSnackBar(localizations.missingConfig, isError: true);
         throw Exception('Missing configuration');
@@ -699,6 +663,7 @@ class _SignUpScreen2State extends State<SignUpScreen2> {
           : "/s1services";
 
       final uri = Uri.parse(
+        // "${ApiConstants.baseUrl}https://angelopouloshair.oncloud.gr/s1services?",
         "${ApiConstants.baseUrl}https://$companyUrl$servicePath",
       );
 
@@ -711,9 +676,9 @@ class _SignUpScreen2State extends State<SignUpScreen2> {
         "data": {
           "CUSTOMER": [
             {
-              "CODE": phoneController.text.trim(),
+              "CODE": _completePhoneNumber.replaceAll('+', ''),
               "NAME": fullNameController.text.trim(),
-              "PHONE01": phoneController.text.trim(),
+              "PHONE01": _completePhoneNumber.replaceAll('+', ''),
             },
           ],
         },
@@ -770,6 +735,8 @@ class _SignUpScreen2State extends State<SignUpScreen2> {
       _otpSent = false;
       _phoneVerified = false;
       _verificationId = null;
+      _completePhoneNumber = ''; // Add this
+      _countryCode = '30'; // Add this
     });
   }
 
@@ -805,8 +772,10 @@ class _SignUpScreen2State extends State<SignUpScreen2> {
   }
 
   // Main signup handler
+  // Main signup handler
   Future<void> _handleSignup() async {
     final localizations = AppLocalizations.of(context)!;
+
     // Validate form first
     if (!_formKey.currentState!.validate()) {
       _showCustomSnackBar(localizations.fixErrors, isError: true);
@@ -821,13 +790,18 @@ class _SignUpScreen2State extends State<SignUpScreen2> {
     // If OTP not sent yet, send OTP first
     if (!_otpSent) {
       await _sendOtp();
-      return; // Stop here, user needs to enter OTP
+      return;
     }
 
     // If OTP sent but not verified, verify OTP
     if (_otpSent && !_phoneVerified) {
       await _verifyOtp();
-      return; // This will handle backend signup after verification
+      return;
+    }
+
+    // ✅ Ab yahan create account call karo
+    if (_otpSent && _phoneVerified) {
+      await _signupCustomer();
     }
   }
 
@@ -1003,13 +977,8 @@ class _SignUpScreen2State extends State<SignUpScreen2> {
                                 const SizedBox(height: 12),
 
                                 // Phone Number field
-                                TextFormField(
+                                IntlPhoneField(
                                   controller: phoneController,
-                                  validator: _validatePhone,
-                                  keyboardType: TextInputType.phone,
-                                  inputFormatters: [
-                                    FilteringTextInputFormatter.digitsOnly,
-                                  ],
                                   decoration: InputDecoration(
                                     filled: true,
                                     fillColor: Colors.grey[200],
@@ -1017,11 +986,6 @@ class _SignUpScreen2State extends State<SignUpScreen2> {
                                     hintStyle: TextStyle(
                                       color: Colors.grey[500],
                                       fontSize: 13,
-                                    ),
-                                    prefixIcon: Icon(
-                                      Icons.phone_outlined,
-                                      color: Colors.grey[600],
-                                      size: 20,
                                     ),
                                     contentPadding: EdgeInsets.symmetric(
                                       vertical: 10,
@@ -1056,6 +1020,27 @@ class _SignUpScreen2State extends State<SignUpScreen2> {
                                     fontSize: 14,
                                     fontFamily: 'NotoSans',
                                   ),
+                                  initialCountryCode: 'GR',
+                                  dropdownIconPosition: IconPosition.trailing,
+                                  flagsButtonPadding: EdgeInsets.only(left: 8),
+                                  showDropdownIcon: true,
+                                  dropdownTextStyle: TextStyle(fontSize: 13),
+                                  onChanged: (phone) {
+                                    setState(() {
+                                      _completePhoneNumber =
+                                          phone.completeNumber;
+                                      _countryCode = phone.countryCode;
+                                    });
+                                  },
+                                  validator: (phone) {
+                                    if (phone == null || phone.number.isEmpty) {
+                                      return localizations.phoneRequired;
+                                    }
+                                    if (phone.number.length < 7) {
+                                      return localizations.phoneMinLength;
+                                    }
+                                    return null;
+                                  },
                                 ),
                               ] else if (!_phoneVerified) ...[
                                 // OTP Verification Section
@@ -1170,7 +1155,7 @@ class _SignUpScreen2State extends State<SignUpScreen2> {
                                       const SizedBox(width: 8),
                                       Expanded(
                                         child: Text(
-                                          localizations.phoneVerifiedCreating,
+                                          'localizations.phoneVerifiedCreating',
                                           style: TextStyle(
                                             color: Colors.green[700],
                                             fontSize: 12,
@@ -1277,7 +1262,10 @@ class _SignUpScreen2State extends State<SignUpScreen2> {
                                 child: SizedBox(
                                   width: double.infinity,
                                   child: ElevatedButton(
-                                    onPressed: (_isLoading || _isCheckingUser)
+                                    onPressed:
+                                        (_isLoading ||
+                                            _isCheckingUser ||
+                                            _isVerifyingOtp)
                                         ? null
                                         : _handleSignup,
                                     style: ElevatedButton.styleFrom(
@@ -1316,10 +1304,13 @@ class _SignUpScreen2State extends State<SignUpScreen2> {
                                                     ? localizations.checkingUser
                                                     : _isVerifyingOtp
                                                     ? localizations.verifyingOtp
+                                                    : !_otpSent
+                                                    ? localizations.sendingOtp
                                                     : _phoneVerified
                                                     ? localizations
                                                           .creatingAccount
-                                                    : localizations.sendingOtp,
+                                                    : localizations
+                                                          .verifyingOtp,
                                                 style: const TextStyle(
                                                   fontWeight: FontWeight.w600,
                                                   fontFamily: 'NotoSans',

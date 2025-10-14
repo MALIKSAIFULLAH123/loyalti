@@ -95,7 +95,7 @@ class AppLocalizations {
       'terms_of_use': 'Όροι χρήσης',
       'privacy_policy': 'Πολιτική απορρήτου',
       'and': 'και',
-      'account': 'Λογαριασμός',
+      'account': 'Προφιλ',
       'personal_details': ' Προσωπικά δεδομένα ',
       'account_details': 'Επιπλέον δεδομένα',
       'account_created': 'Ημερομηνία δημιουργίας',
@@ -126,10 +126,10 @@ class AppLocalizations {
 
       // Navigation
       'home': 'Αρχική',
-      'rewards': 'Ανταμοιβές',
+      'rewards': 'Πόντοι',
       'scan': 'Σάρωση',
-      'alerts': 'Ειδοποιήσεις',
-      'notifications': 'Ειδοποιήσεις',
+      'alerts': 'Alerts',
+      'notifications': 'Alerts',
 
       // Home Screen
       'good_morning': 'Καλημέρα!',
@@ -731,7 +731,7 @@ class AppLocalizations {
 
       // Navigation
       'home': 'Acasă',
-      'rewards': 'Recompense',
+      'rewards': 'puncte',
       'scan': 'Scanează',
       'alerts': 'Alerte',
       'notifications': 'Notificări',

@@ -151,7 +151,9 @@ class ApiConstants {
     } else if (Platform.isIOS) {
       return "";
     } else {
-      return "https://default-url.com/";
+      return "";
     }
   }
 }
+//https://xitdevelop.oncloud.gr/s1services   porana ya tha
+// https://angelopouloshair.oncloud.gr/s1services?  ye new hw 
