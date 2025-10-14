@@ -1,4 +1,4 @@
-package com.example.loyalty_app
+package com.angelopouloshair.app
 
 import io.flutter.embedding.android.FlutterActivity
 
