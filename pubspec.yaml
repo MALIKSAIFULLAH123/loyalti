@@ -2,7 +2,7 @@ name: loyalty_app
 description: "A new Flutter project."
 publish_to: 'none'
 
-version: 1.0.1+2
+version: 1.0.1+3
 
 environment:
   sdk: ^3.8.0
@@ -11,35 +11,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-  fluttertoast: ^8.2.12
-  dropdown_textfield: ^1.2.0
-  feedback: ^3.1.0
-  carousel_slider: ^5.0.0
-  get: ^4.7.2
-  lottie: ^3.2.0
-  keyboard_avoider: ^0.2.0
-  font_awesome_flutter: ^10.5.0
-  http: ^1.3.0
-  shared_preferences: ^2.5.3
-  google_fonts: ^6.2.1
-  flutter_local_notifications: ^19.2.1  
-  universal_html: ^2.0.8 
-  mobile_scanner: ^7.0.1
-  provider: ^6.1.1
-  cupertino_icons: ^1.0.8
-  permission_handler: ^12.0.0+1
-  cached_network_image: ^3.4.1
-  image_picker: ^1.1.2
-  url_launcher: ^6.3.2
-  firebase_core: ^3.15.2
-  firebase_auth: ^5.7.0
-  firebase_database: ^11.3.10
-  cloud_firestore: ^5.6.12
-  firebase_storage: ^12.4.10
-  firebase_messaging: ^15.2.10
-  googleapis_auth: ^2.0.0
-  flutter_html: ^3.0.0-beta.2
-  webview_flutter: ^4.4.2
+
   flutter_localizations:
     sdk: flutter
   smooth_page_indicator: ^1.2.1
@@ -47,6 +19,35 @@ dependencies:
   charset_converter: ^2.3.0
   intl_phone_field: ^3.2.0
   change_app_package_name: ^1.5.0
+  fluttertoast: ^9.0.0
+  dropdown_textfield: ^1.2.0
+  feedback: ^3.2.0
+  carousel_slider: ^5.1.1
+  get: ^4.7.2
+  lottie: ^3.3.2
+  keyboard_avoider: ^0.2.0
+  font_awesome_flutter: ^10.12.0
+  http: ^1.5.0
+  shared_preferences: ^2.5.3
+  google_fonts: ^6.3.2
+  flutter_local_notifications: ^19.5.0
+  universal_html: ^2.2.4
+  mobile_scanner: ^7.1.3
+  provider: ^6.1.5+1
+  cupertino_icons: ^1.0.8
+  permission_handler: ^12.0.1
+  cached_network_image: ^3.4.1
+  image_picker: ^1.2.0
+  url_launcher: ^6.3.2
+  firebase_core: ^4.2.1
+  firebase_auth: ^6.1.2
+  firebase_database: ^12.0.4
+  cloud_firestore: ^6.1.0
+  firebase_storage: ^13.0.4
+  firebase_messaging: ^16.0.4
+  googleapis_auth: ^2.0.0
+  flutter_html: ^3.0.0
+  webview_flutter: ^4.13.0
 
 dev_dependencies:
   flutter_test:
@@ -58,6 +59,7 @@ dev_dependencies:
 flutter_icons:
   android: true
   ios: true
+  remove_alpha_ios: true
   image_path: "assets/icons/app_logo.png" # <-- apna logo ka path
 
 # ✅ App Name Config

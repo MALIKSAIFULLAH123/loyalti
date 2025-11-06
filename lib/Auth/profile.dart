@@ -1,9 +1,11 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:loyalty_app/Auth/LanguageSelectionPage.dart';
 import 'package:loyalty_app/Auth/SignIn.dart';
 import 'package:loyalty_app/Services/language_service.dart';
 import 'package:loyalty_app/utils/api_constants.dart';
+import 'package:loyalty_app/utils/language_decoder.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -387,7 +389,9 @@ class _ProfileState extends State<Profile> {
 
       if (response.statusCode == 200) {
         // Move heavy decoding to background isolate
-        String responseBody = await _decodeApiResponseAsync(response);
+        String responseBody = await decodeGreekResponseBytes(
+          response.bodyBytes,
+        );
         final data = jsonDecode(responseBody);
 
         if (data['success'] == true &&
@@ -523,8 +527,8 @@ class _ProfileState extends State<Profile> {
       prefs.setString('user_zip', userZip),
       prefs.setString('u_image', profileImageUrl),
     ]);
-          print('user bname profil2 $fullName');
-          print('user bname profil3 $name');
+    print('user bname profil2 $fullName');
+    print('user bname profil3 $name');
 
     if (mounted) {
       setState(() {
@@ -665,9 +669,11 @@ class _ProfileState extends State<Profile> {
       debugPrint("🌐 API Response Status: ${response.statusCode}");
 
       if (response.statusCode == 200) {
-        String responseBody = await _decodeApiResponseAsync(response);
+        String responseBody = await decodeGreekResponseBytes(
+          response.bodyBytes,
+        );
         final data = jsonDecode(responseBody);
-                                     print('user bname profile4 $fullName');
+        print('user bname profile4 $fullName');
 
         if (data['success'] == true) {
           ScaffoldMessenger.of(context).showSnackBar(
@@ -701,8 +707,7 @@ class _ProfileState extends State<Profile> {
         });
       }
     }
-                                         print('user bname profile3 $fullName');
-
+    print('user bname profile3 $fullName');
   }
 
   bool _validateBase64Image(String base64String) {
@@ -871,10 +876,7 @@ class _ProfileState extends State<Profile> {
       appBar: AppBar(
         backgroundColor: Color(0xFFEC7103),
         elevation: 0,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.white),
-          onPressed: () => Navigator.pop(context),
-        ),
+
         title: Text(
           localizations.account,
           style: const TextStyle(
@@ -1292,6 +1294,12 @@ class _ProfileState extends State<Profile> {
                     if (shouldLogout) {
                       final prefs = await SharedPreferences.getInstance();
                       await prefs.clear();
+
+                      // Clear GetX or Provider states if used
+                      Get.deleteAll(force: true);
+
+                      // Delay to ensure everything cleared
+                      await Future.delayed(const Duration(milliseconds: 300));
 
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(

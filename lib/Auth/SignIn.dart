@@ -5,6 +5,7 @@ import 'package:loyalty_app/Auth/TermsConditionsScreen.dart';
 import 'package:loyalty_app/Auth/signup2.dart';
 import 'package:loyalty_app/screen/MainScreen.dart';
 import 'package:loyalty_app/utils/api_constants.dart';
+import 'package:loyalty_app/utils/language_decoder.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -219,7 +220,7 @@ class _SignInScreenState extends State<SignInScreen> {
       final response = await http.get(Uri.parse(uri));
 
       if (response.statusCode == 200) {
- String responseBody = await _decodeApiResponseAsync(response);
+ String responseBody = await decodeGreekResponseBytes(response.bodyBytes);
       final data = jsonDecode(responseBody);
               final prefs = await SharedPreferences.getInstance();
 
@@ -260,7 +261,7 @@ class _SignInScreenState extends State<SignInScreen> {
       );
 
       if (response.statusCode == 200) {
- String responseBody = await _decodeApiResponseAsync(response);
+ String responseBody = await decodeGreekResponseBytes(response.bodyBytes);
       final data = jsonDecode(responseBody);
               if (data.isNotEmpty) {
           return {
@@ -310,7 +311,7 @@ class _SignInScreenState extends State<SignInScreen> {
       );
 
       if (response.statusCode == 200) {
-        String responseBody = await _decodeApiResponseAsync(response);
+        String responseBody = await decodeGreekResponseBytes(response.bodyBytes);
         final data = jsonDecode(responseBody);
         final totalCount = data['totalcount'] ?? 0;
         if (totalCount == 0) {
@@ -435,7 +436,7 @@ class _SignInScreenState extends State<SignInScreen> {
       );
 
       if (response.statusCode == 200) {
-        String responseBody = await _decodeApiResponseAsync(response);
+        String responseBody = await decodeGreekResponseBytes(response.bodyBytes);
         final data = jsonDecode(responseBody);
         if (data['success'] == true) {
           final prefs = await SharedPreferences.getInstance();

@@ -9,8 +9,7 @@ import 'firebase_options.dart';
 // WebView imports
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:webview_flutter_android/webview_flutter_android.dart';
-
-void main() async {
+ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   // Initialize Firebase

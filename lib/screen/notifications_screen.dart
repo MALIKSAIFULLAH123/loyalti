@@ -7,6 +7,7 @@ import 'package:http/http.dart' as http;
 import 'package:loyalty_app/Services/language_service.dart';
 import 'package:loyalty_app/Auth/LanguageSelectionPage.dart';
 import 'package:loyalty_app/utils/api_constants.dart';
+import 'package:loyalty_app/utils/language_decoder.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_html/flutter_html.dart';
@@ -82,6 +83,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
     }
   }
 
+  // lanuage encof=dinge here
   /// Enhanced Windows-1253 detection
   bool _isWindows1253Encoded(String text) {
     // Check for common Windows-1253 Greek character patterns
@@ -370,6 +372,114 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
     });
   }
 
+  /// Enhanced API response decoder for Greek content
+  Future<String> _decodeApiResponse(http.Response response) async {
+    String responseBody;
+    print('Raw bytes: ${response.bodyBytes}');
+    print('As UTF8: ${utf8.decode(response.bodyBytes, allowMalformed: true)}');
+
+    try {
+      // Method 1: Check if response has charset info in headers
+      String? contentType = response.headers['content-type'];
+      if (contentType != null) {
+        if (contentType.contains('charset=windows-1253')) {
+          // Decode as Windows-1253
+          responseBody = _convertWindows1253ToUtf8(
+            String.fromCharCodes(response.bodyBytes),
+          );
+          return responseBody;
+        } else if (contentType.contains('charset=iso-8859-7')) {
+          // Decode as ISO-8859-7
+          responseBody = await _convertIso88597ToUtf8(
+            String.fromCharCodes(response.bodyBytes),
+          );
+          return responseBody;
+        }
+      }
+
+      // Method 2: Try UTF-8 decoding first
+      try {
+        responseBody = utf8.decode(response.bodyBytes);
+        if (_containsGreekUnicode(responseBody) ||
+            !_containsLatinExtended(responseBody)) {
+          return responseBody;
+        }
+      } catch (e) {
+        if (kDebugMode) print('UTF-8 decoding failed: $e');
+      }
+
+      // Method 3: Try Latin-1 then convert to UTF-8
+      try {
+        String latin1Decoded = latin1.decode(response.bodyBytes);
+        responseBody = _decodeGreekText(latin1Decoded);
+        if (_containsGreekUnicode(responseBody)) {
+          return responseBody;
+        }
+      } catch (e) {
+        if (kDebugMode) print('Latin-1 decoding failed: $e');
+      }
+
+      // Method 4: Fallback to response.body
+      responseBody = response.body;
+      responseBody = _decodeGreekText(responseBody);
+
+      return responseBody;
+    } catch (e) {
+      if (kDebugMode) {
+        print('All decoding methods failed: $e');
+      }
+      return response.body; // Ultimate fallback
+    }
+  }
+
+  // Replace your _decodeApiResponse method with this async version:
+  Future<String> _decodeApiResponseAsync(http.Response response) async {
+    try {
+      // Check content type first
+      String? contentType = response.headers['content-type'];
+
+      if (contentType != null) {
+        if (contentType.contains('charset=windows-1253')) {
+          return _convertWindows1253ToUtf8(
+            String.fromCharCodes(response.bodyBytes),
+          );
+        } else if (contentType.contains('charset=iso-8859-7')) {
+          return await _convertIso88597ToUtf8(
+            String.fromCharCodes(response.bodyBytes),
+          );
+        }
+      }
+
+      // Try UTF-8 first
+      try {
+        String responseBody = utf8.decode(response.bodyBytes);
+        if (_containsGreekUnicode(responseBody) ||
+            !_containsLatinExtended(responseBody)) {
+          return responseBody;
+        }
+      } catch (e) {
+        debugPrint('UTF-8 decoding failed: $e');
+      }
+
+      // Fallback to Latin-1 then convert
+      try {
+        String latin1Decoded = latin1.decode(response.bodyBytes);
+        String converted = _decodeGreekText(latin1Decoded);
+        if (_containsGreekUnicode(converted)) {
+          return converted;
+        }
+      } catch (e) {
+        debugPrint('Latin-1 decoding failed: $e');
+      }
+
+      // Ultimate fallback
+      return _decodeGreekText(response.body);
+    } catch (e) {
+      return response.body;
+    }
+  }
+
+  // lanuage function above
   Future<void> _loadNotifications() async {
     try {
       if (!isRefreshing) {
@@ -436,7 +546,9 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
             );
 
         if (response.statusCode == 200) {
-          String responseBody = await _decodeApiResponse(response);
+          String responseBody = await decodeGreekResponseBytes(
+            response.bodyBytes,
+          );
 
           if (kDebugMode) {
             print('Decoded response body: $responseBody');
@@ -505,64 +617,6 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
     }
   }
 
-  /// Enhanced API response decoder for Greek content
-  Future<String> _decodeApiResponse(http.Response response) async {
-    String responseBody;
-
-    try {
-      // Method 1: Check if response has charset info in headers
-      String? contentType = response.headers['content-type'];
-      if (contentType != null) {
-        if (contentType.contains('charset=windows-1253')) {
-          // Decode as Windows-1253
-          responseBody = _convertWindows1253ToUtf8(
-            String.fromCharCodes(response.bodyBytes),
-          );
-          return responseBody;
-        } else if (contentType.contains('charset=iso-8859-7')) {
-          // Decode as ISO-8859-7
-          responseBody = await _convertIso88597ToUtf8(
-            String.fromCharCodes(response.bodyBytes),
-          );
-          return responseBody;
-        }
-      }
-
-      // Method 2: Try UTF-8 decoding first
-      try {
-        responseBody = utf8.decode(response.bodyBytes);
-        if (_containsGreekUnicode(responseBody) ||
-            !_containsLatinExtended(responseBody)) {
-          return responseBody;
-        }
-      } catch (e) {
-        if (kDebugMode) print('UTF-8 decoding failed: $e');
-      }
-
-      // Method 3: Try Latin-1 then convert to UTF-8
-      try {
-        String latin1Decoded = latin1.decode(response.bodyBytes);
-        responseBody = _decodeGreekText(latin1Decoded);
-        if (_containsGreekUnicode(responseBody)) {
-          return responseBody;
-        }
-      } catch (e) {
-        if (kDebugMode) print('Latin-1 decoding failed: $e');
-      }
-
-      // Method 4: Fallback to response.body
-      responseBody = response.body;
-      responseBody = _decodeGreekText(responseBody);
-
-      return responseBody;
-    } catch (e) {
-      if (kDebugMode) {
-        print('All decoding methods failed: $e');
-      }
-      return response.body; // Ultimate fallback
-    }
-  }
-
   // Rest of your existing methods remain the same...
   Future<void> loadTotalPoints() async {
     if (_isLoading) return;
@@ -625,7 +679,9 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
       debugPrint("📥 Response body: ${response.body}");
 
       if (response.statusCode == 200) {
-        String responseBody = await _decodeApiResponseAsync(response);
+        String responseBody = await decodeGreekResponseBytes(
+          response.bodyBytes,
+        );
         final data = jsonDecode(responseBody);
         if (data is Map<String, dynamic> &&
             data['success'] == true &&
@@ -647,7 +703,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
 
           if (mounted) {
             setState(() {
-                userName = Name;
+              userName = Name;
 
               profileImagePath = base64Image;
               _isLoading = false;
@@ -667,53 +723,6 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
           _hasError = true;
         });
       }
-    }
-  }
-
-  // Replace your _decodeApiResponse method with this async version:
-  Future<String> _decodeApiResponseAsync(http.Response response) async {
-    try {
-      // Check content type first
-      String? contentType = response.headers['content-type'];
-
-      if (contentType != null) {
-        if (contentType.contains('charset=windows-1253')) {
-          return _convertWindows1253ToUtf8(
-            String.fromCharCodes(response.bodyBytes),
-          );
-        } else if (contentType.contains('charset=iso-8859-7')) {
-          return await _convertIso88597ToUtf8(
-            String.fromCharCodes(response.bodyBytes),
-          );
-        }
-      }
-
-      // Try UTF-8 first
-      try {
-        String responseBody = utf8.decode(response.bodyBytes);
-        if (_containsGreekUnicode(responseBody) ||
-            !_containsLatinExtended(responseBody)) {
-          return responseBody;
-        }
-      } catch (e) {
-        debugPrint('UTF-8 decoding failed: $e');
-      }
-
-      // Fallback to Latin-1 then convert
-      try {
-        String latin1Decoded = latin1.decode(response.bodyBytes);
-        String converted = _decodeGreekText(latin1Decoded);
-        if (_containsGreekUnicode(converted)) {
-          return converted;
-        }
-      } catch (e) {
-        debugPrint('Latin-1 decoding failed: $e');
-      }
-
-      // Ultimate fallback
-      return _decodeGreekText(response.body);
-    } catch (e) {
-      return response.body;
     }
   }
 
@@ -1325,7 +1334,7 @@ class NotificationDetailScreen extends StatelessWidget {
         foregroundColor: Colors.white,
         title: Text(
           localizations.notificationDetails,
-          style: GoogleFonts.dmSans(
+          style: TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.w600,
             color: Colors.white,
@@ -1369,12 +1378,13 @@ class NotificationDetailScreen extends StatelessWidget {
                           children: [
                             Text(
                               notification.title,
-                              style: GoogleFonts.dmSans(
+                              style: TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.black,
                               ),
                             ),
+
                             const SizedBox(height: 12),
                             Container(
                               padding: const EdgeInsets.symmetric(
@@ -1451,7 +1461,7 @@ class NotificationDetailScreen extends StatelessWidget {
                       const SizedBox(width: 8),
                       Text(
                         localizations.messageDetails,
-                        style: GoogleFonts.dmSans(
+                        style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.w600,
                           color: const Color(0xFFEC7103),

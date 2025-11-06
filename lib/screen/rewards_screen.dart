@@ -3,6 +3,7 @@ import 'package:loyalty_app/Services/language_service.dart'
     show AppLocalizations;
 import 'package:loyalty_app/utils/api_constants.dart';
 import 'package:http/http.dart' as http;
+import 'package:loyalty_app/utils/language_decoder.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
 import 'package:loyalty_app/Auth/LanguageSelectionPage.dart';
@@ -120,7 +121,7 @@ class _RewardsScreenState extends State<RewardsScreen> {
       debugPrint("📥 Response body: ${response.body}");
 
       if (response.statusCode == 200) {
-        String responseBody = await _decodeApiResponseAsync(response);
+        String responseBody = await decodeGreekResponseBytes(response.bodyBytes);
         final data = jsonDecode(responseBody);
 
         if (data is Map<String, dynamic> &&
@@ -282,7 +283,7 @@ class _RewardsScreenState extends State<RewardsScreen> {
       debugPrint("📥 Response body: ${response.body}");
 
       if (response.statusCode == 200) {
-        String responseBody = await _decodeApiResponseAsync(response);
+        String responseBody = await decodeGreekResponseBytes(response.bodyBytes);
         final data = jsonDecode(responseBody);
         List<dynamic> rewardsData = [];
 
@@ -665,7 +666,7 @@ class _RewardsScreenState extends State<RewardsScreen> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Image.asset(
-                                'images/thinking1.png',
+                                'assets/images/thinking1.png',
                                 width: 118,
                                 height: 118,
                                 // optional
@@ -743,7 +744,7 @@ class _RewardsScreenState extends State<RewardsScreen> {
                       ),
                       label: Text(
                         'Shop Now',
-                        style: GoogleFonts.dmSans(
+                        style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
                           fontSize: 16,
@@ -779,7 +780,7 @@ class _RewardsScreenState extends State<RewardsScreen> {
                     ),
                     child: Text(
                       item.title,
-                      style: GoogleFonts.dmSans(
+                      style: TextStyle(
                         color: const Color.fromARGB(255, 0, 0, 0),
                         fontSize: 16,
                         fontWeight: FontWeight.w600,
@@ -1483,7 +1484,7 @@ class VerticalRewardCard extends StatelessWidget {
                     if (item.sku != null && item.sku!.isNotEmpty)
                       Text(
                         'SKU: ${item.sku}',
-                        style: GoogleFonts.dmSans(
+                        style: TextStyle(
                           fontSize: 12,
                           color: Colors.grey[600],
                           fontWeight: FontWeight.w400,
@@ -1493,7 +1494,7 @@ class VerticalRewardCard extends StatelessWidget {
                     // Title
                     Text(
                       item.title,
-                      style: GoogleFonts.dmSans(
+                      style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w600,
                         color: Colors.black87,
@@ -1531,7 +1532,7 @@ class VerticalRewardCard extends StatelessWidget {
                       ),
                       child: Text(
                         "${item.points} POINTS",
-                        style: GoogleFonts.dmSans(
+                        style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.w600,
                           fontSize: 12,
