@@ -358,6 +358,18 @@ class AppLocalizations {
       'debug_information_text': 'Πληροφορίες αποσφαλμάτωσης',
       'show_debug_info_text': 'Εμφάνιση πληροφοριών αποσφαλμάτωσης',
       'sku_text': 'Κωδικός προϊόντος',
+
+      // 'deleteAccount': 'Διαγραφή Λογαριασμού',
+      'deleteAccount': 'Διαγραφή λογαρ ?',
+      'deleteAccountWarning':
+          'Είστε σίγουροι ότι θέλετε να διαγράψετε τον λογαριασμό σας;',
+      'deleteAccountNote':
+          '⚠️ Αυτή η ενέργεια δεν μπορεί να αναιρεθεί. Ο λογαριασμός σας θα διαγραφεί οριστικά.',
+      'accountDeletionScheduled': 'Προγραμμ. Διαγραφή',
+      'accountWillBeDeleted':
+          'Ο λογαριασμός σας θα διαγραφεί οριστικά σε 7 ημέρες. Μπορείτε να ακυρώσετε αυτήν τη διαγραφή επικοινωνώντας με την υποστήριξη πριν από την ημερομηνία διαγραφής.',
+      'failedDeleteAccount': 'Αποτυχία διαγραφής λογαριασμού',
+      'okay': 'Εντάξει',
     },
 
     'en': {
@@ -658,6 +670,16 @@ class AppLocalizations {
       'debug_information_text': 'Debug Information',
       'show_debug_info_text': 'Show Debug Info',
       'sku_text': 'SKU',
+
+      'deleteAccount': 'Delete Account ?',
+      'deleteAccountWarning': 'Are you sure you want to delete your account?',
+      'deleteAccountNote':
+          '⚠️ This action cannot be undone. Your account will be permanently deleted',
+      'accountDeletionScheduled': 'Deletion Scheduled',
+      'accountWillBeDeleted':
+          'Your account will be permanently deleted in 7 days. You can cancel this by contacting support before the deletion date.',
+      'failedDeleteAccount': 'Failed to delete account',
+      'okay': 'Okay',
     },
     'ro': {
       // Core App
@@ -963,6 +985,16 @@ class AppLocalizations {
       'debug_information_text': 'Informații Debug',
       'show_debug_info_text': 'Afișează Info Debug',
       'sku_text': 'SKU',
+
+      'deleteAccount': 'Ștergere Cont ?',
+      'deleteAccountWarning': 'Sigur doriți să vă ștergeți contul?',
+      'deleteAccountNote':
+          '⚠️ Această acțiune nu poate fi anulată. Contul dvs. va fi șters definitiv.',
+      'accountDeletionScheduled': 'Ștergere Programată',
+      'accountWillBeDeleted':
+          'Contul dvs. va fi șters definitiv în 7 zile. Puteți anula acest lucru contactând suportul înainte de data ștergerii.',
+      'failedDeleteAccount': 'Ștergerea contului a eșuat',
+      'okay': 'Bine',
     },
   };
 
@@ -1276,6 +1308,14 @@ class AppLocalizations {
   String get debugInformationText => translate('debug_information_text');
   String get showDebugInfoText => translate('show_debug_info_text');
   String get skuText => translate('sku_text');
+  // Account Deletion
+  String get deleteAccount => translate('deleteAccount');
+  String get deleteAccountWarning => translate('deleteAccountWarning');
+  String get deleteAccountNote => translate('deleteAccountNote');
+  String get accountDeletionScheduled => translate('accountDeletionScheduled');
+  String get accountWillBeDeleted => translate('accountWillBeDeleted');
+  String get failedDeleteAccount => translate('failedDeleteAccount');
+  String get okay => translate('okay');
 
   // In your AppLocalizations class, add these getters:
 

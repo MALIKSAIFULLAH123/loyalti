@@ -40,6 +40,7 @@ class _ProfileState extends State<Profile> {
   String? profileImageBase64;
   Uint8List? profileImageBytes;
   String fcmToken = "Loading...";
+  bool isDeletingAccount = false;
 
   @override
   void initState() {
@@ -543,6 +544,208 @@ class _ProfileState extends State<Profile> {
         zip = userZip;
         isLoading = false;
       });
+    }
+  }
+
+  Future<void> _deleteAccount() async {
+    final localizations = AppLocalizations.of(context)!;
+
+    bool shouldDelete =
+        await showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15),
+            ),
+            title: Row(
+              children: [
+                Icon(Icons.warning_amber_rounded, color: Colors.red, size: 28),
+                SizedBox(width: 8),
+                Text(localizations.deleteAccount ?? "Delete Account",
+                 style: TextStyle(fontSize: 15),),
+              ],
+            ),
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  localizations.deleteAccountWarning ??
+                      "Are you sure you want to delete your account?",
+                  style: TextStyle(fontSize: 12),
+                ),
+                SizedBox(height: 12),
+                Container(
+                  padding: EdgeInsets.all(12),
+                  decoration: BoxDecoration(
+                    color: Colors.red.shade50,
+                    borderRadius: BorderRadius.circular(8),
+                    border: Border.all(color: Colors.red.shade200),
+                  ),
+                  child: Text(
+                    localizations.deleteAccountNote ??
+                        "⚠️ This action cannot be undone. Your account will be permanently deleted.",
+                    style: TextStyle(
+                      fontSize: 13,
+                      color: Colors.red.shade900,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(context, false),
+                child: Text(
+                  localizations.cancel,
+                  style: TextStyle(color: Colors.grey.shade700, fontSize: 16),
+                ),
+              ),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.red,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                ),
+                onPressed: () => Navigator.pop(context, true),
+                child: Text(
+                  localizations.deleteAccount ?? "Delete Account",
+                  style: TextStyle(color: Colors.white, fontSize: 16),
+                ),
+              ),
+            ],
+          ),
+        ) ??
+        false;
+
+    if (!shouldDelete) return;
+
+    setState(() {
+      isDeletingAccount = true;
+    });
+
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final companyUrl = prefs.getString('company_url');
+      final softwareType = prefs.getString('software_type');
+
+      if (companyUrl == null || softwareType == null) {
+        _showError(localizations.missingConfiguration);
+        setState(() {
+          isDeletingAccount = false;
+        });
+        return;
+      }
+      final servicePath = _getServicePath(softwareType);
+      final uri = _buildApiUri(companyUrl, servicePath);
+
+      final response = await http
+          .post(
+            uri,
+            headers: {'Content-Type': 'application/json'},
+            body: jsonEncode({
+              "service": "setData",
+              "clientID": clientID,
+              "appId": "1001",
+              "OBJECT": "CUSTOMER[FORM=WEB]",
+              "KEY": trdr,
+              "data": {
+                "CUSTOMER": [
+                  {"ISACTIVE": "0"},
+                ],
+              },
+            }),
+          )
+          .timeout(
+            Duration(seconds: 15),
+            onTimeout: () {
+              throw Exception('Request timeout');
+            },
+          );
+
+      if (response.statusCode == 200) {
+        String responseBody = await decodeGreekResponseBytes(
+          response.bodyBytes,
+        );
+        final data = jsonDecode(responseBody);
+
+        if (data['success'] == true) {
+          // Clear all data
+          await prefs.clear();
+          Get.deleteAll(force: true);
+
+
+          // Show success dialog
+          await showDialog(
+            context: context,
+            barrierDismissible: false,
+            builder: (context) => AlertDialog(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15),
+              ),
+              title: Row(
+                children: [
+                  Icon(Icons.check_circle, color: Colors.green, size: 22),
+                  SizedBox(width: 5),
+                  Text(
+                    localizations.accountDeletionScheduled ??
+                        "Account Deletion Scheduled",
+                  
+                   style: TextStyle(fontSize: 13),
+                   ),
+                ],
+              ),
+              content: Text(
+                localizations.accountWillBeDeleted ??
+                    "Your account will be permanently deleted in 7 days. You can cancel this by contacting support before the deletion date.",
+                style: TextStyle(fontSize: 10),
+              ),
+              actions: [
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Color(0xFFEC7103),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                  ),
+                  onPressed: () => Navigator.pop(context),
+                  child: Text(
+                    localizations.okay ?? "Okay",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ),
+              ],
+            ),
+          );
+
+          // Navigate to login screen
+          Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(builder: (context) => const SignInScreen()),
+            (route) => false,
+          );
+        } else {
+          _showError(
+            '${localizations.failedDeleteAccount ?? "Failed to delete account"}: ${data['message'] ?? localizations.unknownError}',
+          );
+        }
+      } else {
+        _showError('${localizations.serverError}: ${response.statusCode}');
+        setState(() {
+          isDeletingAccount = false;
+        });
+      }
+    } catch (e) {
+      debugPrint("❌ Error deleting account: $e");
+      _showError('${localizations.connectionError}: ${e.toString()}');
+    } finally {
+      if (mounted) {
+        setState(() {
+          isDeletingAccount = false;
+        });
+      }
     }
   }
 
@@ -1194,8 +1397,52 @@ class _ProfileState extends State<Profile> {
                   Icons.calendar_today_outlined,
                 ),
                 _buildDetailRow("TRDR ID", trdr, Icons.badge_outlined),
+                Padding(
+                  padding: const EdgeInsets.only(top: 16.0),
+                  child: SizedBox(
+                    width: double.infinity,
+                    height: 50,
+                    child: OutlinedButton(
+                      style: OutlinedButton.styleFrom(
+                        side: const BorderSide(color: Colors.red, width: 1.5),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                      ),
+                      onPressed: isDeletingAccount ? null : _deleteAccount,
+                      child: isDeletingAccount
+                          ? SizedBox(
+                              height: 20,
+                              width: 20,
+                              child: CircularProgressIndicator(
+                                color: Colors.red,
+                                strokeWidth: 2,
+                              ),
+                            )
+                          : Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  Icons.delete_forever_outlined,
+                                  color: Colors.red,
+                                  size: 20,
+                                ),
+                                SizedBox(width: 8),
+                                Text(
+                                  localizations.deleteAccount ??
+                                      "Delete Account",
+                                  style: const TextStyle(
+                                    fontSize: 16,
+                                    color: Colors.red,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                              ],
+                            ),
+                    ),
+                  ),
+                ),
               ]),
-
               const SizedBox(height: 30),
 
               SizedBox(
