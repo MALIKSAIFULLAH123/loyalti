@@ -9,7 +9,8 @@ import 'firebase_options.dart';
 // WebView imports
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:webview_flutter_android/webview_flutter_android.dart';
- void main() async {
+
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   // Initialize Firebase
@@ -47,9 +48,7 @@ class MyApp extends StatelessWidget {
             supportedLocales: LocalizationService.supportedLocales,
             home: const AuthChecker(),
             // home: const AuthChecker(),
-            theme: ThemeData(
-              fontFamily: GoogleFonts.roboto().fontFamily
-              ),
+            theme: ThemeData(fontFamily: GoogleFonts.roboto().fontFamily),
 
             debugShowCheckedModeBanner: false,
           );

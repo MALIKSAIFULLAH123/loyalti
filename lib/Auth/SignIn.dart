@@ -35,6 +35,8 @@ class _SignInScreenState extends State<SignInScreen> {
   String? _fcmToken;
   String _completePhoneNumber = ''; // Store full phone with country code
   String _countryCode = '30';
+  // Existing variables ke baad add karo
+  final FocusNode _phoneFocusNode = FocusNode();
   // Language mapping for display
   final Map<String, String> languageCodeMap = {
     'GR': 'el',
@@ -51,8 +53,17 @@ class _SignInScreenState extends State<SignInScreen> {
   @override
   void initState() {
     super.initState();
+      _requestNotificationPermission(); // ✅ Pehle permission, phir token
+
     _getPhoneNumber();
     _getFCMToken();
+  }
+
+  @override
+  void dispose() {
+    phoneController.dispose();
+    _phoneFocusNode.dispose(); // ✅ YE ADD KARO
+    super.dispose();
   }
 
   // Show custom snackbar at top with app color
@@ -123,7 +134,64 @@ class _SignInScreenState extends State<SignInScreen> {
       overlayEntry.remove();
     });
   }
+// Notification permission request karne ka function
+Future<void> _requestNotificationPermission() async {
+  try {
+    FirebaseMessaging messaging = FirebaseMessaging.instance;
+    
+    // Request permission
+    NotificationSettings settings = await messaging.requestPermission(
+      alert: true,
+      announcement: false,
+      badge: true,
+      carPlay: false,
+      criticalAlert: false,
+      provisional: false,
+      sound: true,
+    );
 
+    debugPrint('📱 Notification Permission: ${settings.authorizationStatus}');
+
+    if (settings.authorizationStatus == AuthorizationStatus.authorized ||
+        settings.authorizationStatus == AuthorizationStatus.provisional) {
+      
+      // ✅ iOS-specific: Wait for APNS token
+      if (Theme.of(context).platform == TargetPlatform.iOS) {
+        debugPrint('⏳ Waiting for APNS token...');
+        
+        // Wait up to 10 seconds for APNS token
+        int attempts = 0;
+        while (attempts < 10) {
+          try {
+            String? apnsToken = await messaging.getAPNSToken();
+            if (apnsToken != null) {
+              debugPrint('✅ APNS Token received: $apnsToken');
+              break;
+            }
+          } catch (e) {
+            debugPrint('⏳ APNS token not ready yet, attempt ${attempts + 1}/10');
+          }
+          
+          await Future.delayed(Duration(seconds: 1));
+          attempts++;
+        }
+      }
+      
+      // Now get FCM token
+      await _getFCMToken();
+    } else {
+      debugPrint('❌ Notification Permission Denied');
+      if (mounted) {
+        _showCustomSnackBar(
+          'Please enable notifications in Settings',
+          isError: true,
+        );
+      }
+    }
+  } catch (e) {
+    debugPrint('❗ Permission Request Error: $e');
+  }
+}
   // Phone number auto-fill function
   Future<void> _getPhoneNumber() async {
     try {
@@ -140,24 +208,23 @@ class _SignInScreenState extends State<SignInScreen> {
     }
   }
 
-  Future<void> _getFCMToken() async {
-    try {
-      String? token = await FirebaseMessaging.instance.getToken();
-      if (token != null) {
-        setState(() {
-          _fcmToken = token;
-        });
+Future<void> _getFCMToken() async {
+  try {
+    String? token = await FirebaseMessaging.instance.getToken();
+    if (token != null) {
+      setState(() {
+        _fcmToken = token;
+      });
 
-        // Save token locally
-        final prefs = await SharedPreferences.getInstance();
-        await prefs.setString('fcm_token', token);
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setString('fcm_token', token);
 
-        debugPrint('✅ FCM Token signin se lya he : $token');
-      }
-    } catch (e) {
-      debugPrint('❗ FCM Token Error: $e');
+      debugPrint('✅ FCM Token: $token');
     }
+  } catch (e) {
+    debugPrint('❗ FCM Token Error: $e');
   }
+}
 
   // Send token to backend
   Future<void> _sendTokenToBackend(String token) async {
@@ -220,9 +287,11 @@ class _SignInScreenState extends State<SignInScreen> {
       final response = await http.get(Uri.parse(uri));
 
       if (response.statusCode == 200) {
- String responseBody = await decodeGreekResponseBytes(response.bodyBytes);
-      final data = jsonDecode(responseBody);
-              final prefs = await SharedPreferences.getInstance();
+        String responseBody = await decodeGreekResponseBytes(
+          response.bodyBytes,
+        );
+        final data = jsonDecode(responseBody);
+        final prefs = await SharedPreferences.getInstance();
 
         await Future.wait([
           prefs.setString('token_type', data['token_type']),
@@ -261,9 +330,11 @@ class _SignInScreenState extends State<SignInScreen> {
       );
 
       if (response.statusCode == 200) {
- String responseBody = await decodeGreekResponseBytes(response.bodyBytes);
-      final data = jsonDecode(responseBody);
-              if (data.isNotEmpty) {
+        String responseBody = await decodeGreekResponseBytes(
+          response.bodyBytes,
+        );
+        final data = jsonDecode(responseBody);
+        if (data.isNotEmpty) {
           return {
             "company_url": data[0]["acf"]["company_url"],
             "appid": data[0]["acf"]["app_id"],
@@ -311,7 +382,9 @@ class _SignInScreenState extends State<SignInScreen> {
       );
 
       if (response.statusCode == 200) {
-        String responseBody = await decodeGreekResponseBytes(response.bodyBytes);
+        String responseBody = await decodeGreekResponseBytes(
+          response.bodyBytes,
+        );
         final data = jsonDecode(responseBody);
         final totalCount = data['totalcount'] ?? 0;
         if (totalCount == 0) {
@@ -436,7 +509,9 @@ class _SignInScreenState extends State<SignInScreen> {
       );
 
       if (response.statusCode == 200) {
-        String responseBody = await decodeGreekResponseBytes(response.bodyBytes);
+        String responseBody = await decodeGreekResponseBytes(
+          response.bodyBytes,
+        );
         final data = jsonDecode(responseBody);
         if (data['success'] == true) {
           final prefs = await SharedPreferences.getInstance();
@@ -475,354 +550,770 @@ class _SignInScreenState extends State<SignInScreen> {
                 .languageCode] ??
             'GR';
 
+        // ✅ Keyboard open hai ya nahi check karo
+        final bool isKeyboardOpen =
+            MediaQuery.of(context).viewInsets.bottom > 0;
+
         return Scaffold(
-          body: Stack(
-            children: [
-              // Background image with blur
-              Container(
-                decoration: const BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage("assets/images/auth.jpg"),
-                    fit: BoxFit.cover,
+          resizeToAvoidBottomInset: true,
+          body: GestureDetector(
+            behavior: HitTestBehavior
+                .opaque, // ✅ Transparent areas bhi tap detect karenge
+            onTap: () =>
+                FocusScope.of(context).unfocus(), // ✅ Body tap = keyboard hide
+            child: Stack(
+              children: [
+                // Background image with blur
+                Container(
+                  decoration: const BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage("assets/images/auth.jpg"),
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
-              ),
-              Container(color: Colors.black.withOpacity(0.3)),
-              SafeArea(
-                child: Column(
-                  children: [
-                    const SizedBox(height: 20),
-                    // Logo
-                    Center(
-                      child: Image.asset(
-                        'assets/images/app-logo.png',
-                        height: 100,
-                        width: 600,
-                      ),
-                    ),
-                    const SizedBox(height: 40),
+                Container(color: Colors.black.withOpacity(0.3)),
 
-                    // Language Selection - Centered
-                    Center(
-                      child: Text(
-                        localizations.chooseLanguage,
-                        style: TextStyle(
-                          fontSize: 20,
-                          color: Colors.white,
-                          fontFamily: 'NotoSans',
+                SafeArea(
+                  child: Column(
+                    children: [
+                      const SizedBox(height: 20),
+                      // Logo
+                      Center(
+                        child: Image.asset(
+                          'assets/images/app-logo.png',
+                          height: isKeyboardOpen
+                              ? 60
+                              : 100, // ✅ Keyboard open = smaller logo
+                          width: 600,
                         ),
                       ),
-                    ),
-                    const SizedBox(height: 10),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        _buildLanguageOption(
-                          'GR',
-                          localizationService,
-                          currentDisplayLanguage,
+                      SizedBox(
+                        height: isKeyboardOpen ? 20 : 40,
+                      ), // ✅ Less spacing when keyboard open
+                      // Language Selection - Hidden when keyboard open
+                      if (!isKeyboardOpen) ...[
+                        // ✅ Keyboard open = hide karo
+                        Center(
+                          child: Text(
+                            localizations.chooseLanguage,
+                            style: TextStyle(
+                              fontSize: 20,
+                              color: Colors.white,
+                              fontFamily: 'NotoSans',
+                            ),
+                          ),
                         ),
-                        _separator(),
-                        _buildLanguageOption(
-                          'EN',
-                          localizationService,
-                          currentDisplayLanguage,
-                        ),
-                        _separator(),
-                        _buildLanguageOption(
-                          'RO',
-                          localizationService,
-                          currentDisplayLanguage,
-                        ),
-                      ],
-                    ),
-
-                    Spacer(),
-
-                    // White Card
-                    Container(
-                      width: double.infinity,
-                      margin: const EdgeInsets.symmetric(horizontal: 36),
-                      padding: const EdgeInsets.all(24),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(30),
-                      ),
-                      child: Form(
-                        key: _formKey,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisSize: MainAxisSize.min,
+                        const SizedBox(height: 10),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Center(
-                              child: Text(
-                                localizations.signIn,
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 22,
-                                  fontFamily: 'NotoSans',
-                                ),
-                              ),
+                            _buildLanguageOption(
+                              'GR',
+                              localizationService,
+                              currentDisplayLanguage,
                             ),
-                            const SizedBox(height: 10),
-                            Center(
-                              child: Text(
-                                localizations.signInSubtitle,
-                                style: TextStyle(
-                                  color: Colors.grey[700],
-                                  fontSize: 11,
-                                  fontFamily: 'NotoSans',
-                                ),
-                                textAlign: TextAlign.center,
-                              ),
+                            _separator(),
+                            _buildLanguageOption(
+                              'EN',
+                              localizationService,
+                              currentDisplayLanguage,
                             ),
-                            const SizedBox(height: 10),
-
-                            // Phone field
-                            const SizedBox(height: 6),
-                            // Line 722-773 ke beech - IntlPhoneField widget
-                            IntlPhoneField(
-                              controller: phoneController,
-                              initialCountryCode: 'GR', // Greek default
-                              flagsButtonPadding: const EdgeInsets.only(
-                                left: 8,
-                              ),
-                              dropdownIconPosition: IconPosition.trailing,
-                              showDropdownIcon: true,
-                              dropdownTextStyle: const TextStyle(fontSize: 13),
-                              style: const TextStyle(
-                                fontSize: 14,
-                                fontFamily: 'NotoSans',
-                              ),
-                              decoration: InputDecoration(
-                                filled: true,
-                                fillColor: Colors.grey[200],
-                                hintText: localizations.enterPhone,
-                                hintStyle: TextStyle(
-                                  color: Colors.grey[500],
-                                  fontSize: 13,
-                                ),
-                                contentPadding: const EdgeInsets.symmetric(
-                                  vertical: 10,
-                                  horizontal: 12,
-                                ),
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(12),
-                                  borderSide: BorderSide.none,
-                                ),
-                                enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(12),
-                                  borderSide: BorderSide(
-                                    color: Colors.grey[300]!,
-                                  ),
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(12),
-                                  borderSide: BorderSide(
-                                    color: Colors.orange.shade400,
-                                    width: 2,
-                                  ),
-                                ),
-                                errorBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(12),
-                                  borderSide: const BorderSide(
-                                    color: Colors.red,
-                                    width: 1,
-                                  ),
-                                ),
-                              ),
-                              onChanged: (phone) {
-                                setState(() {
-                                  _completePhoneNumber = phone.completeNumber
-                                      .replaceAll('+', ''); // +30XXXXXXXXXX
-                                  _countryCode = phone.countryCode.replaceAll(
-                                    '+',
-                                    '',
-                                  ); // remove +
-                                });
-
-                                debugPrint(
-                                  '📞 Complete Number: ${phone.completeNumber}',
-                                );
-                                debugPrint(
-                                  '🌍 Country Code (without +): $_countryCode',
-                                );
-                              },
-
-                              validator: (phone) {
-                                if (phone == null || phone.number.isEmpty) {
-                                  return localizations.phoneRequired;
-                                }
-                                if (phone.number.length < 7) {
-                                  return localizations.phoneMinLength;
-                                }
-                                return null;
-                              },
-                            ),
-                            const SizedBox(height: 12),
-                            // Terms checkbox
-                            Row(
-                              children: [
-                                Checkbox(
-                                  value: _rememberMe,
-                                  onChanged: (val) {
-                                    setState(() {
-                                      _rememberMe = val!;
-                                    });
-                                  },
-                                  activeColor: Color(0xFFEC7103),
-                                ),
-                                Expanded(
-                                  child: RichText(
-                                    text: TextSpan(
-                                      style: TextStyle(
-                                        color: Colors.black87,
-                                        fontFamily: 'NotoSans',
-                                      ),
-                                      children: [
-                                        TextSpan(
-                                          text: '${localizations.acceptTerms} ',
-                                        ),
-                                        TextSpan(
-                                          text: localizations.termsOfUse,
-                                          style: TextStyle(
-                                            color: Color(0xFFEC7103),
-                                            decoration:
-                                                TextDecoration.underline,
-                                          ),
-                                          recognizer: TapGestureRecognizer()
-                                            ..onTap = () {
-                                              Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      TermsConditionsScreen(),
-                                                ),
-                                              );
-                                            },
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-
-                            // Sign up text
-                            Center(
-                              child: RichText(
-                                text: TextSpan(
-                                  style: TextStyle(
-                                    color: Colors.black87,
-                                    fontFamily: 'NotoSans',
-                                    fontSize: 12,
-                                  ),
-                                  children: [
-                                    TextSpan(
-                                      text: '${localizations.noAccount} ',
-                                    ),
-                                    TextSpan(
-                                      text: localizations.signUp,
-                                      style: TextStyle(
-                                        color: Color(0xFFEC7103),
-                                        fontWeight: FontWeight.bold,
-                                        decoration: TextDecoration.underline,
-                                        fontSize: 14,
-                                      ),
-                                      recognizer: TapGestureRecognizer()
-                                        ..onTap = () {
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (context) =>
-                                                  SignUpScreen2(),
-                                            ),
-                                          );
-                                        },
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-
-                            const SizedBox(height: 30),
-
-                            // Sign In button - Centered
-                            Center(
-                              child: SizedBox(
-                                width: double.infinity,
-                                child: ElevatedButton(
-                                  onPressed: (_isLoading || _isCheckingUser)
-                                      ? null
-                                      : _handleSignIn,
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor: const Color(0xFFEC7103),
-                                    foregroundColor: Colors.white,
-                                    padding: const EdgeInsets.symmetric(
-                                      vertical: 16,
-                                    ),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(25),
-                                    ),
-                                    elevation: 2,
-                                  ),
-                                  child: (_isLoading || _isCheckingUser)
-                                      ? Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            const SizedBox(
-                                              width: 20,
-                                              height: 20,
-                                              child: CircularProgressIndicator(
-                                                strokeWidth: 2,
-                                                valueColor:
-                                                    AlwaysStoppedAnimation<
-                                                      Color
-                                                    >(Colors.white),
-                                              ),
-                                            ),
-                                            const SizedBox(width: 12),
-                                            Text(
-                                              _isCheckingUser
-                                                  ? localizations.checkingUser
-                                                  : localizations.signingIn,
-                                              style: const TextStyle(
-                                                fontWeight: FontWeight.w600,
-                                                fontFamily: 'NotoSans',
-                                                fontSize: 16,
-                                              ),
-                                              textAlign: TextAlign.center,
-                                            ),
-                                          ],
-                                        )
-                                      : Text(
-                                          localizations.signInButton,
-                                          style: const TextStyle(
-                                            fontWeight: FontWeight.w600,
-                                            fontFamily: 'NotoSans',
-                                            fontSize: 16,
-                                          ),
-                                          textAlign: TextAlign.center,
-                                        ),
-                                ),
-                              ),
+                            _separator(),
+                            _buildLanguageOption(
+                              'RO',
+                              localizationService,
+                              currentDisplayLanguage,
                             ),
                           ],
                         ),
-                      ),
-                    ),
+                      ],
 
-                    const SizedBox(height: 30),
-                  ],
+                      Spacer(),
+
+                      // White Card
+                      Container(
+                        width: double.infinity,
+                        margin: const EdgeInsets.symmetric(horizontal: 36),
+                        padding: const EdgeInsets.all(24),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        child: Form(
+                          key: _formKey,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Center(
+                                child: Text(
+                                  localizations.signIn,
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 22,
+                                    fontFamily: 'NotoSans',
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(height: 10),
+                              Center(
+                                child: Text(
+                                  localizations.signInSubtitle,
+                                  style: TextStyle(
+                                    color: Colors.grey[700],
+                                    fontSize: 11,
+                                    fontFamily: 'NotoSans',
+                                  ),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ),
+                              const SizedBox(height: 10),
+
+                              // Phone field
+                              const SizedBox(height: 6),
+                              IntlPhoneField(
+                                controller: phoneController,
+                                focusNode: _phoneFocusNode,
+                                initialCountryCode: 'GR',
+                                flagsButtonPadding: const EdgeInsets.only(
+                                  left: 8,
+                                ),
+                                dropdownIconPosition: IconPosition.trailing,
+                                showDropdownIcon: true,
+                                dropdownTextStyle: const TextStyle(
+                                  fontSize: 13,
+                                ),
+                                style: const TextStyle(
+                                  fontSize: 14,
+                                  fontFamily: 'NotoSans',
+                                ),
+                                decoration: InputDecoration(
+                                  filled: true,
+                                  fillColor: Colors.grey[200],
+                                  hintText: localizations.enterPhone,
+                                  hintStyle: TextStyle(
+                                    color: Colors.grey[500],
+                                    fontSize: 13,
+                                  ),
+                                  contentPadding: const EdgeInsets.symmetric(
+                                    vertical: 10,
+                                    horizontal: 12,
+                                  ),
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(12),
+                                    borderSide: BorderSide.none,
+                                  ),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(12),
+                                    borderSide: BorderSide(
+                                      color: Colors.grey[300]!,
+                                    ),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(12),
+                                    borderSide: BorderSide(
+                                      color: Colors.orange.shade400,
+                                      width: 2,
+                                    ),
+                                  ),
+                                  errorBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(12),
+                                    borderSide: const BorderSide(
+                                      color: Colors.red,
+                                      width: 1,
+                                    ),
+                                  ),
+                                ),
+                                onChanged: (phone) {
+                                  setState(() {
+                                    _completePhoneNumber = phone.completeNumber
+                                        .replaceAll('+', '');
+                                    _countryCode = phone.countryCode.replaceAll(
+                                      '+',
+                                      '',
+                                    );
+                                  });
+
+                                  debugPrint(
+                                    '📞 Complete Number: ${phone.completeNumber}',
+                                  );
+                                  debugPrint(
+                                    '🌍 Country Code (without +): $_countryCode',
+                                  );
+                                },
+
+                                validator: (phone) {
+                                  if (phone == null || phone.number.isEmpty) {
+                                    return localizations.phoneRequired;
+                                  }
+                                  if (phone.number.length < 7) {
+                                    return localizations.phoneMinLength;
+                                  }
+                                  return null;
+                                },
+                              ),
+                              const SizedBox(height: 12),
+                              // Terms checkbox
+                              Row(
+                                children: [
+                                  Checkbox(
+                                    value: _rememberMe,
+                                    onChanged: (val) {
+                                      setState(() {
+                                        _rememberMe = val!;
+                                      });
+                                    },
+                                    activeColor: Color(0xFFEC7103),
+                                  ),
+                                  Expanded(
+                                    child: RichText(
+                                      text: TextSpan(
+                                        style: TextStyle(
+                                          color: Colors.black87,
+                                          fontFamily: 'NotoSans',
+                                        ),
+                                        children: [
+                                          TextSpan(
+                                            text:
+                                                '${localizations.acceptTerms} ',
+                                          ),
+                                          TextSpan(
+                                            text: localizations.termsOfUse,
+                                            style: TextStyle(
+                                              color: Color(0xFFEC7103),
+                                              decoration:
+                                                  TextDecoration.underline,
+                                            ),
+                                            recognizer: TapGestureRecognizer()
+                                              ..onTap = () {
+                                                Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        TermsConditionsScreen(),
+                                                  ),
+                                                );
+                                              },
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+
+                              // Sign up text
+                              Center(
+                                child: RichText(
+                                  text: TextSpan(
+                                    style: TextStyle(
+                                      color: Colors.black87,
+                                      fontFamily: 'NotoSans',
+                                      fontSize: 12,
+                                    ),
+                                    children: [
+                                      TextSpan(
+                                        text: '${localizations.noAccount} ',
+                                      ),
+                                      TextSpan(
+                                        text: localizations.signUp,
+                                        style: TextStyle(
+                                          color: Color(0xFFEC7103),
+                                          fontWeight: FontWeight.bold,
+                                          decoration: TextDecoration.underline,
+                                          fontSize: 14,
+                                        ),
+                                        recognizer: TapGestureRecognizer()
+                                          ..onTap = () {
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) =>
+                                                    SignUpScreen2(),
+                                              ),
+                                            );
+                                          },
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+
+                              const SizedBox(height: 30),
+
+                              // Sign In button - Centered
+                              Center(
+                                child: SizedBox(
+                                  width: double.infinity,
+                                  child: ElevatedButton(
+                                    onPressed: (_isLoading || _isCheckingUser)
+                                        ? null
+                                        : _handleSignIn,
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor: const Color(0xFFEC7103),
+                                      foregroundColor: Colors.white,
+                                      padding: const EdgeInsets.symmetric(
+                                        vertical: 16,
+                                      ),
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(25),
+                                      ),
+                                      elevation: 2,
+                                    ),
+                                    child: (_isLoading || _isCheckingUser)
+                                        ? Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            // children: [
+                                            //   const SizedBox(
+                                            //     width: 20,
+                                            //     height: 20,
+                                            //     child: CircularProgressIndicator(
+                                            //       strokeWidth: 2,
+                                            //       valueColor:
+                                            //           AlwaysStoppedAnimation
+                                            //             Color
+                                            //           >(Colors.white),
+                                            //     ),
+                                            //   ),
+                                            //   const SizedBox(width: 12),
+                                            //   Text(
+                                            //     _isCheckingUser
+                                            //         ? localizations.checkingUser
+                                            //         : localizations.signingIn,
+                                            //     style: const TextStyle(
+                                            //       fontWeight: FontWeight.w600,
+                                            //       fontFamily: 'NotoSans',
+                                            //       fontSize: 16,
+                                            //     ),
+                                            //     textAlign: TextAlign.center,
+                                            //   ),
+                                            // ],
+                                            children: [
+                                              const SizedBox(
+                                                width: 20,
+                                                height: 20,
+                                                child: CircularProgressIndicator(
+                                                  strokeWidth: 2,
+                                                  valueColor:
+                                                      AlwaysStoppedAnimation<
+                                                        Color
+                                                      >(Colors.white),
+                                                ),
+                                              ),
+                                              const SizedBox(width: 12),
+                                              Text(
+                                                _isCheckingUser
+                                                    ? localizations.checkingUser
+                                                    : localizations.signingIn,
+                                                style: const TextStyle(
+                                                  fontWeight: FontWeight.w600,
+                                                  fontFamily: 'NotoSans',
+                                                  fontSize: 16,
+                                                ),
+                                                textAlign: TextAlign.center,
+                                              ),
+                                            ],
+                                          )
+                                        : Text(
+                                            localizations.signInButton,
+                                            style: const TextStyle(
+                                              fontWeight: FontWeight.w600,
+                                              fontFamily: 'NotoSans',
+                                              fontSize: 16,
+                                            ),
+                                            textAlign: TextAlign.center,
+                                          ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+
+                      const SizedBox(height: 30),
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         );
       },
     );
   }
+  // @override
+  // Widget build(BuildContext context) {
+  //   return Consumer<LocalizationService>(
+  //     builder: (context, localizationService, child) {
+  //       final localizations = AppLocalizations.of(context)!;
+  //       final currentDisplayLanguage =
+  //           displayLanguageMap[localizationService
+  //               .currentLocale
+  //               .languageCode] ??
+  //           'GR';
+
+  //       return Scaffold(
+  //         resizeToAvoidBottomInset: true,
+  //         body: GestureDetector(
+  //           onTap: () =>
+  //               FocusScope.of(context).unfocus(), // ✅ Body tap = keyboard hide
+  //           child: Stack(
+  //             children: [
+  //               // Background image with blur
+  //               Container(
+  //                 decoration: const BoxDecoration(
+  //                   image: DecorationImage(
+  //                     image: AssetImage("assets/images/auth.jpg"),
+  //                     fit: BoxFit.cover,
+  //                   ),
+  //                 ),
+  //               ),
+  //               Container(color: Colors.black.withOpacity(0.3)),
+
+  //               SafeArea(
+  //                 child: Column(
+  //                   children: [
+  //                     const SizedBox(height: 20),
+  //                     // Logo
+  //                     Center(
+  //                       child: Image.asset(
+  //                         'assets/images/app-logo.png',
+  //                         height: 100,
+  //                         width: 600,
+  //                       ),
+  //                     ),
+  //                     const SizedBox(height: 40),
+
+  //                     // Language Selection - Centered
+  //                     Center(
+  //                       child: Text(
+  //                         localizations.chooseLanguage,
+  //                         style: TextStyle(
+  //                           fontSize: 20,
+  //                           color: Colors.white,
+  //                           fontFamily: 'NotoSans',
+  //                         ),
+  //                       ),
+  //                     ),
+  //                     const SizedBox(height: 10),
+  //                     Row(
+  //                       mainAxisAlignment: MainAxisAlignment.center,
+  //                       children: [
+  //                         _buildLanguageOption(
+  //                           'GR',
+  //                           localizationService,
+  //                           currentDisplayLanguage,
+  //                         ),
+  //                         _separator(),
+  //                         _buildLanguageOption(
+  //                           'EN',
+  //                           localizationService,
+  //                           currentDisplayLanguage,
+  //                         ),
+  //                         _separator(),
+  //                         _buildLanguageOption(
+  //                           'RO',
+  //                           localizationService,
+  //                           currentDisplayLanguage,
+  //                         ),
+  //                       ],
+  //                     ),
+
+  //                     Spacer(),
+
+  //                     // White Card
+  //                     Container(
+  //                       width: double.infinity,
+  //                       margin: const EdgeInsets.symmetric(horizontal: 36),
+  //                       padding: const EdgeInsets.all(24),
+  //                       decoration: BoxDecoration(
+  //                         color: Colors.white,
+  //                         borderRadius: BorderRadius.circular(30),
+  //                       ),
+  //                       child: Form(
+  //                         key: _formKey,
+  //                         child: Column(
+  //                           crossAxisAlignment: CrossAxisAlignment.start,
+  //                           mainAxisSize: MainAxisSize.min,
+  //                           children: [
+  //                             Center(
+  //                               child: Text(
+  //                                 localizations.signIn,
+  //                                 style: TextStyle(
+  //                                   fontWeight: FontWeight.bold,
+  //                                   fontSize: 22,
+  //                                   fontFamily: 'NotoSans',
+  //                                 ),
+  //                               ),
+  //                             ),
+  //                             const SizedBox(height: 10),
+  //                             Center(
+  //                               child: Text(
+  //                                 localizations.signInSubtitle,
+  //                                 style: TextStyle(
+  //                                   color: Colors.grey[700],
+  //                                   fontSize: 11,
+  //                                   fontFamily: 'NotoSans',
+  //                                 ),
+  //                                 textAlign: TextAlign.center,
+  //                               ),
+  //                             ),
+  //                             const SizedBox(height: 10),
+
+  //                             // Phone field
+  //                             const SizedBox(height: 6),
+  //                             // Line 722-773 ke beech - IntlPhoneField widget
+  //                             IntlPhoneField(
+  //                               controller: phoneController,
+  //                               focusNode: _phoneFocusNode, // ✅ YE ADD KARO
+  //                               initialCountryCode: 'GR', // Greek default
+  //                               flagsButtonPadding: const EdgeInsets.only(
+  //                                 left: 8,
+  //                               ),
+  //                               dropdownIconPosition: IconPosition.trailing,
+  //                               showDropdownIcon: true,
+  //                               dropdownTextStyle: const TextStyle(
+  //                                 fontSize: 13,
+  //                               ),
+  //                               style: const TextStyle(
+  //                                 fontSize: 14,
+  //                                 fontFamily: 'NotoSans',
+  //                               ),
+  //                               decoration: InputDecoration(
+  //                                 filled: true,
+  //                                 fillColor: Colors.grey[200],
+  //                                 hintText: localizations.enterPhone,
+  //                                 hintStyle: TextStyle(
+  //                                   color: Colors.grey[500],
+  //                                   fontSize: 13,
+  //                                 ),
+  //                                 contentPadding: const EdgeInsets.symmetric(
+  //                                   vertical: 10,
+  //                                   horizontal: 12,
+  //                                 ),
+  //                                 border: OutlineInputBorder(
+  //                                   borderRadius: BorderRadius.circular(12),
+  //                                   borderSide: BorderSide.none,
+  //                                 ),
+  //                                 enabledBorder: OutlineInputBorder(
+  //                                   borderRadius: BorderRadius.circular(12),
+  //                                   borderSide: BorderSide(
+  //                                     color: Colors.grey[300]!,
+  //                                   ),
+  //                                 ),
+  //                                 focusedBorder: OutlineInputBorder(
+  //                                   borderRadius: BorderRadius.circular(12),
+  //                                   borderSide: BorderSide(
+  //                                     color: Colors.orange.shade400,
+  //                                     width: 2,
+  //                                   ),
+  //                                 ),
+  //                                 errorBorder: OutlineInputBorder(
+  //                                   borderRadius: BorderRadius.circular(12),
+  //                                   borderSide: const BorderSide(
+  //                                     color: Colors.red,
+  //                                     width: 1,
+  //                                   ),
+  //                                 ),
+  //                               ),
+  //                               onChanged: (phone) {
+  //                                 setState(() {
+  //                                   _completePhoneNumber = phone.completeNumber
+  //                                       .replaceAll('+', ''); // +30XXXXXXXXXX
+  //                                   _countryCode = phone.countryCode.replaceAll(
+  //                                     '+',
+  //                                     '',
+  //                                   ); // remove +
+  //                                 });
+
+  //                                 debugPrint(
+  //                                   '📞 Complete Number: ${phone.completeNumber}',
+  //                                 );
+  //                                 debugPrint(
+  //                                   '🌍 Country Code (without +): $_countryCode',
+  //                                 );
+  //                               },
+
+  //                               validator: (phone) {
+  //                                 if (phone == null || phone.number.isEmpty) {
+  //                                   return localizations.phoneRequired;
+  //                                 }
+  //                                 if (phone.number.length < 7) {
+  //                                   return localizations.phoneMinLength;
+  //                                 }
+  //                                 return null;
+  //                               },
+  //                             ),
+  //                             const SizedBox(height: 12),
+  //                             // Terms checkbox
+  //                             Row(
+  //                               children: [
+  //                                 Checkbox(
+  //                                   value: _rememberMe,
+  //                                   onChanged: (val) {
+  //                                     setState(() {
+  //                                       _rememberMe = val!;
+  //                                     });
+  //                                   },
+  //                                   activeColor: Color(0xFFEC7103),
+  //                                 ),
+  //                                 Expanded(
+  //                                   child: RichText(
+  //                                     text: TextSpan(
+  //                                       style: TextStyle(
+  //                                         color: Colors.black87,
+  //                                         fontFamily: 'NotoSans',
+  //                                       ),
+  //                                       children: [
+  //                                         TextSpan(
+  //                                           text:
+  //                                               '${localizations.acceptTerms} ',
+  //                                         ),
+  //                                         TextSpan(
+  //                                           text: localizations.termsOfUse,
+  //                                           style: TextStyle(
+  //                                             color: Color(0xFFEC7103),
+  //                                             decoration:
+  //                                                 TextDecoration.underline,
+  //                                           ),
+  //                                           recognizer: TapGestureRecognizer()
+  //                                             ..onTap = () {
+  //                                               Navigator.push(
+  //                                                 context,
+  //                                                 MaterialPageRoute(
+  //                                                   builder: (context) =>
+  //                                                       TermsConditionsScreen(),
+  //                                                 ),
+  //                                               );
+  //                                             },
+  //                                         ),
+  //                                       ],
+  //                                     ),
+  //                                   ),
+  //                                 ),
+  //                               ],
+  //                             ),
+
+  //                             // Sign up text
+  //                             Center(
+  //                               child: RichText(
+  //                                 text: TextSpan(
+  //                                   style: TextStyle(
+  //                                     color: Colors.black87,
+  //                                     fontFamily: 'NotoSans',
+  //                                     fontSize: 12,
+  //                                   ),
+  //                                   children: [
+  //                                     TextSpan(
+  //                                       text: '${localizations.noAccount} ',
+  //                                     ),
+  //                                     TextSpan(
+  //                                       text: localizations.signUp,
+  //                                       style: TextStyle(
+  //                                         color: Color(0xFFEC7103),
+  //                                         fontWeight: FontWeight.bold,
+  //                                         decoration: TextDecoration.underline,
+  //                                         fontSize: 14,
+  //                                       ),
+  //                                       recognizer: TapGestureRecognizer()
+  //                                         ..onTap = () {
+  //                                           Navigator.push(
+  //                                             context,
+  //                                             MaterialPageRoute(
+  //                                               builder: (context) =>
+  //                                                   SignUpScreen2(),
+  //                                             ),
+  //                                           );
+  //                                         },
+  //                                     ),
+  //                                   ],
+  //                                 ),
+  //                               ),
+  //                             ),
+
+  //                             const SizedBox(height: 30),
+
+  //                             // Sign In button - Centered
+  //                             Center(
+  //                               child: SizedBox(
+  //                                 width: double.infinity,
+  //                                 child: ElevatedButton(
+  //                                   onPressed: (_isLoading || _isCheckingUser)
+  //                                       ? null
+  //                                       : _handleSignIn,
+  //                                   style: ElevatedButton.styleFrom(
+  //                                     backgroundColor: const Color(0xFFEC7103),
+  //                                     foregroundColor: Colors.white,
+  //                                     padding: const EdgeInsets.symmetric(
+  //                                       vertical: 16,
+  //                                     ),
+  //                                     shape: RoundedRectangleBorder(
+  //                                       borderRadius: BorderRadius.circular(25),
+  //                                     ),
+  //                                     elevation: 2,
+  //                                   ),
+  //                                   child: (_isLoading || _isCheckingUser)
+  //                                       ? Row(
+  //                                           mainAxisAlignment:
+  //                                               MainAxisAlignment.center,
+  //                                           children: [
+  //                                             const SizedBox(
+  //                                               width: 20,
+  //                                               height: 20,
+  //                                               child: CircularProgressIndicator(
+  //                                                 strokeWidth: 2,
+  //                                                 valueColor:
+  //                                                     AlwaysStoppedAnimation<
+  //                                                       Color
+  //                                                     >(Colors.white),
+  //                                               ),
+  //                                             ),
+  //                                             const SizedBox(width: 12),
+  //                                             Text(
+  //                                               _isCheckingUser
+  //                                                   ? localizations.checkingUser
+  //                                                   : localizations.signingIn,
+  //                                               style: const TextStyle(
+  //                                                 fontWeight: FontWeight.w600,
+  //                                                 fontFamily: 'NotoSans',
+  //                                                 fontSize: 16,
+  //                                               ),
+  //                                               textAlign: TextAlign.center,
+  //                                             ),
+  //                                           ],
+  //                                         )
+  //                                       : Text(
+  //                                           localizations.signInButton,
+  //                                           style: const TextStyle(
+  //                                             fontWeight: FontWeight.w600,
+  //                                             fontFamily: 'NotoSans',
+  //                                             fontSize: 16,
+  //                                           ),
+  //                                           textAlign: TextAlign.center,
+  //                                         ),
+  //                                 ),
+  //                               ),
+  //                             ),
+  //                           ],
+  //                         ),
+  //                       ),
+  //                     ),
+
+  //                     const SizedBox(height: 30),
+  //                   ],
+  //                 ),
+  //               ),
+
+  //             ],
+  //           ),
+  //         ),
+  //       );
+  //     },
+  //   );
+  // }
 
   Widget _buildLanguageOption(
     String displayLang,

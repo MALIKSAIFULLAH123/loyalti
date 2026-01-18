@@ -2,52 +2,140 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>CFBundleDevelopmentRegion</key>
-	<string>$(DEVELOPMENT_LANGUAGE)</string>
-	<key>NSCameraUsageDescription</key>
-	<string>This app needs camera access to take profile pictures</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>This app needs photo library access to select profile pictures</string>
-	<key>CFBundleDisplayName</key>
-	<string>Angelopoulos Hair</string>
-	<key>CFBundleExecutable</key>
-	<string>$(EXECUTABLE_NAME)</string>
-	<key>CFBundleIdentifier</key>
-	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
-	<key>CFBundleInfoDictionaryVersion</key>
-	<string>6.0</string>
-	<key>CFBundleName</key>
-	<string>Angelopoulos Hair</string>
-	<key>CFBundlePackageType</key>
-	<string>APPL</string>
-	<key>CFBundleShortVersionString</key>
-	<string>$(FLUTTER_BUILD_NAME)</string>
-	<key>CFBundleSignature</key>
-	<string>????</string>
-	<key>CFBundleVersion</key>
-	<string>$(FLUTTER_BUILD_NUMBER)</string>
-	<key>LSRequiresIPhoneOS</key>
-	<true/>
-	<key>UILaunchStoryboardName</key>
-	<string>LaunchScreen</string>
-	<key>UIMainStoryboardFile</key>
-	<string>Main</string>
-	<key>UISupportedInterfaceOrientations</key>
-	<array>
-		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
-	</array>
-	<key>UISupportedInterfaceOrientations~ipad</key>
-	<array>
-		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationPortraitUpsideDown</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
-	</array>
-	<key>CADisableMinimumFrameDurationOnPhone</key>
-	<true/>
-	<key>UIApplicationSupportsIndirectInputEvents</key>
-	<true/>
+
+    <!-- App Basics -->
+    <key>CFBundleDevelopmentRegion</key>
+    <string>$(DEVELOPMENT_LANGUAGE)</string>
+
+    <key>CFBundleDisplayName</key>
+    <string>Angelopoulos Hair</string>
+
+    <key>CFBundleExecutable</key>
+    <string>$(EXECUTABLE_NAME)</string>
+
+    <key>CFBundleIdentifier</key>
+    <string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+
+    <key>CFBundleInfoDictionaryVersion</key>
+    <string>6.0</string>
+
+    <key>CFBundleName</key>
+    <string>Angelopoulos Hair</string>
+
+    <key>CFBundlePackageType</key>
+    <string>APPL</string>
+
+    <key>CFBundleShortVersionString</key>
+    <string>$(FLUTTER_BUILD_NAME)</string>
+
+    <key>CFBundleVersion</key>
+    <string>$(FLUTTER_BUILD_NUMBER)</string>
+
+    <key>LSRequiresIPhoneOS</key>
+    <true/>
+
+    <!-- Firebase / Google Auth URL Schemes (CRITICAL) -->
+    <key>CFBundleURLTypes</key>
+    <array>
+        <dict>
+            <key>CFBundleTypeRole</key>
+            <string>Editor</string>
+
+            <key>CFBundleURLName</key>
+            <string>com.angelopouloshair.flutterapp</string>
+
+            <key>CFBundleURLSchemes</key>
+            <array>
+                <!-- Bundle ID scheme -->
+                <string>com.angelopouloshair.flutterapp</string>
+
+                <!-- Firebase Phone Auth / reCAPTCHA callback -->
+                <string>com.googleusercontent.apps.661244516021-cac9c9cc5a54a9049950fc</string>
+
+                <!-- Google Sign-In (REVERSED_CLIENT_ID) -->
+                <string>com.googleusercontent.apps.661244516021-5g08g85kgg6onagf9dm5cnolhd0jqmlp</string>
+            </array>
+        </dict>
+    </array>
+
+    <!-- Camera & Photos Permissions -->
+    <key>NSCameraUsageDescription</key>
+    <string>This app needs camera access to take profile pictures</string>
+
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>This app needs photo library access to select profile pictures</string>
+
+    <!-- Firebase reCAPTCHA / WebView fix -->
+    <key>NSAppTransportSecurity</key>
+    <dict>
+        <key>NSAllowsArbitraryLoads</key>
+        <true/>
+        <key>NSAllowsArbitraryLoadsInWebContent</key>
+        <true/>
+        <key>NSExceptionDomains</key>
+        <dict>
+            <key>google.com</key>
+            <dict>
+                <key>NSExceptionAllowsInsecureHTTPLoads</key>
+                <true/>
+                <key>NSIncludesSubdomains</key>
+                <true/>
+            </dict>
+            <key>gstatic.com</key>
+            <dict>
+                <key>NSExceptionAllowsInsecureHTTPLoads</key>
+                <true/>
+                <key>NSIncludesSubdomains</key>
+                <true/>
+            </dict>
+            <key>firebaseapp.com</key>
+            <dict>
+                <key>NSExceptionAllowsInsecureHTTPLoads</key>
+                <true/>
+                <key>NSIncludesSubdomains</key>
+                <true/>
+            </dict>
+        </dict>
+    </dict>
+
+    <!-- Tracking Prompt (Required for iOS 14+) -->
+    <key>NSUserTrackingUsageDescription</key>
+    <string>We use this identifier to improve app experience and security.</string>
+
+    <!-- Push Notifications -->
+    <key>UIBackgroundModes</key>
+    <array>
+        <string>fetch</string>
+        <string>remote-notification</string>
+    </array>
+
+    <!-- Launch / UI -->
+    <key>UILaunchStoryboardName</key>
+    <string>LaunchScreen</string>
+
+    <key>UIMainStoryboardFile</key>
+    <string>Main</string>
+
+    <key>UISupportedInterfaceOrientations</key>
+    <array>
+        <string>UIInterfaceOrientationPortrait</string>
+        <string>UIInterfaceOrientationLandscapeLeft</string>
+        <string>UIInterfaceOrientationLandscapeRight</string>
+    </array>
+
+    <key>UISupportedInterfaceOrientations~ipad</key>
+    <array>
+        <string>UIInterfaceOrientationPortrait</string>
+        <string>UIInterfaceOrientationPortraitUpsideDown</string>
+        <string>UIInterfaceOrientationLandscapeLeft</string>
+        <string>UIInterfaceOrientationLandscapeRight</string>
+    </array>
+
+    <!-- Performance -->
+    <key>CADisableMinimumFrameDurationOnPhone</key>
+    <true/>
+    <key>UIApplicationSupportsIndirectInputEvents</key>
+    <true/>
+
 </dict>
 </plist>

@@ -45,7 +45,10 @@ class _SignUpScreen2State extends State<SignUpScreen2> {
   int _resendToken = 0;
   bool _canResend = true;
   int _resendCountdown = 0;
-
+  // Existing controllers ke baad add karo
+  final FocusNode _nameFocusNode = FocusNode();
+  final FocusNode _phoneFocusNode = FocusNode();
+  final FocusNode _otpFocusNode = FocusNode();
   @override
   void initState() {
     super.initState();
@@ -57,6 +60,9 @@ class _SignUpScreen2State extends State<SignUpScreen2> {
     phoneController.dispose();
     passwordController.dispose();
     otpController.dispose();
+    _nameFocusNode.dispose(); // ✅ YE ADD KARO
+    _phoneFocusNode.dispose(); // ✅ YE ADD KARO
+    _otpFocusNode.dispose(); // ✅ YE ADD KARO
     super.dispose();
   }
 
@@ -66,6 +72,9 @@ class _SignUpScreen2State extends State<SignUpScreen2> {
     bool isError = false,
     bool isSuccess = false,
   }) {
+    // ✅ Check if widget is still mounted
+    if (!mounted) return;
+
     final overlay = Overlay.of(context);
     late OverlayEntry overlayEntry;
 
@@ -123,10 +132,81 @@ class _SignUpScreen2State extends State<SignUpScreen2> {
     );
 
     overlay.insert(overlayEntry);
+
+    // ✅ Mounted check ke saath remove karo
     Future.delayed(const Duration(seconds: 3), () {
-      overlayEntry.remove();
+      if (mounted) {
+        overlayEntry.remove();
+      }
     });
   }
+
+  // void _showCustomSnackBar(
+  //   String message, {
+  //   bool isError = false,
+  //   bool isSuccess = false,
+  // }) {
+  //   final overlay = Overlay.of(context);
+  //   late OverlayEntry overlayEntry;
+
+  //   overlayEntry = OverlayEntry(
+  //     builder: (context) => Positioned(
+  //       top: MediaQuery.of(context).padding.top + 10,
+  //       left: 20,
+  //       right: 20,
+  //       child: Material(
+  //         color: Colors.transparent,
+  //         child: Container(
+  //           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+  //           decoration: BoxDecoration(
+  //             color: isError
+  //                 ? Colors.red.shade600
+  //                 : isSuccess
+  //                 ? Colors.green.shade600
+  //                 : Colors.orange.shade600,
+  //             borderRadius: BorderRadius.circular(12),
+  //             boxShadow: [
+  //               BoxShadow(
+  //                 color: Colors.black.withOpacity(0.2),
+  //                 blurRadius: 8,
+  //                 offset: const Offset(0, 2),
+  //               ),
+  //             ],
+  //           ),
+  //           child: Row(
+  //             children: [
+  //               Icon(
+  //                 isError
+  //                     ? Icons.error_outline
+  //                     : isSuccess
+  //                     ? Icons.check_circle_outline
+  //                     : Icons.info_outline,
+  //                 color: Colors.white,
+  //                 size: 20,
+  //               ),
+  //               const SizedBox(width: 8),
+  //               Expanded(
+  //                 child: Text(
+  //                   message,
+  //                   style: const TextStyle(
+  //                     color: Colors.white,
+  //                     fontWeight: FontWeight.w500,
+  //                     fontFamily: 'NotoSans',
+  //                   ),
+  //                 ),
+  //               ),
+  //             ],
+  //           ),
+  //         ),
+  //       ),
+  //     ),
+  //   );
+
+  //   overlay.insert(overlayEntry);
+  //   Future.delayed(const Duration(seconds: 3), () {
+  //     overlayEntry.remove();
+  //   });
+  // }
 
   // Form validation
   String? _validateName(String? value) {
@@ -182,21 +262,53 @@ class _SignUpScreen2State extends State<SignUpScreen2> {
 
   // Firebase OTP Functions
   String _formatPhoneNumber(String phone) {
-    // Agar IntlPhoneField se complete number mil gaya, use karo
+    // ✅ IntlPhoneField se complete number use karo
     if (_completePhoneNumber.isNotEmpty) {
-      debugPrint('Using IntlPhoneField number: $_completePhoneNumber');
-      return _completePhoneNumber;
+      String formatted = _completePhoneNumber;
+      // Ensure it starts with +
+      if (!formatted.startsWith('+')) {
+        formatted = '+$formatted';
+      }
+      debugPrint('Using IntlPhoneField number: $formatted');
+      return formatted;
     }
 
-    // Fallback: purana logic
+    // ✅ Fallback with validation
     String cleanPhone = phone.replaceAll(RegExp(r'[^\d+]'), '');
-    if (!cleanPhone.startsWith('+')) {
-      cleanPhone = '92$cleanPhone';
+
+    // ✅ Add this check to prevent empty country code
+    if (_countryCode.isEmpty) {
+      throw Exception('Country code is missing. Please select a country.');
     }
+
+    if (!cleanPhone.startsWith('+')) {
+      cleanPhone = '+$_countryCode$cleanPhone';
+    }
+
+    // ✅ Validate final format
+    if (!cleanPhone.startsWith('+') || cleanPhone.length < 10) {
+      throw Exception('Invalid phone number format: $cleanPhone');
+    }
+
     debugPrint('Fallback formatted phone: $cleanPhone');
     return cleanPhone;
   }
 
+  // String _formatPhoneNumber(String phone) {
+  //   // Agar IntlPhoneField se complete number mil gaya, use karo
+  //   if (_completePhoneNumber.isNotEmpty) {
+  //     debugPrint('Using IntlPhoneField number: $_completePhoneNumber');
+  //     return _completePhoneNumber;
+  //   }
+
+  //   // Fallback: purana logic
+  //   String cleanPhone = phone.replaceAll(RegExp(r'[^\d+]'), '');
+  //   if (!cleanPhone.startsWith('+')) {
+  //     cleanPhone = '92$cleanPhone';
+  //   }
+  //   debugPrint('Fallback formatted phone: $cleanPhone');
+  //   return cleanPhone;
+  // }
   Future<void> _manualVerifyOtp(String otp) async {
     final localizations = AppLocalizations.of(context)!;
     if (_verificationId == null) {
@@ -212,12 +324,14 @@ class _SignUpScreen2State extends State<SignUpScreen2> {
         smsCode: otp,
       );
 
-      // Just verify the credential without signing in
       UserCredential userCredential = await _auth.signInWithCredential(
         credential,
       );
 
       if (userCredential.user != null) {
+        // ✅ Mounted check add karo
+        if (!mounted) return;
+
         setState(() => _phoneVerified = true);
         _showCustomSnackBar(
           localizations.phoneVerifiedSuccess,
@@ -227,10 +341,16 @@ class _SignUpScreen2State extends State<SignUpScreen2> {
         // Immediately sign out
         await _auth.signOut();
 
+        // ✅ Mounted check again
+        if (!mounted) return;
+
         // Proceed with backend signup
         await _handleBackendSignup();
       }
     } on FirebaseAuthException catch (e) {
+      // ✅ Mounted check
+      if (!mounted) return;
+
       String errorMessage = localizations.invalidOtp;
 
       switch (e.code) {
@@ -251,9 +371,68 @@ class _SignUpScreen2State extends State<SignUpScreen2> {
 
       _showCustomSnackBar(errorMessage, isError: true);
     } finally {
-      setState(() => _isVerifyingOtp = false);
+      if (mounted) {
+        setState(() => _isVerifyingOtp = false);
+      }
     }
   }
+  // Future<void> _manualVerifyOtp(String otp) async {
+  //   final localizations = AppLocalizations.of(context)!;
+  //   if (_verificationId == null) {
+  //     _showCustomSnackBar(localizations.requestOtpFirst, isError: true);
+  //     return;
+  //   }
+
+  //   setState(() => _isVerifyingOtp = true);
+
+  //   try {
+  //     PhoneAuthCredential credential = PhoneAuthProvider.credential(
+  //       verificationId: _verificationId!,
+  //       smsCode: otp,
+  //     );
+
+  //     // Just verify the credential without signing in
+  //     UserCredential userCredential = await _auth.signInWithCredential(
+  //       credential,
+  //     );
+
+  //     if (userCredential.user != null) {
+  //       setState(() => _phoneVerified = true);
+  //       _showCustomSnackBar(
+  //         localizations.phoneVerifiedSuccess,
+  //         isSuccess: true,
+  //       );
+
+  //       // Immediately sign out
+  //       await _auth.signOut();
+
+  //       // Proceed with backend signup
+  //       await _handleBackendSignup();
+  //     }
+  //   } on FirebaseAuthException catch (e) {
+  //     String errorMessage = localizations.invalidOtp;
+
+  //     switch (e.code) {
+  //       case 'invalid-verification-code':
+  //         errorMessage = localizations.invalidOtpCheck;
+  //         break;
+  //       case 'session-expired':
+  //         errorMessage = localizations.otpExpired;
+  //         setState(() {
+  //           _otpSent = false;
+  //           _verificationId = null;
+  //           otpController.clear();
+  //         });
+  //         break;
+  //       default:
+  //         errorMessage = e.message ?? localizations.invalidOtp;
+  //     }
+
+  //     _showCustomSnackBar(errorMessage, isError: true);
+  //   } finally {
+  //     setState(() => _isVerifyingOtp = false);
+  //   }
+  // }
 
   Future<void> _sendOtp() async {
     await _sendOtpWithRetry();
@@ -282,6 +461,7 @@ class _SignUpScreen2State extends State<SignUpScreen2> {
 
   Future<void> _sendOtpWithRetry() async {
     final localizations = AppLocalizations.of(context)!;
+
     if (!_formKey.currentState!.validate()) {
       return;
     }
@@ -297,25 +477,29 @@ class _SignUpScreen2State extends State<SignUpScreen2> {
       final formattedPhone = _formatPhoneNumber(phoneController.text.trim());
       debugPrint('Attempting to send OTP to: $formattedPhone');
 
+      // ✅ iOS FIX: Add proper error handling for reCAPTCHA
       await _auth.verifyPhoneNumber(
         phoneNumber: formattedPhone,
         timeout: const Duration(seconds: 120),
 
         verificationCompleted: (PhoneAuthCredential credential) async {
           debugPrint('✅ Auto verification completed');
+          if (!mounted) return;
+
           setState(() {
             _phoneVerified = true;
-            _isLoading = false; // Loading band karo
+            _isLoading = false;
           });
           _showCustomSnackBar(localizations.phoneVerifiedAuto, isSuccess: true);
 
-          // Sign out immediately and proceed
           await _auth.signOut();
           await _handleBackendSignup();
         },
 
         verificationFailed: (FirebaseAuthException e) {
           debugPrint('❌ Verification failed: ${e.code} - ${e.message}');
+          if (!mounted) return;
+
           String errorMessage = localizations.failedSendOtp;
 
           switch (e.code) {
@@ -329,7 +513,13 @@ class _SignUpScreen2State extends State<SignUpScreen2> {
               errorMessage = localizations.smsQuotaExceeded;
               break;
             case 'app-not-authorized':
-              errorMessage = localizations.appNotAuthorized;
+            case 'captcha-check-failed':
+              // ✅ iOS-specific fix for reCAPTCHA issues
+              errorMessage =
+                  'iOS verification issue. Please ensure:\n'
+                  '1. Firebase iOS setup is complete\n'
+                  '2. APNs (Push Notifications) are configured\n'
+                  '3. App Check is enabled in Firebase Console';
               break;
             case 'network-request-failed':
               errorMessage = localizations.networkError;
@@ -337,20 +527,17 @@ class _SignUpScreen2State extends State<SignUpScreen2> {
             case 'missing-phone-number':
               errorMessage = localizations.phoneRequired;
               break;
-            case 'captcha-check-failed':
-              errorMessage = localizations.recaptchaFailed;
-              break;
             default:
               errorMessage = e.message ?? localizations.failedSendOtpTryAgain;
           }
 
-          setState(() => _isLoading = false); // Loading band karo
+          setState(() => _isLoading = false);
           _showCustomSnackBar(errorMessage, isError: true);
         },
 
         codeSent: (String verificationId, int? resendToken) {
           debugPrint('✅ OTP sent successfully');
-          debugPrint('VerificationId: $verificationId');
+          if (!mounted) return;
 
           setState(() {
             _verificationId = verificationId;
@@ -358,7 +545,7 @@ class _SignUpScreen2State extends State<SignUpScreen2> {
             _resendToken = resendToken ?? 0;
             _canResend = false;
             _resendCountdown = 60;
-            _isLoading = false; // Loading band karo
+            _isLoading = false;
           });
 
           _showCustomSnackBar(localizations.otpSent, isSuccess: true);
@@ -367,24 +554,152 @@ class _SignUpScreen2State extends State<SignUpScreen2> {
 
         codeAutoRetrievalTimeout: (String verificationId) {
           debugPrint('⏱️ Auto retrieval timeout');
-          setState(() {
-            _verificationId = verificationId;
-          });
+          if (!mounted) return;
+          setState(() => _verificationId = verificationId);
         },
       );
     } catch (e) {
       debugPrint('❗ Send OTP exception: $e');
+      if (!mounted) return;
 
-      // Handle formatting errors specifically
       if (e.toString().contains('country code')) {
         _showCustomSnackBar(e.toString(), isError: true);
       } else {
         _showCustomSnackBar(localizations.errorSendingOtp, isError: true);
       }
 
-      setState(() => _isLoading = false); // Loading band karo
+      setState(() => _isLoading = false);
     }
   }
+
+  // ✅ iOS-specific: Check if device can send OTP
+  Future<bool> _checkiOSCapabilities() async {
+    if (!mounted) return false;
+
+    try {
+      // Check if running on iOS
+      if (Theme.of(context).platform == TargetPlatform.iOS) {
+        debugPrint('📱 Running on iOS - checking capabilities');
+
+        // You can add additional iOS-specific checks here
+        return true;
+      }
+      return true;
+    } catch (e) {
+      debugPrint('❌ iOS capability check failed: $e');
+      return false;
+    }
+  }
+
+  // Future<void> _sendOtpWithRetry() async {
+  //   final localizations = AppLocalizations.of(context)!;
+  //   if (!_formKey.currentState!.validate()) {
+  //     return;
+  //   }
+
+  //   if (!_acceptTerms) {
+  //     _showCustomSnackBar(localizations.acceptTermsError, isError: true);
+  //     return;
+  //   }
+
+  //   setState(() => _isLoading = true);
+
+  //   try {
+  //     final formattedPhone = _formatPhoneNumber(phoneController.text.trim());
+  //     debugPrint('Attempting to send OTP to: $formattedPhone');
+
+  //     await _auth.verifyPhoneNumber(
+  //       phoneNumber: formattedPhone,
+  //       timeout: const Duration(seconds: 120),
+
+  //       verificationCompleted: (PhoneAuthCredential credential) async {
+  //         debugPrint('✅ Auto verification completed');
+  //         setState(() {
+  //           _phoneVerified = true;
+  //           _isLoading = false; // Loading band karo
+  //         });
+  //         _showCustomSnackBar(localizations.phoneVerifiedAuto, isSuccess: true);
+
+  //         // Sign out immediately and proceed
+  //         await _auth.signOut();
+  //         await _handleBackendSignup();
+  //       },
+
+  //       verificationFailed: (FirebaseAuthException e) {
+  //         debugPrint('❌ Verification failed: ${e.code} - ${e.message}');
+
+  //         // ✅ Mounted check add karo
+  //         if (!mounted) return;
+
+  //         String errorMessage = localizations.failedSendOtp;
+
+  //         switch (e.code) {
+  //           case 'invalid-phone-number':
+  //             errorMessage = localizations.invalidPhoneFormatCountry;
+  //             break;
+  //           case 'too-many-requests':
+  //             errorMessage = localizations.tooManyAttempts;
+  //             break;
+  //           case 'quota-exceeded':
+  //             errorMessage = localizations.smsQuotaExceeded;
+  //             break;
+  //           case 'app-not-authorized':
+  //             errorMessage = localizations.appNotAuthorized;
+  //             break;
+  //           case 'network-request-failed':
+  //             errorMessage = localizations.networkError;
+  //             break;
+  //           case 'missing-phone-number':
+  //             errorMessage = localizations.phoneRequired;
+  //             break;
+  //           case 'captcha-check-failed':
+  //             errorMessage = localizations.recaptchaFailed;
+  //             break;
+  //           default:
+  //             errorMessage = e.message ?? localizations.failedSendOtpTryAgain;
+  //         }
+
+  //         setState(() => _isLoading = false);
+  //         _showCustomSnackBar(errorMessage, isError: true);
+  //       },
+
+  //       codeSent: (String verificationId, int? resendToken) {
+  //         debugPrint('✅ OTP sent successfully');
+  //         debugPrint('VerificationId: $verificationId');
+
+  //         setState(() {
+  //           _verificationId = verificationId;
+  //           _otpSent = true;
+  //           _resendToken = resendToken ?? 0;
+  //           _canResend = false;
+  //           _resendCountdown = 60;
+  //           _isLoading = false; // Loading band karo
+  //         });
+
+  //         _showCustomSnackBar(localizations.otpSent, isSuccess: true);
+  //         _startResendCountdown();
+  //       },
+
+  //       codeAutoRetrievalTimeout: (String verificationId) {
+  //         debugPrint('⏱️ Auto retrieval timeout');
+  //         setState(() {
+  //           _verificationId = verificationId;
+  //         });
+  //       },
+  //     );
+  //   } catch (e) {
+  //     debugPrint('❗ Send OTP exception: $e');
+
+  //     // Handle formatting errors specifically
+  //     if (e.toString().contains('country code')) {
+  //       _showCustomSnackBar(e.toString(), isError: true);
+  //     } else {
+  //       _showCustomSnackBar(localizations.errorSendingOtp, isError: true);
+  //     }
+
+  //     setState(() => _isLoading = false); // Loading band karo
+  //   }
+  // }
 
   // Updated text field for phone with better hint:
   Widget _buildPhoneField() {
@@ -743,33 +1058,71 @@ class _SignUpScreen2State extends State<SignUpScreen2> {
   // Main backend signup handler - Only called after phone verification
   Future<void> _handleBackendSignup() async {
     final localizations = AppLocalizations.of(context)!;
+
+    // ✅ Mounted check
+    if (!mounted) return;
+
     setState(() => _isLoading = true);
 
     try {
-      // Step 1: Get license and save tokens
       await hitLicenseApiAndSave();
+      if (!mounted) return; // ✅ Check after each async call
 
-      // Step 2: Get client ID
       await gettingClientID();
+      if (!mounted) return;
 
-      // Step 3: Check if user already exists
       final userExists = await _checkUserExists();
+      if (!mounted) return;
+
       if (userExists) {
-        return; // Stop if user exists
+        return;
       }
 
-      // Step 4: Create new user
       await _signupCustomer();
     } catch (e) {
       debugPrint('Backend signup failed: $e');
+      if (!mounted) return;
+
       _showCustomSnackBar(
         '${localizations.signupFailed} ${e.toString()}',
         isError: true,
       );
     } finally {
-      setState(() => _isLoading = false);
+      if (mounted) {
+        setState(() => _isLoading = false);
+      }
     }
   }
+
+  // Future<void> _handleBackendSignup() async {
+  //   final localizations = AppLocalizations.of(context)!;
+  //   setState(() => _isLoading = true);
+
+  //   try {
+  //     // Step 1: Get license and save tokens
+  //     await hitLicenseApiAndSave();
+
+  //     // Step 2: Get client ID
+  //     await gettingClientID();
+
+  //     // Step 3: Check if user already exists
+  //     final userExists = await _checkUserExists();
+  //     if (userExists) {
+  //       return; // Stop if user exists
+  //     }
+
+  //     // Step 4: Create new user
+  //     await _signupCustomer();
+  //   } catch (e) {
+  //     debugPrint('Backend signup failed: $e');
+  //     _showCustomSnackBar(
+  //       '${localizations.signupFailed} ${e.toString()}',
+  //       isError: true,
+  //     );
+  //   } finally {
+  //     setState(() => _isLoading = false);
+  //   }
+  // }
 
   // Main signup handler
   // Main signup handler
@@ -810,6 +1163,7 @@ class _SignUpScreen2State extends State<SignUpScreen2> {
     'en': 'EN',
     'ro': 'RO',
   };
+
   @override
   Widget build(BuildContext context) {
     return Consumer<LocalizationService>(
@@ -821,389 +1175,380 @@ class _SignUpScreen2State extends State<SignUpScreen2> {
                 .languageCode] ??
             'GR';
 
+        // ✅ Keyboard open hai ya nahi check karo
+        final bool isKeyboardOpen =
+            MediaQuery.of(context).viewInsets.bottom > 0;
+
         return Scaffold(
-          body: Stack(
-            children: [
-              // Background image with blur
-              Container(
-                decoration: const BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage("assets/images/auth.jpg"),
-                    fit: BoxFit.cover,
+          resizeToAvoidBottomInset: true,
+          body: GestureDetector(
+            behavior: HitTestBehavior
+                .opaque, // ✅ Transparent areas bhi tap detect karenge
+            onTap: () => FocusScope.of(context).unfocus(), // ✅ Keyboard hide
+            child: Stack(
+              children: [
+                // Background image with blur
+                Container(
+                  decoration: const BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage("assets/images/auth.jpg"),
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
-              ),
-              Container(color: Colors.black.withOpacity(0.3)),
-              SafeArea(
-                child: LayoutBuilder(
-                  builder: (context, constraints) {
-                    return SingleChildScrollView(
-                      padding: EdgeInsets.zero,
-                      child: ConstrainedBox(
-                        constraints: BoxConstraints(
-                          minHeight: constraints.maxHeight,
-                        ),
-                        child: IntrinsicHeight(
-                          child: Column(
-                            children: [
-                              SizedBox(height: 20),
+                Container(color: Colors.black.withOpacity(0.3)),
+                SafeArea(
+                  child: LayoutBuilder(
+                    builder: (context, constraints) {
+                      return SingleChildScrollView(
+                        padding: EdgeInsets.zero,
+                        child: ConstrainedBox(
+                          constraints: BoxConstraints(
+                            minHeight: constraints.maxHeight,
+                          ),
+                          child: IntrinsicHeight(
+                            child: Column(
+                              children: [
+                                SizedBox(height: 20),
 
-                              /// Logo
-                              Center(
-                                child: Image.asset(
-                                  'assets/images/app-logo.png',
-                                  height: 100,
-                                  width: 600,
-                                ),
-                              ),
-
-                              SizedBox(height: 40),
-
-                              /// Language text
-                              Center(
-                                child: Text(
-                                  localizations.chooseLanguage,
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                    color: Colors.white,
-                                    fontFamily: 'NotoSans',
+                                /// Logo
+                                Center(
+                                  child: Image.asset(
+                                    'assets/images/app-logo.png',
+                                    height: isKeyboardOpen
+                                        ? 60
+                                        : 100, // ✅ Keyboard open = smaller logo
+                                    width: 600,
                                   ),
                                 ),
-                              ),
 
-                              SizedBox(height: 10),
+                                SizedBox(
+                                  height: isKeyboardOpen ? 20 : 40,
+                                ), // ✅ Less spacing when keyboard open
+                                // Language Section - Hidden when keyboard open
+                                if (!isKeyboardOpen) ...[
+                                  // ✅ Keyboard open = hide karo
+                                  /// Language text
+                                  Center(
+                                    child: Text(
+                                      localizations.chooseLanguage,
+                                      style: TextStyle(
+                                        fontSize: 20,
+                                        color: Colors.white,
+                                        fontFamily: 'NotoSans',
+                                      ),
+                                    ),
+                                  ),
 
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  _buildLanguageOption('GR'),
-                                  _separator(),
-                                  _buildLanguageOption('en'),
-                                  _separator(),
-                                  _buildLanguageOption('ro'),
-                                ],
-                              ),
-                              SizedBox(height: 30),
+                                  SizedBox(height: 10),
 
-                              /// Yahan Spacer ki jagah Expanded nahi use kar sakte scroll view me.
-                              /// So use: Expanded → REMOVED
-                              /// We use IntrinsicHeight + minHeight constraints.
-                              Spacer(), // <- YE AB SIRF Tab kaam karega jab jagah bachi ho
-                              /// White Card (Bottom)
-                              Container(
-                                width: double.infinity,
-                                margin: EdgeInsets.symmetric(horizontal: 36),
-                                padding: EdgeInsets.all(24),
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(30),
-                                ),
-                                child: Form(
-                                  key: _formKey,
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.min,
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      Center(
-                                        child: Text(
-                                          localizations.signUp,
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 22,
-                                            fontFamily: 'NotoSans',
-                                          ),
-                                        ),
-                                      ),
-                                      const SizedBox(height: 10),
-                                      Center(
-                                        child: Text(
-                                          _phoneVerified
-                                              ? localizations
-                                                    .phoneVerifiedCreating
-                                              : _otpSent
-                                              ? localizations.enterSixDigitCode
-                                              : localizations.createAccount,
-                                          style: TextStyle(
-                                            color: _phoneVerified
-                                                ? Colors.green[600]
-                                                : Colors.grey[700],
-                                            fontSize: 11,
-                                            fontFamily: 'NotoSans',
-                                          ),
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      ),
-                                      const SizedBox(height: 10),
+                                      _buildLanguageOption('GR'),
+                                      _separator(),
+                                      _buildLanguageOption('en'),
+                                      _separator(),
+                                      _buildLanguageOption('ro'),
+                                    ],
+                                  ),
+                                  SizedBox(height: 30),
+                                ],
 
-                                      // Form fields section
-                                      if (!_otpSent) ...[
-                                        // Full Name field
-                                        const SizedBox(height: 6),
-                                        TextFormField(
-                                          controller: fullNameController,
-                                          validator: _validateName,
-                                          decoration: InputDecoration(
-                                            filled: true,
-                                            fillColor: Colors.grey[200],
-                                            hintText:
-                                                localizations.enterFullName,
-                                            hintStyle: TextStyle(
-                                              color: Colors.grey[500],
-                                              fontSize: 13,
-                                            ),
-                                            prefixIcon: Icon(
-                                              Icons.person_outline,
-                                              color: Colors.grey[600],
-                                              size: 20,
-                                            ),
-                                            contentPadding:
-                                                EdgeInsets.symmetric(
-                                                  vertical: 10,
-                                                  horizontal: 12,
-                                                ),
-                                            border: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(12),
-                                              borderSide: BorderSide.none,
-                                            ),
-                                            enabledBorder: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(12),
-                                              borderSide: BorderSide(
-                                                color: Colors.grey[300]!,
-                                              ),
-                                            ),
-                                            focusedBorder: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(12),
-                                              borderSide: BorderSide(
-                                                color: Colors.orange.shade400,
-                                                width: 2,
-                                              ),
-                                            ),
-                                            errorBorder: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(12),
-                                              borderSide: const BorderSide(
-                                                color: Colors.red,
-                                                width: 1,
-                                              ),
-                                            ),
-                                          ),
-                                          style: TextStyle(
-                                            fontSize: 14,
-                                            fontFamily: 'NotoSans',
-                                          ),
-                                        ),
+                                Spacer(),
 
-                                        const SizedBox(height: 12),
-
-                                        // Phone Number field
-                                        IntlPhoneField(
-                                          controller: phoneController,
-                                          decoration: InputDecoration(
-                                            filled: true,
-                                            fillColor: Colors.grey[200],
-                                            hintText: localizations.enterPhone,
-                                            hintStyle: TextStyle(
-                                              color: Colors.grey[500],
-                                              fontSize: 13,
+                                /// White Card (Bottom)
+                                Container(
+                                  width: double.infinity,
+                                  margin: EdgeInsets.symmetric(horizontal: 36),
+                                  padding: EdgeInsets.all(24),
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(30),
+                                  ),
+                                  child: Form(
+                                    key: _formKey,
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Center(
+                                          child: Text(
+                                            localizations.signUp,
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 22,
+                                              fontFamily: 'NotoSans',
                                             ),
-                                            contentPadding:
-                                                EdgeInsets.symmetric(
-                                                  vertical: 10,
-                                                  horizontal: 12,
-                                                ),
-                                            border: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(12),
-                                              borderSide: BorderSide.none,
-                                            ),
-                                            enabledBorder: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(12),
-                                              borderSide: BorderSide(
-                                                color: Colors.grey[300]!,
-                                              ),
-                                            ),
-                                            focusedBorder: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(12),
-                                              borderSide: BorderSide(
-                                                color: Colors.orange.shade400,
-                                                width: 2,
-                                              ),
-                                            ),
-                                            errorBorder: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(12),
-                                              borderSide: const BorderSide(
-                                                color: Colors.red,
-                                                width: 1,
-                                              ),
-                                            ),
-                                          ),
-                                          style: TextStyle(
-                                            fontSize: 14,
-                                            fontFamily: 'NotoSans',
-                                          ),
-                                          initialCountryCode: 'GR',
-                                          dropdownIconPosition:
-                                              IconPosition.trailing,
-                                          flagsButtonPadding: EdgeInsets.only(
-                                            left: 8,
-                                          ),
-                                          showDropdownIcon: true,
-                                          dropdownTextStyle: TextStyle(
-                                            fontSize: 13,
-                                          ),
-                                          onChanged: (phone) {
-                                            setState(() {
-                                              _completePhoneNumber =
-                                                  phone.completeNumber;
-                                              _countryCode = phone.countryCode;
-                                            });
-                                          },
-                                          validator: (phone) {
-                                            if (phone == null ||
-                                                phone.number.isEmpty) {
-                                              return localizations
-                                                  .phoneRequired;
-                                            }
-                                            if (phone.number.length < 7) {
-                                              return localizations
-                                                  .phoneMinLength;
-                                            }
-                                            return null;
-                                          },
-                                        ),
-                                      ] else if (!_phoneVerified) ...[
-                                        // OTP Verification Section
-                                        const SizedBox(height: 6),
-                                        TextFormField(
-                                          controller: otpController,
-                                          validator: _validateOtp,
-                                          keyboardType: TextInputType.number,
-                                          inputFormatters: [
-                                            FilteringTextInputFormatter
-                                                .digitsOnly,
-                                            LengthLimitingTextInputFormatter(6),
-                                          ],
-                                          decoration: InputDecoration(
-                                            filled: true,
-                                            fillColor: Colors.grey[200],
-                                            hintText:
-                                                localizations.enterSixDigitOtp,
-                                            hintStyle: TextStyle(
-                                              color: Colors.grey[500],
-                                              fontSize: 13,
-                                            ),
-                                            prefixIcon: Icon(
-                                              Icons.security,
-                                              color: Colors.grey[600],
-                                              size: 20,
-                                            ),
-                                            contentPadding:
-                                                EdgeInsets.symmetric(
-                                                  vertical: 10,
-                                                  horizontal: 12,
-                                                ),
-                                            border: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(12),
-                                              borderSide: BorderSide.none,
-                                            ),
-                                            enabledBorder: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(12),
-                                              borderSide: BorderSide(
-                                                color: Colors.grey[300]!,
-                                              ),
-                                            ),
-                                            focusedBorder: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(12),
-                                              borderSide: BorderSide(
-                                                color: Colors.orange.shade400,
-                                                width: 2,
-                                              ),
-                                            ),
-                                            errorBorder: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(12),
-                                              borderSide: const BorderSide(
-                                                color: Colors.red,
-                                                width: 1,
-                                              ),
-                                            ),
-                                          ),
-                                          style: TextStyle(
-                                            fontSize: 14,
-                                            fontFamily: 'NotoSans',
                                           ),
                                         ),
                                         const SizedBox(height: 10),
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Flexible(
-                                              child: Text(
-                                                '${localizations.sentTo}: ${phoneController.text}',
-                                                style: TextStyle(
-                                                  color: Colors.grey[600],
-                                                  fontSize: 11,
-                                                  fontFamily: 'NotoSans',
-                                                ),
-                                                overflow: TextOverflow.ellipsis,
-                                              ),
+                                        Center(
+                                          child: Text(
+                                            _phoneVerified
+                                                ? localizations
+                                                      .phoneVerifiedCreating
+                                                : _otpSent
+                                                ? localizations
+                                                      .enterSixDigitCode
+                                                : localizations.createAccount,
+                                            style: TextStyle(
+                                              color: _phoneVerified
+                                                  ? Colors.green[600]
+                                                  : Colors.grey[700],
+                                              fontSize: 11,
+                                              fontFamily: 'NotoSans',
                                             ),
-                                            TextButton(
-                                              onPressed: _canResend
-                                                  ? _resendOtp
-                                                  : null,
-                                              child: Text(
-                                                _canResend
-                                                    ? localizations.resendOtp
-                                                    : '${localizations.resendIn} ${_resendCountdown}s',
-                                                style: TextStyle(
-                                                  color: _canResend
-                                                      ? Colors.orange
-                                                      : Colors.grey,
-                                                  fontSize: 11,
-                                                  fontFamily: 'NotoSans',
-                                                  fontWeight: FontWeight.w500,
-                                                ),
-                                              ),
-                                            ),
-                                          ],
+                                            textAlign: TextAlign.center,
+                                          ),
                                         ),
-                                      ] else ...[
-                                        // Success message when phone verified
-                                        Container(
-                                          padding: const EdgeInsets.all(12),
-                                          decoration: BoxDecoration(
-                                            color: Colors.green[50],
-                                            borderRadius: BorderRadius.circular(
-                                              12,
+                                        const SizedBox(height: 10),
+
+                                        // Form fields section
+                                        if (!_otpSent) ...[
+                                          // Full Name field
+                                          const SizedBox(height: 6),
+                                          TextFormField(
+                                            controller: fullNameController,
+                                            focusNode: _nameFocusNode,
+                                            validator: _validateName,
+                                            decoration: InputDecoration(
+                                              filled: true,
+                                              fillColor: Colors.grey[200],
+                                              hintText:
+                                                  localizations.enterFullName,
+                                              hintStyle: TextStyle(
+                                                color: Colors.grey[500],
+                                                fontSize: 13,
+                                              ),
+                                              prefixIcon: Icon(
+                                                Icons.person_outline,
+                                                color: Colors.grey[600],
+                                                size: 20,
+                                              ),
+                                              contentPadding:
+                                                  EdgeInsets.symmetric(
+                                                    vertical: 10,
+                                                    horizontal: 12,
+                                                  ),
+                                              border: OutlineInputBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(12),
+                                                borderSide: BorderSide.none,
+                                              ),
+                                              enabledBorder: OutlineInputBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(12),
+                                                borderSide: BorderSide(
+                                                  color: Colors.grey[300]!,
+                                                ),
+                                              ),
+                                              focusedBorder: OutlineInputBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(12),
+                                                borderSide: BorderSide(
+                                                  color: Colors.orange.shade400,
+                                                  width: 2,
+                                                ),
+                                              ),
+                                              errorBorder: OutlineInputBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(12),
+                                                borderSide: const BorderSide(
+                                                  color: Colors.red,
+                                                  width: 1,
+                                                ),
+                                              ),
                                             ),
-                                            border: Border.all(
-                                              color: Colors.green[200]!,
+                                            style: TextStyle(
+                                              fontSize: 14,
+                                              fontFamily: 'NotoSans',
                                             ),
                                           ),
-                                          child: Row(
-                                            children: [
-                                              Icon(
-                                                Icons.check_circle,
-                                                color: Colors.green[600],
-                                                size: 18,
+
+                                          const SizedBox(height: 12),
+
+                                          // Phone Number field
+                                          IntlPhoneField(
+                                            controller: phoneController,
+                                            focusNode:
+                                                _phoneFocusNode, // ✅ FIX: _phoneFocusNode use karo
+                                            decoration: InputDecoration(
+                                              filled: true,
+                                              fillColor: Colors.grey[200],
+                                              hintText:
+                                                  localizations.enterPhone,
+                                              hintStyle: TextStyle(
+                                                color: Colors.grey[500],
+                                                fontSize: 13,
                                               ),
-                                              const SizedBox(width: 8),
-                                              Expanded(
+                                              contentPadding:
+                                                  EdgeInsets.symmetric(
+                                                    vertical: 10,
+                                                    horizontal: 12,
+                                                  ),
+                                              border: OutlineInputBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(12),
+                                                borderSide: BorderSide.none,
+                                              ),
+                                              enabledBorder: OutlineInputBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(12),
+                                                borderSide: BorderSide(
+                                                  color: Colors.grey[300]!,
+                                                ),
+                                              ),
+                                              focusedBorder: OutlineInputBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(12),
+                                                borderSide: BorderSide(
+                                                  color: Colors.orange.shade400,
+                                                  width: 2,
+                                                ),
+                                              ),
+                                              errorBorder: OutlineInputBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(12),
+                                                borderSide: const BorderSide(
+                                                  color: Colors.red,
+                                                  width: 1,
+                                                ),
+                                              ),
+                                            ),
+                                            style: TextStyle(
+                                              fontSize: 14,
+                                              fontFamily: 'NotoSans',
+                                            ),
+                                            initialCountryCode: 'GR',
+                                            dropdownIconPosition:
+                                                IconPosition.trailing,
+                                            flagsButtonPadding: EdgeInsets.only(
+                                              left: 8,
+                                            ),
+                                            showDropdownIcon: true,
+                                            dropdownTextStyle: TextStyle(
+                                              fontSize: 13,
+                                            ),
+                                            onChanged: (phone) {
+                                              setState(() {
+                                                _completePhoneNumber =
+                                                    phone.completeNumber;
+                                                _countryCode =
+                                                    phone.countryCode;
+                                              });
+                                            },
+                                            validator: (phone) {
+                                              if (phone == null ||
+                                                  phone.number.isEmpty) {
+                                                return localizations
+                                                    .phoneRequired;
+                                              }
+                                              if (phone.number.length < 7) {
+                                                return localizations
+                                                    .phoneMinLength;
+                                              }
+                                              return null;
+                                            },
+                                          ),
+                                        ] else if (!_phoneVerified) ...[
+                                          // OTP Verification Section
+                                          const SizedBox(height: 6),
+                                          TextFormField(
+                                            controller: otpController,
+                                            focusNode:
+                                                _otpFocusNode, // ✅ FIX: _otpFocusNode use karo
+                                            validator: _validateOtp,
+                                            keyboardType: TextInputType.number,
+                                            inputFormatters: [
+                                              FilteringTextInputFormatter
+                                                  .digitsOnly,
+                                              LengthLimitingTextInputFormatter(
+                                                6,
+                                              ),
+                                            ],
+                                            decoration: InputDecoration(
+                                              filled: true,
+                                              fillColor: Colors.grey[200],
+                                              hintText: localizations
+                                                  .enterSixDigitOtp,
+                                              hintStyle: TextStyle(
+                                                color: Colors.grey[500],
+                                                fontSize: 13,
+                                              ),
+                                              prefixIcon: Icon(
+                                                Icons.security,
+                                                color: Colors.grey[600],
+                                                size: 20,
+                                              ),
+                                              contentPadding:
+                                                  EdgeInsets.symmetric(
+                                                    vertical: 10,
+                                                    horizontal: 12,
+                                                  ),
+                                              border: OutlineInputBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(12),
+                                                borderSide: BorderSide.none,
+                                              ),
+                                              enabledBorder: OutlineInputBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(12),
+                                                borderSide: BorderSide(
+                                                  color: Colors.grey[300]!,
+                                                ),
+                                              ),
+                                              focusedBorder: OutlineInputBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(12),
+                                                borderSide: BorderSide(
+                                                  color: Colors.orange.shade400,
+                                                  width: 2,
+                                                ),
+                                              ),
+                                              errorBorder: OutlineInputBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(12),
+                                                borderSide: const BorderSide(
+                                                  color: Colors.red,
+                                                  width: 1,
+                                                ),
+                                              ),
+                                            ),
+                                            style: TextStyle(
+                                              fontSize: 14,
+                                              fontFamily: 'NotoSans',
+                                            ),
+                                          ),
+                                          const SizedBox(height: 10),
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Flexible(
                                                 child: Text(
-                                                  'localizations.phoneVerifiedCreating',
+                                                  '${localizations.sentTo}: ${phoneController.text}',
                                                   style: TextStyle(
-                                                    color: Colors.green[700],
-                                                    fontSize: 12,
+                                                    color: Colors.grey[600],
+                                                    fontSize: 11,
+                                                    fontFamily: 'NotoSans',
+                                                  ),
+                                                  overflow:
+                                                      TextOverflow.ellipsis,
+                                                ),
+                                              ),
+                                              TextButton(
+                                                onPressed: _canResend
+                                                    ? _resendOtp
+                                                    : null,
+                                                child: Text(
+                                                  _canResend
+                                                      ? localizations.resendOtp
+                                                      : '${localizations.resendIn} ${_resendCountdown}s',
+                                                  style: TextStyle(
+                                                    color: _canResend
+                                                        ? Colors.orange
+                                                        : Colors.grey,
+                                                    fontSize: 11,
                                                     fontFamily: 'NotoSans',
                                                     fontWeight: FontWeight.w500,
                                                   ),
@@ -1211,215 +1556,909 @@ class _SignUpScreen2State extends State<SignUpScreen2> {
                                               ),
                                             ],
                                           ),
-                                        ),
-                                      ],
-
-                                      const SizedBox(height: 12),
-                                      // Terms checkbox
-                                      Row(
-                                        children: [
-                                          Checkbox(
-                                            value: _acceptTerms,
-                                            onChanged: (val) {
-                                              setState(() {
-                                                _acceptTerms = val!;
-                                              });
-                                            },
-                                            activeColor: Color(0xFFEC7103),
-                                          ),
-                                          Expanded(
-                                            child: RichText(
-                                              text: TextSpan(
-                                                style: TextStyle(
-                                                  color: Colors.black87,
-                                                  fontFamily: 'NotoSans',
-                                                ),
-                                                children: [
-                                                  TextSpan(
-                                                    text:
-                                                        '${localizations.iAccept} ',
-                                                  ),
-                                                  TextSpan(
-                                                    text: localizations
-                                                        .termsOfUse,
-                                                    style: TextStyle(
-                                                      color: Color(0xFFEC7103),
-                                                      decoration: TextDecoration
-                                                          .underline,
-                                                    ),
-                                                    recognizer: TapGestureRecognizer()
-                                                      ..onTap = () {
-                                                        Navigator.push(
-                                                          context,
-                                                          MaterialPageRoute(
-                                                            builder: (context) =>
-                                                                TermsConditionsScreen(),
-                                                          ),
-                                                        );
-                                                      },
-                                                  ),
-                                                ],
+                                        ] else ...[
+                                          // Success message when phone verified
+                                          Container(
+                                            padding: const EdgeInsets.all(12),
+                                            decoration: BoxDecoration(
+                                              color: Colors.green[50],
+                                              borderRadius:
+                                                  BorderRadius.circular(12),
+                                              border: Border.all(
+                                                color: Colors.green[200]!,
                                               ),
+                                            ),
+                                            child: Row(
+                                              children: [
+                                                Icon(
+                                                  Icons.check_circle,
+                                                  color: Colors.green[600],
+                                                  size: 18,
+                                                ),
+                                                const SizedBox(width: 8),
+                                                Expanded(
+                                                  child: Text(
+                                                    localizations
+                                                        .phoneVerifiedCreating,
+                                                    style: TextStyle(
+                                                      color: Colors.green[700],
+                                                      fontSize: 12,
+                                                      fontFamily: 'NotoSans',
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
                                             ),
                                           ),
                                         ],
-                                      ),
 
-                                      // Sign in text
-                                      Center(
-                                        child: RichText(
-                                          text: TextSpan(
-                                            style: TextStyle(
-                                              color: Colors.black87,
-                                              fontFamily: 'NotoSans',
-                                              fontSize: 12,
+                                        const SizedBox(height: 12),
+                                        // Terms checkbox
+                                        Row(
+                                          children: [
+                                            Checkbox(
+                                              value: _acceptTerms,
+                                              onChanged: (val) {
+                                                setState(() {
+                                                  _acceptTerms = val!;
+                                                });
+                                              },
+                                              activeColor: Color(0xFFEC7103),
                                             ),
-                                            children: [
-                                              TextSpan(
-                                                text:
-                                                    '${localizations.haveAccount} ',
-                                              ),
-                                              TextSpan(
-                                                text: localizations.signIn,
-                                                style: TextStyle(
-                                                  color: Color(0xFFEC7103),
-                                                  fontWeight: FontWeight.bold,
-                                                  decoration:
-                                                      TextDecoration.underline,
-                                                  fontSize: 14,
-                                                ),
-                                                recognizer:
-                                                    TapGestureRecognizer()
-                                                      ..onTap = () {
-                                                        Navigator.push(
-                                                          context,
-                                                          MaterialPageRoute(
-                                                            builder: (context) =>
-                                                                SignInScreen(),
-                                                          ),
-                                                        );
-                                                      },
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-
-                                      const SizedBox(height: 30),
-
-                                      // Sign Up button - Centered
-                                      Center(
-                                        child: SizedBox(
-                                          width: double.infinity,
-                                          child: ElevatedButton(
-                                            onPressed:
-                                                (_isLoading ||
-                                                    _isCheckingUser ||
-                                                    _isVerifyingOtp)
-                                                ? null
-                                                : _handleSignup,
-                                            style: ElevatedButton.styleFrom(
-                                              backgroundColor: const Color(
-                                                0xFFEC7103,
-                                              ),
-                                              foregroundColor: Colors.white,
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                    vertical: 16,
+                                            Expanded(
+                                              child: RichText(
+                                                text: TextSpan(
+                                                  style: TextStyle(
+                                                    color: Colors.black87,
+                                                    fontFamily: 'NotoSans',
                                                   ),
-                                              shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(25),
-                                              ),
-                                              elevation: 2,
-                                            ),
-                                            child:
-                                                (_isLoading ||
-                                                    _isCheckingUser ||
-                                                    _isVerifyingOtp)
-                                                ? Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .center,
-                                                    children: [
-                                                      const SizedBox(
-                                                        width: 20,
-                                                        height: 20,
-                                                        child: CircularProgressIndicator(
-                                                          strokeWidth: 2,
-                                                          valueColor:
-                                                              AlwaysStoppedAnimation<
-                                                                Color
-                                                              >(Colors.white),
-                                                        ),
-                                                      ),
-                                                      const SizedBox(width: 12),
-                                                      Text(
-                                                        _isCheckingUser
-                                                            ? localizations
-                                                                  .checkingUser
-                                                            : _isVerifyingOtp
-                                                            ? localizations
-                                                                  .verifyingOtp
-                                                            : !_otpSent
-                                                            ? localizations
-                                                                  .sendingOtp
-                                                            : _phoneVerified
-                                                            ? localizations
-                                                                  .creatingAccount
-                                                            : localizations
-                                                                  .verifyingOtp,
-                                                        style: const TextStyle(
-                                                          fontWeight:
-                                                              FontWeight.w600,
-                                                          fontFamily:
-                                                              'NotoSans',
-                                                          fontSize: 16,
-                                                        ),
-                                                        textAlign:
-                                                            TextAlign.center,
-                                                      ),
-                                                    ],
-                                                  )
-                                                : Text(
-                                                    !_otpSent
-                                                        ? localizations.sendOtp
-                                                        : !_phoneVerified
-                                                        ? localizations
-                                                              .verifyOtp
-                                                        : localizations
-                                                              .createAccount,
-                                                    style: const TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.w600,
-                                                      fontFamily: 'NotoSans',
-                                                      fontSize: 16,
+                                                  children: [
+                                                    TextSpan(
+                                                      text:
+                                                          '${localizations.iAccept} ',
                                                     ),
-                                                    textAlign: TextAlign.center,
+                                                    TextSpan(
+                                                      text: localizations
+                                                          .termsOfUse,
+                                                      style: TextStyle(
+                                                        color: Color(
+                                                          0xFFEC7103,
+                                                        ),
+                                                        decoration:
+                                                            TextDecoration
+                                                                .underline,
+                                                      ),
+                                                      recognizer:
+                                                          TapGestureRecognizer()
+                                                            ..onTap = () {
+                                                              Navigator.push(
+                                                                context,
+                                                                MaterialPageRoute(
+                                                                  builder:
+                                                                      (
+                                                                        context,
+                                                                      ) =>
+                                                                          TermsConditionsScreen(),
+                                                                ),
+                                                              );
+                                                            },
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+
+                                        // Sign in text
+                                        Center(
+                                          child: RichText(
+                                            text: TextSpan(
+                                              style: TextStyle(
+                                                color: Colors.black87,
+                                                fontFamily: 'NotoSans',
+                                                fontSize: 12,
+                                              ),
+                                              children: [
+                                                TextSpan(
+                                                  text:
+                                                      '${localizations.haveAccount} ',
+                                                ),
+                                                TextSpan(
+                                                  text: localizations.signIn,
+                                                  style: TextStyle(
+                                                    color: Color(0xFFEC7103),
+                                                    fontWeight: FontWeight.bold,
+                                                    decoration: TextDecoration
+                                                        .underline,
+                                                    fontSize: 14,
                                                   ),
+                                                  recognizer: TapGestureRecognizer()
+                                                    ..onTap = () {
+                                                      Navigator.push(
+                                                        context,
+                                                        MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              SignInScreen(),
+                                                        ),
+                                                      );
+                                                    },
+                                                ),
+                                              ],
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                    ],
+
+                                        const SizedBox(height: 30),
+
+                                        // Sign Up button - Centered
+                                        Center(
+                                          child: SizedBox(
+                                            width: double.infinity,
+                                            child: ElevatedButton(
+                                              onPressed:
+                                                  (_isLoading ||
+                                                      _isCheckingUser ||
+                                                      _isVerifyingOtp)
+                                                  ? null
+                                                  : _handleSignup,
+                                              style: ElevatedButton.styleFrom(
+                                                backgroundColor: const Color(
+                                                  0xFFEC7103,
+                                                ),
+                                                foregroundColor: Colors.white,
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                      vertical: 16,
+                                                    ),
+                                                shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(25),
+                                                ),
+                                                elevation: 2,
+                                              ),
+                                              child:
+                                                  (_isLoading ||
+                                                      _isCheckingUser ||
+                                                      _isVerifyingOtp)
+                                                  ? Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .center,
+                                                      children: [
+                                                        const SizedBox(
+                                                          width: 20,
+                                                          height: 20,
+                                                          child: CircularProgressIndicator(
+                                                            strokeWidth: 2,
+                                                            valueColor:
+                                                                AlwaysStoppedAnimation<
+                                                                  Color
+                                                                >(Colors.white),
+                                                          ),
+                                                        ),
+                                                        const SizedBox(
+                                                          width: 12,
+                                                        ),
+                                                        Text(
+                                                          _isCheckingUser
+                                                              ? localizations
+                                                                    .checkingUser
+                                                              : _isVerifyingOtp
+                                                              ? localizations
+                                                                    .verifyingOtp
+                                                              : !_otpSent
+                                                              ? localizations
+                                                                    .sendingOtp
+                                                              : _phoneVerified
+                                                              ? localizations
+                                                                    .creatingAccount
+                                                              : localizations
+                                                                    .verifyingOtp,
+                                                          style:
+                                                              const TextStyle(
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600,
+                                                                fontFamily:
+                                                                    'NotoSans',
+                                                                fontSize: 16,
+                                                              ),
+                                                          textAlign:
+                                                              TextAlign.center,
+                                                        ),
+                                                      ],
+                                                    )
+                                                  : Text(
+                                                      !_otpSent
+                                                          ? localizations
+                                                                .sendOtp
+                                                          : !_phoneVerified
+                                                          ? localizations
+                                                                .verifyOtp
+                                                          : localizations
+                                                                .createAccount,
+                                                      style: const TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                        fontFamily: 'NotoSans',
+                                                        fontSize: 16,
+                                                      ),
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                    ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
-                              ),
 
-                              const SizedBox(height: 30),
-                            ],
+                                const SizedBox(height: 30),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                    );
-                  },
+                      );
+                    },
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         );
       },
     );
   }
+  // @override
+  // Widget build(BuildContext context) {
+  //   return Consumer<LocalizationService>(
+  //     builder: (context, localizationService, child) {
+  //       final localizations = AppLocalizations.of(context)!;
+  //       final currentDisplayLanguage =
+  //           displayLanguageMap[localizationService
+  //               .currentLocale
+  //               .languageCode] ??
+  //           'GR';
+
+  //       return Scaffold(
+  //         resizeToAvoidBottomInset: true,
+  //         body: GestureDetector(
+  //           behavior: HitTestBehavior
+  //               .opaque, // ✅ Transparent areas bhi tap detect karenge
+  //           onTap: () => FocusScope.of(context).unfocus(), // ✅ Keyboard hide
+  //           child: Stack(
+  //             children: [
+  //               // Background image with blur
+  //               Container(
+  //                 decoration: const BoxDecoration(
+  //                   image: DecorationImage(
+  //                     image: AssetImage("assets/images/auth.jpg"),
+  //                     fit: BoxFit.cover,
+  //                   ),
+  //                 ),
+  //               ),
+  //               Container(color: Colors.black.withOpacity(0.3)),
+  //               SafeArea(
+  //                 // child: GestureDetector(
+  //                 //   onTap: () =>
+  //                 //       FocusScope.of(context).unfocus(), // ✅ YE ADD KARO
+  //                 child: LayoutBuilder(
+  //                   builder: (context, constraints) {
+  //                     return SingleChildScrollView(
+  //                       padding: EdgeInsets.zero,
+  //                       child: ConstrainedBox(
+  //                         constraints: BoxConstraints(
+  //                           minHeight: constraints.maxHeight,
+  //                         ),
+  //                         child: IntrinsicHeight(
+  //                           child: Column(
+  //                             children: [
+  //                               SizedBox(height: 20),
+
+  //                               /// Logo
+  //                               Center(
+  //                                 child: Image.asset(
+  //                                   'assets/images/app-logo.png',
+  //                                   height: 100,
+  //                                   width: 600,
+  //                                 ),
+  //                               ),
+
+  //                               SizedBox(height: 40),
+
+  //                               /// Language text
+  //                               Center(
+  //                                 child: Text(
+  //                                   localizations.chooseLanguage,
+  //                                   style: TextStyle(
+  //                                     fontSize: 20,
+  //                                     color: Colors.white,
+  //                                     fontFamily: 'NotoSans',
+  //                                   ),
+  //                                 ),
+  //                               ),
+
+  //                               SizedBox(height: 10),
+
+  //                               Row(
+  //                                 mainAxisAlignment: MainAxisAlignment.center,
+  //                                 children: [
+  //                                   _buildLanguageOption('GR'),
+  //                                   _separator(),
+  //                                   _buildLanguageOption('en'),
+  //                                   _separator(),
+  //                                   _buildLanguageOption('ro'),
+  //                                 ],
+  //                               ),
+  //                               SizedBox(height: 30),
+
+  //                               /// Yahan Spacer ki jagah Expanded nahi use kar sakte scroll view me.
+  //                               /// So use: Expanded → REMOVED
+  //                               /// We use IntrinsicHeight + minHeight constraints.
+  //                               Spacer(), // <- YE AB SIRF Tab kaam karega jab jagah bachi ho
+  //                               /// White Card (Bottom)
+  //                               Container(
+  //                                 width: double.infinity,
+  //                                 margin: EdgeInsets.symmetric(horizontal: 36),
+  //                                 padding: EdgeInsets.all(24),
+  //                                 decoration: BoxDecoration(
+  //                                   color: Colors.white,
+  //                                   borderRadius: BorderRadius.circular(30),
+  //                                 ),
+  //                                 child: Form(
+  //                                   key: _formKey,
+  //                                   child: Column(
+  //                                     mainAxisSize: MainAxisSize.min,
+  //                                     children: [
+  //                                       Center(
+  //                                         child: Text(
+  //                                           localizations.signUp,
+  //                                           style: TextStyle(
+  //                                             fontWeight: FontWeight.bold,
+  //                                             fontSize: 22,
+  //                                             fontFamily: 'NotoSans',
+  //                                           ),
+  //                                         ),
+  //                                       ),
+  //                                       const SizedBox(height: 10),
+  //                                       Center(
+  //                                         child: Text(
+  //                                           _phoneVerified
+  //                                               ? localizations
+  //                                                     .phoneVerifiedCreating
+  //                                               : _otpSent
+  //                                               ? localizations
+  //                                                     .enterSixDigitCode
+  //                                               : localizations.createAccount,
+  //                                           style: TextStyle(
+  //                                             color: _phoneVerified
+  //                                                 ? Colors.green[600]
+  //                                                 : Colors.grey[700],
+  //                                             fontSize: 11,
+  //                                             fontFamily: 'NotoSans',
+  //                                           ),
+  //                                           textAlign: TextAlign.center,
+  //                                         ),
+  //                                       ),
+  //                                       const SizedBox(height: 10),
+
+  //                                       // Form fields section
+  //                                       if (!_otpSent) ...[
+  //                                         // Full Name field
+  //                                         const SizedBox(height: 6),
+  //                                         TextFormField(
+  //                                           controller: fullNameController,
+  //                                           focusNode:
+  //                                               _nameFocusNode, // ✅ YE ADD KARO
+
+  //                                           validator: _validateName,
+  //                                           decoration: InputDecoration(
+  //                                             filled: true,
+  //                                             fillColor: Colors.grey[200],
+  //                                             hintText:
+  //                                                 localizations.enterFullName,
+  //                                             hintStyle: TextStyle(
+  //                                               color: Colors.grey[500],
+  //                                               fontSize: 13,
+  //                                             ),
+  //                                             prefixIcon: Icon(
+  //                                               Icons.person_outline,
+  //                                               color: Colors.grey[600],
+  //                                               size: 20,
+  //                                             ),
+  //                                             contentPadding:
+  //                                                 EdgeInsets.symmetric(
+  //                                                   vertical: 10,
+  //                                                   horizontal: 12,
+  //                                                 ),
+  //                                             border: OutlineInputBorder(
+  //                                               borderRadius:
+  //                                                   BorderRadius.circular(12),
+  //                                               borderSide: BorderSide.none,
+  //                                             ),
+  //                                             enabledBorder: OutlineInputBorder(
+  //                                               borderRadius:
+  //                                                   BorderRadius.circular(12),
+  //                                               borderSide: BorderSide(
+  //                                                 color: Colors.grey[300]!,
+  //                                               ),
+  //                                             ),
+  //                                             focusedBorder: OutlineInputBorder(
+  //                                               borderRadius:
+  //                                                   BorderRadius.circular(12),
+  //                                               borderSide: BorderSide(
+  //                                                 color: Colors.orange.shade400,
+  //                                                 width: 2,
+  //                                               ),
+  //                                             ),
+  //                                             errorBorder: OutlineInputBorder(
+  //                                               borderRadius:
+  //                                                   BorderRadius.circular(12),
+  //                                               borderSide: const BorderSide(
+  //                                                 color: Colors.red,
+  //                                                 width: 1,
+  //                                               ),
+  //                                             ),
+  //                                           ),
+  //                                           style: TextStyle(
+  //                                             fontSize: 14,
+  //                                             fontFamily: 'NotoSans',
+  //                                           ),
+  //                                         ),
+
+  //                                         const SizedBox(height: 12),
+
+  //                                         // Phone Number field
+  //                                         IntlPhoneField(
+  //                                           controller: phoneController,
+  //                                           focusNode:
+  //                                               _nameFocusNode, // ✅ YE ADD KARO
+
+  //                                           decoration: InputDecoration(
+  //                                             filled: true,
+  //                                             fillColor: Colors.grey[200],
+  //                                             hintText:
+  //                                                 localizations.enterPhone,
+  //                                             hintStyle: TextStyle(
+  //                                               color: Colors.grey[500],
+  //                                               fontSize: 13,
+  //                                             ),
+  //                                             contentPadding:
+  //                                                 EdgeInsets.symmetric(
+  //                                                   vertical: 10,
+  //                                                   horizontal: 12,
+  //                                                 ),
+  //                                             border: OutlineInputBorder(
+  //                                               borderRadius:
+  //                                                   BorderRadius.circular(12),
+  //                                               borderSide: BorderSide.none,
+  //                                             ),
+  //                                             enabledBorder: OutlineInputBorder(
+  //                                               borderRadius:
+  //                                                   BorderRadius.circular(12),
+  //                                               borderSide: BorderSide(
+  //                                                 color: Colors.grey[300]!,
+  //                                               ),
+  //                                             ),
+  //                                             focusedBorder: OutlineInputBorder(
+  //                                               borderRadius:
+  //                                                   BorderRadius.circular(12),
+  //                                               borderSide: BorderSide(
+  //                                                 color: Colors.orange.shade400,
+  //                                                 width: 2,
+  //                                               ),
+  //                                             ),
+  //                                             errorBorder: OutlineInputBorder(
+  //                                               borderRadius:
+  //                                                   BorderRadius.circular(12),
+  //                                               borderSide: const BorderSide(
+  //                                                 color: Colors.red,
+  //                                                 width: 1,
+  //                                               ),
+  //                                             ),
+  //                                           ),
+  //                                           style: TextStyle(
+  //                                             fontSize: 14,
+  //                                             fontFamily: 'NotoSans',
+  //                                           ),
+  //                                           initialCountryCode: 'GR',
+  //                                           dropdownIconPosition:
+  //                                               IconPosition.trailing,
+  //                                           flagsButtonPadding: EdgeInsets.only(
+  //                                             left: 8,
+  //                                           ),
+  //                                           showDropdownIcon: true,
+  //                                           dropdownTextStyle: TextStyle(
+  //                                             fontSize: 13,
+  //                                           ),
+  //                                           onChanged: (phone) {
+  //                                             setState(() {
+  //                                               _completePhoneNumber =
+  //                                                   phone.completeNumber;
+  //                                               _countryCode =
+  //                                                   phone.countryCode;
+  //                                             });
+  //                                           },
+  //                                           validator: (phone) {
+  //                                             if (phone == null ||
+  //                                                 phone.number.isEmpty) {
+  //                                               return localizations
+  //                                                   .phoneRequired;
+  //                                             }
+  //                                             if (phone.number.length < 7) {
+  //                                               return localizations
+  //                                                   .phoneMinLength;
+  //                                             }
+  //                                             return null;
+  //                                           },
+  //                                         ),
+  //                                       ] else if (!_phoneVerified) ...[
+  //                                         // OTP Verification Section
+  //                                         const SizedBox(height: 6),
+  //                                         TextFormField(
+  //                                           controller: otpController,
+  //                                           focusNode:
+  //                                               _nameFocusNode, // ✅ YE ADD KARO
+
+  //                                           validator: _validateOtp,
+  //                                           keyboardType: TextInputType.number,
+  //                                           inputFormatters: [
+  //                                             FilteringTextInputFormatter
+  //                                                 .digitsOnly,
+  //                                             LengthLimitingTextInputFormatter(
+  //                                               6,
+  //                                             ),
+  //                                           ],
+  //                                           decoration: InputDecoration(
+  //                                             filled: true,
+  //                                             fillColor: Colors.grey[200],
+  //                                             hintText: localizations
+  //                                                 .enterSixDigitOtp,
+  //                                             hintStyle: TextStyle(
+  //                                               color: Colors.grey[500],
+  //                                               fontSize: 13,
+  //                                             ),
+  //                                             prefixIcon: Icon(
+  //                                               Icons.security,
+  //                                               color: Colors.grey[600],
+  //                                               size: 20,
+  //                                             ),
+  //                                             contentPadding:
+  //                                                 EdgeInsets.symmetric(
+  //                                                   vertical: 10,
+  //                                                   horizontal: 12,
+  //                                                 ),
+  //                                             border: OutlineInputBorder(
+  //                                               borderRadius:
+  //                                                   BorderRadius.circular(12),
+  //                                               borderSide: BorderSide.none,
+  //                                             ),
+  //                                             enabledBorder: OutlineInputBorder(
+  //                                               borderRadius:
+  //                                                   BorderRadius.circular(12),
+  //                                               borderSide: BorderSide(
+  //                                                 color: Colors.grey[300]!,
+  //                                               ),
+  //                                             ),
+  //                                             focusedBorder: OutlineInputBorder(
+  //                                               borderRadius:
+  //                                                   BorderRadius.circular(12),
+  //                                               borderSide: BorderSide(
+  //                                                 color: Colors.orange.shade400,
+  //                                                 width: 2,
+  //                                               ),
+  //                                             ),
+  //                                             errorBorder: OutlineInputBorder(
+  //                                               borderRadius:
+  //                                                   BorderRadius.circular(12),
+  //                                               borderSide: const BorderSide(
+  //                                                 color: Colors.red,
+  //                                                 width: 1,
+  //                                               ),
+  //                                             ),
+  //                                           ),
+  //                                           style: TextStyle(
+  //                                             fontSize: 14,
+  //                                             fontFamily: 'NotoSans',
+  //                                           ),
+  //                                         ),
+  //                                         const SizedBox(height: 10),
+  //                                         Row(
+  //                                           mainAxisAlignment:
+  //                                               MainAxisAlignment.spaceBetween,
+  //                                           children: [
+  //                                             Flexible(
+  //                                               child: Text(
+  //                                                 '${localizations.sentTo}: ${phoneController.text}',
+  //                                                 style: TextStyle(
+  //                                                   color: Colors.grey[600],
+  //                                                   fontSize: 11,
+  //                                                   fontFamily: 'NotoSans',
+  //                                                 ),
+  //                                                 overflow:
+  //                                                     TextOverflow.ellipsis,
+  //                                               ),
+  //                                             ),
+  //                                             TextButton(
+  //                                               onPressed: _canResend
+  //                                                   ? _resendOtp
+  //                                                   : null,
+  //                                               child: Text(
+  //                                                 _canResend
+  //                                                     ? localizations.resendOtp
+  //                                                     : '${localizations.resendIn} ${_resendCountdown}s',
+  //                                                 style: TextStyle(
+  //                                                   color: _canResend
+  //                                                       ? Colors.orange
+  //                                                       : Colors.grey,
+  //                                                   fontSize: 11,
+  //                                                   fontFamily: 'NotoSans',
+  //                                                   fontWeight: FontWeight.w500,
+  //                                                 ),
+  //                                               ),
+  //                                             ),
+  //                                           ],
+  //                                         ),
+  //                                       ] else ...[
+  //                                         // Success message when phone verified
+  //                                         Container(
+  //                                           padding: const EdgeInsets.all(12),
+  //                                           decoration: BoxDecoration(
+  //                                             color: Colors.green[50],
+  //                                             borderRadius:
+  //                                                 BorderRadius.circular(12),
+  //                                             border: Border.all(
+  //                                               color: Colors.green[200]!,
+  //                                             ),
+  //                                           ),
+  //                                           child: Row(
+  //                                             children: [
+  //                                               Icon(
+  //                                                 Icons.check_circle,
+  //                                                 color: Colors.green[600],
+  //                                                 size: 18,
+  //                                               ),
+  //                                               const SizedBox(width: 8),
+  //                                               Expanded(
+  //                                                 child: Text(
+  //                                                   'localizations.phoneVerifiedCreating',
+  //                                                   style: TextStyle(
+  //                                                     color: Colors.green[700],
+  //                                                     fontSize: 12,
+  //                                                     fontFamily: 'NotoSans',
+  //                                                     fontWeight:
+  //                                                         FontWeight.w500,
+  //                                                   ),
+  //                                                 ),
+  //                                               ),
+  //                                             ],
+  //                                           ),
+  //                                         ),
+  //                                       ],
+
+  //                                       const SizedBox(height: 12),
+  //                                       // Terms checkbox
+  //                                       Row(
+  //                                         children: [
+  //                                           Checkbox(
+  //                                             value: _acceptTerms,
+  //                                             onChanged: (val) {
+  //                                               setState(() {
+  //                                                 _acceptTerms = val!;
+  //                                               });
+  //                                             },
+  //                                             activeColor: Color(0xFFEC7103),
+  //                                           ),
+  //                                           Expanded(
+  //                                             child: RichText(
+  //                                               text: TextSpan(
+  //                                                 style: TextStyle(
+  //                                                   color: Colors.black87,
+  //                                                   fontFamily: 'NotoSans',
+  //                                                 ),
+  //                                                 children: [
+  //                                                   TextSpan(
+  //                                                     text:
+  //                                                         '${localizations.iAccept} ',
+  //                                                   ),
+  //                                                   TextSpan(
+  //                                                     text: localizations
+  //                                                         .termsOfUse,
+  //                                                     style: TextStyle(
+  //                                                       color: Color(
+  //                                                         0xFFEC7103,
+  //                                                       ),
+  //                                                       decoration:
+  //                                                           TextDecoration
+  //                                                               .underline,
+  //                                                     ),
+  //                                                     recognizer:
+  //                                                         TapGestureRecognizer()
+  //                                                           ..onTap = () {
+  //                                                             Navigator.push(
+  //                                                               context,
+  //                                                               MaterialPageRoute(
+  //                                                                 builder:
+  //                                                                     (
+  //                                                                       context,
+  //                                                                     ) =>
+  //                                                                         TermsConditionsScreen(),
+  //                                                               ),
+  //                                                             );
+  //                                                           },
+  //                                                   ),
+  //                                                 ],
+  //                                               ),
+  //                                             ),
+  //                                           ),
+  //                                         ],
+  //                                       ),
+
+  //                                       // Sign in text
+  //                                       Center(
+  //                                         child: RichText(
+  //                                           text: TextSpan(
+  //                                             style: TextStyle(
+  //                                               color: Colors.black87,
+  //                                               fontFamily: 'NotoSans',
+  //                                               fontSize: 12,
+  //                                             ),
+  //                                             children: [
+  //                                               TextSpan(
+  //                                                 text:
+  //                                                     '${localizations.haveAccount} ',
+  //                                               ),
+  //                                               TextSpan(
+  //                                                 text: localizations.signIn,
+  //                                                 style: TextStyle(
+  //                                                   color: Color(0xFFEC7103),
+  //                                                   fontWeight: FontWeight.bold,
+  //                                                   decoration: TextDecoration
+  //                                                       .underline,
+  //                                                   fontSize: 14,
+  //                                                 ),
+  //                                                 recognizer: TapGestureRecognizer()
+  //                                                   ..onTap = () {
+  //                                                     Navigator.push(
+  //                                                       context,
+  //                                                       MaterialPageRoute(
+  //                                                         builder: (context) =>
+  //                                                             SignInScreen(),
+  //                                                       ),
+  //                                                     );
+  //                                                   },
+  //                                               ),
+  //                                             ],
+  //                                           ),
+  //                                         ),
+  //                                       ),
+
+  //                                       const SizedBox(height: 30),
+
+  //                                       // Sign Up button - Centered
+  //                                       Center(
+  //                                         child: SizedBox(
+  //                                           width: double.infinity,
+  //                                           child: ElevatedButton(
+  //                                             onPressed:
+  //                                                 (_isLoading ||
+  //                                                     _isCheckingUser ||
+  //                                                     _isVerifyingOtp)
+  //                                                 ? null
+  //                                                 : _handleSignup,
+  //                                             style: ElevatedButton.styleFrom(
+  //                                               backgroundColor: const Color(
+  //                                                 0xFFEC7103,
+  //                                               ),
+  //                                               foregroundColor: Colors.white,
+  //                                               padding:
+  //                                                   const EdgeInsets.symmetric(
+  //                                                     vertical: 16,
+  //                                                   ),
+  //                                               shape: RoundedRectangleBorder(
+  //                                                 borderRadius:
+  //                                                     BorderRadius.circular(25),
+  //                                               ),
+  //                                               elevation: 2,
+  //                                             ),
+  //                                             child:
+  //                                                 (_isLoading ||
+  //                                                     _isCheckingUser ||
+  //                                                     _isVerifyingOtp)
+  //                                                 ? Row(
+  //                                                     mainAxisAlignment:
+  //                                                         MainAxisAlignment
+  //                                                             .center,
+  //                                                     children: [
+  //                                                       const SizedBox(
+  //                                                         width: 20,
+  //                                                         height: 20,
+  //                                                         child: CircularProgressIndicator(
+  //                                                           strokeWidth: 2,
+  //                                                           valueColor:
+  //                                                               AlwaysStoppedAnimation<
+  //                                                                 Color
+  //                                                               >(Colors.white),
+  //                                                         ),
+  //                                                       ),
+  //                                                       const SizedBox(
+  //                                                         width: 12,
+  //                                                       ),
+  //                                                       Text(
+  //                                                         _isCheckingUser
+  //                                                             ? localizations
+  //                                                                   .checkingUser
+  //                                                             : _isVerifyingOtp
+  //                                                             ? localizations
+  //                                                                   .verifyingOtp
+  //                                                             : !_otpSent
+  //                                                             ? localizations
+  //                                                                   .sendingOtp
+  //                                                             : _phoneVerified
+  //                                                             ? localizations
+  //                                                                   .creatingAccount
+  //                                                             : localizations
+  //                                                                   .verifyingOtp,
+  //                                                         style:
+  //                                                             const TextStyle(
+  //                                                               fontWeight:
+  //                                                                   FontWeight
+  //                                                                       .w600,
+  //                                                               fontFamily:
+  //                                                                   'NotoSans',
+  //                                                               fontSize: 16,
+  //                                                             ),
+  //                                                         textAlign:
+  //                                                             TextAlign.center,
+  //                                                       ),
+  //                                                     ],
+  //                                                   )
+  //                                                 : Text(
+  //                                                     !_otpSent
+  //                                                         ? localizations
+  //                                                               .sendOtp
+  //                                                         : !_phoneVerified
+  //                                                         ? localizations
+  //                                                               .verifyOtp
+  //                                                         : localizations
+  //                                                               .createAccount,
+  //                                                     style: const TextStyle(
+  //                                                       fontWeight:
+  //                                                           FontWeight.w600,
+  //                                                       fontFamily: 'NotoSans',
+  //                                                       fontSize: 16,
+  //                                                     ),
+  //                                                     textAlign:
+  //                                                         TextAlign.center,
+  //                                                   ),
+  //                                           ),
+  //                                         ),
+  //                                       ),
+  //                                     ],
+  //                                   ),
+  //                                 ),
+  //                               ),
+
+  //                               const SizedBox(height: 30),
+  //                             ],
+  //                           ),
+  //                         ),
+  //                       ),
+  //                     );
+  //                   },
+  //                 ),
+  //               ),
+  //             ],
+  //           ),
+  //         ),
+  //       );
+  //     },
+  //   );
+  // }
 
   Widget _buildFieldLabel(String text) {
     return Padding(

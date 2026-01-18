@@ -69,7 +69,8 @@ class _ScanReceiptScreenState extends State<ScanReceiptScreen>
 
   /// Checks if receipt exists in the system using scanned barcode
   Future<bool> checkReceipt(String scannedFinCode) async {
-        final localizations = AppLocalizations.of(context)!;
+    final localizations = AppLocalizations.of(context)!;
+print("chal gaya kutta ");
 
     try {
       final localizations = AppLocalizations.of(context)!;
@@ -95,18 +96,25 @@ class _ScanReceiptScreenState extends State<ScanReceiptScreen>
       );
 
       final response = await _makeApiCall(uri, requestBody);
+print("9075 ayaaaa  $response");
+print("API RESPONSE BODY: ${response.body}");
 
       if (response.statusCode == 200) {
         return await _processReceiptResponse(response);
       } else {
         _showErrorMessage(
-          localizations.failedToCheckReceiptCode.replaceFirst('%s', response.statusCode.toString()),
+          localizations.failedToCheckReceiptCode.replaceFirst(
+            '%s',
+            response.statusCode.toString(),
+          ),
         );
         return false;
       }
     } catch (e) {
       debugPrint('❗ Exception in checkReceipt(): $e');
-      _showErrorMessage(localizations.errorCheckingReceipt.replaceFirst('%s', e.toString()));
+      _showErrorMessage(
+        localizations.errorCheckingReceipt.replaceFirst('%s', e.toString()),
+      );
       return false;
     }
   }
@@ -142,24 +150,42 @@ class _ScanReceiptScreenState extends State<ScanReceiptScreen>
   }
 
   /// Builds request body for receipt check
-  Map<String, dynamic> _buildReceiptCheckRequest({
-    required String clientID,
-    required String scannedFinCode,
-    required int fiscalYear,
-    required String trdr,
-  }) {
-    return {
-      "service": "getBrowserInfo",
-      "clientID": clientID,
-      "appId": "1001",
-      "OBJECT": "SALDOC",
-      "LIST": "",
-      "VERSION": 2,
-      "LIMIT": 1,
-      "FILTERS":
-          "SALDOC.FINCODE='$scannedFinCode'&SALDOC.FISCPRD=$fiscalYear&SALDOC.TRDR=$trdr",
-    };
-  }
+  
+/// Builds request body for receipt check
+Map<String, dynamic> _buildReceiptCheckRequest({
+  required String clientID,
+  required String scannedFinCode,
+  required int fiscalYear,
+  required String trdr,
+}) {
+  return {
+    "service": "SqlData",
+    "clientID": clientID,
+    "appId": "1001",
+    "SqlName": "9705",
+    "findoc": int.parse(scannedFinCode), // Scanned number  directly use in
+  };
+}
+
+
+  // Map<String, dynamic> _buildReceiptCheckRequest({
+  //   required String clientID,
+  //   required String scannedFinCode,
+  //   required int fiscalYear,
+  //   required String trdr,
+  // }) {
+  //   return {
+  //     "service": "getBrowserInfo",
+  //     "clientID": clientID,
+  //     "appId": "1001",
+  //     "OBJECT": "SALDOC",
+  //     "LIST": "",
+  //     "VERSION": 2,
+  //     "LIMIT": 1,
+  //     "FILTERS":
+  //         "SALDOC.FINCODE='$scannedFinCode'&SALDOC.FISCPRD=$fiscalYear&SALDOC.TRDR=$trdr",
+  //   };
+  // }
 
   /// Makes HTTP POST request to API
   Future<http.Response> _makeApiCall(Uri uri, Map<String, dynamic> body) async {
@@ -171,33 +197,62 @@ class _ScanReceiptScreenState extends State<ScanReceiptScreen>
   }
 
   /// Processes the API response for receipt check
-  Future<bool> _processReceiptResponse(http.Response response) async {
-
-    final localizations = AppLocalizations.of(context)!;
-    final data = jsonDecode(response.body);
-    final totalCount = data['totalcount'] ?? 0;
-
-    if (totalCount == 0) {
-      _showErrorMessage(localizations.noReceiptFound);
-      return false;
-    }
-
-    final rows = data['rows'];
-    final receiptRow = rows[0];
-    final String rawFindocKey = receiptRow[0];
-    final String receiptAmount = receiptRow[7];
-    final String findocID = rawFindocKey.split(';')[1];
-
-    debugPrint('✅ Receipt exists. FINDOC: $findocID, Points: $receiptAmount');
-
-    return await setBonusToReceipt(
-      findocID: findocID,
-      cardPoints: receiptAmount,
-    );
+  /// Processes the API response for receipt check
+/// Processes the API response for receipt check
+Future<bool> _processReceiptResponse(http.Response response) async {
+  final localizations = AppLocalizations.of(context)!;
+  final data = jsonDecode(response.body);
+  final totalCount = data['totalcount'] ?? 0;
+  
+  // Agar totalcount 0 hai ya rows empty hain, to proceed mat karo
+  if (totalCount == 0 || data['rows'] == null || data['rows'].isEmpty) {
+    _showErrorMessage(localizations.noReceiptFound);
+    return false; // setData API nahi chalegi
   }
+  
+  final rows = data['rows'];
+  final receiptRow = rows[0];
+  
+  // Check if findoc exists in the response
+  if (receiptRow['findoc'] == null) {
+    _showErrorMessage(localizations.noReceiptFound);
+    return false;
+  }
+  
+  final String findocID = receiptRow['findoc'].toString();
+  debugPrint('✅ Receipt exists. FINDOC: $findocID');
+  
+  // Ab setData API chalegi
+  return await setBonusToReceipt(
+    findocID: findocID,
+    cardPoints: '', // Not needed anymore
+  );
+}
+  /// 
+  // Future<bool> _processReceiptResponse(http.Response response) async {
+  //   final localizations = AppLocalizations.of(context)!;
+  //   final data = jsonDecode(response.body);
+  //   final totalCount = data['totalcount'] ?? 0;
+  //   if (totalCount == 0) {
+  //     _showErrorMessage(localizations.noReceiptFound);
+  //    return false;
+  //   }
+  //   final rows = data['rows'];
+  //   final receiptRow = rows[0];
+  //   final String rawFindocKey = receiptRow[0];
+  //   final String receiptAmount = receiptRow[7];
+  //   final String findocID = rawFindocKey.split(';')[1];
+  //   debugPrint('✅ Receipt exists. FINDOC: $findocID, Points: $receiptAmount');
+  //   return await setBonusToReceipt(
+  //     findocID: findocID,
+  //     cardPoints: receiptAmount,
+  //   );
+  // }
 
   /// Assigns bonus points to the receipt
   Future<bool> setBonusToReceipt({
+
+
     required String findocID,
     required String cardPoints,
   }) async {
@@ -208,6 +263,7 @@ class _ScanReceiptScreenState extends State<ScanReceiptScreen>
       final clientID = prefs.getString('clientID');
       final companyUrl = prefs.getString('company_url');
       final softwareType = prefs.getString('software_type');
+      final trdr = prefs.getString('TRDR');
 
       if (clientID == null || companyUrl == null || softwareType == null) {
         _showErrorMessage(localizations.missingConfiguration);
@@ -220,7 +276,8 @@ class _ScanReceiptScreenState extends State<ScanReceiptScreen>
       final requestBody = _buildBonusRequest(
         clientID: clientID,
         findocID: findocID,
-        cardPoints: cardPoints,
+        // cardPoints: cardPoints,
+        trdr: trdr!,
       );
 
       final response = await _makeApiCall(uri, requestBody);
@@ -228,21 +285,28 @@ class _ScanReceiptScreenState extends State<ScanReceiptScreen>
       if (response.statusCode == 200) {
         return _processBonusResponse(response);
       } else {
-        _showErrorMessage(localizations.serverError.replaceFirst('%s', response.statusCode.toString()));
+        _showErrorMessage(
+          localizations.serverError.replaceFirst(
+            '%s',
+            response.statusCode.toString(),
+          ),
+        );
         return false;
       }
     } catch (e) {
       debugPrint('❗ setBonusToReceipt exception: $e');
-      _showErrorMessage(localizations.errorApplyingBonus.replaceFirst('%s', e.toString()));
+      _showErrorMessage(
+        localizations.errorApplyingBonus.replaceFirst('%s', e.toString()),
+      );
       return false;
     }
   }
-
-  /// Builds request body for bonus assignment
+ 
+ 
   Map<String, dynamic> _buildBonusRequest({
     required String clientID,
     required String findocID,
-    required String cardPoints,
+    required String trdr, // member ka trdr
   }) {
     return {
       "service": "setData",
@@ -252,13 +316,32 @@ class _ScanReceiptScreenState extends State<ScanReceiptScreen>
       "KEY": findocID,
       "data": {
         "SALDOC": [
-          {"BUSUNITS": "8073", "NUM01": cardPoints},
+          {"CCCXITLOYALTYTRDR": trdr, "BOOL01": 1},
         ],
       },
     };
   }
 
   /// Processes the bonus assignment response
+  /// Builds request body for bonus assignment
+  // Map<String, dynamic> _buildBonusRequest({
+  //   required String clientID,
+  //   required String findocID,
+  //   required String cardPoints,
+  // }) {
+  //   return {
+  //     "service": "setData",
+  //     "clientID": clientID,
+  //     "appId": "1001",
+  //     "OBJECT": "SALDOC",
+  //     "KEY": findocID,
+  //     "data": {
+  //       "SALDOC": [
+  //         {"BUSUNITS": "8073", "NUM01": cardPoints},
+  //       ],
+  //     },
+  //   };
+  // }
   bool _processBonusResponse(http.Response response) {
     final localizations = AppLocalizations.of(context)!;
     final data = jsonDecode(response.body);
@@ -267,7 +350,10 @@ class _ScanReceiptScreenState extends State<ScanReceiptScreen>
       return true;
     } else {
       _showErrorMessage(
-        localizations.failedToApplyBonus.replaceFirst('%s', data['error'] ?? localizations.unknownError),
+        localizations.failedToApplyBonus.replaceFirst(
+          '%s',
+          data['error'] ?? localizations.unknownError,
+        ),
       );
       return false;
     }
@@ -328,10 +414,10 @@ class _ScanReceiptScreenState extends State<ScanReceiptScreen>
   @override
   Widget build(BuildContext context) {
     final localizations = AppLocalizations.of(context)!;
-    
+
     return Scaffold(
       backgroundColor: const Color(0xFFF5F5F5),
-     
+
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -346,7 +432,7 @@ class _ScanReceiptScreenState extends State<ScanReceiptScreen>
               ),
             ),
             const SizedBox(height: 2),
-        
+
             Container(
               child: Column(
                 children: [
@@ -360,9 +446,9 @@ class _ScanReceiptScreenState extends State<ScanReceiptScreen>
                 ],
               ),
             ),
-        
+
             // Orange section with receipt
-        
+
             // Bottom section with text and button
             Container(
               color: const Color(0xFFF5F5F5),
@@ -388,7 +474,7 @@ class _ScanReceiptScreenState extends State<ScanReceiptScreen>
                     ),
                   ),
                   const SizedBox(height: 30),
-        
+
                   // Scan button
                   Container(
                     width: double.infinity,
@@ -447,7 +533,7 @@ class _ScanReceiptScreenState extends State<ScanReceiptScreen>
   /// Shows dialog for unsupported web platform
   void _showNotSupportedDialog() {
     final localizations = AppLocalizations.of(context)!;
-    
+
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
@@ -461,11 +547,7 @@ class _ScanReceiptScreenState extends State<ScanReceiptScreen>
                 color: Colors.red.withOpacity(0.1),
                 borderRadius: BorderRadius.circular(12),
               ),
-              child: Icon(
-                Icons.web_asset_off,
-                color: Colors.red,
-                size: 24,
-              ),
+              child: Icon(Icons.web_asset_off, color: Colors.red, size: 24),
             ),
             const SizedBox(width: 12),
             Text(
@@ -520,7 +602,6 @@ class _ScanReceiptScreenState extends State<ScanReceiptScreen>
   }
 }
 
-
 class QRScannerScreen extends StatefulWidget {
   final Function(String?) onScanComplete;
 
@@ -563,7 +644,7 @@ class _QRScannerScreenState extends State<QRScannerScreen>
   @override
   Widget build(BuildContext context) {
     final localizations = AppLocalizations.of(context)!;
-    
+
     if (kIsWeb) {
       return _buildWebUnsupportedView(localizations);
     }
@@ -622,10 +703,7 @@ class _QRScannerScreenState extends State<QRScannerScreen>
             borderRadius: BorderRadius.circular(20),
           ),
           child: Stack(
-            children: [
-              ..._buildCornerDecorations(), 
-              _buildScanningLine()
-            ],
+            children: [..._buildCornerDecorations(), _buildScanningLine()],
           ),
         ),
       ),
@@ -775,7 +853,7 @@ class _QRScannerScreenState extends State<QRScannerScreen>
   /// Shows success dialog after successful scan
   void _showSuccessDialog(String scannedData) {
     final localizations = AppLocalizations.of(context)!;
-    
+
     showDialog(
       context: context,
       barrierDismissible: false,
